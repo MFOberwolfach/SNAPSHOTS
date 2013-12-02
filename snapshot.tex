@@ -1,0 +1,135 @@
+\input{preamble}
+%\setdefaultlanguage{german}
+\usepackage[math]{blindtext}
+\usepackage{lipsum}
+\usepackage{xcolor}
+\usepackage{type1cm}
+\usepackage{relsize}
+
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\cfoot{\pagemark}
+\newcommand{\arial}{\fontspec[Extension=.ttf, ItalicFont=Arial Italic]{Arial}}
+
+\setkomafont{pagenumber}{\arial\relscale{0.9}}
+\setkomafont{section}{\arial\relscale{1.1}\addfontfeature{LetterSpace=6.0}\underline }
+\setkomafont{subsection}{\arial\relscale{0.9}\addfontfeature{LetterSpace=6.0}}
+\setkomafont{subsubsection}{\arial\relscale{0.9}\addfontfeature{LetterSpace=6.0}}
+\setkomafont{paragraph}{\arial\relscale{0.9}\addfontfeature{LetterSpace=6.0}}
+\setkomafont{subparagraph}{\arial\relscale{0.9}\addfontfeature{LetterSpace=6.0}}
+\setkomafont{captionlabel}{\arial\relscale{0.9}\addfontfeature{LetterSpace=6.0}}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+
+\begin{document}
+\noindent
+\parbox[t]{0.5\linewidth}{\arial\relscale{0.75}\addfontfeature{LetterSpace=6.0}Schnappsch\"usse moderner Mathematik\\aus Oberwolfach}
+\parbox[t]{0.5\linewidth}{\raggedleft\mbox{\textnumero \,1}}
+\bigskip 
+\bigskip 
+\bigskip
+\begin{center}
+
+\textcolor{black!75!white}{\normalsize {\textscale{1.5}{{\arial\addfontfeature{LetterSpace=8.0}
+	\parbox{0.75\linewidth}{%
+		\centering
+		 Ein toller SNAPSHOT mit einem ziemlich langen Titel der auch noch umbricht
+		 \\
+		\rule{2em}{0.075em}
+		\\[\bigskipamount]
+	}%
+}}}}%
+
+{\normalsize{\addfontfeature{LetterSpace=6.0}Torsten Voigt}}
+\end{center}
+\bigskip
+\bigskip
+\bigskip
+
+\noindent\textscale{1.3}{\parbox{\linewidth}{\noindent Ein kurzer Text, der mal beschreibt, was so im nachfolgenden Text kommt. Gerne auch mal Abstract genannt. Bisschen l\"anger als zwei Zeilen sollte es aber schon sein. Vielleicht vier oder f\"unf. Eine Zeile geht noch, so dass wir hier wenigstens vier haben. Ein kurzer Text, der mal beschreibt, was so im nachfolgenden Text kommt.}}
+\bigskip
+
+\section{Eine \"Uberschrift}
+\noindent\blindtext[1]\footnote{Eine Fu\ss note \"uber eine oder mehrere Zeilen, gesetzt nach Konrads W\"unschen.}
+\begin{align}
+	\rho \dot{\mathbf{v}}
+	 &= \rho \left( \frac{\partial\mathbf{v}}{\partial t} + (\mathbf{v} \cdot \nabla) \mathbf{v} \right)\\
+	 &=-\nabla p + \mu \Delta \mathbf{v} + (\lambda + \mu) \nabla (\nabla \cdot \mathbf{v})+\mathbf{f}.
+\end{align}
+Ein kurzer Text, der mal beschreibt, was so im nachfolgenden Text kommt. Gerne auch mal Abstract genannt. Bisschen l\"anger als zwei Zeilen sollte es aber schon sein. Vielleicht vier oder f\"unf. Eine Zeile geht noch, so dass wir hier wenigstens vier haben.
+
+\section{Eine zweite \"Uberschrift g}
+\subsection{Eine Unter\"uberschrift}
+\blindtext
+
+\blindtext
+
+\subsection{Eine zweite Unter\"uberschrift}
+\subsubsection{Eine Unterunter\"uberschrift}
+\begin{figure}
+\centering
+\tikzstyle{int}=[draw, fill=black!20, minimum size=2em]
+\tikzstyle{init} = [pin edge={to-,thin,black}]
+\begin{tikzpicture}[node distance=2.5cm,auto,>=latex']
+    \node [int, pin={[init]above:$v_0$}] (a) {$\frac{1}{s}$};
+    \node (b) [left of=a,node distance=2cm, coordinate] {a};
+    \node [int, pin={[init]above:$p_0$}] (c) [right of=a] {$\frac{1}{s}$};
+    \node [coordinate] (end) [right of=c, node distance=2cm]{};
+    \path[->] (b) edge node {$a$} (a);
+    \path[->] (a) edge node {$v$} (c);
+    \draw[->] (c) edge node {$p$} (end) ;
+\end{tikzpicture}
+\caption{Eine Bildunterschrift}
+\end{figure}
+\blindtext[2]
+\paragraph{Absatztitel}\blindtext[1]
+\subparagraph{Unterabsatztitel}\blindtext[1]
+\begin{equation}
+x^2+y^2+z^2-1+\mathbf{v}+\vec{v}=0
+\end{equation}
+\blindtext
+
+\null\vfill
+\noindent\begin{minipage}[b]{0.5\linewidth}
+\raggedright
+\arial
+\addfontfeature{LetterSpace=6.0}
+\footnotesize
+Classification: Algebraic Geometry
+
+Licence: by-nc-nd
+\bigskip
+
+Imaginary -- open mathematics\\
+Mathematisches Forschungsinstitut\\
+Oberwolfach gGmbH\\
+Schwarzwaldstr. 9--11\\
+D-77709 Oberwolfach-Walke, Germany
+\end{minipage}%
+\hspace{1ex}
+\begin{minipage}[b]{0.45\linewidth}%
+\raggedright
+\arial
+\addfontfeature{LetterSpace=6.0}
+\footnotesize
+MFO workshop title:\\
+\textit{Classical and Quantum Mechanical Models of Many-Particle Systems}
+\\[\medskipamount]
+
+MFO Workshop Date:\\
+1 Dec -- 7 Dec 2013
+\\[\medskipamount]
+
+Responsible Workshop Organizer:\\
+Anton Arnold, Wien
+Eric Carlen, Piscataway
+Laurent Desvillettes, Cachan
+\end{minipage}
+\end{document}
+%
+% TODO:
+%- sans font: arial
+%- text letzte seite -> arial
+%- seitenzahl -> nicht kursiv
