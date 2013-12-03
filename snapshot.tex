@@ -10,29 +10,29 @@
 \pagestyle{scrheadings}
 \clearscrheadfoot
 \cfoot{\pagemark}
-\newcommand{\arial}{\fontspec[Extension=.ttf, ItalicFont=Arial Italic]{Arial}}
+\newcommand{\arial}{\sf}%{\fontspec[Extension=.ttf, ItalicFont=Arial Italic]{Arial}}
 
 \setkomafont{pagenumber}{\arial\relscale{0.9}}
-\setkomafont{section}{\arial\relscale{1.1}\addfontfeature{LetterSpace=6.0}\underline }
-\setkomafont{subsection}{\arial\relscale{0.9}\addfontfeature{LetterSpace=6.0}}
-\setkomafont{subsubsection}{\arial\relscale{0.9}\addfontfeature{LetterSpace=6.0}}
-\setkomafont{paragraph}{\arial\relscale{0.9}\addfontfeature{LetterSpace=6.0}}
-\setkomafont{subparagraph}{\arial\relscale{0.9}\addfontfeature{LetterSpace=6.0}}
-\setkomafont{captionlabel}{\arial\relscale{0.9}\addfontfeature{LetterSpace=6.0}}
+\setkomafont{section}{\arial\relscale{1.1}\SetTracking{encoding=*}{100}\lsstyle\underline }
+\setkomafont{subsection}{\arial\relscale{0.9}\SetTracking{encoding=*}{100}\lsstyle}
+\setkomafont{subsubsection}{\arial\relscale{0.9}\SetTracking{encoding=*}{100}\lsstyle}
+\setkomafont{paragraph}{\arial\relscale{0.9}\SetTracking{encoding=*}{100}\lsstyle}
+\setkomafont{subparagraph}{\arial\relscale{0.9}\SetTracking{encoding=*}{100}\lsstyle}
+\setkomafont{captionlabel}{\arial\relscale{0.9}\SetTracking{encoding=*}{100}\lsstyle}
 
 \usepackage{tikz}
 \usetikzlibrary{arrows}
 
 \begin{document}
 \noindent
-\parbox[t]{0.5\linewidth}{\arial\relscale{0.75}\addfontfeature{LetterSpace=6.0}Schnappsch\"usse moderner Mathematik\\aus Oberwolfach}
+\parbox[t]{0.5\linewidth}{\arial\relscale{0.75}\SetTracking{encoding=*}{100}\lsstyle Schnappsch\"usse moderner Mathematik\\aus Oberwolfach}
 \parbox[t]{0.5\linewidth}{\raggedleft\mbox{\textnumero \,1}}
 \bigskip 
 \bigskip 
 \bigskip
 \begin{center}
 
-\textcolor{black!75!white}{\normalsize {\textscale{1.5}{{\arial\addfontfeature{LetterSpace=8.0}
+\textcolor{black!75!white}{\normalsize {\textscale{1.5}{{\arial\SetTracking{encoding=*}{100}\lsstyle
 	\parbox{0.75\linewidth}{%
 		\centering
 		 Ein toller SNAPSHOT mit einem ziemlich langen Titel der auch noch umbricht
@@ -42,7 +42,7 @@
 	}%
 }}}}%
 
-{\normalsize{\addfontfeature{LetterSpace=6.0}Torsten Voigt}}
+{\normalsize{\SetTracking{encoding=*}{100}\lsstyle Torsten Voigt}}
 \end{center}
 \bigskip
 \bigskip
@@ -95,7 +95,7 @@ x^2+y^2+z^2-1+\mathbf{v}+\vec{v}=0
 \noindent\begin{minipage}[b]{0.5\linewidth}
 \raggedright
 \arial
-\addfontfeature{LetterSpace=6.0}
+\SetTracking{encoding=*}{100}\lsstyle
 \footnotesize
 Classification: Algebraic Geometry
 
@@ -112,7 +112,7 @@ D-77709 Oberwolfach-Walke, Germany
 \begin{minipage}[b]{0.45\linewidth}%
 \raggedright
 \arial
-\addfontfeature{LetterSpace=6.0}
+\SetTracking{encoding=*}{100}\lsstyle
 \footnotesize
 MFO workshop title:\\
 \textit{Classical and Quantum Mechanical Models of Many-Particle Systems}
@@ -130,6 +130,8 @@ Laurent Desvillettes, Cachan
 \end{document}
 %
 % TODO:
-%- sans font: arial
-%- text letzte seite -> arial
-%- seitenzahl -> nicht kursiv
+% sans font: arial
+% text letzte seite -> arial
+% seitenzahl -> nicht kursiv
+% footer -> sprache
+% scrextend?

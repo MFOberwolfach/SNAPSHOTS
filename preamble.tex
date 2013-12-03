@@ -1,8 +1,19 @@
-\documentclass[10pt,a5paper,twoside]{scrartcl}
+\documentclass[10pt,a5paper,DIV=21]{scrartcl}
+
+\AtBeginDocument{%
+  \IfFileExists{iftex.sty}{%
+    \RequirePackage{iftex}%
+    \RequirePDFTeX%
+  }{%
+    \PackageWarning{snapshot}{%
+      Please install the iftex package\MessageBreak
+    }%
+  }%
+}
+
 %\usepackage[top=12mm,bottom=26mm,outer=28mm,inner=14mm,foot=14mm]{geometry}
 \usepackage[top=10mm,bottom=18mm,outer=12mm,inner=12mm,foot=9.5mm]{geometry}
 \usepackage{calc}
-\usepackage{scrextend}
 \deffootnote[1.5em]{0em}{1em}{\thefootnotemark\quad}
 \renewcommand{\footnoterule}{%
   \kern -2.4pt
@@ -10,7 +21,9 @@
   \kern 2pt
 }
 
-\usepackage{fontspec}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{helvet}
 
 \usepackage{microtype,ellipsis}
 
@@ -18,7 +31,6 @@
 %\usepackage{polyglossia}
 %\setotherlanguage{russian} % the name of the original Russian version at the end of this book is written using Cyrillic letters
 
-\usepackage{textcomp}
 
 \usepackage{amsmath,amssymb,nicefrac,amscd}
 \usepackage{graphicx,float}
@@ -37,7 +49,3 @@
 \usepackage{hyperref}
 
 \usepackage{todonotes}
-
-\newcommand{\eps}{\varepsilon}
-\newenvironment{problem}[1]{\paragraph*{#1}}{}
-\newenvironment{note}[1]{\par\noindent\textsc{\MakeLowercase{#1}} }{\par}

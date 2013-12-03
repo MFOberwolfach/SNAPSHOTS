@@ -1,0 +1,14 @@
+
+*.fdb_latexmk
+
+*.fls
+
+*.aux
+
+*.out
+
+*.log
+
+*.gz
+
+snapshot.pdf
