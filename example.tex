@@ -1,58 +1,28 @@
-\input{preamble}
-%\setdefaultlanguage{german}
-\usepackage[math]{blindtext}
-\usepackage{lipsum}
-\usepackage{xcolor}
-\usepackage{type1cm}
-\usepackage{relsize}
-
-\usepackage{scrpage2}
-\pagestyle{scrheadings}
-\clearscrheadfoot
-\cfoot{\pagemark}
-\newcommand{\arial}{\sf}%{\fontspec[Extension=.ttf, ItalicFont=Arial Italic]{Arial}}
-
-\setkomafont{pagenumber}{\arial\relscale{0.9}}
-\setkomafont{section}{\arial\relscale{1.1}\SetTracking{encoding=*}{100}\lsstyle\underline }
-\setkomafont{subsection}{\arial\relscale{0.9}\SetTracking{encoding=*}{100}\lsstyle}
-\setkomafont{subsubsection}{\arial\relscale{0.9}\SetTracking{encoding=*}{100}\lsstyle}
-\setkomafont{paragraph}{\arial\relscale{0.9}\SetTracking{encoding=*}{100}\lsstyle}
-\setkomafont{subparagraph}{\arial\relscale{0.9}\SetTracking{encoding=*}{100}\lsstyle}
-\setkomafont{captionlabel}{\arial\relscale{0.9}\SetTracking{encoding=*}{100}\lsstyle}
+\documentclass{mfosnapshot}
 
 \usepackage{tikz}
 \usetikzlibrary{arrows}
 
+\usepackage{comment}
+\begin{comment}
+	\input{mfosnapshot.cls}
+	% this is a dummy comment to ensure tracking of mfosnapshot.cls by latexmk
+\end{comment}
+
+\author{Torsten Voigt \and Thorsten Vogt}
+\title{Ein toller SNAPSHOT mit einem ziemlich langen Titel der auch noch umbricht}
+
 \begin{document}
-\noindent
-\parbox[t]{0.5\linewidth}{\arial\relscale{0.75}\SetTracking{encoding=*}{100}\lsstyle Schnappsch\"usse moderner Mathematik\\aus Oberwolfach}
-\parbox[t]{0.5\linewidth}{\raggedleft\mbox{\textnumero \,1}}
-\bigskip 
-\bigskip 
-\bigskip
-\begin{center}
 
-\textcolor{black!75!white}{\normalsize {\textscale{1.5}{{\arial\SetTracking{encoding=*}{100}\lsstyle
-	\parbox{0.75\linewidth}{%
-		\centering
-		 Ein toller SNAPSHOT mit einem ziemlich langen Titel der auch noch umbricht
-		 \\
-		\rule{2em}{0.075em}
-		\\[\bigskipamount]
-	}%
-}}}}%
+\begin{abstract}
+Ein kurzer Text, der mal beschreibt, was so im nachfolgenden Text kommt. Gerne auch mal Abstract genannt. Bisschen l\"anger als zwei Zeilen sollte es aber schon sein. Vielleicht vier oder f\"unf. Eine Zeile geht noch, so dass wir hier wenigstens vier haben. Ein kurzer Text, der mal beschreibt, was so im nachfolgenden Text kommt.
+\end{abstract}
 
-{\normalsize{\SetTracking{encoding=*}{100}\lsstyle Torsten Voigt}}
-\end{center}
-\bigskip
-\bigskip
-\bigskip
-
-\noindent\textscale{1.3}{\parbox{\linewidth}{\noindent Ein kurzer Text, der mal beschreibt, was so im nachfolgenden Text kommt. Gerne auch mal Abstract genannt. Bisschen l\"anger als zwei Zeilen sollte es aber schon sein. Vielleicht vier oder f\"unf. Eine Zeile geht noch, so dass wir hier wenigstens vier haben. Ein kurzer Text, der mal beschreibt, was so im nachfolgenden Text kommt.}}
-\bigskip
 
 \section{Eine \"Uberschrift}
-\noindent\blindtext[1]\footnote{Eine Fu\ss note \"uber eine oder mehrere Zeilen, gesetzt nach Konrads W\"unschen.}
+\noindent\blindtext[1]Test\footnote{Eine Fu\ss note \"uber eine oder mehrere Zeilen, gesetzt nach Konrads W\"unschen. Eine Fu\ss note \"uber eine oder mehrere Zeilen, gesetzt nach Konrads W\"unschen.
+
+Eine Fu\ss note \"uber mehrere Abs\"atze, gesetzt nach Konrads W\"unschen.}
 \begin{align}
 	\rho \dot{\mathbf{v}}
 	 &= \rho \left( \frac{\partial\mathbf{v}}{\partial t} + (\mathbf{v} \cdot \nabla) \mathbf{v} \right)\\
@@ -91,47 +61,9 @@ x^2+y^2+z^2-1+\mathbf{v}+\vec{v}=0
 \end{equation}
 \blindtext
 
-\null\vfill
-\noindent\begin{minipage}[b]{0.5\linewidth}
-\raggedright
-\arial
-\SetTracking{encoding=*}{100}\lsstyle
-\footnotesize
-Classification: Algebraic Geometry
-
-Licence: by-nc-nd
-\bigskip
-
-Imaginary -- open mathematics\\
-Mathematisches Forschungsinstitut\\
-Oberwolfach gGmbH\\
-Schwarzwaldstr. 9--11\\
-D-77709 Oberwolfach-Walke, Germany
-\end{minipage}%
-\hspace{1ex}
-\begin{minipage}[b]{0.45\linewidth}%
-\raggedright
-\arial
-\SetTracking{encoding=*}{100}\lsstyle
-\footnotesize
-MFO workshop title:\\
-\textit{Classical and Quantum Mechanical Models of Many-Particle Systems}
-\\[\medskipamount]
-
-MFO Workshop Date:\\
-1 Dec -- 7 Dec 2013
-\\[\medskipamount]
-
-Responsible Workshop Organizer:\\
-Anton Arnold, Wien
-Eric Carlen, Piscataway
-Laurent Desvillettes, Cachan
-\end{minipage}
 \end{document}
 %
 % TODO:
 % sans font: arial
-% text letzte seite -> arial
-% seitenzahl -> nicht kursiv
 % footer -> sprache
 % scrextend?
