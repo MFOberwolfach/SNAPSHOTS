@@ -59,8 +59,6 @@
 \RequirePackage{todonotes}
 
 %\setdefaultlanguage{german}
-\RequirePackage[math]{blindtext}
-\RequirePackage{lipsum}
 \RequirePackage{xcolor}
 \RequirePackage{type1cm}
 \RequirePackage{relsize}
@@ -161,42 +159,66 @@
 
 \AtBeginDocument{\maketitle}%
 \AtEndDocument{%
-	\null\nopagebreak\vfill\nopagebreak
+	\null\nopagebreak\vfill\nopagebreak\noindent%
 	\begin{minipage}{\linewidth}
-		\noindent\begin{minipage}[b]{0.5\linewidth}
-		\raggedright
-		\arial
-		\SetTracking{encoding=*}{100}\lsstyle
-		\footnotesize
-		Classification: Algebraic Geometry
-
-		Licence: by-nc-nd
+		\arial%
+		\footnotesize%
+		\emph{Snapshots of modern mathematics from Oberwolfach} is a mathematics communication project of the Mathematisches Forschungsinstitut Oberwolfach (MFO) and
+IMAGINARY -- open mathematics. It is a part of the project Oberwolfach meets IMAGINARY funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. The snapshots are written by participants of the scientific program of the institute. They are refereed (???) by the organizer(s) of the scientific program and edited by a team of editors. All snapshots can be found on \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}}.
 		\bigskip
 
-		Imaginary -- open mathematics\\
-		Mathematisches Forschungsinstitut\\
-		Oberwolfach gGmbH\\
-		Schwarzwaldstr. 9--11\\
-		D-77709 Oberwolfach-Walke, Germany
+		\raggedright
+		Author 1 is professor for pure mathematics at Cambridge University in the UK.\\
+		Contact: \href{mailto://author-1@xyz.de}{\nolinkurl{author-1@xyz.de}}\\[\medskipamount]
+		%
+		Author 2 is professor for pure mathematics at Cambridge University in the UK.\\
+		Contact: \href{mailto://author-2@xyz.de}{\nolinkurl{author-2@xyz.de}}\\[\medskipamount]
+		%
+		Responsible Organizer\\
+		Muster Mensch
+		\bigskip
+		
+		%
+		\SetTracking{encoding=*}{100}\lsstyle
+		\noindent\begin{minipage}[b]{0.5\linewidth}
+		\raggedright
+		%
+		Mathematical subject classification:\\
+		Algebraic Geometry\\[\medskipamount]
+		%
+		License:\\
+		\href{http://creativecommons.org/licenses/by-nc-nd/2.0/}{Creative Commons BY-NC-ND 2.0}\\[\medskipamount]
+		%
+		DOI: \href{http://dx.doi.org/10.14760/SNAP-2014-001}{10.14760/SNAP-2014-001}\\[\medskipamount]
+		%
+		Junior Editor\\
+		Lea Renner, contact: \href{mailto://junior-editors@mfo.de}{\nolinkurl{junior-editors@mfo.de}}\\[\medskipamount]
+		%
+		Senior Editor\\
+		Dr. Carla Cederbaum, contact: \href{cederbaum@mfo.de}{\nolinkurl{cederbaum@mfo.de}}\\[\medskipamount]
 		\end{minipage}%
 		\hspace{1ex}
 		\begin{minipage}[b]{0.45\linewidth}%
-		\raggedright
-		\arial
-		\SetTracking{encoding=*}{100}\lsstyle
-		\footnotesize
-		MFO workshop title:\\
-		\textit{Classical and Quantum Mechanical Models of Many-Particle Systems}
-		\\[\medskipamount]
-
-		MFO Workshop Date:\\
-		1 Dec -- 7 Dec 2013
-		\\[\medskipamount]
-
-		Responsible Workshop Organizer:\\
-		Anton Arnold, Wien
-		Eric Carlen, Piscataway
-		Laurent Desvillettes, Cachan
+		\raggedright%
+		%
+		Mathematisches Forschungsinstitut\\
+		Oberwolfach gGmbH\\
+		Schwarzwaldstr. 9-11\\
+		D-77709 Oberwolfach-Walke\\
+		Germany\\[\medskipamount]
+		%
+		Director\\
+		Prof. Dr. Gerhard Huisken
 		\end{minipage}
+		\bigskip
+
+		\noindent%
+		\resizebox*{\linewidth}{0.07608695652173913043\linewidth}{%
+			\IfFileExists{./footer.pdf}{%
+				\includegraphics{footer.pdf}
+			}{%
+				\framebox{\qquad\qquad footer.pdf \qquad\qquad}
+			}
+		}
 	\end{minipage}%
 }
