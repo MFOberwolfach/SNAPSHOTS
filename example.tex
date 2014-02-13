@@ -12,15 +12,13 @@
 	% this is a dummy comment to ensure tracking of mfosnapshot.cls by latexmk
 \end{comment}
 
-\author{Torsten Voigt \and Thorsten Vogt}
+\author{Torsten Voigt \and Thorsten Vogt \and Volker Schr\"oder \and Ren\`e Kr\"uger}
 \title{Ein toller SNAPSHOT mit einem ziemlich langen Titel der auch noch umbricht}
 
 \begin{document}
-
 \begin{abstract}
 Ein kurzer Text, der mal beschreibt, was so im nachfolgenden Text kommt. Gerne auch mal Abstract genannt. Bisschen l\"anger als zwei Zeilen sollte es aber schon sein. Vielleicht vier oder f\"unf. Eine Zeile geht noch, so dass wir hier wenigstens vier haben. Ein kurzer Text, der mal beschreibt, was so im nachfolgenden Text kommt.
 \end{abstract}
-
 
 \section{Eine \"Uberschrift}
 \noindent\blindtext[1]Test\footnote{Eine Fu\ss note \"uber eine oder mehrere Zeilen, gesetzt nach Konrads W\"unschen. Eine Fu\ss note \"uber eine oder mehrere Zeilen, gesetzt nach Konrads W\"unschen.
@@ -31,13 +29,13 @@ Eine Fu\ss note \"uber mehrere Abs\"atze, gesetzt nach Konrads W\"unschen.}
 	 &= \rho \left( \frac{\partial\mathbf{v}}{\partial t} + (\mathbf{v} \cdot \nabla) \mathbf{v} \right)\\
 	 &=-\nabla p + \mu \Delta \mathbf{v} + (\lambda + \mu) \nabla (\nabla \cdot \mathbf{v})+\mathbf{f}.
 \end{align}
-Ein kurzer Text, der mal beschreibt, was so im nachfolgenden Text kommt. Gerne auch mal Abstract genannt. Bisschen l\"anger als zwei Zeilen sollte es aber schon sein. Vielleicht vier oder f\"unf. Eine Zeile geht noch, so dass wir hier wenigstens vier haben.
+Ein kurzer Text\footnote{Eine zweite Fu\ss note.}, der mal beschreibt\footnote{Eine vierte Fu\ss note.}, was so im nachfolgenden Text kommt\footnote{Eine vierte Fu\ss note.}. Gerne auch mal Abstract genannt\footnote{Eine f\"unfte" Fu\ss note.}. Bisschen l\"anger\footnote{Eine sechste Fu\ss note.} als zwei Zeilen sollte es aber schon sein. Vielleicht vier oder f\"unf. Eine Zeile geht noch, so dass wir hier wenigstens vier haben.
 
 \section{Eine zweite \"Uberschrift g}
 \subsection{Eine Unter\"uberschrift}
-\blindtext
+\blindtext\footnote{Eine siebte Fu\ss note.} Text\footnote{Eine achte Fu\ss note.}.
 
-\blindtext
+\blindtext Mehr Text.\footnote{Eine neunte Fu\ss note.}\footnote{Eine zehnte Fu\ss note.}
 
 \subsection{Eine zweite Unter\"uberschrift}
 \subsubsection{Eine Unterunter\"uberschrift}
