@@ -41,7 +41,7 @@
 % fonts
 \RequirePackage[T1]{fontenc}
 \RequirePackage{textcomp}
-\RequirePackage{helvet}
+\RequirePackage[scaled]{helvet}
 \RequirePackage{microtype,ellipsis}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
