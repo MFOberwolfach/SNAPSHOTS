@@ -22,6 +22,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % page layout
 \RequirePackage[top=12mm,bottom=22mm,outer=16mm,inner=12mm,foot=11mm]{geometry}
+\RequirePackage{multicol}
+\setlength{\columnsep}{2em}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % footnotes
@@ -144,13 +146,12 @@
   \parbox[t]{0.5\linewidth}{\raggedleft\mbox{\textnumero\,\@snapshotid/\@snapshotyear}}
   \vskip 4em%
   \begin{center}%
-    \parbox[t]{0.75\linewidth}{\centering\titlefont \@title \par}%
-    \vskip 1.5em
-	{\titlefont\rule{2em}{0.075em}}
-    %{\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
-    \vskip 1em
+    \parbox[t]{0.75\linewidth}{\centering\titlefont \@title}\\[2em]
+
+	\textcolor{black!75!white}{\rule[0.5ex]{1cm}{0.75pt}}\\[1.5em]%
     {%
       \lineskip .5em%
+      \arial
       \SetTracking{encoding=*}{100}\lsstyle%
       \begin{tabular}[t]{c}
         \@author
@@ -168,55 +169,71 @@
 \AtEndDocument{%
 	\null\nopagebreak\vfill\nopagebreak\noindent%
 	\begin{minipage}{\linewidth}
-		\arial%
-		\footnotesize%
-		\emph{Snapshots of modern mathematics from Oberwolfach} is a mathematics communication project of the Mathematisches Forschungsinstitut Oberwolfach (MFO) and
-IMAGINARY -- open mathematics. It is a part of the project Oberwolfach meets IMAGINARY funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. The snapshots are written by participants of the scientific program of the institute. They are refereed (???) by the organizer(s) of the scientific program and edited by a team of editors. All snapshots can be found on \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}}.
-		\bigskip
+		\renewcommand\UrlFont{}%
+		\relscale{0.75}%
+		\begin{multicols*}{2}
+			\arial%
+			\parbox{\linewidth}{%
+				\raggedright
+				Author 1 is professor for pure mathematics at Cambridge University in the UK.\\
+				Contact: \href{mailto://author-1@xyz.de}{\nolinkurl{author-1@xyz.de}}\\[\medskipamount]
+				%
+				Author 2 is professor for pure mathematics at \mbox{Cambridge} University in the UK.\\
+				Contact: \href{mailto://author-2@xyz.de}{\nolinkurl{author-2@xyz.de}}\\[\medskipamount]
+				%
+				Responsible Organizer\\
+				Muster Mensch%
+			}\columnbreak\par%
+			\parbox{\linewidth}{%
+				\raggedright
+				Mathematical subject classification:\\
+				Algebraic Geometry\\[\medskipamount]
+				%
+				License:\\
+				\href{http://creativecommons.org/licenses/by-nc-nd/2.0/}{Creative Commons BY-NC-ND 2.0}\\[\medskipamount]
+				%
+				DOI: \href{http://dx.doi.org/10.14760/SNAP-2014-001}{10.14760/SNAP-2014-001}%
+			}\columnbreak\par%
+		\end{multicols*}
+		\vskip\medskipamount%
 
-		\raggedright
-		Author 1 is professor for pure mathematics at Cambridge University in the UK.\\
-		Contact: \href{mailto://author-1@xyz.de}{\nolinkurl{author-1@xyz.de}}\\[\medskipamount]
-		%
-		Author 2 is professor for pure mathematics at Cambridge University in the UK.\\
-		Contact: \href{mailto://author-2@xyz.de}{\nolinkurl{author-2@xyz.de}}\\[\medskipamount]
-		%
-		Responsible Organizer\\
-		Muster Mensch
-		\bigskip
-		
-		%
+		\hfil\textcolor{black!75!white}{\rule[0.5ex]{1cm}{0.75pt}}\hfil%
+
+		\vskip\medskipamount
+		\arial\normalfont\emph{Snapshots of modern mathematics from Oberwolfach} is a mathematics communication project of the Mathematisches Forschungsinstitut Oberwolfach (MFO) and IMAGINARY -- open mathematics. It is a part of the project Oberwolfach meets IMAGINARY funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. The snapshots are written by participants of the scientific program of the institute. They are refereed (???) by the organizer(s) of the scientific program and edited by a team of editors. All snapshots can be found on \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}}.
+		\vskip-\baselineskip%
+		\vskip\medskipamount%
+
+		\hfil\textcolor{black!75!white}{\rule[0.5ex]{1cm}{0.75pt}}\hfil%
+
+		\vskip\medskipamount%
+    	\arial
+	    %{\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
+    	%
 		\SetTracking{encoding=*}{100}\lsstyle
-		\noindent\begin{minipage}[b]{0.5\linewidth}
-		\raggedright
-		%
-		Mathematical subject classification:\\
-		Algebraic Geometry\\[\medskipamount]
-		%
-		License:\\
-		\href{http://creativecommons.org/licenses/by-nc-nd/2.0/}{Creative Commons BY-NC-ND 2.0}\\[\medskipamount]
-		%
-		DOI: \href{http://dx.doi.org/10.14760/SNAP-2014-001}{10.14760/SNAP-2014-001}\\[\medskipamount]
-		%
-		Junior Editor\\
-		Lea Renner, contact: \href{mailto://junior-editors@mfo.de}{\nolinkurl{junior-editors@mfo.de}}\\[\medskipamount]
-		%
-		Senior Editor\\
-		Dr. Carla Cederbaum, contact: \href{cederbaum@mfo.de}{\nolinkurl{cederbaum@mfo.de}}\\[\medskipamount]
-		\end{minipage}%
-		\hspace{1ex}
-		\begin{minipage}[b]{0.45\linewidth}%
-		\raggedright%
-		%
-		Mathematisches Forschungsinstitut\\
-		Oberwolfach gGmbH\\
-		Schwarzwaldstr. 9-11\\
-		D-77709 Oberwolfach-Walke\\
-		Germany\\[\medskipamount]
-		%
-		Director\\
-		Prof. Dr. Gerhard Huisken
-		\end{minipage}
+		\begin{multicols*}{2}
+			\parbox{\linewidth}{%
+				\raggedright
+				\textit{Junior Editor}\\
+				Lea Renner\\
+				\href{mailto://junior-editors@mfo.de}{\nolinkurl{junior-editors@mfo.de}}\\[\medskipamount]
+				%
+				\textit{Senior Editor}\\
+				Dr. Carla Cederbaum\\
+				\href{cederbaum@mfo.de}{\nolinkurl{cederbaum@mfo.de}}%
+			}\columnbreak\par%
+			\parbox{\linewidth}{%
+				\raggedright
+				Mathematisches Forschungsinstitut\\
+				Oberwolfach gGmbH\\
+				Schwarzwaldstr. 9-11\\
+				D-77709 Oberwolfach-Walke\\
+				Germany\\[\medskipamount]
+				%
+				\textit{Director}\\
+				Prof. Dr. Gerhard Huisken%
+			}\columnbreak\par%
+		\end{multicols*}
 		\bigskip
 
 		\noindent%
