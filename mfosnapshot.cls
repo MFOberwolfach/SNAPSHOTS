@@ -61,7 +61,7 @@
 \RequirePackage{siunitx}
 \sisetup{per-mode=fraction,fraction-function=\nicefrac}
 
-\RequirePackage{hyperref}
+\RequirePackage[hidelinks]{hyperref}
 
 \RequirePackage{todonotes}
 
