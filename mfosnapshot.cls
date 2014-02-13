@@ -1,3 +1,11 @@
+% TODO:
+% - UTF-8
+% - pdfLaTeX, XeLaTeX, LuaLaTeX
+% - BibTeX/BibLaTeX
+% - Listen, Tabellen
+% - Paketauswahl
+% - neuer \author-Befehl
+
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{mfosnapshot}[2014/02/06 Document class for "Snapshots from Oberwolfach"]
 \LoadClass[10pt,a5paper,twoside]{scrartcl}  
