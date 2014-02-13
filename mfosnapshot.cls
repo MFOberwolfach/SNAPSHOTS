@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{mfosnapshot}[2014/02/06 Document class for "Snapshots from Oberwolfach"]
-\LoadClass[10pt,a5paper,DIV=21]{scrartcl}  
+\LoadClass[10pt,a5paper,twoside]{scrartcl}  
 
 % \AtBeginDocument{%
 %   \IfFileExists{iftex.sty}{%
@@ -21,7 +21,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % page layout
-\RequirePackage[top=10mm,bottom=18mm,outer=12mm,inner=12mm,foot=9.5mm]{geometry}
+\RequirePackage[top=12mm,bottom=22mm,outer=16mm,inner=12mm,foot=11mm]{geometry}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % footnotes
