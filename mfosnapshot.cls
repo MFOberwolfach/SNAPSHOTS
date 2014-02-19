@@ -27,15 +27,15 @@
 % footnotes
 %\def\@fnsymbol#1{\ifcase#1\or{*}\or{**}\or{***}\else\@ctrerr\fi}
 \def\@fnsymbol#1{\ensuremath{\ifcase#1%
-	\or *\or \ddagger\or \mathsection\or \mathparagraph\or \|%
-	\or **\or \ddagger\ddagger\or \mathsection\mathsection \or \mathparagraph\mathparagraph%
+	\or *\or \ddagger\or \mathsection\or \|%
+	\or **\or \ddagger\ddagger\or \mathsection\mathsection%
 	\else%
 		*^{\the#1}
 	\fi}}
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 \deffootnote[1.5em]{0em}{1.5em}{\rlap{\textsuperscript{\thefootnotemark}}\hspace{1.5em}}
 \deffootnotemark{\textsuperscript{\thefootnotemark}}
-\setfootnoterule{\textwidth}
+\setfootnoterule[0.526pt]{\textwidth}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % fonts
