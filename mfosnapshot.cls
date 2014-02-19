@@ -2,9 +2,13 @@
 % - UTF-8
 % - pdfLaTeX, XeLaTeX, LuaLaTeX
 % - BibTeX/BibLaTeX
-% - Listen, Tabellen
 % - Paketauswahl
-% - neuer \author-Befehl
+% - Autoren mehrspaltig
+% - vspace letzte Seite
+% - Abstand zum Footer letze Seite
+% - Seitenzahl vertikal optisch mittig
+% - Absatzeinrückung wie Fußnote
+% - single word -> no new line (tex stack exchange) (trading word)
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{mfosnapshot}[2014/02/06 Document class for "Snapshots from Oberwolfach"]
