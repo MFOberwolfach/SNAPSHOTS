@@ -80,6 +80,7 @@
 
 \RequirePackage{scrpage2}
 \pagestyle{scrheadings}
+\renewcommand*{\titlepagestyle}{scrheadings}
 \clearscrheadfoot
 \cfoot{\pagemark}
 \newcommand{\arial}{\sf}%{\fontspec[Extension=.ttf, ItalicFont=Arial Italic]{Arial}}
