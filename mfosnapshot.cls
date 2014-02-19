@@ -41,7 +41,7 @@
 % fonts
 \RequirePackage[T1]{fontenc}
 \RequirePackage{textcomp}
-\RequirePackage[scaled]{helvet}
+\RequirePackage[scaled=0.82304487406237511878]{helvet}
 \RequirePackage{microtype,ellipsis}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -76,17 +76,17 @@
 \cfoot{\pagemark}
 \newcommand{\arial}{\sf}%{\fontspec[Extension=.ttf, ItalicFont=Arial Italic]{Arial}}
 
-\setkomafont{pagenumber}{\arial\relscale{0.9}}
-\setkomafont{section}{\arial\relscale{1.1}\SetTracking{encoding=*}{100}\lsstyle\underline }
-\setkomafont{subsection}{\arial\relscale{0.9}\SetTracking{encoding=*}{100}\lsstyle}
-\setkomafont{subsubsection}{\arial\relscale{0.9}\SetTracking{encoding=*}{100}\lsstyle}
-\setkomafont{paragraph}{\arial\relscale{0.9}\SetTracking{encoding=*}{100}\lsstyle}
-\setkomafont{subparagraph}{\arial\relscale{0.9}\SetTracking{encoding=*}{100}\lsstyle}
-\setkomafont{captionlabel}{\arial\relscale{0.9}\SetTracking{encoding=*}{100}\lsstyle}
+\setkomafont{pagenumber}{\arial\relscale{1.1}}
+\setkomafont{section}{\arial\relscale{1.32}\SetTracking{encoding=*}{100}\lsstyle\underline }
+\appto{\thesection}{\protect\vphantom{g}} % spacing of underline 
 
-\setkomafont{title}{\color{black!75!white}\arial\relscale{1.5}\SetTracking{encoding=*}{100}\lsstyle}
+\setkomafont{subsection}{\arial\relscale{1.1}\SetTracking{encoding=*}{100}\lsstyle}
+\setkomafont{subsubsection}{\arial\relscale{1.1}\SetTracking{encoding=*}{100}\lsstyle}
+\setkomafont{paragraph}{\arial\relscale{1.1}\SetTracking{encoding=*}{100}\lsstyle}
+\setkomafont{subparagraph}{\arial\relscale{1.1}\SetTracking{encoding=*}{100}\lsstyle}
+\setkomafont{captionlabel}{\arial\relscale{1.1}\SetTracking{encoding=*}{100}\lsstyle}
 
-
+\setkomafont{title}{\renewcommand{\baselinestretch}{0.8}\color{black!75!white}\arial\relscale{1.8}\SetTracking{encoding=*}{100}\lsstyle}
 
 
 \newcommand{\@snapshotid}{xx}%
@@ -140,7 +140,7 @@
   \let\footnote\thanks
   \setparsizes{\z@}{\z@}{\z@\@plus 1fil}\par@updaterelative
   \noindent
-  \parbox[t]{0.5\linewidth}{\arial\relscale{0.75}\SetTracking{encoding=*}{100}\lsstyle Schnappsch\"usse moderner Mathematik\\aus Oberwolfach}%
+  \parbox[t]{0.5\linewidth}{\arial\relscale{0.9}\SetTracking{encoding=*}{100}\lsstyle Schnappsch\"usse moderner Mathematik\\aus Oberwolfach}%
   \parbox[t]{0.5\linewidth}{\raggedleft\mbox{\textnumero\,\@snapshotid/\@snapshotyear}}
   \vskip 4em%
   \begin{center}%
@@ -148,6 +148,7 @@
 
 	\textcolor{black!75!white}{\rule[0.5ex]{1cm}{0.75pt}}\\[1.5em]%
     {%
+      \relscale{1.2}
       \lineskip .5em%
       \arial
       \SetTracking{encoding=*}{100}\lsstyle%
@@ -168,8 +169,9 @@
 	\null\nopagebreak\vfill\nopagebreak\noindent%
 	\begin{minipage}{\linewidth}
 		\renewcommand\UrlFont{}%
-		\relscale{0.75}%
 		\begin{multicols*}{2}
+		\relscale{0.9}%
+			\renewcommand{\baselinestretch}{0.8}
 			\arial%
 			\parbox{\linewidth}{%
 				\raggedright
@@ -205,11 +207,14 @@
 		\hfil\textcolor{black!75!white}{\rule[0.5ex]{1cm}{0.75pt}}\hfil%
 
 		\vskip\medskipamount%
+			\SetTracking{encoding=*}{100}\lsstyle%
     	\arial
 	    %{\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
     	%
 		\SetTracking{encoding=*}{100}\lsstyle
 		\begin{multicols*}{2}
+			\renewcommand{\baselinestretch}{0.8}
+			\arial%
 			\parbox{\linewidth}{%
 				\raggedright
 				\textit{Junior Editor}\\
