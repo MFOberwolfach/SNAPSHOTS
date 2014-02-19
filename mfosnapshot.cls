@@ -55,7 +55,15 @@
 \RequirePackage{pdfpages}
 
 \RequirePackage{enumitem}
-\setitemize[1]{noitemsep,nosep,leftmargin=0.99em,label={--}}
+\setitemize[1]{noitemsep,leftmargin=1.5em,labelsep=*,label={$\bullet$}}
+\setitemize[2]{noitemsep,leftmargin=1.5em,labelsep=*,label={$\circ$}}
+\setitemize[3]{noitemsep,leftmargin=1.5em,labelsep=*,label={$*$}}
+\setitemize[4]{noitemsep,leftmargin=1.5em,labelsep=*,label={--}}
+%
+\setenumerate[1]{noitemsep,leftmargin=1.5em,labelsep=*,label=\sf\arabic*.}
+\setenumerate[2]{noitemsep,leftmargin=1.5em,labelsep=*,label=\sf\alph*)}
+\setenumerate[3]{noitemsep,align=left,leftmargin=1.5em,labelsep=*,label=\sf\roman*.}
+\setenumerate[4]{noitemsep,leftmargin=1.5em,labelsep=*,label=\sf\Alph*.}
 
 \RequirePackage{csquotes}
 \RequirePackage{siunitx}
