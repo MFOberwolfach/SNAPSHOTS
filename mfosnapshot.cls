@@ -207,17 +207,32 @@
 
 \AtBeginDocument{\maketitle}%
 \AtEndDocument{%
-	\null\nopagebreak\vfill\nopagebreak\noindent%
+	\vskip 0cm plus \textheight \null\nopagebreak\vfill\nopagebreak\noindent%
 	\begin{minipage}{\linewidth}
+		\raggedcolumns
 		\renewcommand\UrlFont{}%
 		\relscale{0.9}%
 		\widowpenalties 1 10000
+		\medskipamount2ex
+		\multicolsep=0pt
 		\begin{multicols}{2}%
 			\renewcommand{\baselinestretch}{0.8}
 			\arial%
-		\arial\normalfont\emph{Snapshots of modern mathematics from Oberwolfach} is a mathematics communication project of the Mathematisches Forschungsinstitut Oberwolfach (MFO) and IMAGINARY -- open mathematics. It is a part of the project Oberwolfach meets IMAGINARY funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. The snapshots are written by participants of the scientific program of the institute. They are refereed (???) by the organizer(s) of the scientific program and edited by a team of editors. All snapshots can be found on \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}}.
 			\SetTracking{encoding=*}{100}\lsstyle%
+			\raggedright%
 			\@authorinfo%
+			%
+			Responsible Organizer\\
+			Muster Mensch\\[\medskipamount]
+			%
+			Mathematical subject classification:\\
+			Algebraic Geometry\\[\medskipamount]
+			%
+			License:\\
+			\href{http://creativecommons.org/licenses/by-nc-nd/2.0/}{Creative Commons BY-NC-ND 2.0}\\[\medskipamount]
+			%
+			DOI: \href{http://dx.doi.org/10.14760/SNAP-2014-001}{10.14760/SNAP-2014-001}%
+		\end{multicols}%
 		\vskip 0.3cm%
 		\par\hfill\rule[0.5ex]{1cm}{0.526pt}\hfill\null%
 		\vskip 0.25cm
@@ -240,23 +255,22 @@
 				\href{mailto://junior-editors@mfo.de}{\nolinkurl{junior-editors@mfo.de}}\\[\medskipamount]
 				%
 				\textit{Senior Editor}\\
-				Dr. Carla Cederbaum\\
+				Dr.\;Carla Cederbaum\\
 				\href{cederbaum@mfo.de}{\nolinkurl{cederbaum@mfo.de}}%
 			}\columnbreak\par%
 			\parbox{\linewidth}{%
 				\raggedright
 				Mathematisches Forschungsinstitut\\
 				Oberwolfach gGmbH\\
-				Schwarzwaldstr. 9-11\\
-				D-77709 Oberwolfach-Walke\\
+				Schwarzwaldstr. 9\,--1\!1\\
+				D-\!77709 Oberwolfach-Walke\\
 				Germany\\[\medskipamount]
 				%
 				\textit{Director}\\
-				Prof. Dr. Gerhard Huisken%
+				Prof.\;Dr.\;Gerhard Huisken%
 			}\columnbreak\par%
 		\end{multicols*}
-		\bigskip
-
+		\vskip 0.5cm
 		\noindent%
 		\IfFileExists{./footer.pdf}{%
 			\includegraphics[width=\linewidth]{footer.pdf}%
@@ -265,6 +279,7 @@
 		}%
 	\end{minipage}%
 }
+
 % Disable single lines at the start of a paragraph (Schusterjungen)
 \clubpenalty = 10000
 %
