@@ -187,7 +187,7 @@
   \begin{center}%
     \parbox[t]{0.75\linewidth}{\centering\titlefont \@title}\\[2em]
 
-	\textcolor{black!75!white}{\rule[0.5ex]{1cm}{0.75pt}}\\[1.5em]%
+	\rule[0.5ex]{1cm}{0.526pt}\\[1.5em]%
     {%
       \relscale{1.2}
       \lineskip .5em%
@@ -215,20 +215,17 @@
 		\begin{multicols}{2}%
 			\renewcommand{\baselinestretch}{0.8}
 			\arial%
-		\vskip\medskipamount%
-
-		\hfil\textcolor{black!75!white}{\rule[0.5ex]{1cm}{0.75pt}}\hfil%
-
-		\vskip\medskipamount
 		\arial\normalfont\emph{Snapshots of modern mathematics from Oberwolfach} is a mathematics communication project of the Mathematisches Forschungsinstitut Oberwolfach (MFO) and IMAGINARY -- open mathematics. It is a part of the project Oberwolfach meets IMAGINARY funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. The snapshots are written by participants of the scientific program of the institute. They are refereed (???) by the organizer(s) of the scientific program and edited by a team of editors. All snapshots can be found on \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}}.
-		\vskip-\baselineskip%
-		\vskip\medskipamount%
-
-		\hfil\textcolor{black!75!white}{\rule[0.5ex]{1cm}{0.75pt}}\hfil%
-
-		\vskip\medskipamount%
 			\SetTracking{encoding=*}{100}\lsstyle%
 			\@authorinfo%
+		\vskip 0.3cm%
+		\par\hfill\rule[0.5ex]{1cm}{0.526pt}\hfill\null%
+		\vskip 0.25cm
+		\raggedright\arial\normalfont\emph{Snapshots of modern mathematics from Oberwolfach} is a mathematics communication project of the Mathematisches Forschungsinstitut Oberwolfach (MFO) and IMAGINARY -- open mathematics. It is a part of the project Oberwolfach meets IMAGINARY funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. The snapshots are written by participants of the scientific program of the institute. They are refereed (???) by the organizer(s) of the scientific program and edited by a team of editors. All snapshots can be found on \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}}.%
+		%\vskip-\baselineskip%
+		\vskip 0.25cm%
+		\par\hfill\rule[0.5ex]{1cm}{0.526pt}\hfill\null%
+		\vskip 0.4cm%
     	\arial
 	    %{\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
     	%
