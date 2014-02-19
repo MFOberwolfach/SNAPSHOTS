@@ -261,13 +261,11 @@
 		\bigskip
 
 		\noindent%
-		\resizebox*{\linewidth}{0.07608695652173913043\linewidth}{%
-			\IfFileExists{./footer.pdf}{%
-				\includegraphics{footer.pdf}
-			}{%
-				\framebox{\qquad\qquad footer.pdf \qquad\qquad}
-			}
-		}
+		\IfFileExists{./footer.pdf}{%
+			\includegraphics[width=\linewidth]{footer.pdf}%
+		}{%
+			\includegraphics[draft,width=\linewidth,height=.07772507495642290920\linewidth]{footer.pdf}%
+		}%
 	\end{minipage}%
 }
 % Disable single lines at the start of a paragraph (Schusterjungen)
