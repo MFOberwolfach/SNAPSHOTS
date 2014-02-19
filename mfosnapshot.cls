@@ -8,7 +8,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{mfosnapshot}[2014/02/06 Document class for "Snapshots from Oberwolfach"]
-\LoadClass[10pt,a5paper,twoside]{scrartcl}  
+\LoadClass[10pt,twoside]{scrartcl}  
 
 \RequirePackage{iftex}%
 
@@ -17,10 +17,9 @@
 \RequirePackage{etoolbox}
 \appto{\abstract}{\relscale{1.3}\noindent\ignorespaces} 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % page layout
-\RequirePackage[top=12mm,bottom=22mm,outer=16mm,inner=12mm,foot=11mm]{geometry}
+\RequirePackage[a5paper,top=12mm,bottom=22mm,outer=16mm,inner=12mm,foot=11mm,footnotesep=14pt]{geometry}
 \RequirePackage{multicol}
 \setlength{\columnsep}{2em}
 
