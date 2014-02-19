@@ -101,7 +101,7 @@
 \newcommand{\@snapshotyear}{xxxx}%
 \newcommand*{\snapshotid}[2]{%
 	\gdef\@snapshotid{#1}%
-	\gdef\@snapshotyear{#1}%
+	\gdef\@snapshotyear{#2}%
 }%
 
 \newcommand{\mailtoref}[1]{\href{mailto://#1}{\nolinkurl{#1}}}
