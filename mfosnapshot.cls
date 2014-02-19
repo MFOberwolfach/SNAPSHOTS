@@ -10,16 +10,7 @@
 \ProvidesClass{mfosnapshot}[2014/02/06 Document class for "Snapshots from Oberwolfach"]
 \LoadClass[10pt,a5paper,twoside]{scrartcl}  
 
-% \AtBeginDocument{%
-%   \IfFileExists{iftex.sty}{%
-%     \RequirePackage{iftex}%
-%     \RequirePDFTeX%
-%   }{%
-%     \PackageWarning{snapshot}{%
-%       Please install the iftex package\MessageBreak
-%     }%
-%   }%
-% }
+\RequirePackage{iftex}%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % tools
