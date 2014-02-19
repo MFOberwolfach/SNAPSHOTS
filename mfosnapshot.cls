@@ -104,6 +104,38 @@
 	\gdef\@snapshotyear{#1}%
 }%
 
+\newcommand{\mailtoref}[1]{\href{mailto://#1}{\nolinkurl{#1}}}
+\newcommand{\httpref}[1]{\href{http://#1}{\nolinkurl{#1}}}
+\newcommand{\ftpref}[1]{\href{ftp://#1}{\nolinkurl{#1}}}
+
+\newcounter{ctrmaxauthorinfo}
+\setcounter{ctrmaxauthorinfo}{0}
+\newcommand*{\authorinfo}[1]{%
+	\expandafter\newcommand\csname @authorinfo\the\value{ctrmaxauthorinfo} \endcsname{#1}%
+	\stepcounter{ctrmaxauthorinfo}%
+}
+
+\newcommand{\@authorinfo}{%
+	\newcounter{ctrauthorinfo}%
+	\setcounter{ctrauthorinfo}{0}%
+	\whiledo {\value{ctrauthorinfo} < \value{ctrmaxauthorinfo}}%
+	{%
+		\bgroup%
+			\def\authorname##1{\emph{##1}}%
+			\renewcommand\UrlFont{\em}%
+			\textit{%
+			\bgroup%
+				%
+				\DeclareRobustCommand\\{\let \reserved@e \relax\let \reserved@f \relax\@ifstar{}{}\let \reserved@e \vadjust \let \reserved@f \nobreak \@xnewline}%
+				%
+				\csname @authorinfo\the\value{ctrauthorinfo} \endcsname}\strut%
+			\egroup%
+		\egroup
+		\stepcounter{ctrauthorinfo}%
+		\vskip\medskipamount%
+	}%
+}
+
 \renewcommand*\maketitle{%
 	\par
 	\begingroup
@@ -177,32 +209,10 @@
 	\null\nopagebreak\vfill\nopagebreak\noindent%
 	\begin{minipage}{\linewidth}
 		\renewcommand\UrlFont{}%
-		\begin{multicols*}{2}
 		\relscale{0.9}%
+		\begin{multicols}{2}%
 			\renewcommand{\baselinestretch}{0.8}
 			\arial%
-			\parbox{\linewidth}{%
-				\raggedright
-				Author 1 is professor for pure mathematics at Cambridge University in the UK.\\
-				Contact: \href{mailto://author-1@xyz.de}{\nolinkurl{author-1@xyz.de}}\\[\medskipamount]
-				%
-				Author 2 is professor for pure mathematics at \mbox{Cambridge} University in the UK.\\
-				Contact: \href{mailto://author-2@xyz.de}{\nolinkurl{author-2@xyz.de}}\\[\medskipamount]
-				%
-				Responsible Organizer\\
-				Muster Mensch%
-			}\columnbreak\par%
-			\parbox{\linewidth}{%
-				\raggedright
-				Mathematical subject classification:\\
-				Algebraic Geometry\\[\medskipamount]
-				%
-				License:\\
-				\href{http://creativecommons.org/licenses/by-nc-nd/2.0/}{Creative Commons BY-NC-ND 2.0}\\[\medskipamount]
-				%
-				DOI: \href{http://dx.doi.org/10.14760/SNAP-2014-001}{10.14760/SNAP-2014-001}%
-			}\columnbreak\par%
-		\end{multicols*}
 		\vskip\medskipamount%
 
 		\hfil\textcolor{black!75!white}{\rule[0.5ex]{1cm}{0.75pt}}\hfil%
@@ -216,6 +226,7 @@
 
 		\vskip\medskipamount%
 			\SetTracking{encoding=*}{100}\lsstyle%
+			\@authorinfo%
     	\arial
 	    %{\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
     	%
