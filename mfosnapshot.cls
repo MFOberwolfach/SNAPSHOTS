@@ -211,6 +211,7 @@
 	\begin{minipage}{\linewidth}
 		\renewcommand\UrlFont{}%
 		\relscale{0.9}%
+		\widowpenalties 1 10000
 		\begin{multicols}{2}%
 			\renewcommand{\baselinestretch}{0.8}
 			\arial%
@@ -269,3 +270,8 @@
 		}
 	\end{minipage}%
 }
+% Disable single lines at the start of a paragraph (Schusterjungen)
+\clubpenalty = 10000
+%
+% Disable single lines at the end of a paragraph (Hurenkinder)
+\widowpenalty = 10000 \displaywidowpenalty = 10000
