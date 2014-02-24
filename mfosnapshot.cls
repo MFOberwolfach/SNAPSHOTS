@@ -2,6 +2,7 @@
 % - UTF-8
 % - pdfLaTeX, XeLaTeX, LuaLaTeX
 % - BibTeX/BibLaTeX
+% - Sprache auswählen
 % - Paketauswahl
 % - Autoren mehrspaltig
 % - vspace letzte Seite
@@ -9,6 +10,8 @@
 % - Seitenzahl vertikal optisch mittig
 % - Absatzeinrückung wie Fußnote
 % - single word -> no new line (tex stack exchange) (trading word)
+% - 2 Literaturverzeichnisse
+
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{mfosnapshot}[2014/02/06 Document class for "Snapshots from Oberwolfach"]
