@@ -297,14 +297,14 @@
 				Mathematisches Forschungsinstitut\\
 				Oberwolfach gGmbH\\
 				Schwarzwaldstr. 9\,--1\!1\\
-				D-\!77709 Oberwolfach-Walke\\
+				77709 Oberwolfach\\
 				Germany\\[\medskipamount]
 				%
 				\textit{Director}\\
 				Prof.\;Dr.\;Gerhard Huisken%
 			}\columnbreak\par%
 		\end{multicols*}
-		\vskip 0.5cm
+		\vskip 0.75cm
 		\noindent%
 		\IfFileExists{./footer.pdf}{%
 			\includegraphics[width=\linewidth]{footer.pdf}%
