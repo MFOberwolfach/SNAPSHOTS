@@ -102,44 +102,73 @@
 \setkomafont{title}{\renewcommand{\baselinestretch}{0.8}\color{black!75!white}\arial\relscale{1.8}\SetTracking{encoding=*}{100}\lsstyle}
 
 
-\newcommand{\@snapshotid}{xx}%
-\newcommand{\@snapshotyear}{xxxx}%
+\newcommand{\snapshop@id}{xx}%
+\newcommand{\snapshop@year}{xxxx}%
 \newcommand*{\snapshotid}[2]{%
-	\gdef\@snapshotid{#1}%
-	\gdef\@snapshotyear{#2}%
+	\gdef\snapshop@id{#1}%
+	\gdef\snapshop@year{#2}%
 }%
 
 \newcommand{\mailtoref}[1]{\href{mailto://#1}{\nolinkurl{#1}}}
 \newcommand{\httpref}[1]{\href{http://#1}{\nolinkurl{#1}}}
 \newcommand{\ftpref}[1]{\href{ftp://#1}{\nolinkurl{#1}}}
 
-\newcounter{ctrmaxauthorinfo}
-\setcounter{ctrmaxauthorinfo}{0}
+\newcounter{ctrmaxmfosnapshopauthorinfo}
+\setcounter{ctrmaxmfosnapshopauthorinfo}{0}
 \newcommand*{\authorinfo}[1]{%
-	\expandafter\newcommand\csname @authorinfo\the\value{ctrmaxauthorinfo} \endcsname{#1}%
-	\stepcounter{ctrmaxauthorinfo}%
+	\expandafter\newcommand\csname snapshop@authorinfo\the\value{ctrmaxmfosnapshopauthorinfo} \endcsname{#1}%
+	\stepcounter{ctrmaxmfosnapshopauthorinfo}%
 }
 
 \newcommand{\@authorinfo}{%
-	\newcounter{ctrauthorinfo}%
-	\setcounter{ctrauthorinfo}{0}%
-	\whiledo {\value{ctrauthorinfo} < \value{ctrmaxauthorinfo}}%
-	{%
-		\bgroup%
-			\def\authorname##1{\emph{##1}}%
-			\renewcommand\UrlFont{\em}%
-			\textit{%
+	\bgroup
+		\newcounter{ctrauthorinfo}%
+		\setcounter{ctrauthorinfo}{0}%
+		\whiledo {\value{ctrauthorinfo} < \value{ctrmaxmfosnapshopauthorinfo}}%
+		{%
 			\bgroup%
-				%
-				\DeclareRobustCommand\\{\let \reserved@e \relax\let \reserved@f \relax\@ifstar{}{}\let \reserved@e \vadjust \let \reserved@f \nobreak \@xnewline}%
-				%
-				\csname @authorinfo\the\value{ctrauthorinfo} \endcsname}\strut%
-			\egroup%
-		\egroup
-		\stepcounter{ctrauthorinfo}%
-		\vskip\medskipamount%
-	}%
+				\def\authorname##1{\emph{##1}}%
+				\renewcommand\UrlFont{\em}%
+				\textit{%
+				\bgroup%
+					%
+					\DeclareRobustCommand\\{\let \reserved@e \relax\let \reserved@f \relax\@ifstar{}{}\let \reserved@e \vadjust \let \reserved@f \nobreak \@xnewline}%
+					%
+					\csname snapshop@authorinfo\the\value{ctrauthorinfo} \endcsname}\strut%
+				\egroup%
+			\egroup
+			\stepcounter{ctrauthorinfo}%
+			\vskip\medskipamount%
+		}%
+	\egroup
 }
+
+\newcommand{\snapshot@organizer}{\ClassWarningNoLine{mfosnapshot}{No responsible organizer given}--}%
+\newcommand*{\organizer}[1]{\gdef\snapshot@organizer{#1}}%
+
+\newcommand{\snapshot@classification}{\ClassWarningNoLine{mfosnapshot}{No mathematical subject classification given}--}%
+\newcommand*{\classification}[1]{\gdef\snapshot@classification{#1}}%
+
+\newcommand{\snapshot@doi}{\ClassWarningNoLine{mfosnapshot}{No DOI given}--}%
+\newcommand{\snapshot@doiurl}{}%
+\newcommand*{\doi}[1]{%
+	\gdef\snapshot@doi{#1}%
+	\gdef\snapshot@doiurl{http://dx.doi.org/#1}%
+}%
+
+\newcommand{\snapshot@junioreditor}{\ClassWarningNoLine{mfosnapshot}{No junior editor given}--}%
+\newcommand{\snapshot@junioreditoremail}{--}%
+\newcommand*{\junioreditor}[2]{%
+	\gdef\snapshot@junioreditor{#1}%
+	\gdef\snapshot@junioreditoremail{\mailtoref{#2}}%
+}%
+
+\newcommand{\snapshot@senioreditor}{\ClassWarningNoLine{mfosnapshot}{No senior editor given}--}%
+\newcommand{\snapshot@senioreditoremail}{--}%
+\newcommand*{\senioreditor}[2]{%
+	\gdef\snapshot@senioreditor{#1}%
+	\gdef\snapshot@senioreditoremail{\mailtoref{#2}}%
+}%
 
 \renewcommand*\maketitle{%
 	\par
@@ -226,21 +255,22 @@
 			\raggedright%
 			\@authorinfo%
 			%
-			Responsible Organizer\\
-			Muster Mensch\\[\medskipamount]
+			\textit{Responsible Organizer}\\*
+			\snapshot@organizer\\[\medskipamount]
 			%
-			Mathematical subject classification:\\
-			Algebraic Geometry\\[\medskipamount]
+			\textit{Mathematical subject classification}\\*
+			\snapshot@classification\\[\medskipamount]
 			%
-			License:\\
+			\textit{License}\\*
 			\href{http://creativecommons.org/licenses/by-nc-nd/2.0/}{Creative Commons BY-NC-ND 2.0}\\[\medskipamount]
 			%
-			DOI: \href{http://dx.doi.org/10.14760/SNAP-2014-001}{10.14760/SNAP-2014-001}%
+			\textit{DOI}\\*
+			\href{\snapshot@doiurl}{\snapshot@doi}%
 		\end{multicols}%
 		\vskip 0.3cm%
 		\par\hfill\rule[0.5ex]{1cm}{0.526pt}\hfill\null%
 		\vskip 0.25cm
-		\raggedright\arial\normalfont\emph{Snapshots of modern mathematics from Oberwolfach} is a mathematics communication project of the Mathematisches Forschungsinstitut Oberwolfach (MFO) and IMAGINARY -- open mathematics. It is a part of the project Oberwolfach meets IMAGINARY funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. The snapshots are written by participants of the scientific program of the institute. They are refereed (???) by the organizer(s) of the scientific program and edited by a team of editors. All snapshots can be found on \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}}.%
+		\raggedright\arial\normalfont\emph{Snapshots of modern mathematics from Oberwolfach} is a mathematics communication project of the Mathematisches Forschungsinstitut Oberwolfach (MFO) and IMAGINARY -- open mathematics. It is a part of the project Oberwolfach meets IMAGINARY funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. The snapshots are written by participants of the scientific program of the institute. They are refereed (???) by the organizers of the scientific program and edited by a team of editors. All snapshots can be found on \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}}.%
 		%\vskip-\baselineskip%
 		\vskip 0.25cm%
 		\par\hfill\rule[0.5ex]{1cm}{0.526pt}\hfill\null%
@@ -255,12 +285,12 @@
 			\parbox{\linewidth}{%
 				\raggedright
 				\textit{Junior Editor}\\
-				Lea Renner\\
-				\href{mailto://junior-editors@mfo.de}{\nolinkurl{junior-editors@mfo.de}}\\[\medskipamount]
+				\snapshot@junioreditor\\
+				\snapshot@junioreditoremail\\[\medskipamount]
 				%
 				\textit{Senior Editor}\\
-				Dr.\;Carla Cederbaum\\
-				\href{cederbaum@mfo.de}{\nolinkurl{cederbaum@mfo.de}}%
+				\snapshot@senioreditor\\
+				\snapshot@senioreditoremail%
 			}\columnbreak\par%
 			\parbox{\linewidth}{%
 				\raggedright
