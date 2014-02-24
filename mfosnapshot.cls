@@ -215,7 +215,7 @@
   \setparsizes{\z@}{\z@}{\z@\@plus 1fil}\par@updaterelative
   \noindent
   \parbox[t]{0.5\linewidth}{\arial\relscale{0.9}\SetTracking{encoding=*}{100}\lsstyle Schnappsch\"usse moderner Mathematik\\aus Oberwolfach}%
-  \parbox[t]{0.5\linewidth}{\raggedleft\mbox{\textnumero\,\@snapshotid/\@snapshotyear}}
+  \parbox[t]{0.5\linewidth}{\raggedleft\mbox{\textnumero\,\snapshop@id/\snapshop@year}}
   \vskip 4em%
   \begin{center}%
     \parbox[t]{0.75\linewidth}{\centering\titlefont \@title}\\[2em]
