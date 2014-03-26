@@ -2,7 +2,6 @@
 % - UTF-8
 % - pdfLaTeX, XeLaTeX, LuaLaTeX
 % - BibTeX/BibLaTeX
-% - Sprache auswählen
 % - Paketauswahl
 % - Autoren mehrspaltig
 % - vspace letzte Seite
@@ -53,10 +52,34 @@
 \RequirePackage{microtype,ellipsis}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% hyphenation
-\RequirePackage[ngerman]{babel}
+% language specific settings
+\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@header}{Snapshots of modern mathematics\\from Oberwolfach}
+\newcaptionname{german,ngerman}{\snapshot@l@header}{Schnappsch\"usse moderner Mathematik\\aus Oberwolfach}
 
+\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@creditstext}{\emph{Snapshots of modern mathematics from Oberwolfach} is a mathematics communication project of the Mathematisches Forschungsinstitut Oberwolfach (MFO) and IMAGINARY -- open mathematics. It is a part of the project Oberwolfach meets IMAGINARY funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. The snapshots are written by participants of the scientific program of the institute. They are refereed (???) by the organizers of the scientific program and edited by a team of editors. All snapshots can be found on \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}}.}
+\newcaptionname{german,ngerman}{\snapshot@l@creditstext}{\textbf{Bitte auf Deutsch \"ubersetzen}\emph{Snapshots of modern mathematics from Oberwolfach} is a mathematics communication project of the Mathematisches Forschungsinstitut Oberwolfach (MFO) and IMAGINARY -- open mathematics. It is a part of the project Oberwolfach meets IMAGINARY funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. The snapshots are written by participants of the scientific program of the institute. They are refereed (???) by the organizers of the scientific program and edited by a team of editors. All snapshots can be found on \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}}.}
 
+\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@organizer}{Responsible Organizer}
+\newcaptionname{german,ngerman}{\snapshot@l@organizer}{Verantwortlicher Organisator}
+
+\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@classification}{Mathematical subject classification}
+\newcaptionname{german,ngerman}{\snapshot@l@classification}{\textbf{\"Ubersetzen!}Mathe-Klassifikation}
+
+\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@license}{License}
+\newcaptionname{german,ngerman}{\snapshot@l@license}{Lizenz}
+
+\newcaptionname{english,USenglish,UKenglish,german,ngerman}{\snapshot@l@doi}{DOI}
+
+\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@junioreditor}{Junior Editor}
+\newcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Junioreditor}
+
+\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@senioreditor}{Senior Editor}
+\newcaptionname{german,ngerman}{\snapshot@l@senioreditor}{Senioreditor}
+
+\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@director}{Director}
+\newcaptionname{german,ngerman}{\snapshot@l@director}{Direktor}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage{amsmath,amssymb,nicefrac,amscd}
 \RequirePackage{graphicx,float}
@@ -221,7 +244,7 @@
   \let\footnote\thanks
   \setparsizes{\z@}{\z@}{\z@\@plus 1fil}\par@updaterelative
   \noindent
-  \parbox[t]{0.5\linewidth}{\arial\relscale{0.9}\SetTracking{encoding=*}{100}\lsstyle Schnappsch\"usse moderner Mathematik\\aus Oberwolfach}%
+  \parbox[t]{0.5\linewidth}{\arial\relscale{0.9}\SetTracking{encoding=*}{100}\lsstyle \snapshot@l@header}%
   \parbox[t]{0.5\linewidth}{\raggedleft\mbox{\textnumero\,\snapshop@id/\snapshop@year}}
   \vskip 4em%
   \begin{center}%
@@ -265,13 +288,13 @@
 			\raggedright%
 			\@authorinfo%
 			%
-			\textit{Responsible Organizer}\\*
+			\textit{\snapshot@l@organizer}\\*
 			\snapshot@organizer\\[\medskipamount]
 			%
-			\textit{Mathematical subject classification}\\*
+			\textit{\snapshot@l@classification}\\*
 			\snapshot@classification\\[\medskipamount]
 			%
-			\textit{License}\\*
+			\textit{\snapshot@l@license}\\*
 			\href{http://creativecommons.org/licenses/by-nc-nd/2.0/}{Creative Commons BY-NC-ND 2.0}\\[\medskipamount]
 			%
 			\textit{DOI}\\*
@@ -280,7 +303,7 @@
 		\vskip 0.3cm%
 		\par\hfill\rule[0.5ex]{1cm}{0.526pt}\hfill\null%
 		\vskip 0.25cm
-		\raggedright\arial\normalfont\emph{Snapshots of modern mathematics from Oberwolfach} is a mathematics communication project of the Mathematisches Forschungsinstitut Oberwolfach (MFO) and IMAGINARY -- open mathematics. It is a part of the project Oberwolfach meets IMAGINARY funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. The snapshots are written by participants of the scientific program of the institute. They are refereed (???) by the organizers of the scientific program and edited by a team of editors. All snapshots can be found on \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}}.%
+		\raggedright\arial\normalfont\snapshot@l@creditstext%
 		%\vskip-\baselineskip%
 		\vskip 0.25cm%
 		\par\hfill\rule[0.5ex]{1cm}{0.526pt}\hfill\null%
@@ -294,11 +317,11 @@
 			\arial%
 			\parbox{\linewidth}{%
 				\raggedright
-				\textit{Junior Editor}\\
+				\textit{\snapshot@l@junioreditor}\\
 				\snapshot@junioreditor\\
 				\snapshot@junioreditoremail\\[\medskipamount]
 				%
-				\textit{Senior Editor}\\
+				\textit{\snapshot@l@senioreditor}\\
 				\snapshot@senioreditor\\
 				\snapshot@senioreditoremail%
 			}\columnbreak\par%
@@ -310,7 +333,7 @@
 				77709 Oberwolfach\\
 				Germany\\[\medskipamount]
 				%
-				\textit{Director}\\
+				\textit{\snapshot@l@director}\\
 				Prof.\;Dr.\;Gerhard Huisken%
 			}\columnbreak\par%
 		\end{multicols*}
