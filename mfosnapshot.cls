@@ -1,7 +1,6 @@
 % TODO:
 % - UTF-8
 % - pdfLaTeX, XeLaTeX, LuaLaTeX
-% - BibTeX/BibLaTeX
 % - Paketauswahl
 % - Autoren mehrspaltig
 % - vspace letzte Seite
@@ -9,7 +8,6 @@
 % - Seitenzahl vertikal optisch mittig
 % - Absatzeinrückung wie Fußnote
 % - single word -> no new line (tex stack exchange) (trading word)
-% - 2 Literaturverzeichnisse
 
 
 \NeedsTeXFormat{LaTeX2e}
@@ -52,7 +50,24 @@
 \RequirePackage{microtype,ellipsis}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% references
+\usepackage[backend=biber]{biblatex}
+\usepackage{filecontents}
+\newenvironment{bibfilecontents}{%
+  \csname filecontents\endcsname{\jobname.bib}%
+}%
+{\csname endfilecontents\endcsname%
+ \addbibresource{\jobname.bib}%
+}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % language specific settings
+\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@bibliography}{References}
+\newcaptionname{german,ngerman}{\snapshot@l@bibliography}{Referenzen}
+
+\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@furtherreading}{Further reading}
+\newcaptionname{german,ngerman}{\snapshot@l@furtherreading}{Weiterf\"uhrende Literatur}
+
 \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@header}{Snapshots of modern mathematics\\from Oberwolfach}
 \newcaptionname{german,ngerman}{\snapshot@l@header}{Schnappsch\"usse moderner Mathematik\\aus Oberwolfach}
 
@@ -270,6 +285,8 @@
 
 \AtBeginDocument{\maketitle}%
 \AtEndDocument{%
+	\printbibliography[notkeyword=furtherreading,heading=bibliography,title={\snapshot@l@bibliography}]%
+	\printbibliography[keyword=furtherreading,heading=bibliography,title={\snapshot@l@furtherreading}]%
 	\par%
 	\patchcmd{\footnoterule}{\vskip \z@ \@plus .05fil}{}{}{}%
 	\raggedbottom%
