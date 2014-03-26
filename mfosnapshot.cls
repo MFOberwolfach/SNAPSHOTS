@@ -92,9 +92,12 @@
 \cfoot{\pagemark}
 \newcommand{\arial}{\sf}%{\fontspec[Extension=.ttf, ItalicFont=Arial Italic]{Arial}}
 
+
+% \underline command which always adds an invisible depth of the letter 'g' 
+\newcommand{\gunderline}[1]{\ifmmode \@@underline {#1\protect\vphantom{g}}\else $\@@underline {\hbox {#1\protect\vphantom{g}}}\m@th $\relax \fi}
+
 \setkomafont{pagenumber}{\arial\relscale{1.1}}
-\setkomafont{section}{\arial\relscale{1.32}\SetTracking{encoding=*}{100}\lsstyle\underline }
-\appto{\thesection}{\protect\vphantom{g}} % spacing of underline 
+\setkomafont{section}{\arial\relscale{1.32}\SetTracking{encoding=*}{100}\lsstyle\gunderline }
 
 \setkomafont{subsection}{\arial\relscale{1.1}\SetTracking{encoding=*}{100}\lsstyle}
 \setkomafont{subsubsection}{\arial\relscale{1.1}\SetTracking{encoding=*}{100}\lsstyle}
