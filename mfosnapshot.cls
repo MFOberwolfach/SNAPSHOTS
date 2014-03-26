@@ -248,6 +248,8 @@
 \AtBeginDocument{\maketitle}%
 \AtEndDocument{%
 	\par%
+	\patchcmd{\footnoterule}{\vskip \z@ \@plus .05fil}{}{}{}%
+	\raggedbottom%
 	\newsavebox{\snapshot@credits}%
 	\sbox{\snapshot@credits}{\hbox{\parbox[t]{\linewidth}{%
 		\raggedcolumns
