@@ -21,6 +21,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % tools
+\RequirePackage{calc}
 \RequirePackage{etoolbox}
 \appto{\abstract}{\relscale{1.3}\noindent\ignorespaces} 
 
@@ -246,8 +247,9 @@
 
 \AtBeginDocument{\maketitle}%
 \AtEndDocument{%
-	\vskip 0cm plus \textheight \null\nopagebreak\vfill\nopagebreak\noindent%
-	\begin{minipage}{\linewidth}
+	\par%
+	\newsavebox{\snapshot@credits}%
+	\sbox{\snapshot@credits}{\hbox{\parbox[t]{\linewidth}{%
 		\raggedcolumns
 		\renewcommand\UrlFont{}%
 		\relscale{0.9}%
@@ -317,7 +319,11 @@
 		}{%
 			\includegraphics[draft,width=\linewidth,height=.07772507495642290920\linewidth]{footer.pdf}%
 		}%
-	\end{minipage}%
+	}}}%
+	\newlength{\snapshot@creditstotalheight}%
+	\settototalheight{\snapshot@creditstotalheight}{\usebox{\snapshot@credits}}%
+	\vfill%
+	\noindent\usebox{\snapshot@credits}%
 }
 
 % Disable single lines at the start of a paragraph (Schusterjungen)
