@@ -357,9 +357,9 @@
 		\vskip 0.75cm
 		\noindent%
 		\IfFileExists{./footer.pdf}{%
-			\includegraphics[width=\linewidth]{footer.pdf}%
+			\raisebox{-0.125\height}[0.875\height][-0.125\height]{\includegraphics[width=\linewidth]{footer.pdf}}%
 		}{%
-			\includegraphics[draft,width=\linewidth,height=.07772507495642290920\linewidth]{footer.pdf}%
+			\includegraphics[draft,width=\linewidth,height=.07154842502483111682\linewidth]{footer.pdf}%
 		}%
 	}}}%
 	\newlength{\snapshot@creditstotalheight}%
