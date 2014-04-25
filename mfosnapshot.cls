@@ -198,31 +198,29 @@
 	\edef\@authorx{\noexpand\AndSeparatedList\noexpand{\expandonce{\@author}\noexpand}}%
 	\@authorx%
 	\bgroup%
-		\begin{tabular}[t]{p{0.4\linewidth}p{0.4\linewidth}}%
-			\ifcase\value{ctrmaxmfosnapshotauthor}\relax%0
-				\ClassWarningNoLine{mfosnapshot}{No author given}%
-			\or%1
-				\multicolumn{2}{c}{\csname snapshot@author0 \endcsname}%
-			\else%
-				\newcounter{ctrauthor}%
-				\setcounter{ctrauthor}{0}%
-				\let\origtabularnewline\tabularnewline%
-				\def\tabularnewline{\let\tabularnewline\origtabularnewline}%
-				\whiledo {\value{ctrauthor} < \value{ctrmaxmfosnapshotauthor}}%
-				{%
-					\ifnumcomp{\value{ctrauthor}+1}{=}{\value{ctrmaxmfosnapshotauthor}}{%
-						\tabularnewline\multicolumn{2}{c}{\csname snapshot@author\the\value{ctrauthor} \endcsname}%
-					}{%
-						\tabularnewline%
-						\raggedleft\csname snapshot@author\the\value{ctrauthor} \endcsname &%
-						\stepcounter{ctrauthor}%
-						\raggedright\csname snapshot@author\the\value{ctrauthor} \endcsname%
-						\ifnumcomp{\value{ctrauthor}+1}{=}{\value{ctrmaxmfosnapshotauthor}}{}{}%
-					}%
+		\unskip%
+		\ifcase\value{ctrmaxmfosnapshotauthor}\relax%0
+			\ClassWarningNoLine{mfosnapshot}{No author given}%
+		\or%1
+			\null\hfill\csname snapshot@author0 \endcsname\hfill\null%
+		\else%
+			\newcounter{ctrauthor}%
+			\setcounter{ctrauthor}{0}%
+			\let\orignewline\newline%
+			\def\newline{\let\newline\orignewline}%
+			\whiledo{\value{ctrauthor} < \value{ctrmaxmfosnapshotauthor}}%
+			{%
+				\newline%
+				\ifnumcomp{\value{ctrauthor}+1}{=}{\value{ctrmaxmfosnapshotauthor}}{%
+					\null\hfill\csname snapshot@author\the\value{ctrauthor} \endcsname\hfill\null%
+				}{%
+					\null\hfill\csname snapshot@author\the\value{ctrauthor} \endcsname\,~$\bullet$~\,%
 					\stepcounter{ctrauthor}%
+					\csname snapshot@author\the\value{ctrauthor} \endcsname\hfill\null%
 				}%
-			\fi%
-		\end{tabular}%
+				\stepcounter{ctrauthor}%
+			}%
+		\fi%
 	\egroup%
 }
 
