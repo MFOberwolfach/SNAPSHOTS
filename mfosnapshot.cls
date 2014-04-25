@@ -147,19 +147,17 @@
 \setkomafont{title}{\renewcommand{\baselinestretch}{0.8}\color{black!75!white}\arial\relscale{1.8}\SetTracking{encoding=*}{100}\lsstyle}
 
 
-\newcommand{\snapshop@id}{xx}%
-\newcommand{\snapshop@year}{xxxx}%
+\newcommand{\snapshot@id}{xx}%
+\newcommand{\snapshot@year}{xxxx}%
 \newcommand*{\snapshotid}[2]{%
-	\gdef\snapshop@id{#1}%
-	\gdef\snapshop@year{#2}%
+	\gdef\snapshot@id{#1}%
+	\gdef\snapshot@year{#2}%
 }%
 
 \newcommand{\mailtoref}[1]{\href{mailto://#1}{\nolinkurl{#1}}}
 \newcommand{\httpref}[1]{\href{http://#1}{\nolinkurl{#1}}}
 \newcommand{\ftpref}[1]{\href{ftp://#1}{\nolinkurl{#1}}}
 
-\newcounter{ctrmaxmfosnapshopauthorinfo}
-\setcounter{ctrmaxmfosnapshopauthorinfo}{0}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % auhors
 \newcounter{ctrmaxmfosnapshotauthor}
@@ -241,7 +239,7 @@
 	\bgroup
 		\newcounter{ctrauthorinfo}%
 		\setcounter{ctrauthorinfo}{0}%
-		\whiledo {\value{ctrauthorinfo} < \value{ctrmaxmfosnapshopauthorinfo}}%
+		\whiledo {\value{ctrauthorinfo} < \value{ctrmaxmfosnapshotauthorinfo}}%
 		{%
 			\bgroup%
 				\def\authorname##1{\emph{##1}}%
@@ -251,7 +249,7 @@
 					%
 					\DeclareRobustCommand\\{\let \reserved@e \relax\let \reserved@f \relax\@ifstar{}{}\let \reserved@e \vadjust \let \reserved@f \nobreak \@xnewline}%
 					%
-					\csname snapshop@authorinfo\the\value{ctrauthorinfo} \endcsname}\strut%
+					\csname snapshot@authorinfo\the\value{ctrauthorinfo} \endcsname}\strut%
 				\egroup%
 			\egroup
 			\stepcounter{ctrauthorinfo}%
@@ -332,7 +330,7 @@
   \setparsizes{\z@}{\z@}{\z@\@plus 1fil}\par@updaterelative
   \noindent
   \parbox[t]{0.5\linewidth}{\arial\relscale{0.9}\SetTracking{encoding=*}{100}\lsstyle \snapshot@l@header}%
-  \parbox[t]{0.5\linewidth}{\raggedleft\mbox{\textnumero\,\snapshop@id/\snapshop@year}}
+  \parbox[t]{0.5\linewidth}{\raggedleft\mbox{\textnumero\,\snapshot@id/\snapshot@year}}
   \vskip 4em%
   \begin{center}%
     \parbox[t]{0.75\linewidth}{\centering\titlefont \@title}\\[2em]
