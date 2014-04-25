@@ -160,9 +160,81 @@
 
 \newcounter{ctrmaxmfosnapshopauthorinfo}
 \setcounter{ctrmaxmfosnapshopauthorinfo}{0}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% auhors
+\newcounter{ctrmaxmfosnapshotauthor}
+\setcounter{ctrmaxmfosnapshotauthor}{0}
+\newcommand*{\@addauthor}[1]{
+	\expandafter\newcommand\csname snapshot@author\the\value{ctrmaxmfosnapshotauthor} \endcsname{#1}%
+	\stepcounter{ctrmaxmfosnapshotauthor}%
+}
+
+\ExplSyntaxOn
+\NewDocumentCommand{\AndSeparatedList}{ O{\@addauthor} m }
+ {
+  % transfer control to an internal function
+  \author_list:nn { #1 } { #2 }
+ }
+
+\seq_new:N \l__author_list_items_seq
+\seq_new:N \l__author_list_output_seq
+
+\cs_new_protected:Npn \author_list:nn #1 #2
+ {
+  % clear the output sequence
+  \seq_clear:N \l__author_list_output_seq
+  % split the input at \and
+  \seq_set_split:Nnn \l__author_list_items_seq { \and } { #2 }
+  % append each item to the output sequence
+  \seq_map_inline:Nn \l__author_list_items_seq
+   {
+    % #1 is the given argument, ##1 represents the current item
+    \seq_put_right:Nn \l__author_list_output_seq { #1 { ##1 } }
+   }
+  % output the sequence with something between items
+  \seq_use:Nn \l__author_list_output_seq {} % adjust
+ }
+\ExplSyntaxOff
+
+\newcommand{\@authortwocolmun}{%
+	\edef\@authorx{\noexpand\AndSeparatedList\noexpand{\expandonce{\@author}\noexpand}}%
+	\@authorx%
+	\bgroup%
+		\begin{tabular}[t]{p{0.4\linewidth}p{0.4\linewidth}}%
+			\ifcase\value{ctrmaxmfosnapshotauthor}\relax%0
+				\ClassWarningNoLine{mfosnapshot}{No author given}%
+			\or%1
+				\multicolumn{2}{c}{\csname snapshot@author0 \endcsname}%
+			\else%
+				\newcounter{ctrauthor}%
+				\setcounter{ctrauthor}{0}%
+				\let\origtabularnewline\tabularnewline%
+				\def\tabularnewline{\let\tabularnewline\origtabularnewline}%
+				\whiledo {\value{ctrauthor} < \value{ctrmaxmfosnapshotauthor}}%
+				{%
+					\ifnumcomp{\value{ctrauthor}+1}{=}{\value{ctrmaxmfosnapshotauthor}}{%
+						\tabularnewline\multicolumn{2}{c}{\csname snapshot@author\the\value{ctrauthor} \endcsname}%
+					}{%
+						\tabularnewline%
+						\raggedleft\csname snapshot@author\the\value{ctrauthor} \endcsname &%
+						\stepcounter{ctrauthor}%
+						\raggedright\csname snapshot@author\the\value{ctrauthor} \endcsname%
+						\ifnumcomp{\value{ctrauthor}+1}{=}{\value{ctrmaxmfosnapshotauthor}}{}{}%
+					}%
+					\stepcounter{ctrauthor}%
+				}%
+			\fi%
+		\end{tabular}%
+	\egroup%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% author info
+\newcounter{ctrmaxmfosnapshotauthorinfo}
+\setcounter{ctrmaxmfosnapshotauthorinfo}{0}
 \newcommand*{\authorinfo}[1]{%
-	\expandafter\newcommand\csname snapshop@authorinfo\the\value{ctrmaxmfosnapshopauthorinfo} \endcsname{#1}%
-	\stepcounter{ctrmaxmfosnapshopauthorinfo}%
+	\expandafter\newcommand\csname snapshot@authorinfo\the\value{ctrmaxmfosnapshotauthorinfo} \endcsname{#1}%
+	\stepcounter{ctrmaxmfosnapshotauthorinfo}%
 }
 
 \newcommand{\@authorinfo}{%
@@ -271,9 +343,7 @@
       \lineskip .5em%
       \arial
       \SetTracking{encoding=*}{100}\lsstyle%
-      \begin{tabular}[t]{c}
-        \@author
-      \end{tabular}\par
+      \@authortwocolmun\par
     }%
     \vskip 1em%
 %    {\Large \@date \par}%
