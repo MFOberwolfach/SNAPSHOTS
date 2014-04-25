@@ -159,72 +159,6 @@
 \newcommand{\ftpref}[1]{\href{ftp://#1}{\nolinkurl{#1}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% auhors
-\newcounter{ctrmaxmfosnapshotauthor}
-\setcounter{ctrmaxmfosnapshotauthor}{0}
-\newcommand*{\@addauthor}[1]{
-	\expandafter\newcommand\csname snapshot@author\the\value{ctrmaxmfosnapshotauthor} \endcsname{#1}%
-	\stepcounter{ctrmaxmfosnapshotauthor}%
-}
-
-\ExplSyntaxOn
-\NewDocumentCommand{\AndSeparatedList}{ O{\@addauthor} m }
- {
-  % transfer control to an internal function
-  \author_list:nn { #1 } { #2 }
- }
-
-\seq_new:N \l__author_list_items_seq
-\seq_new:N \l__author_list_output_seq
-
-\cs_new_protected:Npn \author_list:nn #1 #2
- {
-  % clear the output sequence
-  \seq_clear:N \l__author_list_output_seq
-  % split the input at \and
-  \seq_set_split:Nnn \l__author_list_items_seq { \and } { #2 }
-  % append each item to the output sequence
-  \seq_map_inline:Nn \l__author_list_items_seq
-   {
-    % #1 is the given argument, ##1 represents the current item
-    \seq_put_right:Nn \l__author_list_output_seq { #1 { ##1 } }
-   }
-  % output the sequence with something between items
-  \seq_use:Nn \l__author_list_output_seq {} % adjust
- }
-\ExplSyntaxOff
-
-\newcommand{\@authortwocolmun}{%
-	\edef\@authorx{\noexpand\AndSeparatedList\noexpand{\expandonce{\@author}\noexpand}}%
-	\@authorx%
-	\bgroup%
-		\unskip%
-		\ifcase\value{ctrmaxmfosnapshotauthor}\relax%0
-			\ClassWarningNoLine{mfosnapshot}{No author given}%
-		\or%1
-			\null\hfill\csname snapshot@author0 \endcsname\hfill\null%
-		\else%
-			\newcounter{ctrauthor}%
-			\setcounter{ctrauthor}{0}%
-			\let\orignewline\newline%
-			\def\newline{\let\newline\orignewline}%
-			\whiledo{\value{ctrauthor} < \value{ctrmaxmfosnapshotauthor}}%
-			{%
-				\newline%
-				\ifnumcomp{\value{ctrauthor}+1}{=}{\value{ctrmaxmfosnapshotauthor}}{%
-					\null\hfill\csname snapshot@author\the\value{ctrauthor} \endcsname\hfill\null%
-				}{%
-					\null\hfill\csname snapshot@author\the\value{ctrauthor} \endcsname\,~$\bullet$~\,%
-					\stepcounter{ctrauthor}%
-					\csname snapshot@author\the\value{ctrauthor} \endcsname\hfill\null%
-				}%
-				\stepcounter{ctrauthor}%
-			}%
-		\fi%
-	\egroup%
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % author info
 \newcounter{ctrmaxmfosnapshotauthorinfo}
 \setcounter{ctrmaxmfosnapshotauthorinfo}{0}
@@ -339,7 +273,10 @@
       \lineskip .5em%
       \arial
       \SetTracking{encoding=*}{100}\lsstyle%
-      \@authortwocolmun\par
+      \def\@AndBullet{\unskip\,~$\bullet$~\,\ignorespaces\let\and\@AndNewLine}%
+      \def\@AndNewLine{\unskip\\\let\and\@AndBullet}%
+      \let\and\@AndBullet%
+      \@author\par%
     }%
     \vskip 1em%
 %    {\Large \@date \par}%
