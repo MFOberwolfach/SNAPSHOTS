@@ -62,38 +62,39 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % language specific settings
-\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@bibliography}{References}
-\newcaptionname{german,ngerman}{\snapshot@l@bibliography}{Referenzen}
-
-\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@furtherreading}{Further reading}
-\newcaptionname{german,ngerman}{\snapshot@l@furtherreading}{Weiterf\"uhrende Literatur}
-
-\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@header}{Snapshots of modern mathematics\\from Oberwolfach}
-\newcaptionname{german,ngerman}{\snapshot@l@header}{Schnappsch\"usse moderner Mathematik\\aus Oberwolfach}
-
-\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@creditstext}{\emph{Snapshots of modern mathematics from Oberwolfach} is a mathematics communication project of the Mathematisches Forschungsinstitut Oberwolfach (MFO) and IMAGINARY -- open mathematics. It is a part of the project Oberwolfach meets IMAGINARY funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. The snapshots are written by participants of the scientific program of the institute. They are refereed (???) by the organizers of the scientific program and edited by a team of editors. All snapshots can be found on \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}}.}
-\newcaptionname{german,ngerman}{\snapshot@l@creditstext}{\textbf{Bitte auf Deutsch \"ubersetzen}\emph{Snapshots of modern mathematics from Oberwolfach} is a mathematics communication project of the Mathematisches Forschungsinstitut Oberwolfach (MFO) and IMAGINARY -- open mathematics. It is a part of the project Oberwolfach meets IMAGINARY funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. The snapshots are written by participants of the scientific program of the institute. They are refereed (???) by the organizers of the scientific program and edited by a team of editors. All snapshots can be found on \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}}.}
-
-\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@organizer}{Responsible Organizer}
-\newcaptionname{german,ngerman}{\snapshot@l@organizer}{Verantwortlicher Organisator}
-
-\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@classification}{Mathematical subject classification}
-\newcaptionname{german,ngerman}{\snapshot@l@classification}{\textbf{\"Ubersetzen!}Mathe-Klassifikation}
-
-\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@license}{License}
-\newcaptionname{german,ngerman}{\snapshot@l@license}{Lizenz}
-
-\newcaptionname{english,USenglish,UKenglish,german,ngerman}{\snapshot@l@doi}{DOI}
-
-\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@junioreditor}{Junior Editor}
-\newcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Junioreditor}
-
-\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@senioreditor}{Senior Editor}
-\newcaptionname{german,ngerman}{\snapshot@l@senioreditor}{Senioreditor}
-
-\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@director}{Director}
-\newcaptionname{german,ngerman}{\snapshot@l@director}{Direktor}
-
+\AtBeginDocument{%
+	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@bibliography}{References}%
+	\newcaptionname{german,ngerman}{\snapshot@l@bibliography}{Referenzen}%
+	%
+	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@furtherreading}{Further reading}%
+	\newcaptionname{german,ngerman}{\snapshot@l@furtherreading}{Weiterf\"uhrende Literatur}%
+	%
+	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@header}{Snapshots of modern mathematics\\from Oberwolfach}%
+	\newcaptionname{german,ngerman}{\snapshot@l@header}{Schnappsch\"usse moderner Mathematik\\aus Oberwolfach}%
+	%
+	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@creditstext}{\emph{Snapshots of modern mathematics from Oberwolfach} is a mathematics communication project of the Mathematisches Forschungsinstitut Oberwolfach (MFO) and IMAGINARY -- open mathematics. It is a part of the project Oberwolfach meets IMAGINARY funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. The snapshots are written by participants of the scientific program of the institute. They are refereed (???) by the organizers of the scientific program and edited by a team of editors. All snapshots can be found on \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}}.}%
+	\newcaptionname{german,ngerman}{\snapshot@l@creditstext}{\textbf{Bitte auf Deutsch \"ubersetzen}\emph{Snapshots of modern mathematics from Oberwolfach} is a mathematics communication project of the Mathematisches Forschungsinstitut Oberwolfach (MFO) and IMAGINARY -- open mathematics. It is a part of the project Oberwolfach meets IMAGINARY funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. The snapshots are written by participants of the scientific program of the institute. They are refereed (???) by the organizers of the scientific program and edited by a team of editors. All snapshots can be found on \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}}.}%
+	%
+	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@organizer}{Responsible Organizer}%
+	\newcaptionname{german,ngerman}{\snapshot@l@organizer}{Verantwortlicher Organisator}%
+	%
+	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@classification}{Mathematical subject classification}%
+	\newcaptionname{german,ngerman}{\snapshot@l@classification}{\textbf{\"Ubersetzen!}Mathe-Klassifikation}%
+	%
+	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@license}{License}%
+	\newcaptionname{german,ngerman}{\snapshot@l@license}{Lizenz}%
+	%
+	\newcaptionname{english,USenglish,UKenglish,german,ngerman}{\snapshot@l@doi}{DOI}%
+	%
+	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@junioreditor}{Junior Editor}%
+	\newcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Junioreditor}%
+	%
+	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@senioreditor}{Senior Editor}%
+	\newcaptionname{german,ngerman}{\snapshot@l@senioreditor}{Senioreditor}%
+	%
+	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@director}{Director}%
+	\newcaptionname{german,ngerman}{\snapshot@l@director}{Direktor}%
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage{amsmath,amssymb,nicefrac,amscd}
