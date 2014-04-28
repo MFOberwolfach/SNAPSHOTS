@@ -6,7 +6,6 @@
 % - Abstand zum Footer letze Seite
 % - Seitenzahl vertikal optisch mittig
 % - Absatzeinrückung wie Fußnote
-% - select license
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{mfosnapshot}[2014/04/24 Document class for "Snapshots from Oberwolfach"]
@@ -203,6 +202,21 @@
 	\egroup
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% license info
+% use \license{CC-BY-NC-SA-3.0} (default), \license{CC-BY-NC-ND-3.0} or \licence{CC-BY-SA-3.0}
+\csdef{snapshot@license@CC-BY-NC-SA-3.0}{\href{http://creativecommons.org/licenses/by-nc-sa/3.0/}{Creative Commons BY-NC-SA 3.0}}
+\csdef{snapshot@license@CC-BY-NC-ND-3.0}{\href{http://creativecommons.org/licenses/by-nc-nd/3.0/}{Creative Commons BY-NC-ND 3.0}}
+\csdef{snapshot@license@CC-BY-SA-3.0}{\href{http://creativecommons.org/licenses/by-sa/3.0/}{Creative Commons BY-SA 3.0}}
+\newcommand{\snapshot@license}{\csname snapshot@license@CC-BY-NC-SA-3.0\endcsname}
+\newcommand{\license}[1]{%
+	\expandafter\ifcsdef\expandafter{snapshot@license@#1}{%
+		\renewcommand{\snapshot@license}{\csname snapshot@license@#1\endcsname}%
+	}{\ClassError{mfosnapshot}{Unknown license name}{Please use one of CC-BY-NC-SA-3.0, CC-BY-NC-ND-3.0 or CC-BY-SA-3.0}}%	
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \newcommand{\snapshot@organizer}{\ClassWarningNoLine{mfosnapshot}{No responsible organizer given}--}%
 \newcommand*{\organizer}[1]{\gdef\snapshot@organizer{#1}}%
 
@@ -321,7 +335,7 @@
 			\snapshot@classification\\[\medskipamount]
 			%
 			\textit{\snapshot@l@license}\\*
-			\href{http://creativecommons.org/licenses/by-nc-nd/2.0/}{Creative Commons BY-NC-ND 2.0}\\[\medskipamount]
+			\snapshot@license\\[\medskipamount]
 			%
 			\textit{\snapshot@l@doi}\\*
 			\href{\snapshot@doiurlprefix\snapshot@doi}{\snapshot@doi}%
