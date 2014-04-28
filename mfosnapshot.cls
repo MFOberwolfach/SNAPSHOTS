@@ -61,10 +61,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % language specific settings
 
-% patch old KOMA script \newcaptionname
+% patch old KOMA script \newcaptionname and \renewcaptionname
 \let\@orig@newcaptionname\newcaptionname%
 \def\@my@newcaptionname#1#2#3{\@orig@newcaptionname{#3}{#1}{#2}}%
 \def\newcaptionname#1#2#3{\forcsvlist{\@my@newcaptionname{#2}{#3}}{#1}}%
+\let\@orig@renewcaptionname\renewcaptionname%
+\def\@my@renewcaptionname#1#2#3{\@orig@renewcaptionname{#3}{#1}{#2}}%
+\def\renewcaptionname#1#2#3{\forcsvlist{\@my@renewcaptionname{#2}{#3}}{#1}}%
 
 % define captions
 \AtBeginDocument{%
