@@ -7,7 +7,6 @@
 % - Seitenzahl vertikal optisch mittig
 % - Absatzeinrückung wie Fußnote
 % - select license
-% - compute DOI from snapshot id/year/language
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{mfosnapshot}[2014/04/24 Document class for "Snapshots from Oberwolfach"]
@@ -154,11 +153,15 @@
 \setkomafont{title}{\renewcommand{\baselinestretch}{0.8}\color{black!75!white}\arial\relscale{1.8}\SetTracking{encoding=*}{100}\lsstyle}
 
 
-\newcommand{\snapshot@id}{xx}%
+\newcommand{\snapshot@id}{\ClassWarningNoLine{mfosnapshot}{No snapshot id given}xx}%
 \newcommand{\snapshot@year}{xxxx}%
+\newcaptionname{english,USenglish,UKenglish,german,ngerman}{\snapshot@doi}{\ClassWarningNoLine{mfosnapshot}{Unable to compute DOI}--}%
+\gdef\snapshot@doiurlprefix{http://dx.doi.org/}%
 \newcommand*{\snapshotid}[2]{%
 	\gdef\snapshot@id{#1}%
 	\gdef\snapshot@year{#2}%
+	\renewcaptionname{english,USenglish,UKenglish}{\snapshot@doi}{10.14760/SNAP-#2-\ifnum#1>99\else\ifnum#1>9 0\else00\fi\fi\number#1-EN}%
+	\renewcaptionname{german,ngerman}{\snapshot@doi}{10.14760/SNAP-#2-\ifnum#1>99\else\ifnum#1>9 0\else00\fi\fi\number#1-DE}%
 }%
 
 \newcommand{\mailtoref}[1]{\href{mailto://#1}{\nolinkurl{#1}}}
@@ -202,13 +205,6 @@
 
 \newcommand{\snapshot@classification}{\ClassWarningNoLine{mfosnapshot}{No mathematical subject classification given}--}%
 \newcommand*{\classification}[1]{\gdef\snapshot@classification{#1}}%
-
-\newcommand{\snapshot@doi}{\ClassWarningNoLine{mfosnapshot}{No DOI given}--}%
-\newcommand{\snapshot@doiurl}{}%
-\newcommand*{\doi}[1]{%
-	\gdef\snapshot@doi{#1}%
-	\gdef\snapshot@doiurl{http://dx.doi.org/#1}%
-}%
 
 \newcommand{\snapshot@junioreditor}{\ClassWarningNoLine{mfosnapshot}{No junior editor given}--}%
 \newcommand{\snapshot@junioreditoremail}{--}%
@@ -324,8 +320,8 @@
 			\textit{\snapshot@l@license}\\*
 			\href{http://creativecommons.org/licenses/by-nc-nd/2.0/}{Creative Commons BY-NC-ND 2.0}\\[\medskipamount]
 			%
-			\textit{DOI}\\*
-			\href{\snapshot@doiurl}{\snapshot@doi}%
+			\textit{\snapshot@l@doi}\\*
+			\href{\snapshot@doiurlprefix\snapshot@doi}{\snapshot@doi}%
 		\end{multicols}%
 		\vskip 0.3cm%
 		\par\hfill\rule[0.5ex]{1cm}{0.526pt}\hfill\null%
