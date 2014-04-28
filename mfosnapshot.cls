@@ -6,7 +6,6 @@
 % - Abstand zum Footer letze Seite
 % - Seitenzahl vertikal optisch mittig
 % - Absatzeinrückung wie Fußnote
-% - single word -> no new line (tex stack exchange) (trading word)
 % - select license
 % - compute DOI from snapshot id/year/language
 
@@ -378,9 +377,3 @@
 	\vfill%
 	\noindent\usebox{\snapshot@credits}%
 }
-
-% Disable single lines at the start of a paragraph (Schusterjungen)
-\clubpenalty = 10000
-%
-% Disable single lines at the end of a paragraph (Hurenkinder)
-\widowpenalty = 10000 \displaywidowpenalty = 10000
