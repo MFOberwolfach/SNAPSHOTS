@@ -62,6 +62,13 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % language specific settings
+
+% patch old KOMA script \newcaptionname
+\let\@orig@newcaptionname\newcaptionname%
+\def\@my@newcaptionname#1#2#3{\@orig@newcaptionname{#3}{#1}{#2}}%
+\def\newcaptionname#1#2#3{\forcsvlist{\@my@newcaptionname{#2}{#3}}{#1}}%
+
+% define captions
 \AtBeginDocument{%
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@bibliography}{References}%
 	\newcaptionname{german,ngerman}{\snapshot@l@bibliography}{Referenzen}%
