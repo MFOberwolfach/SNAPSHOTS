@@ -2,13 +2,13 @@
 % - UTF-8
 % - pdfLaTeX, XeLaTeX, LuaLaTeX
 % - Paketauswahl
-% - Autoren mehrspaltig
 % - vspace letzte Seite
 % - Abstand zum Footer letze Seite
 % - Seitenzahl vertikal optisch mittig
 % - Absatzeinrückung wie Fußnote
 % - single word -> no new line (tex stack exchange) (trading word)
-
+% - select license
+% - compute DOI from snapshot id/year/language
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{mfosnapshot}[2014/04/24 Document class for "Snapshots from Oberwolfach"]
