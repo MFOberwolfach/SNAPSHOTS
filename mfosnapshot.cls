@@ -74,8 +74,8 @@
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@creditstext}{\emph{Snapshots of modern mathematics from Oberwolfach} is a mathematics communication project of the Mathematisches Forschungsinstitut Oberwolfach (MFO) and IMAGINARY -- open mathematics. It is a part of the project Oberwolfach meets IMAGINARY funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. The snapshots are written by participants of the scientific program of the institute. They are reviewed by the organizers of the scientific program and edited by a team of editors. All snapshots can be found on \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}}.}%
 	\newcaptionname{german,ngerman}{\snapshot@l@creditstext}{\textbf{Bitte auf Deutsch \"ubersetzen}\emph{Snapshots of modern mathematics from Oberwolfach} is a mathematics communication project of the Mathematisches Forschungsinstitut Oberwolfach (MFO) and IMAGINARY -- open mathematics. It is a part of the project Oberwolfach meets IMAGINARY funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. The snapshots are written by participants of the scientific program of the institute. They are refereed (???) by the organizers of the scientific program and edited by a team of editors. All snapshots can be found on \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}}.}%
 	%
-	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@organizer}{Responsible Organizer}%
-	\newcaptionname{german,ngerman}{\snapshot@l@organizer}{Verantwortlicher Organisator}%
+	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@organizer}{Communicated by}%
+	\newcaptionname{german,ngerman}{\snapshot@l@organizer}{Communicated by Deutsch}%
 	%
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@classification}{Mathematical subject classification}%
 	\newcaptionname{german,ngerman}{\snapshot@l@classification}{\textbf{\"Ubersetzen!}Mathe-Klassifikation}%
