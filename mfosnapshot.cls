@@ -379,8 +379,7 @@
 			\includegraphics[draft,width=\linewidth,height=.05531029634083325809\linewidth,page=\snapshot@l@logos@page]{logos.pdf}%
 		}%
 	}}}%
-	\newlength{\snapshot@creditstotalheight}%
-	\settototalheight{\snapshot@creditstotalheight}{\usebox{\snapshot@credits}}%
-	\vfill%
+	\clearpage%
+	\noindent\null\vfill%
 	\noindent\usebox{\snapshot@credits}%
 }
