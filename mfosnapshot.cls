@@ -12,7 +12,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % page layout
-\RequirePackage[a5paper,top=12mm,bottom=22mm,outer=16mm,inner=12mm,foot=11mm,footnotesep=14pt]{geometry}
+\RequirePackage[a5paper,top=12mm,bottom=22mm,outer=16mm,inner=12mm,foot=12.25mm,footnotesep=14pt]{geometry}
 \RequirePackage{multicol}
 \setlength{\columnsep}{2em}
 
