@@ -92,6 +92,9 @@
 	%
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@director}{Director}%
 	\newcaptionname{german,ngerman}{\snapshot@l@director}{Direktor}%
+	%
+	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@logos@page}{1}%
+	\newcaptionname{german,ngerman}{\snapshot@l@logos@page}{2}%
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -370,10 +373,10 @@
 		\end{multicols*}
 		\vskip 0.75cm
 		\noindent%
-		\IfFileExists{./footer.pdf}{%
-			\raisebox{-0.125\height}[0.875\height][-0.125\height]{\includegraphics[width=\linewidth]{footer.pdf}}%
+		\IfFileExists{./logos.pdf}{%
+			\raisebox{-.34725559716718504883\height}[.65274440283281495117\height][-.34725559716718504883\height]{\includegraphics[width=\linewidth]{logos.pdf}}%
 		}{%
-			\includegraphics[draft,width=\linewidth,height=.07154842502483111682\linewidth]{footer.pdf}%
+			\includegraphics[draft,width=\linewidth,height=.05531029634083325809\linewidth,page=\snapshot@l@logos@page]{logos.pdf}%
 		}%
 	}}}%
 	\newlength{\snapshot@creditstotalheight}%
