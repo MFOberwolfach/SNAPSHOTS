@@ -152,13 +152,15 @@
 
 \newcommand{\snapshot@id}{\ClassWarningNoLine{mfosnapshot}{No snapshot id given}xx}%
 \newcommand{\snapshot@year}{xxxx}%
-\newcaptionname{english,USenglish,UKenglish,german,ngerman}{\snapshot@doi}{\ClassWarningNoLine{mfosnapshot}{Unable to compute DOI}--}%
+\AtBeginDocument{\newcaptionname{english,USenglish,UKenglish,german,ngerman}{\snapshot@doi}{\ClassWarningNoLine{mfosnapshot}{Unable to compute DOI}--}}%
 \gdef\snapshot@doiurlprefix{http://dx.doi.org/}%
 \newcommand*{\snapshotid}[2]{%
 	\gdef\snapshot@id{#1}%
 	\gdef\snapshot@year{#2}%
-	\renewcaptionname{english,USenglish,UKenglish}{\snapshot@doi}{10.14760/SNAP-#2-\ifnum#1>99\else\ifnum#1>9 0\else00\fi\fi\number#1-EN}%
-	\renewcaptionname{german,ngerman}{\snapshot@doi}{10.14760/SNAP-#2-\ifnum#1>99\else\ifnum#1>9 0\else00\fi\fi\number#1-DE}%
+	\AtBeginDocument{%
+		\renewcaptionname{english,USenglish,UKenglish}{\snapshot@doi}{10.14760/SNAP-#2-\ifnum#1>99\else\ifnum#1>9 0\else00\fi\fi\number#1-EN}%
+		\renewcaptionname{german,ngerman}{\snapshot@doi}{10.14760/SNAP-#2-\ifnum#1>99\else\ifnum#1>9 0\else00\fi\fi\number#1-DE}%
+	}%
 }%
 
 \newcommand{\mailtoref}[1]{\href{mailto://#1}{\nolinkurl{#1}}}
