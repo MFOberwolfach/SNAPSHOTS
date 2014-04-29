@@ -1,12 +1,3 @@
-% TODO:
-% - UTF-8
-% - pdfLaTeX, XeLaTeX, LuaLaTeX
-% - Paketauswahl
-% - vspace letzte Seite
-% - Abstand zum Footer letze Seite
-% - Seitenzahl vertikal optisch mittig
-% - Absatzeinrückung wie Fußnote
-
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{mfosnapshot}[2014/04/24 Document class for "Snapshots from Oberwolfach"]
 \LoadClass[10pt,twoside]{scrartcl}  
