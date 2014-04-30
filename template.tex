@@ -1,33 +1,38 @@
 %% Template for an MFO snapshot
 
 
-%% Make sure that this path leads to the place where you put the class "mfosnapshot". Put the file "footer" in the same folder! 
+%% Please make sure that this path leads to the place where you saved the class "mfosnapshot". Put the file "logos.pdf" in the same folder as your .tex file.
 \documentclass{mfosnapshot}
 
 
-%% please choose your language! 
+%% Please select the language of you snapshot. 
 %\usepackage[ngerman]{babel}
 \usepackage[USenglish]{babel}
 
-%% provides demo images
+%%% provides demo images
 \usepackage{mwe}
 
-% mehrere Namen mit \and trennen
-\author{John Thomson \and Tom Johnson}
+%% Please separate the names by \and if there are several authors.
+\author{Janet Thomson \and Thomas Janson}
+
+%% Please insert the title of your snapshot.
 \title{A great snapshot}
 
-\authorinfo{\authorname{John Thomson} is professor for pure mathematics at the Honolulu University.\\\mailtoref{aloha@hangloose.us}}
-\authorinfo{\authorname{Tom Johnson} is lecturer for extraterrestrial science on the moon.\\\mailtoref{ufo@manonthemoon.mo}}
+%% Please provide some information on the author(s).
+\authorinfo{\authorname{Janet Thomson} is professor for pure mathematics at the Honolulu University.\\\mailtoref{aloha@hangloose.us}}
+\authorinfo{\authorname{Thomas Janson} is lecturer for extraterrestrial science on the moon.\\\mailtoref{ufo@manonthemoon.mo}}
 
 
-% responsible organizer from your workshop
-\organizer{Max Muster}
-% Klassifikationsliste den Autoren zugänglich machen? 
-\classification{Algebraic Geometry}
-% Dieselben Daten wie in der DOI
-\snapshotid{001}{2014}
+%% If you know which organizer of your MFO program is responsible for approval of your snapshot, please name her/him, here. We will fill in the name if you leave this blank.
+\organizer{Responsible Organizer}
 
-\junioreditor{Lea Renner}{junior-editors@mfo.de}
+%% TODO: Kategorisierung den Autoren zugänglich machen? Beide Listen unbedingt zugänglich machen!!!
+\categorization{Algebraic Geometry}
+
+%% Please fill in the number of your snapshot provided in the submission information email.
+\snapshotid{Num}{Year}
+
+\junioreditor{Sophia Jahns \and Lea Renner}{junior-editors@mfo.de}
 \senioreditor{Dr.\;Carla Cederbaum}{cederbaum@mfo.de}
 
 \begin{bibfilecontents}
@@ -59,20 +64,16 @@
 This is your abstract. It should give a brief overview of your snapshot, if possible without using formulas. 
 \end{abstract}
 
-% 
-\section{A heading}
+%% TODO: wirklich jetzt schon oder erst für letters??? 
+\section{A section heading}
 Your actual snapshot. And here are some references as well: \cite{knuth1977fast} ends up in the \enquote{Further Reading} section since its \texttt{biblatex} entry contains \verb!keywords = {furtherreading}!, while \cite{knuth1986texbook} ends up in the standard references.
 
-% Vorlage zum einbinden von Bildern 
+%% Please use this format to include images.
 \begin{figure}[h]
         \centering \includegraphics[height=5cm]{example-image}
         \caption{An image.}
 \label{fig:moon}
 \end{figure}
-
-
-% Vorlage für Literaturverzeichnis? 
-% Ich weiß nicht genau, wie das am Ende aussieht, deshalb hab ich keinen Vorschlag gemacht. 
 
 
 \end{document}
