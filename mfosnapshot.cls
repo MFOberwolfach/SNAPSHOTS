@@ -77,7 +77,7 @@
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@organizer}{Communicated by}%
 	\newcaptionname{german,ngerman}{\snapshot@l@organizer}{Communicated by Deutsch}%
 	%
-	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@classification}{Mathematical subject classification}%
+	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@categorization}{Mathematical subject classification}%
 	\newcaptionname{german,ngerman}{\snapshot@l@classification}{\textbf{\"Ubersetzen!}Mathe-Klassifikation}%
 	%
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@license}{License}%
