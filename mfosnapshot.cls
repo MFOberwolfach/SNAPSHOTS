@@ -60,6 +60,19 @@
 \def\@my@renewcaptionname#1#2#3{\@orig@renewcaptionname{#3}{#1}{#2}}%
 \def\renewcaptionname#1#2#3{\forcsvlist{\@my@renewcaptionname{#2}{#3}}{#1}}%
 
+\def\newcscaptionname#1#2#3{%
+	\begingroup%
+		\def\newcscaptionname@tmp{\newcaptionname{#1}}%
+		\expandafter\newcscaptionname@tmp\csname #2\endcsname{#3}%
+	\endgroup%
+}
+\def\renewcscaptionname#1#2#3{%
+	\begingroup%
+		\def\renewcscaptionname@tmp{\newcaptionname{#1}}%
+		\expandafter\renewcscaptionname@tmp\csname #2\endcsname{#3}%
+	\endgroup%
+}
+
 % define captions
 \AtBeginDocument{%
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@bibliography}{References}%
@@ -77,8 +90,11 @@
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@organizer}{Communicated by}%
 	\newcaptionname{german,ngerman}{\snapshot@l@organizer}{Communicated by Deutsch}%
 	%
-	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@classification}{Mathematical subject classification}%
-	\newcaptionname{german,ngerman}{\snapshot@l@classification}{\textbf{\"Ubersetzen!}Mathe-Klassifikation}%
+	\newcaptionname{english,USenglish,UKenglish}{\snapshot@label@l@categorization@math}{Mathematical subjects}%
+	\newcaptionname{german,ngerman}{\snapshot@label@l@categorization@math}{Mathematische Gebiete}%
+	%
+	\newcaptionname{english,USenglish,UKenglish}{\snapshot@label@l@categorization@connect}{Connections to other fields}%
+	\newcaptionname{german,ngerman}{\snapshot@label@l@categorization@connect}{Verbindungen zu anderen Gebieten}%
 	%
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@license}{License}%
 	\newcaptionname{german,ngerman}{\snapshot@l@license}{Lizenz}%
@@ -96,6 +112,38 @@
 	%
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@epslogo}{\snapshot@includemps{\snapshot@logo@en}{1}{1}}%
 	\newcaptionname{german,ngerman}{\snapshot@l@epslogo}{\snapshot@includemps{\snapshot@logo@de}{1}{1}}%
+	%
+	% categorization: math
+	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@math@algebra and number theory}{Algebra and Number Theory}
+	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@math@analysis}{Analysis}
+	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@math@discrete mathematics and foundations}{Discrete Mathematics and Foundations}
+	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@math@geometry and topology}{Geometry and Topology}
+	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@math@numerics and scientific computing}{Numerics and Scientific Computing}
+	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@math@probability theory and statistics}{Probability Theory and Statistics}
+	\newcscaptionname{german,ngerman}{snaphot@l@categorization@math@algebra and number theory}{Algebra und Zahlentheorie}
+	\newcscaptionname{german,ngerman}{snaphot@l@categorization@math@analysis}{Analysis}
+	\newcscaptionname{german,ngerman}{snaphot@l@categorization@math@discrete mathematics and foundations}{Diskrete Mathematik und Grundlagen}
+	\newcscaptionname{german,ngerman}{snaphot@l@categorization@math@geometry and topology}{Geometrie und Topologie}
+	\newcscaptionname{german,ngerman}{snaphot@l@categorization@math@numerics and scientific computing}{Numerik und Wissenschaftliches Rechnen}
+	\newcscaptionname{german,ngerman}{snaphot@l@categorization@math@probability theory and statistics}{Wahrscheinlichkeitstheorie und Statistik}
+	%
+	% categorization: connection to other fields
+	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@chemistry and earth science}{Chemistry and Earth Science}
+	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@computer science}{Computer Science}
+	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@engineering and technology}{Engineering and Technology}
+	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@finance}{Finance}
+	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@humanities and social sciences}{Humanities and Social Sciences}
+	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@life science}{Life Science}
+	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@physics}{Physics}
+	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@reflections on mathematics}{Reflections on Mathematics}
+	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@chemistry and earth science}{Chemie und Geowissenschaften}
+	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@computer science}{Informatik}
+	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@engineering and technology}{Ingenieurwissenschaften und Technik}
+	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@finance}{Finanzwissenschaften}
+	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@humanities and social sciences}{Geistes- und Sozialwissenschaften}
+	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@life science}{Lebenswissenschaften}
+	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@physics}{Physik}
+	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@reflections on mathematics}{Betrachtungen über Mathematik}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -217,8 +265,58 @@
 \newcommand{\snapshot@organizer}{\ClassWarningNoLine{mfosnapshot}{No responsible organizer given}--}%
 \newcommand*{\organizer}[1]{\gdef\snapshot@organizer{#1}}%
 
-\newcommand{\snapshot@classification}{\ClassWarningNoLine{mfosnapshot}{No mathematical subject classification given}--}%
-\newcommand*{\classification}[1]{\gdef\snapshot@classification{#1}}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% categorization: math
+\gdef\snapshot@categorization@math{\ClassWarningNoLine{mfosnapshot}{No mathematical subject given}--}
+\newcommand*{\categorizationmath}[1]{%
+	\gdef\snapshot@categorization@math{\begingroup\def\and{\def\and{,\space}}}%
+	\begingroup%
+		\listadd\snapshot@categorization@math@subjects{algebra and number theory}%
+		\listadd\snapshot@categorization@math@subjects{analysis}%
+		\listadd\snapshot@categorization@math@subjects{discrete mathematics and foundations}%
+		\listadd\snapshot@categorization@math@subjects{geometry and topology}%
+		\listadd\snapshot@categorization@math@subjects{numerics and scientific computing}%
+		\listadd\snapshot@categorization@math@subjects{probability theory and statistics}%
+		\def\snapshot@add@categorization@math##1{%
+			\xifinlist{##1}{\snapshot@categorization@math@subjects}%
+			{%
+				\gappto\snapshot@categorization@math{\and \expandafter\csname snaphot@l@categorization@math@##1\endcsname}%
+			}{%
+				\ClassError{mfosnapshot}{Unknown category "##1" in \@backslashchar categorizationmath}{possibilities: \snapshot@categorization@math@subjects}%
+			}%
+		}%
+		\forcsvlist{\snapshot@add@categorization@math}{#1}%
+	\endgroup%
+	\gappto\snapshot@categorization@math{\endgroup}%
+}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% categorization: connection to other fields
+\gdef\snapshot@categorization@connect{\ClassWarningNoLine{mfosnapshot}{No connection to other fields given}--}
+\newcommand*{\categorizationconnect}[1]{%
+	\gdef\snapshot@categorization@connect{\begingroup\def\and{\def\and{,\space}}}%
+	\begingroup%
+		\listadd\snapshot@categorization@connect@subjects{chemistry and earth science}%
+		\listadd\snapshot@categorization@connect@subjects{computer science}%
+		\listadd\snapshot@categorization@connect@subjects{engineering and technology}%
+		\listadd\snapshot@categorization@connect@subjects{finance}%
+		\listadd\snapshot@categorization@connect@subjects{humanities and social sciences}%
+		\listadd\snapshot@categorization@connect@subjects{life science}%
+		\listadd\snapshot@categorization@connect@subjects{physics}%
+		\listadd\snapshot@categorization@connect@subjects{reflections on mathematics}%
+		\def\snapshot@add@categorization@connect##1{%
+			\xifinlist{##1}{\snapshot@categorization@connect@subjects}%
+			{%
+				\gappto\snapshot@categorization@connect{\and \expandafter\csname snaphot@l@categorization@connect@##1\endcsname}%
+			}{%
+				\ClassError{mfosnapshot}{Unknown category "##1" in \@backslashchar categorizationconnect}{possibilities: \snapshot@categorization@connect@subjects}%
+			}%
+		}%
+		\forcsvlist{\snapshot@add@categorization@connect}{#1}%
+	\endgroup%
+	\gappto\snapshot@categorization@connect{\endgroup}%
+}%
 
 \newcommand{\snapshot@junioreditor}{\ClassWarningNoLine{mfosnapshot}{No junior editor given}--}%
 \newcommand{\snapshot@junioreditoremail}{--}%
@@ -328,8 +426,11 @@
 			\textit{\snapshot@l@organizer}\\*
 			\snapshot@organizer\\[\medskipamount]
 			%
-			\textit{\snapshot@l@classification}\\*
-			\snapshot@classification\\[\medskipamount]
+			\textit{\snapshot@label@l@categorization@math}\\*
+			\snapshot@categorization@math\\[\medskipamount]
+			%
+			\textit{\snapshot@label@l@categorization@connect}\\*
+			\snapshot@categorization@connect\\[\medskipamount]
 			%
 			\textit{\snapshot@l@license}\\*
 			\snapshot@license\\[\medskipamount]
