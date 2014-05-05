@@ -203,7 +203,10 @@
 \AtBeginDocument{\newcaptionname{english,USenglish,UKenglish,german,ngerman}{\snapshot@doi}{\ClassWarningNoLine{mfosnapshot}{Unable to compute DOI}--}}%
 \gdef\snapshot@doiurlprefix{http://dx.doi.org/}%
 \newcommand*{\snapshotid}[2]{%
-	\gdef\snapshot@id{#1}%
+	\begingroup%
+		\@tempcnta=#1%
+		\global\edef\snapshot@id{\the\@tempcnta}%
+	\endgroup%
 	\gdef\snapshot@year{#2}%
 	\AtBeginDocument{%
 		\renewcaptionname{english,USenglish,UKenglish}{\snapshot@doi}{10.14760/SNAP-#2-\ifnum#1>99\else\ifnum#1>9 0\else00\fi\fi\number#1-EN}%
