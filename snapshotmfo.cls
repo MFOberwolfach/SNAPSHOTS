@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{mfosnapshot}[2014/04/24 Document class for "Snapshots from Oberwolfach"]
+\ProvidesClass{snapshotmfo}[2014/04/24 Document class for "Snapshots of modern mathematics from Oberwolfach"]
 \LoadClass[10pt,twoside]{scrartcl}  
 
 \RequirePackage{iftex}%
