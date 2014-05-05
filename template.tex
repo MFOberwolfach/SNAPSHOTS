@@ -1,36 +1,34 @@
 %% Template for an MFO snapshot
-
-
-%% Make sure that this path leads to the place where you put the class "snapshotmfo". Put the file "footer" in the same folder! 
+%% Make sure that this path leads to the place where you put the class "snapshotmfo".
 \documentclass{snapshotmfo}
 
-
 %% please choose your language! 
-\usepackage[ngerman]{babel}
-%\usepackage[USenglish]{babel}
+%\usepackage[ngerman]{babel}
+\usepackage[USenglish]{babel}
 
 %% provides demo images
 \usepackage{mwe}
 
-% mehrere Namen mit \and trennen
+%% Please separate the names by \and if there are several authors.
 \author{John Thomson \and Tom Johnson}
+
+%% Please insert the title of your snapshot.
 \title{A great snapshot}
 
+%% Please provide some information on the author(s).
 \authorinfo{\authorname{John Thomson} is professor for pure mathematics at the Honolulu University.\\\mailtoref{aloha@hangloose.us}}
 \authorinfo{\authorname{Tom Johnson} is lecturer for extraterrestrial science on the moon.\\\mailtoref{ufo@manonthemoon.mo}}
 
-
-% responsible organizer from your workshop
-\organizer{Max Muster}
-% Klassifikationsliste den Autoren zugänglich machen? 
-\categorizationmath{algebra and number theory,analysis}
-\categorizationconnect{physics,life science}
-
-% Dieselben Daten wie in der DOI
-\snapshotid{001}{2014}
-
-\junioreditor{Lea Renner}{junior-editors@mfo.de}
-\senioreditor{Dr.\;Carla Cederbaum}{cederbaum@mfo.de}
+%%%%%%%%%%%%%%%% WILL BE FILLED OUT BY EDITORS ACCORDING TO YOUR SPECIFICATIONS %%%%%%%%%%
+%\categorizationmath{algebra and number theory,analysis,discrete mathematics and foundations,geometry and topology,numerics and scientific computing,probability theory and statistics}
+%\categorizationconnect{chemistry and earth science,computer science,engineering and technology,finance,humanities and social sciences,life science,physics,reflections on mathematics}
+%\license{CC-BY-NC-SA-3.0}
+%\snapshotid{id}{year}
+%\organizer{Max Muster}
+%\junioreditor{Lea Renner}{junior-editors@mfo.de}
+%\senioreditor{Dr.\;Carla Cederbaum}{cederbaum@mfo.de}
+%\director{Prof.\;Dr.\;Gerhard Huisken}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{bibfilecontents}
 @book{knuth1986texbook,
@@ -54,8 +52,6 @@
 }
 \end{bibfilecontents}
 
-\junioreditor{Sophia Jahns, Lea Renner}{junior-editors@mfo.de}
-
 \begin{document}
 
 
@@ -63,20 +59,15 @@
 This is your abstract. It should give a brief overview of your snapshot. If possible, please do not use formulas in your abstract. 
 \end{abstract}
 
-% 
+%% TODO: wirklich jetzt schon oder erst für letters???
 \section{A heading}
 Your actual snapshot. And here are some references as well: \cite{knuth1977fast} ends up in the \enquote{Further Reading} section since its \texttt{biblatex} entry contains \verb!keywords = {furtherreading}!, while \cite{knuth1986texbook} ends up in the standard references.
 
-% Vorlage zum einbinden von Bildern 
+%% Please use this format to include images.
 \begin{figure}[h]
         \centering \includegraphics[height=5cm]{example-image}
         \caption{An image.}
 \label{fig:moon}
 \end{figure}
-
-
-% Vorlage für Literaturverzeichnis? 
-% Ich weiß nicht genau, wie das am Ende aussieht, deshalb hab ich keinen Vorschlag gemacht. 
-
 
 \end{document}
