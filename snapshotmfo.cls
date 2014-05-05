@@ -256,7 +256,7 @@
 \csdef{snapshot@license@CC-BY-NC-SA-3.0}{\href{http://creativecommons.org/licenses/by-nc-sa/3.0/}{Creative Commons BY-NC-SA 3.0}}
 \csdef{snapshot@license@CC-BY-NC-ND-3.0}{\href{http://creativecommons.org/licenses/by-nc-nd/3.0/}{Creative Commons BY-NC-ND 3.0}}
 \csdef{snapshot@license@CC-BY-SA-3.0}{\href{http://creativecommons.org/licenses/by-sa/3.0/}{Creative Commons BY-SA 3.0}}
-\newcommand{\snapshot@license}{\csname snapshot@license@CC-BY-NC-SA-3.0\endcsname}
+\newcommand{\snapshot@license}{\ClassWarningNoLine{mfosnapshot}{No license information given}--}
 \newcommand{\license}[1]{%
 	\expandafter\ifcsdef\expandafter{snapshot@license@#1}{%
 		\renewcommand{\snapshot@license}{\csname snapshot@license@#1\endcsname}%
