@@ -335,6 +335,12 @@
 	\gdef\snapshot@senioreditoremail{\mailtoref{#2}}%
 }%
 
+\newcommand{\snapshot@director}{\ClassWarningNoLine{mfosnapshot}{No director given}--}%
+\newcommand*{\director}[1]{%
+	\gdef\snapshot@director{#1}%
+}%
+
+
 \renewcommand*\maketitle{%
 	\par
 	\begingroup
@@ -475,7 +481,7 @@
 				Germany\\[\medskipamount]
 				%
 				\textit{\snapshot@l@director}\\
-				Prof.\;Dr.\;Gerhard Huisken%
+				\snapshot@director%
 			}\columnbreak\par%
 		\end{multicols*}
 		\vskip 0.75cm
