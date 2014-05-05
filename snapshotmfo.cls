@@ -197,10 +197,11 @@
 
 \setkomafont{title}{\renewcommand{\baselinestretch}{0.8}\color{black!75!white}\arial\relscale{1.8}\SetTracking{encoding=*}{100}\lsstyle}
 
+\def\snapshot@defaultcontent{will be filled out by editors}
 
 \newcommand{\snapshot@id}{\ClassWarningNoLine{mfosnapshot}{No snapshot id given}xx}%
 \newcommand{\snapshot@year}{xxxx}%
-\AtBeginDocument{\newcaptionname{english,USenglish,UKenglish,german,ngerman}{\snapshot@doi}{\ClassWarningNoLine{mfosnapshot}{Unable to compute DOI}--}}%
+\AtBeginDocument{\newcaptionname{english,USenglish,UKenglish,german,ngerman}{\snapshot@doi}{\ClassWarningNoLine{mfosnapshot}{Unable to compute DOI}\snapshot@defaultcontent}}%
 \gdef\snapshot@doiurlprefix{http://dx.doi.org/}%
 \newcommand*{\snapshotid}[2]{%
 	\begingroup%
@@ -256,7 +257,7 @@
 \csdef{snapshot@license@CC-BY-NC-SA-3.0}{\href{http://creativecommons.org/licenses/by-nc-sa/3.0/}{Creative Commons BY-NC-SA 3.0}}
 \csdef{snapshot@license@CC-BY-NC-ND-3.0}{\href{http://creativecommons.org/licenses/by-nc-nd/3.0/}{Creative Commons BY-NC-ND 3.0}}
 \csdef{snapshot@license@CC-BY-SA-3.0}{\href{http://creativecommons.org/licenses/by-sa/3.0/}{Creative Commons BY-SA 3.0}}
-\newcommand{\snapshot@license}{\ClassWarningNoLine{mfosnapshot}{No license information given}--}
+\newcommand{\snapshot@license}{\ClassWarningNoLine{mfosnapshot}{No license information given}\snapshot@defaultcontent}
 \newcommand{\license}[1]{%
 	\expandafter\ifcsdef\expandafter{snapshot@license@#1}{%
 		\renewcommand{\snapshot@license}{\csname snapshot@license@#1\endcsname}%
@@ -265,13 +266,13 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\snapshot@organizer}{\ClassWarningNoLine{mfosnapshot}{No responsible organizer given}--}%
+\newcommand{\snapshot@organizer}{\ClassWarningNoLine{mfosnapshot}{No responsible organizer given}\snapshot@defaultcontent}%
 \newcommand*{\organizer}[1]{\gdef\snapshot@organizer{#1}}%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % categorization: math
-\gdef\snapshot@categorization@math{\ClassWarningNoLine{mfosnapshot}{No mathematical subject given}--}
+\gdef\snapshot@categorization@math{\ClassWarningNoLine{mfosnapshot}{No mathematical subject given}\snapshot@defaultcontent}
 \newcommand*{\categorizationmath}[1]{%
 	\gdef\snapshot@categorization@math{\begingroup\def\and{\def\and{,\space}}}%
 	\begingroup%
@@ -296,7 +297,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % categorization: connection to other fields
-\gdef\snapshot@categorization@connect{\ClassWarningNoLine{mfosnapshot}{No connection to other fields given}--}
+\gdef\snapshot@categorization@connect{\ClassWarningNoLine{mfosnapshot}{No connection to other fields given}\snapshot@defaultcontent}
 \newcommand*{\categorizationconnect}[1]{%
 	\gdef\snapshot@categorization@connect{\begingroup\def\and{\def\and{,\space}}}%
 	\begingroup%
@@ -321,21 +322,21 @@
 	\gappto\snapshot@categorization@connect{\endgroup}%
 }%
 
-\newcommand{\snapshot@junioreditor}{\ClassWarningNoLine{mfosnapshot}{No junior editor given}--}%
+\newcommand{\snapshot@junioreditor}{\ClassWarningNoLine{mfosnapshot}{No junior editor given}\snapshot@defaultcontent}%
 \newcommand{\snapshot@junioreditoremail}{--}%
 \newcommand*{\junioreditor}[2]{%
 	\gdef\snapshot@junioreditor{#1}%
 	\gdef\snapshot@junioreditoremail{\mailtoref{#2}}%
 }%
 
-\newcommand{\snapshot@senioreditor}{\ClassWarningNoLine{mfosnapshot}{No senior editor given}--}%
+\newcommand{\snapshot@senioreditor}{\ClassWarningNoLine{mfosnapshot}{No senior editor given}\snapshot@defaultcontent}%
 \newcommand{\snapshot@senioreditoremail}{--}%
 \newcommand*{\senioreditor}[2]{%
 	\gdef\snapshot@senioreditor{#1}%
 	\gdef\snapshot@senioreditoremail{\mailtoref{#2}}%
 }%
 
-\newcommand{\snapshot@director}{\ClassWarningNoLine{mfosnapshot}{No director given}--}%
+\newcommand{\snapshot@director}{\ClassWarningNoLine{mfosnapshot}{No director given}\snapshot@defaultcontent}%
 \newcommand*{\director}[1]{%
 	\gdef\snapshot@director{#1}%
 }%
