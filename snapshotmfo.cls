@@ -184,7 +184,9 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % hyperlinks
-\RequirePackage[hidelinks]{hyperref}
+\RequirePackage{hyperref}
+\@ifpackagelater{hyperref}{2011/02/05}{\hypersetup{hidelinks}}{\hypersetup{colorlinks=false,pdfborder={0 0 0}}}
+
 \newcommand{\mailtoref}[1]{\href{mailto://#1}{\nolinkurl{#1}}}
 \newcommand{\httpref}[1]{\href{http://#1}{\nolinkurl{#1}}}
 \newcommand{\ftpref}[1]{\href{ftp://#1}{\nolinkurl{#1}}}
