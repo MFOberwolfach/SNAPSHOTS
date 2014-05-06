@@ -1,37 +1,42 @@
-%% Template for an MFO snapshot
-%% Make sure that this path leads to the place where you put the class "snapshotmfo".
+%%% Template for a snapshot of modern mathematics from Oberwolfach.
 \documentclass{snapshotmfo}
 
-%% please choose your language! 
-%\usepackage[ngerman]{babel}
-\usepackage[USenglish]{babel}
-
-%% provides demo images
+%%% For internal use.
 \usepackage{mwe}
 
-%% Please separate the names by \and if there are several authors.
-\author{Janet Thomson \and Thomas Janson}
-
-%% Please insert the title of your snapshot.
-\title{A great snapshot}
-
-% Please provide some information on the author(s).
-\authorinfo{\authorname{Janet Thomson} is professor for pure mathematics at the Honolulu University.\\\mailtoref{aloha@hangloose.us}}
-\authorinfo{\authorname{Thomas Janson} is lecturer for extraterrestrial science on the moon.\\\mailtoref{ufo@manonthemoon.mo}}
-
-%%%%%%%%%%%%%%%% WILL BE FILLED OUT BY EDITORS ACCORDING TO YOUR SPECIFICATIONS %%%%%%%%%%
-%\categorizationmath{algebra and number theory,analysis,discrete mathematics and foundations,geometry and topology,numerics and scientific computing,probability theory and statistics}
-%\categorizationconnect{chemistry and earth science,computer science,engineering and technology,finance,humanities and social sciences,life science,physics,reflections on mathematics}
-%\license{CC-BY-NC-SA-3.0}
+%%%%%%%%%%%%%%%% WILL BE FILLED OUT BY EDITORS ACCORDING TO YOUR SPECIFICATIONS ON IMAGINARY %%%%%%%%%%%%%
+%\categorizationmath{algebra and number theory,analysis,discrete mathematics and foundations,geometry and topology,numerics and scientific computing,probability theory and statistics} %at least one must be chosen. 
+%\categorizationconnect{chemistry and earth science,computer science,engineering and technology,finance,humanities and social sciences,life science,physics,reflections on mathematics} %can be void.
+%\license{CC-BY-NC-SA-3.0} %recommended
 %\license{CC-BY-NC-ND-3.0}
 %\license{CC-BY-SA-3.0}
 %\snapshotid{id}{year}
-%\organizer{Max Muster}
+%\organizer{Alex Beth}
 \junioreditor{will be filled out by editors}{junior-editors@mfo.de}
 \senioreditor{Dr.\;Carla Cederbaum}{cederbaum@mfo.de}
 \director{Prof.\;Dr.\;Gerhard Huisken}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+%%%%%%%%%%%%%%%% PLEASE FILL OUT THE FOLLOWING ITEMS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Please select 'ngerman' if you want to submit your snapshot in German. 
+%\usepackage[ngerman]{babel}
+\usepackage[USenglish]{babel}
+
+
+%%% Please separate your names by \and if there are several authors.
+\author{Author One \and Author Two}
+
+%%% Please insert the title of your snapshot.
+\title{Your title}
+
+%%% Please provide some information on the author(s).
+\authorinfo{\authorname{Author One} is professor for pure mathematics at the First University.\\\mailtoref{author.one@first.edu}}
+\authorinfo{\authorname{Author Two} is lecturer for applied mathematics at the Second Institution.\\\mailtoref{author.two@uni-second.de}}
+
+
+%%% Please provide your references here or as a .bib file. If you use a .bib file, please do not forget to *submit* it with you .tex file when uploading it on www.imaginary.org .
 \begin{bibfilecontents}
 @book{knuth1986texbook,
   keywords = {book},
@@ -54,28 +59,46 @@
 }
 \end{bibfilecontents}
 
-%% recommended packages
-%\usepackage{amsmath}  % AMS mathematical facilities
-%\usepackage{csquotes} % consistent quotation marks and citations
-%\usepackage{siunitx}  % enhanced typesetting of units
+%%% recommended packages
+%% AMS mathematical facilities
+\usepackage{amsmath,amssymb}
+%% consistent quotation marks and citations
+%\usepackage{csquotes}
+%% enhanced typesetting of units
+%\usepackage{siunitx}  
 %\sisetup{per-mode=fraction,fraction-function=\nicefrac}
 
+%%%
 \begin{document}
 
-
+%%% Please insert your abstract, here. 
 \begin{abstract}
-This is your abstract. It should give a brief overview of your snapshot. If possible, please do not use formulas in your abstract.
+This is your abstract. It should give a brief overview of your snapshot. If possible, please do not use formulas in your abstract. Please do not use more than 1000 symbols. You will be asked to copy your abstract into the upload form on \url{www.imaginary.org}. 
 \end{abstract}
 
-%% TODO: wirklich jetzt schon oder erst für letters???
+%%% Please insert the main body of your snapshot, here.
 \section{A heading}
-Your actual snapshot. And here are some references as well: \cite{knuth1977fast} ends up in the \enquote{Further Reading} section since its \texttt{biblatex} entry contains \verb!keywords = {furtherreading}!, while \cite{knuth1986texbook} ends up in the standard references.
+Your actual snapshot. As usual, you can give references such as \cite{knuth1977fast,knuth1986texbook} via the \verb+\cite+ command.\\
 
-%% Please use this format to include images.
+We appreciate if you include images or other graphics that illustrate your snapshot. However, please do keep in mind the copyright issues explained in our email in case you include images and graphics you have not produced yourself.
+
+%%% Please use this format to include images.
 \begin{figure}[h]
-        \centering \includegraphics[height=5cm]{example-image}
+        \centering \includegraphics[height=4cm]{example-image}
         \caption{An image.}
 \label{fig:moon}
 \end{figure}
 
+\subsection{A subsection}
+More text and some formulas:
+\begin{align}\label{real}
+1+1&=2,\\\label{char.2}
+1+1&=0.
+\end{align}
+Formula \eqref{real} refers to $\mathbb{R}$, formula \eqref{char.2} does not.
+
+\section{More Information}
+We have composed guidelines to help you write a beautiful and accessible snapshot which you can download here: \url{http://www.mfo.de/math-in-public/snapshots/guidelines-for-snapshots}. For more information on the snapshot project (including example snapshots), please see \url{http://www.mfo.de/math-in-public/snapshots}.
+
+%%% Bibliography
 \end{document}
