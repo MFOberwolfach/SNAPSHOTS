@@ -206,15 +206,15 @@
 \newcommand{\snapshot@gunderline}[1]{\ifmmode \@@underline {#1\protect\vphantom{g}}\else $\@@underline {\hbox {#1\protect\vphantom{g}}}\m@th $\relax \fi}
 
 \setkomafont{pagenumber}{\normalfont\sffamily\relscale{1.1}}
-\setkomafont{section}{\normalfont\sffamily\relscale{1.32}\lsstyle\snapshot@gunderline}
+\setkomafont{section}{\normalfont\sffamily\relscale{1.32}\snapshot@gunderline}
 
-\setkomafont{subsection}{\normalfont\sffamily\relscale{1.1}\lsstyle}
-\setkomafont{subsubsection}{\normalfont\sffamily\relscale{1.1}\lsstyle}
-\setkomafont{paragraph}{\normalfont\sffamily\relscale{1.1}\lsstyle}
-\setkomafont{subparagraph}{\normalfont\sffamily\relscale{1.1}\lsstyle}
-\setkomafont{captionlabel}{\normalfont\sffamily\relscale{1.1}\lsstyle}
+\setkomafont{subsection}{\normalfont\sffamily\relscale{1.1}}
+\setkomafont{subsubsection}{\normalfont\sffamily\relscale{1.1}}
+\setkomafont{paragraph}{\normalfont\sffamily\relscale{1.1}}
+\setkomafont{subparagraph}{\normalfont\sffamily\relscale{1.1}}
+\setkomafont{captionlabel}{\normalfont\sffamily\relscale{1.1}}
 
-\setkomafont{title}{\renewcommand{\baselinestretch}{0.8}\color[gray]{0.25}\sffamily\relscale{1.8}\lsstyle}
+\setkomafont{title}{\renewcommand{\baselinestretch}{0.8}\color[gray]{0.25}\sffamily\relscale{1.8}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % snapshot id and DOI computation
@@ -418,10 +418,9 @@
 
 	\rule[0.5ex]{1cm}{0.526pt}\\[1.5em]%
     {%
-      \relscale{1.2}
+      \relscale{1.2}%
       \lineskip .5em%
-      \sffamily
-      \lsstyle%
+      \sffamily%
       \def\@AndBullet{\unskip\,~$\bullet$~\,\ignorespaces\let\and\@AndNewLine}%
       \def\@AndNewLine{\unskip\\\let\and\@AndBullet}%
       \let\and\@AndBullet%
