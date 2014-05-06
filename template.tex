@@ -36,7 +36,7 @@
 \authorinfo{\authorname{Author Two} is lecturer for applied mathematics at the Second Institution.\\\mailtoref{author.two@uni-second.de}}
 
 
-%%% Please provide your references here or as a .bib file. If you use a .bib file, please do not forget to *submit* it with your .tex file when uploading it on www.imaginary.org.
+%%% Please provide your references here or as a .bib file. If you use a .bib file, please replace the bibliography name ‘yourbibfile’ with the name of your .bib file in the \bibliography command at the bottom of this file. If you prefer to use \bibitems, you will need to silence the \bibliography command at the end of this file (see below). 
 \usepackage{filecontents}
 \begin{filecontents}{\jobname.bib}
 @book{knuth1986texbook,
@@ -47,16 +47,15 @@
   year={1986},
   publisher={Addison-Wesley}
 }
-@article{knuth1977fast,
-  keywords = {furtherreading,book},
-  title={Fast pattern matching in strings},
-  author={Knuth, D.E. and Morris Jr, J.H. and Pratt, V.R.},
-  journal={SIAM journal on computing},
-  volume={6},
-  number={2},
-  pages={323--350},
-  year={1977},
-  publisher={SIAM}
+@article{snapshot,
+  title={The first snapshot},
+  author={Sophia Jahns and Lea Renner},
+  journal={Snapshots of modern mathematics},
+  volume={1,
+  number={1},
+  pages={1--10},
+  year={2014},
+  publisher={MFO}
 }
 \end{filecontents}
 
@@ -101,6 +100,11 @@ Formula \eqref{real} refers to $\mathbb{R}$, formula \eqref{char.2} does not.
 \section{More Information}
 We have composed guidelines to help you write a beautiful and accessible snapshot which you can download here: \url{http://www.mfo.de/math-in-public/snapshots/guidelines-for-snapshots}. For more information on the snapshot project (including example snapshots), please see \url{http://www.mfo.de/math-in-public/snapshots}.
 
-%%% Bibliography via BibTeX
+%%%%%%%%%%%% Bibliography via BibTeX %%%%%%%%%%%%%%%%%%%%%%
+%%% Please use this command in case you prefer to use the filecontents environment and edit your BibTeX entries above. If you prefer to use \bibitems, you will need to silence the \bibliography following command with a % symbol.
 \bibliography{\jobname}
+
+%%% Please use this command in case you supply your own .bib file. Replace ‘yourbibfile’ by the name of your .bib file. Also, please do not forget to *submit* your .bib file with your .tex file when uploading it on www.imaginary.org.
+%\bibliography{yourbibfile}
+
 \end{document}
