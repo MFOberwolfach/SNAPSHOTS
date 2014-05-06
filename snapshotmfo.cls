@@ -341,10 +341,26 @@
 	\gdef\snapshot@director{#1}%
 }%
 
+\newcommand{\snapshot@define@spaces}{% define text mode spaces like in amsmath
+	\DeclareRobustCommand{\tmspace}[3]{%
+	  \ifmmode\mskip##1##2\else\kern##1##3\fi\relax}
+	\renewcommand{\,}{\tmspace+\thinmuskip{.1667em}}
+	\let\thinspace\,
+	\renewcommand{\!}{\tmspace-\thinmuskip{.1667em}}
+	\let\negthinspace\!
+	\renewcommand{\:}{\tmspace+\medmuskip{.2222em}}
+	\let\medspace\:
+	\newcommand{\negmedspace}{\tmspace-\medmuskip{.2222em}}
+	\renewcommand{\;}{\tmspace+\thickmuskip{.2777em}}
+	\let\thickspace\;
+	\newcommand{\negthickspace}{\tmspace-\thickmuskip{.2777em}}
+	\newcommand{\mspace}[1]{\mskip##1\relax}
+}%
 
 \renewcommand*\maketitle{%
 	\par
 	\begingroup
+		\snapshot@define@spaces%
 		\renewcommand*\thefootnote{\@fnsymbol\c@footnote}%
 		\let\@oldmakefnmark\@makefnmark
 		\renewcommand*{\@makefnmark}{\rlap\@oldmakefnmark}
@@ -420,6 +436,7 @@
 	\raggedbottom%
 	\newsavebox{\snapshot@credits}%
 	\sbox{\snapshot@credits}{\hbox{\parbox[t]{\linewidth}{%
+		\snapshot@define@spaces%
 		\raggedcolumns
 		\renewcommand\UrlFont{}%
 		\relscale{0.9}%
