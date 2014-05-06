@@ -1,14 +1,36 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{snapshotmfo}[2014/05/06 Document class for "Snapshots of modern mathematics from Oberwolfach"]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% output warning if obsolute features are used
 \IfFileExists{nag.sty}{\RequirePackage[l2tabu]{nag}}{}
 %
-\LoadClass[10pt,twoside]{scrartcl}  
+\LoadClass[10pt,twoside]{scrartcl} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% require pdflatex compiler if possible 
 \IfFileExists{iftex.sty}{\RequirePackage{iftex}\RequirePDFTeX}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% misc (internal)
+\def\snapshot@defaultcontent{will be filled out by editors}
+
+\newcommand{\snapshot@define@spaces}{% define text mode spaces like in amsmath
+	\DeclareRobustCommand{\tmspace}[3]{%
+	  \ifmmode\mskip##1##2\else\kern##1##3\fi\relax}
+	\renewcommand{\,}{\tmspace+\thinmuskip{.1667em}}
+	\let\thinspace\,
+	\renewcommand{\!}{\tmspace-\thinmuskip{.1667em}}
+	\let\negthinspace\!
+	\renewcommand{\:}{\tmspace+\medmuskip{.2222em}}
+	\let\medspace\:
+	\providecommand{\negmedspace}{\tmspace-\medmuskip{.2222em}}
+	\renewcommand{\;}{\tmspace+\thickmuskip{.2777em}}
+	\let\thickspace\;
+	\providecommand{\negthickspace}{\tmspace-\thickmuskip{.2777em}}
+	\providecommand{\mspace}[1]{\mskip##1\relax}
+}%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % tools
-\RequirePackage{calc}
 \RequirePackage{etoolbox,ifthen}
 \appto{\abstract}{\relscale{1.3}\noindent\ignorespaces} 
 
@@ -21,7 +43,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % footnotes
-%\def\@fnsymbol#1{\ifcase#1\or{*}\or{**}\or{***}\else\@ctrerr\fi}
 \def\@fnsymbol#1{\ensuremath{\ifcase#1%
 	\or *\or \ddagger\or \mathsection\or \|%
 	\or **\or \ddagger\ddagger\or \mathsection\mathsection%
@@ -34,16 +55,18 @@
 \setfootnoterule[0.526pt]{\textwidth}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% fonts
+% fonts & symbols
 \RequirePackage[T1]{fontenc}
-\RequirePackage{textcomp}
+\RequirePackage{type1cm}
 \RequirePackage[scaled=0.82304487406237511878]{helvet}
+\RequirePackage{textcomp}
+\RequirePackage{relsize}
 \RequirePackage{ellipsis}
 \RequirePackage[tracking=true]{microtype}
 \DeclareMicrotypeSet*[tracking]{letterspacedHelvetica}{family=phv}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% references
+% references (via BibTeX)
 \let\snapshot@bibliography\bibliography
 \def\bibliography{\bibliographystyle{amsplain}\snapshot@bibliography}
 
@@ -76,7 +99,7 @@
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@header}{Snapshots of modern mathematics\\from Oberwolfach}%
 	\newcaptionname{german,ngerman}{\snapshot@l@header}{Schnappsch\"usse moderner Mathematik\\aus Oberwolfach}%
 	%
-	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@creditstext}{\emph{Snapshots of modern mathematics from Oberwolfach} are written by participants in the scientific program of the Mathematisches Forschungsinstitut Oberwolfach (MFO). The snapshot project is designed to promote the understanding and appreciation of modern mathematics and mathematical research in the general public world-wide. It~is part of the mathematics communication project 'Oberwolfach meets IMAGINARY' funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. All snapshots can be found on \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}}.}%
+	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@creditstext}{\emph{Snapshots of modern mathematics from Oberwolfach} are written by participants in the scientific program of the Mathematisches Forschungsinstitut Oberwolfach (MFO). The snapshot project is designed to promote the understanding and appreciation of modern mathematics and mathematical research in the general public world-wide. It is part of the mathematics communication project 'Oberwolfach meets IMAGINARY' funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. All snapshots can be found on \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}}.}%
 	\newcaptionname{german,ngerman}{\snapshot@l@creditstext}{\emph{Schnappsch\"uesse moderner Mathematik aus Oberwolfach} werden von Teilnehmerinnen und Teilnehmern des wissenschaftlichen Programms des Mathematischen Forschungsinstituts Oberwolfach (MFO) geschrieben. Das Schnapschuss-Projekt hat zum Ziel, Verst\"andnis und Wertsch\"atzung f\"ur moderne Mathematik und mathematische Forschung in der allgemeinen Bev\"olkerung weltweit zu f\"ordern. Es ist Teil des Mathematikkommunikation-Projektes 'Oberwolfach trifft IMAGINARY', welches von der Klaus Tschira Stiftung und der Oberwolfach Stiftung gef\"ordert wird. Alle Schnappsch\"usse k\"onnen unter \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}} abgerufen werden.}%
 	%
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@organizer}{Communicated by}%
@@ -137,10 +160,13 @@
 	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@physics}{Physik}
 	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@reflections on mathematics}{Betrachtungen über Mathematik}
 }
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% graphics inclusion and basic color management
 \RequirePackage{graphicx,color}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% formatting of lists
 \RequirePackage{enumitem}
 \setitemize[1]{noitemsep,leftmargin=1.5em,labelsep=*,label={$\bullet$}}
 \setitemize[2]{noitemsep,leftmargin=1.5em,labelsep=*,label={$\circ$}}
@@ -152,22 +178,29 @@
 \setenumerate[3]{noitemsep,align=left,leftmargin=1.5em,labelsep=*,label=\sffamily\roman*.}
 \setenumerate[4]{noitemsep,leftmargin=1.5em,labelsep=*,label=\sffamily\Alph*.}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% hyperlinks
 \RequirePackage[hidelinks]{hyperref}
+\newcommand{\mailtoref}[1]{\href{mailto://#1}{\nolinkurl{#1}}}
+\newcommand{\httpref}[1]{\href{http://#1}{\nolinkurl{#1}}}
+\newcommand{\ftpref}[1]{\href{ftp://#1}{\nolinkurl{#1}}}
 
-\RequirePackage{type1cm}
-\RequirePackage{relsize}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% page header/footer
 \RequirePackage{scrpage2}
 \pagestyle{scrheadings}
 \renewcommand*{\titlepagestyle}{scrheadings}
 \clearscrheadfoot
 \cfoot{\pagemark}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% font settings
+
 % \underline command which always adds an invisible depth of the letter 'g' 
-\newcommand{\gunderline}[1]{\ifmmode \@@underline {#1\protect\vphantom{g}}\else $\@@underline {\hbox {#1\protect\vphantom{g}}}\m@th $\relax \fi}
+\newcommand{\snapshot@gunderline}[1]{\ifmmode \@@underline {#1\protect\vphantom{g}}\else $\@@underline {\hbox {#1\protect\vphantom{g}}}\m@th $\relax \fi}
 
 \setkomafont{pagenumber}{\normalfont\sffamily\relscale{1.1}}
-\setkomafont{section}{\normalfont\sffamily\relscale{1.32}\lsstyle\gunderline}
+\setkomafont{section}{\normalfont\sffamily\relscale{1.32}\lsstyle\snapshot@gunderline}
 
 \setkomafont{subsection}{\normalfont\sffamily\relscale{1.1}\lsstyle}
 \setkomafont{subsubsection}{\normalfont\sffamily\relscale{1.1}\lsstyle}
@@ -177,11 +210,11 @@
 
 \setkomafont{title}{\renewcommand{\baselinestretch}{0.8}\color[gray]{0.25}\sffamily\relscale{1.8}\lsstyle}
 
-\def\snapshot@defaultcontent{will be filled out by editors}
-
-\newcommand{\snapshot@id}{\ClassWarningNoLine{mfosnapshot}{No snapshot id given}xx}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% snapshot id and DOI computation
+\newcommand{\snapshot@id}{\ClassWarningNoLine{snapshotmfo}{No snapshot id given}xx}%
 \newcommand{\snapshot@year}{xxxx}%
-\AtBeginDocument{\newcaptionname{english,USenglish,UKenglish,german,ngerman}{\snapshot@doi}{\ClassWarningNoLine{mfosnapshot}{Unable to compute DOI}\snapshot@defaultcontent}}%
+\AtBeginDocument{\newcaptionname{english,USenglish,UKenglish,german,ngerman}{\snapshot@doi}{\ClassWarningNoLine{snapshotmfo}{Unable to compute DOI}\snapshot@defaultcontent}}%
 \gdef\snapshot@doiurlprefix{http://dx.doi.org/}%
 \newcommand*{\snapshotid}[2]{%
 	\begingroup%
@@ -194,10 +227,6 @@
 		\renewcaptionname{german,ngerman}{\snapshot@doi}{10.14760/SNAP-#2-\ifnum#1>99\else\ifnum#1>9 0\else00\fi\fi\number#1-DE}%
 	}%
 }%
-
-\newcommand{\mailtoref}[1]{\href{mailto://#1}{\nolinkurl{#1}}}
-\newcommand{\httpref}[1]{\href{http://#1}{\nolinkurl{#1}}}
-\newcommand{\ftpref}[1]{\href{ftp://#1}{\nolinkurl{#1}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % author info
@@ -237,22 +266,16 @@
 \csdef{snapshot@license@CC-BY-NC-SA-3.0}{\href{http://creativecommons.org/licenses/by-nc-sa/3.0/}{Creative Commons BY-NC-SA 3.0}}
 \csdef{snapshot@license@CC-BY-NC-ND-3.0}{\href{http://creativecommons.org/licenses/by-nc-nd/3.0/}{Creative Commons BY-NC-ND 3.0}}
 \csdef{snapshot@license@CC-BY-SA-3.0}{\href{http://creativecommons.org/licenses/by-sa/3.0/}{Creative Commons BY-SA 3.0}}
-\newcommand{\snapshot@license}{\ClassWarningNoLine{mfosnapshot}{No license information given}\snapshot@defaultcontent}
+\newcommand{\snapshot@license}{\ClassWarningNoLine{snapshotmfo}{No license information given}\snapshot@defaultcontent}
 \newcommand{\license}[1]{%
 	\expandafter\ifcsdef\expandafter{snapshot@license@#1}{%
 		\renewcommand{\snapshot@license}{\csname snapshot@license@#1\endcsname}%
-	}{\ClassError{mfosnapshot}{Unknown license name}{Please use one of CC-BY-NC-SA-3.0, CC-BY-NC-ND-3.0 or CC-BY-SA-3.0}}%	
+	}{\ClassError{snapshotmfo}{Unknown license name}{Please use one of CC-BY-NC-SA-3.0, CC-BY-NC-ND-3.0 or CC-BY-SA-3.0}}%	
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newcommand{\snapshot@organizer}{\ClassWarningNoLine{mfosnapshot}{No responsible organizer given}\snapshot@defaultcontent}%
-\newcommand*{\organizer}[1]{\gdef\snapshot@organizer{#1}}%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % categorization: math
-\gdef\snapshot@categorization@math{\ClassWarningNoLine{mfosnapshot}{No mathematical subject given}\snapshot@defaultcontent}
+\gdef\snapshot@categorization@math{\ClassWarningNoLine{snapshotmfo}{No mathematical subject given}\snapshot@defaultcontent}
 \newcommand*{\categorizationmath}[1]{%
 	\gdef\snapshot@categorization@math{\begingroup\def\and{\def\and{,\space}}}%
 	\begingroup%
@@ -267,7 +290,7 @@
 			{%
 				\gappto\snapshot@categorization@math{\and \expandafter\csname snaphot@l@categorization@math@##1\endcsname}%
 			}{%
-				\ClassError{mfosnapshot}{Unknown category "##1" in \@backslashchar categorizationmath}{possibilities: \snapshot@categorization@math@subjects}%
+				\ClassError{snapshotmfo}{Unknown category "##1" in \@backslashchar categorizationmath}{possibilities: \snapshot@categorization@math@subjects}%
 			}%
 		}%
 		\forcsvlist{\snapshot@add@categorization@math}{#1}%
@@ -277,7 +300,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % categorization: connection to other fields
-\gdef\snapshot@categorization@connect{\ClassWarningNoLine{mfosnapshot}{No connection to other fields given}\snapshot@defaultcontent}
+\gdef\snapshot@categorization@connect{\ClassWarningNoLine{snapshotmfo}{No connection to other fields given}\snapshot@defaultcontent}
 \newcommand*{\categorizationconnect}[1]{%
 	\gdef\snapshot@categorization@connect{\begingroup\def\and{\def\and{,\space}}}%
 	\begingroup%
@@ -294,7 +317,7 @@
 			{%
 				\gappto\snapshot@categorization@connect{\and \expandafter\csname snaphot@l@categorization@connect@##1\endcsname}%
 			}{%
-				\ClassError{mfosnapshot}{Unknown category "##1" in \@backslashchar categorizationconnect}{possibilities: \snapshot@categorization@connect@subjects}%
+				\ClassError{snapshotmfo}{Unknown category "##1" in \@backslashchar categorizationconnect}{possibilities: \snapshot@categorization@connect@subjects}%
 			}%
 		}%
 		\forcsvlist{\snapshot@add@categorization@connect}{#1}%
@@ -302,41 +325,38 @@
 	\gappto\snapshot@categorization@connect{\endgroup}%
 }%
 
-\newcommand{\snapshot@junioreditor}{\ClassWarningNoLine{mfosnapshot}{No junior editor given}\snapshot@defaultcontent}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% organizer
+\newcommand{\snapshot@organizer}{\ClassWarningNoLine{snapshotmfo}{No responsible organizer given}\snapshot@defaultcontent}%
+\newcommand*{\organizer}[1]{\gdef\snapshot@organizer{#1}}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% junior editor
+\newcommand{\snapshot@junioreditor}{\ClassWarningNoLine{snapshotmfo}{No junior editor given}\snapshot@defaultcontent}%
 \newcommand{\snapshot@junioreditoremail}{--}%
 \newcommand*{\junioreditor}[2]{%
 	\gdef\snapshot@junioreditor{#1}%
 	\gdef\snapshot@junioreditoremail{\mailtoref{#2}}%
 }%
 
-\newcommand{\snapshot@senioreditor}{\ClassWarningNoLine{mfosnapshot}{No senior editor given}\snapshot@defaultcontent}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% senior editor
+\newcommand{\snapshot@senioreditor}{\ClassWarningNoLine{snapshotmfo}{No senior editor given}\snapshot@defaultcontent}%
 \newcommand{\snapshot@senioreditoremail}{--}%
 \newcommand*{\senioreditor}[2]{%
 	\gdef\snapshot@senioreditor{#1}%
 	\gdef\snapshot@senioreditoremail{\mailtoref{#2}}%
 }%
 
-\newcommand{\snapshot@director}{\ClassWarningNoLine{mfosnapshot}{No director given}\snapshot@defaultcontent}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% director
+\newcommand{\snapshot@director}{\ClassWarningNoLine{snapshotmfo}{No director given}\snapshot@defaultcontent}%
 \newcommand*{\director}[1]{%
 	\gdef\snapshot@director{#1}%
 }%
 
-\newcommand{\snapshot@define@spaces}{% define text mode spaces like in amsmath
-	\DeclareRobustCommand{\tmspace}[3]{%
-	  \ifmmode\mskip##1##2\else\kern##1##3\fi\relax}
-	\renewcommand{\,}{\tmspace+\thinmuskip{.1667em}}
-	\let\thinspace\,
-	\renewcommand{\!}{\tmspace-\thinmuskip{.1667em}}
-	\let\negthinspace\!
-	\renewcommand{\:}{\tmspace+\medmuskip{.2222em}}
-	\let\medspace\:
-	\providecommand{\negmedspace}{\tmspace-\medmuskip{.2222em}}
-	\renewcommand{\;}{\tmspace+\thickmuskip{.2777em}}
-	\let\thickspace\;
-	\providecommand{\negthickspace}{\tmspace-\thickmuskip{.2777em}}
-	\providecommand{\mspace}[1]{\mskip##1\relax}
-}%
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% define title
 \renewcommand*\maketitle{%
 	\par
 	\begingroup
@@ -406,8 +426,10 @@
   \end{center}%
   \par
 }%
+\AtBeginDocument{\maketitle}% automatically typeset title 
 
-\AtBeginDocument{\maketitle}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% define last page (credits, footer, ...)
 \AtEndDocument{%
 	\patchcmd{\footnoterule}{\vskip \z@ \@plus .05fil}{}{}{}%
 	\raggedbottom%
