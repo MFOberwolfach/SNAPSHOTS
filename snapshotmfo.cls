@@ -126,6 +126,9 @@
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@director}{Director}%
 	\newcaptionname{german,ngerman}{\snapshot@l@director}{Direktor}%
 	%
+	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@mfoaddress}{Mathematisches Forschungsinstitut\\Oberwolfach gGmbH\\Schwarzwaldstr. 9\,--1\!1\\77709 Oberwolfach\\Germany}%
+	\newcaptionname{german,ngerman}{\snapshot@l@mfoaddress}{Mathematisches Forschungsinstitut\\Oberwolfach gGmbH\\Schwarzwaldstr. 9\,--1\!1\\77709 Oberwolfach\\Deutschland}%
+	%
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@epslogo}{\snapshot@includemps{\snapshot@logo@en}{1}{1}}%
 	\newcaptionname{german,ngerman}{\snapshot@l@epslogo}{\snapshot@includemps{\snapshot@logo@de}{1}{1}}%
 	%
@@ -489,11 +492,7 @@
 			}\columnbreak\par%
 			\parbox{\linewidth}{%
 				\raggedright
-				Mathematisches Forschungsinstitut\\
-				Oberwolfach gGmbH\\
-				Schwarzwaldstr. 9\,--1\!1\\
-				77709 Oberwolfach\\
-				Germany\\[\medskipamount]
+				\snapshot@l@mfoaddress\\[\medskipamount]
 				%
 				\textit{\snapshot@l@director}\\
 				\snapshot@director%
