@@ -121,10 +121,10 @@
 	\newcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editor/in}%
 	%
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@senioreditor}{Senior Editor}%
-	\newcaptionname{german,ngerman}{\snapshot@l@senioreditor}{Chefeditorin}%
+	\newcaptionname{german,ngerman}{\snapshot@l@senioreditor}{Chefeditor/in}%
 	%
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@director}{Director}%
-	\newcaptionname{german,ngerman}{\snapshot@l@director}{Direktor}%
+	\newcaptionname{german,ngerman}{\snapshot@l@director}{Direktor/in}%
 	%
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@mfoaddress}{Mathematisches Forschungsinstitut\\Oberwolfach gGmbH\\Schwarzwaldstr. 9\,--1\!1\\77709 Oberwolfach\\Germany}%
 	\newcaptionname{german,ngerman}{\snapshot@l@mfoaddress}{Mathematisches Forschungsinstitut\\Oberwolfach gGmbH\\Schwarzwaldstr. 9\,--1\!1\\77709 Oberwolfach\\Deutschland}%
