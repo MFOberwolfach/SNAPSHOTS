@@ -340,11 +340,11 @@
 	\let\negthinspace\!
 	\renewcommand{\:}{\tmspace+\medmuskip{.2222em}}
 	\let\medspace\:
-	\newcommand{\negmedspace}{\tmspace-\medmuskip{.2222em}}
+	\providecommand{\negmedspace}{\tmspace-\medmuskip{.2222em}}
 	\renewcommand{\;}{\tmspace+\thickmuskip{.2777em}}
 	\let\thickspace\;
-	\newcommand{\negthickspace}{\tmspace-\thickmuskip{.2777em}}
-	\newcommand{\mspace}[1]{\mskip##1\relax}
+	\providecommand{\negthickspace}{\tmspace-\thickmuskip{.2777em}}
+	\providecommand{\mspace}[1]{\mskip##1\relax}
 }%
 
 \renewcommand*\maketitle{%
