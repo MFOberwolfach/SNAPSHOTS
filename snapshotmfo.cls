@@ -121,7 +121,7 @@
 	\newcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editor/in}%
 	%
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@senioreditor}{Senior Editor}%
-	\newcaptionname{german,ngerman}{\snapshot@l@senioreditor}{Chefeditor/in}%
+	\newcaptionname{german,ngerman}{\snapshot@l@senioreditor}{Chefeditorin}%
 	%
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@director}{Director}%
 	\newcaptionname{german,ngerman}{\snapshot@l@director}{Direktor}%
