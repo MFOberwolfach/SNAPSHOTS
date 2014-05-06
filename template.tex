@@ -36,8 +36,9 @@
 \authorinfo{\authorname{Author Two} is lecturer for applied mathematics at the Second Institution.\\\mailtoref{author.two@uni-second.de}}
 
 
-%%% Please provide your references here or as a .bib file. If you use a .bib file, please do not forget to *submit* it with you .tex file when uploading it on www.imaginary.org .
-\begin{bibfilecontents}
+%%% Please provide your references here or as a .bib file. If you use a .bib file, please do not forget to *submit* it with your .tex file when uploading it on www.imaginary.org.
+\usepackage{filecontents}
+\begin{filecontents}{\jobname.bib}
 @book{knuth1986texbook,
   keywords = {book},
   title={The texbook},
@@ -57,7 +58,7 @@
   year={1977},
   publisher={SIAM}
 }
-\end{bibfilecontents}
+\end{filecontents}
 
 %%% recommended packages
 %% AMS mathematical facilities
@@ -100,5 +101,6 @@ Formula \eqref{real} refers to $\mathbb{R}$, formula \eqref{char.2} does not.
 \section{More Information}
 We have composed guidelines to help you write a beautiful and accessible snapshot which you can download here: \url{http://www.mfo.de/math-in-public/snapshots/guidelines-for-snapshots}. For more information on the snapshot project (including example snapshots), please see \url{http://www.mfo.de/math-in-public/snapshots}.
 
-%%% Bibliography
+%%% Bibliography via BibTeX
+\bibliography{\jobname}
 \end{document}

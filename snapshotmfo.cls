@@ -44,14 +44,8 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % references
-\usepackage[defernumbers=true,backend=biber]{biblatex}
-\usepackage{filecontents}
-\newenvironment{bibfilecontents}{%
-  \csname filecontents\endcsname{\jobname.bib}%
-}%
-{\csname endfilecontents\endcsname%
- \addbibresource{\jobname.bib}%
-}%
+\let\snapshot@bibliography\bibliography
+\def\bibliography{\bibliographystyle{amsplain}\snapshot@bibliography}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % language specific settings
@@ -79,16 +73,10 @@
 
 % define captions
 \AtBeginDocument{%
-	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@bibliography}{References}%
-	\newcaptionname{german,ngerman}{\snapshot@l@bibliography}{Referenzen}%
-	%
-	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@furtherreading}{Further reading}%
-	\newcaptionname{german,ngerman}{\snapshot@l@furtherreading}{Weiterf\"uhrende Literatur}%
-	%
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@header}{Snapshots of modern mathematics\\from Oberwolfach}%
 	\newcaptionname{german,ngerman}{\snapshot@l@header}{Schnappsch\"usse moderner Mathematik\\aus Oberwolfach}%
 	%
-	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@creditstext}{\emph{Snapshots of modern mathematics from Oberwolfach} are written by participants in the scientific program of the Mathematisches Forschungsinstitut Oberwolfach (MFO). The snapshot project is designed to promote the understanding and appreciation of modern mathematics and mathematical research in the general public world-wide. It is part of the mathematics communication project 'Oberwolfach meets IMAGINARY' funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. All snapshots can be found on \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}}.}%
+	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@creditstext}{\emph{Snapshots of modern mathematics from Oberwolfach} are written by participants in the scientific program of the Mathematisches Forschungsinstitut Oberwolfach (MFO). The snapshot project is designed to promote the understanding and appreciation of modern mathematics and mathematical research in the general public world-wide. It~is part of the mathematics communication project 'Oberwolfach meets IMAGINARY' funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. All snapshots can be found on \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}}.}%
 	\newcaptionname{german,ngerman}{\snapshot@l@creditstext}{\emph{Schnappsch\"uesse moderner Mathematik aus Oberwolfach} werden von Teilnehmerinnen und Teilnehmern des wissenschaftlichen Programms des Mathematischen Forschungsinstituts Oberwolfach (MFO) geschrieben. Das Schnapschuss-Projekt hat zum Ziel, Verst\"andnis und Wertsch\"atzung f\"ur moderne Mathematik und mathematische Forschung in der allgemeinen Bev\"olkerung weltweit zu f\"ordern. Es ist Teil des Mathematikkommunikation-Projektes 'Oberwolfach trifft IMAGINARY', welches von der Klaus Tschira Stiftung und der Oberwolfach Stiftung gef\"ordert wird. Alle Schnappsch\"usse k\"onnen unter \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}} abgerufen werden.}%
 	%
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@organizer}{Communicated by}%
@@ -421,9 +409,6 @@
 
 \AtBeginDocument{\maketitle}%
 \AtEndDocument{%
-	\printbibliography[notkeyword=furtherreading,heading=bibliography,title={\snapshot@l@bibliography}]%
-	\printbibliography[keyword=furtherreading,heading=bibliography,title={\snapshot@l@furtherreading}]%
-	\par%
 	\patchcmd{\footnoterule}{\vskip \z@ \@plus .05fil}{}{}{}%
 	\raggedbottom%
 	\newsavebox{\snapshot@credits}%
