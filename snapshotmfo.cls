@@ -42,7 +42,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % references
-\usepackage[backend=biber]{biblatex}
+\usepackage[defernumbers=true,backend=biber]{biblatex}
 \usepackage{filecontents}
 \newenvironment{bibfilecontents}{%
   \csname filecontents\endcsname{\jobname.bib}%
