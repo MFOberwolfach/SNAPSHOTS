@@ -55,7 +55,15 @@
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 \deffootnote[1.5em]{0em}{1.5em}{\rlap{\textsuperscript{\thefootnotemark}}\hspace{1.5em}}
 \deffootnotemark{\textsuperscript{\thefootnotemark}}
+\@ifclasslater{scrartcl}{2010/06/17}{%
 \setfootnoterule[0.526pt]{\textwidth}
+}{%
+	\renewcommand{\footnoterule}{%
+	  \kern -3pt
+	  \hrule width \textwidth height 0.526pt
+	  \kern 2.474pt
+	}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % fonts & symbols
