@@ -1,9 +1,6 @@
 %%% Template for a snapshot of modern mathematics from Oberwolfach.
 \documentclass{snapshotmfo}
 
-%%% For internal use.
-\usepackage{mwe}
-
 %%%%%%%%%%%%%%%% WILL BE FILLED OUT BY EDITORS ACCORDING TO YOUR SPECIFICATIONS ON IMAGINARY %%%%%%%%%%%%%
 %\categorizationmath{algebra and number theory,analysis,discrete mathematics and foundations,geometry and topology,numerics and scientific computing,probability theory and statistics} %at least one must be chosen. 
 %\categorizationconnect{chemistry and earth science,computer science,engineering and technology,finance,humanities and social sciences,life science,physics,reflections on mathematics} %can be void.
@@ -78,13 +75,13 @@ This is your abstract. It should give a brief overview of your snapshot. If poss
 
 %%% Please insert the main body of your snapshot, here.
 \section{A heading}
-Your actual snapshot. As usual, you can give references such as \cite{snapshot,knuth1986texbook} via the \verb+\cite+ command.\\
+Your actual snapshot.\footnote{test} As usual, you can give references such as \cite{snapshot,knuth1986texbook} via the \verb+\cite+ command.\\
 
 We appreciate if you include images or other graphics that illustrate your snapshot. However, please do keep in mind the copyright issues explained in our email in case you include images and graphics you have not produced yourself.
 
 %%% Please use this format to include images.
 \begin{figure}[h]
-        \centering \includegraphics[height=4cm]{example-image}
+        \centering \setlength{\fboxsep}{1cm}\fcolorbox[gray]{0}{0.75}{\Huge\sffamily IMAGE}
         \caption{An image.}
 \label{fig:moon}
 \end{figure}
