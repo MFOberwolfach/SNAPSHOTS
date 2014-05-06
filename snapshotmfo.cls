@@ -36,7 +36,9 @@
 \RequirePackage[T1]{fontenc}
 \RequirePackage{textcomp}
 \RequirePackage[scaled=0.82304487406237511878]{helvet}
-\RequirePackage{microtype,ellipsis}
+\RequirePackage{ellipsis}
+\RequirePackage[tracking=true]{microtype}
+\DeclareMicrotypeSet*[tracking]{letterspacedHelvetica}{family=phv}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % references
@@ -155,10 +157,10 @@
 \setitemize[3]{noitemsep,leftmargin=1.5em,labelsep=*,label={$*$}}
 \setitemize[4]{noitemsep,leftmargin=1.5em,labelsep=*,label={--}}
 %
-\setenumerate[1]{noitemsep,leftmargin=1.5em,labelsep=*,label=\sf\arabic*.}
-\setenumerate[2]{noitemsep,leftmargin=1.5em,labelsep=*,label=\sf\alph*)}
-\setenumerate[3]{noitemsep,align=left,leftmargin=1.5em,labelsep=*,label=\sf\roman*.}
-\setenumerate[4]{noitemsep,leftmargin=1.5em,labelsep=*,label=\sf\Alph*.}
+\setenumerate[1]{noitemsep,leftmargin=1.5em,labelsep=*,label=\sffamily\arabic*.}
+\setenumerate[2]{noitemsep,leftmargin=1.5em,labelsep=*,label=\sffamily\alph*)}
+\setenumerate[3]{noitemsep,align=left,leftmargin=1.5em,labelsep=*,label=\sffamily\roman*.}
+\setenumerate[4]{noitemsep,leftmargin=1.5em,labelsep=*,label=\sffamily\Alph*.}
 
 \RequirePackage[hidelinks]{hyperref}
 
@@ -170,22 +172,20 @@
 \renewcommand*{\titlepagestyle}{scrheadings}
 \clearscrheadfoot
 \cfoot{\pagemark}
-\newcommand{\arial}{\sf}%{\fontspec[Extension=.ttf, ItalicFont=Arial Italic]{Arial}}
-
 
 % \underline command which always adds an invisible depth of the letter 'g' 
 \newcommand{\gunderline}[1]{\ifmmode \@@underline {#1\protect\vphantom{g}}\else $\@@underline {\hbox {#1\protect\vphantom{g}}}\m@th $\relax \fi}
 
-\setkomafont{pagenumber}{\arial\relscale{1.1}}
-\setkomafont{section}{\arial\relscale{1.32}\SetTracking{encoding=*}{100}\lsstyle\gunderline }
+\setkomafont{pagenumber}{\normalfont\sffamily\relscale{1.1}}
+\setkomafont{section}{\normalfont\sffamily\relscale{1.32}\lsstyle\gunderline}
 
-\setkomafont{subsection}{\arial\relscale{1.1}\SetTracking{encoding=*}{100}\lsstyle}
-\setkomafont{subsubsection}{\arial\relscale{1.1}\SetTracking{encoding=*}{100}\lsstyle}
-\setkomafont{paragraph}{\arial\relscale{1.1}\SetTracking{encoding=*}{100}\lsstyle}
-\setkomafont{subparagraph}{\arial\relscale{1.1}\SetTracking{encoding=*}{100}\lsstyle}
-\setkomafont{captionlabel}{\arial\relscale{1.1}\SetTracking{encoding=*}{100}\lsstyle}
+\setkomafont{subsection}{\normalfont\sffamily\relscale{1.1}\lsstyle}
+\setkomafont{subsubsection}{\normalfont\sffamily\relscale{1.1}\lsstyle}
+\setkomafont{paragraph}{\normalfont\sffamily\relscale{1.1}\lsstyle}
+\setkomafont{subparagraph}{\normalfont\sffamily\relscale{1.1}\lsstyle}
+\setkomafont{captionlabel}{\normalfont\sffamily\relscale{1.1}\lsstyle}
 
-\setkomafont{title}{\renewcommand{\baselinestretch}{0.8}\color{black!75!white}\arial\relscale{1.8}\SetTracking{encoding=*}{100}\lsstyle}
+\setkomafont{title}{\renewcommand{\baselinestretch}{0.8}\color[gray]{0.25}\sffamily\relscale{1.8}\lsstyle}
 
 \def\snapshot@defaultcontent{will be filled out by editors}
 
@@ -392,7 +392,7 @@
   \let\footnote\thanks
   \setparsizes{\z@}{\z@}{\z@\@plus 1fil}\par@updaterelative
   \noindent
-  \parbox[t]{0.5\linewidth}{\arial\relscale{0.9}\SetTracking{encoding=*}{100}\lsstyle \snapshot@l@header}%
+  \parbox[t]{0.5\linewidth}{\sffamily\relscale{0.9}\snapshot@l@header}%
   \parbox[t]{0.5\linewidth}{\raggedleft\mbox{\textnumero\,\snapshot@id/\snapshot@year}}
   \vskip 4em%
   \begin{center}%
@@ -402,8 +402,8 @@
     {%
       \relscale{1.2}
       \lineskip .5em%
-      \arial
-      \SetTracking{encoding=*}{100}\lsstyle%
+      \sffamily
+      \lsstyle%
       \def\@AndBullet{\unskip\,~$\bullet$~\,\ignorespaces\let\and\@AndNewLine}%
       \def\@AndNewLine{\unskip\\\let\and\@AndBullet}%
       \let\and\@AndBullet%
@@ -430,13 +430,12 @@
 		\raggedcolumns
 		\renewcommand\UrlFont{}%
 		\relscale{0.9}%
-		\widowpenalties 1 10000
-		\medskipamount2ex
-		\multicolsep=0pt
+		\widowpenalties 1 10000%
+		\medskipamount2ex%
+		\multicolsep=0pt%
 		\begin{multicols}{2}%
 			\renewcommand{\baselinestretch}{0.8}
-			\arial%
-			\SetTracking{encoding=*}{100}\lsstyle%
+			\sffamily%
 			\raggedright%
 			\@authorinfo%
 			%
@@ -458,18 +457,16 @@
 		\vskip 0.3cm%
 		\par\hfill\rule[0.5ex]{1cm}{0.526pt}\hfill\null%
 		\vskip 0.25cm
-		\raggedright\arial\normalfont\snapshot@l@creditstext%
+		\raggedright\normalfont\snapshot@l@creditstext%
 		%\vskip-\baselineskip%
 		\vskip 0.25cm%
 		\par\hfill\rule[0.5ex]{1cm}{0.526pt}\hfill\null%
 		\vskip 0.4cm%
-    	\arial
 	    %{\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
     	%
-		\SetTracking{encoding=*}{100}\lsstyle
-		\begin{multicols*}{2}
-			\renewcommand{\baselinestretch}{0.8}
-			\arial%
+		\begin{multicols}{2}%
+			\renewcommand{\baselinestretch}{0.8}%
+	    	\sffamily
 			\parbox{\linewidth}{%
 				\raggedright
 				\textit{\snapshot@l@junioreditor}\\
@@ -491,7 +488,7 @@
 				\textit{\snapshot@l@director}\\
 				\snapshot@director%
 			}\columnbreak\par%
-		\end{multicols*}
+		\end{multicols}%
 		\vskip 0.75cm
 		\noindent%
 		\def\testtest{\snapshot@logo@de}%
