@@ -1,10 +1,10 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{snapshotmfo}[2014/05/06 Document class for "Snapshots of modern mathematics from Oberwolfach"]
 \IfFileExists{nag.sty}{\RequirePackage[l2tabu]{nag}}{}
+\IfFileExists{iftex.sty}{\RequirePackage{iftex}\RequirePDFTeX}
 %
 \LoadClass[10pt,twoside]{scrartcl}  
 
-\RequirePackage{iftex}%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % tools
