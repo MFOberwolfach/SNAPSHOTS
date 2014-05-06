@@ -33,6 +33,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % tools
 \RequirePackage{etoolbox,ifthen}
+\@ifpackagelater{etoolbox}{2009/08/06}{}{\ClassError{snapshotmfo}{etoolbox v1.8 (2009/08/06) or later required}{Please update your TeX distribution to meet the requirements.}\stop}
+
 \appto{\abstract}{\relscale{1.3}\noindent\ignorespaces} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -76,11 +78,9 @@
 
 % patch old KOMA script \newcaptionname and \renewcaptionname
 \let\@orig@newcaptionname\newcaptionname%
-\def\@my@newcaptionname#1#2#3{\@orig@newcaptionname{#3}{#1}{#2}}%
-\def\newcaptionname#1#2#3{\forcsvlist{\@my@newcaptionname{#2}{#3}}{#1}}%
+\def\newcaptionname#1#2#3{\def\do##1{\@orig@newcaptionname{##1}{#2}{#3}}\docsvlist{#1}}%
 \let\@orig@renewcaptionname\renewcaptionname%
-\def\@my@renewcaptionname#1#2#3{\@orig@renewcaptionname{#3}{#1}{#2}}%
-\def\renewcaptionname#1#2#3{\forcsvlist{\@my@renewcaptionname{#2}{#3}}{#1}}%
+\def\renewcaptionname#1#2#3{\def\do##1{\@orig@renewcaptionname{##1}{#2}{#3}}\docsvlist{#1}}%
 
 \def\newcscaptionname#1#2#3{%
 	\begingroup%
@@ -297,7 +297,8 @@
 				\ClassError{snapshotmfo}{Unknown category "##1" in \@backslashchar categorizationmath}{possibilities: \snapshot@categorization@math@subjects}%
 			}%
 		}%
-		\forcsvlist{\snapshot@add@categorization@math}{#1}%
+		\def\do##1{\snapshot@add@categorization@math{##1}}%
+		\docsvlist{#1}%
 	\endgroup%
 	\gappto\snapshot@categorization@math{\endgroup}%
 }%
@@ -324,7 +325,8 @@
 				\ClassError{snapshotmfo}{Unknown category "##1" in \@backslashchar categorizationconnect}{possibilities: \snapshot@categorization@connect@subjects}%
 			}%
 		}%
-		\forcsvlist{\snapshot@add@categorization@connect}{#1}%
+		\def\do##1{\snapshot@add@categorization@connect{##1}}%
+		\docsvlist{#1}%
 	\endgroup%
 	\gappto\snapshot@categorization@connect{\endgroup}%
 }%
