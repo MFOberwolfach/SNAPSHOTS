@@ -1,4 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
+\listfiles
 \ProvidesClass{snapshotmfo}[2014/05/06 Document class for "Snapshots of modern mathematics from Oberwolfach"]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % output warning if obsolute features are used
