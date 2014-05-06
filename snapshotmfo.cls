@@ -147,9 +147,7 @@
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\RequirePackage{amsmath,amssymb,nicefrac,amscd}
-\RequirePackage{graphicx,float}
-\RequirePackage{pdfpages}
+\RequirePackage{graphicx,color}
 
 \RequirePackage{enumitem}
 \setitemize[1]{noitemsep,leftmargin=1.5em,labelsep=*,label={$\bullet$}}
@@ -162,16 +160,8 @@
 \setenumerate[3]{noitemsep,align=left,leftmargin=1.5em,labelsep=*,label=\sf\roman*.}
 \setenumerate[4]{noitemsep,leftmargin=1.5em,labelsep=*,label=\sf\Alph*.}
 
-\RequirePackage{csquotes}
-\RequirePackage{siunitx}
-\sisetup{per-mode=fraction,fraction-function=\nicefrac}
-
 \RequirePackage[hidelinks]{hyperref}
 
-\RequirePackage{todonotes}
-
-%\setdefaultlanguage{german}
-\RequirePackage{xcolor}
 \RequirePackage{type1cm}
 \RequirePackage{relsize}
 
