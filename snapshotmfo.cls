@@ -1,15 +1,15 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{snapshotmfo}[2014/05/06 Document class for "Snapshots of modern mathematics from Oberwolfach"]
 \IfFileExists{nag.sty}{\RequirePackage[l2tabu]{nag}}{}
-\IfFileExists{iftex.sty}{\RequirePackage{iftex}\RequirePDFTeX}
 %
 \LoadClass[10pt,twoside]{scrartcl}  
+\IfFileExists{iftex.sty}{\RequirePackage{iftex}\RequirePDFTeX}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % tools
 \RequirePackage{calc}
-\RequirePackage{etoolbox}
+\RequirePackage{etoolbox,ifthen}
 \appto{\abstract}{\relscale{1.3}\noindent\ignorespaces} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
