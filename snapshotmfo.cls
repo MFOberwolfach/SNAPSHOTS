@@ -290,54 +290,62 @@
 % categorization: math
 \gdef\snapshot@categorization@math{\ClassWarningNoLine{snapshotmfo}{No mathematical subject given}\snapshot@defaultcontent}
 \newcommand*{\categorizationmath}[1]{%
-	\gdef\snapshot@categorization@math{\begingroup\def\and{\def\and{,\space}}}%
-	\begingroup%
-		\listadd\snapshot@categorization@math@subjects{algebra and number theory}%
-		\listadd\snapshot@categorization@math@subjects{analysis}%
-		\listadd\snapshot@categorization@math@subjects{discrete mathematics and foundations}%
-		\listadd\snapshot@categorization@math@subjects{geometry and topology}%
-		\listadd\snapshot@categorization@math@subjects{numerics and scientific computing}%
-		\listadd\snapshot@categorization@math@subjects{probability theory and statistics}%
-		\def\snapshot@add@categorization@math##1{%
-			\xifinlist{##1}{\snapshot@categorization@math@subjects}%
-			{%
-				\gappto\snapshot@categorization@math{\and \expandafter\csname snaphot@l@categorization@math@##1\endcsname}%
-			}{%
-				\ClassError{snapshotmfo}{Unknown category "##1" in \@backslashchar categorizationmath}{possibilities: \snapshot@categorization@math@subjects}%
+	\ifblank{#1}{%
+		\ClassError{snapshotmfo}{Mathematical subject must not be blank}{}%
+	}{%
+		\gdef\snapshot@categorization@math{\begingroup\def\and{\def\and{,\space}}}%
+		\begingroup%
+			\listadd\snapshot@categorization@math@subjects{algebra and number theory}%
+			\listadd\snapshot@categorization@math@subjects{analysis}%
+			\listadd\snapshot@categorization@math@subjects{discrete mathematics and foundations}%
+			\listadd\snapshot@categorization@math@subjects{geometry and topology}%
+			\listadd\snapshot@categorization@math@subjects{numerics and scientific computing}%
+			\listadd\snapshot@categorization@math@subjects{probability theory and statistics}%
+			\def\snapshot@add@categorization@math##1{%
+				\xifinlist{##1}{\snapshot@categorization@math@subjects}%
+				{%
+					\gappto\snapshot@categorization@math{\and \expandafter\csname snaphot@l@categorization@math@##1\endcsname}%
+				}{%
+					\ClassError{snapshotmfo}{Unknown category "##1" in \@backslashchar categorizationmath}{possibilities: \snapshot@categorization@math@subjects}%
+				}%
 			}%
-		}%
-		\def\do##1{\snapshot@add@categorization@math{##1}}%
-		\docsvlist{#1}%
-	\endgroup%
-	\gappto\snapshot@categorization@math{\endgroup}%
+			\def\do##1{\snapshot@add@categorization@math{##1}}%
+			\docsvlist{#1}%
+		\endgroup%
+		\gappto\snapshot@categorization@math{\endgroup}%
+	}%
 }%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % categorization: connection to other fields
 \gdef\snapshot@categorization@connect{\ClassWarningNoLine{snapshotmfo}{No connection to other fields given}\snapshot@defaultcontent}
 \newcommand*{\categorizationconnect}[1]{%
-	\gdef\snapshot@categorization@connect{\begingroup\def\and{\def\and{,\space}}}%
-	\begingroup%
-		\listadd\snapshot@categorization@connect@subjects{chemistry and earth science}%
-		\listadd\snapshot@categorization@connect@subjects{computer science}%
-		\listadd\snapshot@categorization@connect@subjects{engineering and technology}%
-		\listadd\snapshot@categorization@connect@subjects{finance}%
-		\listadd\snapshot@categorization@connect@subjects{humanities and social sciences}%
-		\listadd\snapshot@categorization@connect@subjects{life science}%
-		\listadd\snapshot@categorization@connect@subjects{physics}%
-		\listadd\snapshot@categorization@connect@subjects{reflections on mathematics}%
-		\def\snapshot@add@categorization@connect##1{%
-			\xifinlist{##1}{\snapshot@categorization@connect@subjects}%
-			{%
-				\gappto\snapshot@categorization@connect{\and \expandafter\csname snaphot@l@categorization@connect@##1\endcsname}%
-			}{%
-				\ClassError{snapshotmfo}{Unknown category "##1" in \@backslashchar categorizationconnect}{possibilities: \snapshot@categorization@connect@subjects}%
+	\ifblank{#1}{%
+		\gdef\snapshot@categorization@connect{--}%
+	}{%
+		\gdef\snapshot@categorization@connect{\begingroup\def\and{\def\and{,\space}}}%
+		\begingroup%
+			\listadd\snapshot@categorization@connect@subjects{chemistry and earth science}%
+			\listadd\snapshot@categorization@connect@subjects{computer science}%
+			\listadd\snapshot@categorization@connect@subjects{engineering and technology}%
+			\listadd\snapshot@categorization@connect@subjects{finance}%
+			\listadd\snapshot@categorization@connect@subjects{humanities and social sciences}%
+			\listadd\snapshot@categorization@connect@subjects{life science}%
+			\listadd\snapshot@categorization@connect@subjects{physics}%
+			\listadd\snapshot@categorization@connect@subjects{reflections on mathematics}%
+			\def\snapshot@add@categorization@connect##1{%
+				\xifinlist{##1}{\snapshot@categorization@connect@subjects}%
+				{%
+					\gappto\snapshot@categorization@connect{\and \expandafter\csname snaphot@l@categorization@connect@##1\endcsname}%
+				}{%
+					\ClassError{snapshotmfo}{Unknown category "##1" in \@backslashchar categorizationconnect}{possibilities: \snapshot@categorization@connect@subjects}%
+				}%
 			}%
-		}%
-		\def\do##1{\snapshot@add@categorization@connect{##1}}%
-		\docsvlist{#1}%
-	\endgroup%
-	\gappto\snapshot@categorization@connect{\endgroup}%
+			\def\do##1{\snapshot@add@categorization@connect{##1}}%
+			\docsvlist{#1}%
+		\endgroup%
+		\gappto\snapshot@categorization@connect{\endgroup}%
+	}%
 }%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
