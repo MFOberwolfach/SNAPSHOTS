@@ -8,7 +8,9 @@
 \LoadClass[10pt,twoside]{scrartcl} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % require pdflatex compiler if possible 
-\IfFileExists{iftex.sty}{\RequirePackage{iftex}\RequirePDFTeX}
+\IfFileExists{iftex.sty}{\RequirePackage{iftex}\RequirePDFTeX}{}
+\RequirePackage{ifpdf}
+\ifpdf\else\ClassError{snapshotmfo}{The snapshotmfo document class only works with pdflatex}{Use pdflatex to compile your document}\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % misc (internal)
