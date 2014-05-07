@@ -392,7 +392,6 @@
 		\@maketitle
 		\thispagestyle{\titlepagestyle}\@thanks
 	\endgroup
-	\setcounter{footnote}{0}%
 	\let\thanks\relax
 	\let\maketitle\relax
 	\let\@maketitle\relax
