@@ -229,6 +229,7 @@
 \newcommand{\snapshot@year}{xxxx}%
 \AtBeginDocument{\newcaptionname{english,USenglish,UKenglish,german,ngerman}{\snapshot@doi}{\ClassWarningNoLine{snapshotmfo}{Unable to compute DOI}\snapshot@defaultcontent}}%
 \gdef\snapshot@doiurlprefix{http://dx.doi.org/}%
+\gdef\snapshot@doilink{\snapshot@doi}%
 \newcommand*{\snapshotid}[2]{%
 	\begingroup%
 		\@tempcnta=#1%
@@ -239,6 +240,7 @@
 		\renewcaptionname{english,USenglish,UKenglish}{\snapshot@doi}{10.14760/SNAP-#2-\ifnum#1>99\else\ifnum#1>9 0\else00\fi\fi\number#1-EN}%
 		\renewcaptionname{german,ngerman}{\snapshot@doi}{10.14760/SNAP-#2-\ifnum#1>99\else\ifnum#1>9 0\else00\fi\fi\number#1-DE}%
 	}%
+	\gdef\snapshot@doilink{\href{\snapshot@doiurlprefix\snapshot@doi}{\snapshot@doi}}%
 }%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -482,7 +484,7 @@
 			\snapshot@license\\[\medskipamount]
 			%
 			\textit{\snapshot@l@doi}\\*
-			\href{\snapshot@doiurlprefix\snapshot@doi}{\snapshot@doi}%
+			\snapshot@doilink%
 		\end{multicols}%
 		\vskip 0.3cm%
 		\par\hfill\rule[0.5ex]{1cm}{0.526pt}\hfill\null%
