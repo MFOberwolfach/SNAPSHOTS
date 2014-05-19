@@ -17,7 +17,7 @@
 
 %%%%%%%%%%%%%%%% PLEASE FILL OUT THE FOLLOWING ITEMS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%% Please select 'ngerman' if you want to submit your snapshot in German. If you do choose 'ngerman', please run your LaTeX compiler *twice*.
+%%% Please select 'ngerman' if you want to submit your snapshot in German. If you do choose 'ngerman', please run your LaTeX compiler *twice* or delete the .aux file.
 %\usepackage[ngerman]{babel}
 \usepackage[USenglish]{babel}
 
@@ -33,7 +33,7 @@
 \authorinfo{\authorname{Author Two} is lecturer for applied mathematics at the Second Institution.\\\mailtoref{author.two@uni-second.de}}
 
 
-%%% Please provide your references here or as a .bib file. If you use a .bib file, please replace the bibliography name ‘yourbibfile’ with the name of your .bib file in the \bibliography command at the bottom of this file. If you prefer to use \bibitems, you will need to silence the \bibliography command at the end of this file (see below). 
+%%% Please provide your references here or as a .bib file. If you use a .bib file, please replace the bibliography name 'yourbibfile' with the name of your .bib file in the \bibliography command at the bottom of this file. If you prefer to use \bibitems, you will need to silence the \bibliography command at the end of this file (see below). 
 \usepackage{filecontents}
 \begin{filecontents}{\jobname.bib}
 @book{knuth1986texbook,
@@ -46,7 +46,7 @@
 }
 @article{snapshot,
   title={The first snapshot},
-  author={Sophia Jahns and Lea Renner},
+  author={Jahns, S. and Renner, L.},
   journal={Snapshots of modern mathematics},
   volume={1},
   number={1},
@@ -54,6 +54,16 @@
   year={2014},
   publisher={MFO}
 }
+
+@misc{ wikiMath,
+   author = "Wikipedia",
+   title = "Mathematics --- {W}ikipedia{,} The Free Encyclopedia",
+   year = "2014",
+   howpublished = "\url{https://en.wikipedia.org/wiki/Mathematics}",
+   note = "[Online; accessed 19-May-2014]"
+ }
+
+
 \end{filecontents}
 
 %%% Optional recommended packages
@@ -78,15 +88,16 @@ This is your abstract. It should give a brief overview of your snapshot. If poss
 
 %%% Please insert the main body of your snapshot, here.
 \section{A heading}
-Your actual snapshot.\footnote{This is a footnote.} As usual, you can give references such as \cite{snapshot,knuth1986texbook} via the \verb+\cite+ command.\\
+Your actual snapshot.\footnote{This is a footnote.} As usual, you can give references such as \cite{snapshot, knuth1986texbook, wikiMath} via the \verb+\cite+ command.\\
 
 We appreciate if you include images or other graphics that illustrate your snapshot. However, please do keep in mind the copyright issues explained in our email in case you include images and graphics you have not produced yourself.
 
 %%% Please use this format to include images. Supported image formats: jpg, pdf, png. Please convert your images to those formats.
 \begin{figure}[h]
-        \centering \setlength{\fboxsep}{1cm}\fcolorbox[gray]{0}{0.75}{\Huge\sffamily IMAGE}
-        \caption{An image.}
-\label{fig:moon}
+        \centering 
+        \includegraphics[width= 0.33 \textwidth]{sample-image.jpg}
+        \caption{An image scaled to 33\% of the textwidth.}
+\label{fig:sample-image}
 \end{figure}
 
 \subsection{A subsection}
@@ -104,7 +115,7 @@ We have composed guidelines to help you write a beautiful and accessible snapsho
 %%% Please use this command in case you prefer to use the filecontents environment and edit your BibTeX entries above. If you prefer to use \bibitems, you will need to silence the \bibliography following command with a % symbol.
 \bibliography{\jobname}
 
-%%% Please use this command in case you supply your own .bib file. Replace ‘yourbibfile’ by the name of your .bib file. Also, please do not forget to *submit* your .bib file with your .tex file when uploading it on www.imaginary.org.
+%%% Please use this command in case you supply your own .bib file. Replace 'yourbibfile' by the name of your .bib file. Also, please do not forget to *submit* your .bib file with your .tex file when uploading it on www.imaginary.org.
 %\bibliography{yourbibfile}
 
 \end{document}
