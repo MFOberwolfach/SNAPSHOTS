@@ -324,10 +324,11 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % categorization: connection to other fields
+\newif\if@snapshot@show@categorization@connect\@snapshot@show@categorization@connecttrue
 \gdef\snapshot@categorization@connect{\ClassWarningNoLine{snapshotmfo}{No connection to other fields given}\snapshot@defaultcontent}
 \newcommand*{\categorizationconnect}[1]{%
 	\ifblank{#1}{%
-		\gdef\snapshot@categorization@connect{--}%
+		\@snapshot@show@categorization@connectfalse% disable display of this field
 	}{%
 		\gdef\snapshot@categorization@connect{\begingroup\def\and{\def\and{,\space}}}%
 		\begingroup%
@@ -481,8 +482,10 @@
 			\textit{\snapshot@label@l@categorization@math}\\*
 			\snapshot@categorization@math\\[\medskipamount]
 			%
-			\textit{\snapshot@label@l@categorization@connect}\\*
-			\snapshot@categorization@connect\\[\medskipamount]
+			\if@snapshot@show@categorization@connect
+				\textit{\snapshot@label@l@categorization@connect}\\*
+				\snapshot@categorization@connect\\[\medskipamount]
+			\fi
 			%
 			\textit{\snapshot@l@license}\\*
 			\snapshot@license\\[\medskipamount]
