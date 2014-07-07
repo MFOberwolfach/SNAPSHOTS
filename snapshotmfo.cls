@@ -522,7 +522,7 @@
 				%
 				\textit{\snapshot@l@director}\\
 				\snapshot@director%
-			}\columnbreak\par%
+			}\par%
 		\end{multicols}%
 		\vskip 0.75cm
 		\noindent%
