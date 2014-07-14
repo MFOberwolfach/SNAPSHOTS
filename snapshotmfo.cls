@@ -69,9 +69,10 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % fonts & symbols
-\RequirePackage{type1cm}
+\RequirePackage{fix-cm}
 \RequirePackage[scaled=0.82304487406237511878]{helvet}
 \RequirePackage{textcomp}
+\RequirePackage[T1]{fontenc}
 \RequirePackage{relsize}
 \RequirePackage{ellipsis}
 \RequirePackage[tracking=true]{microtype}
