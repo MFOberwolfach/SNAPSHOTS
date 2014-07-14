@@ -211,13 +211,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % font settings
 
-% \underline command which always adds an invisible depth of the letter 'g' 
-\newcommand{\snapshot@gunderline}[1]{\ifmmode \@@underline {#1\protect\vphantom{g}}\else $\@@underline {\hbox {#1\protect\vphantom{g}}}\m@th $\relax \fi}
-
 \renewcommand\UrlFont{}%
 
 \setkomafont{pagenumber}{\normalfont\sffamily\relscale{1.1}}
-\setkomafont{section}{\normalfont\sffamily\relscale{1.32}\snapshot@gunderline}
+\setkomafont{section}{\normalfont\sffamily\relscale{1.32}}
 
 \setkomafont{subsection}{\normalfont\sffamily\relscale{1.1}}
 \setkomafont{subsubsection}{\normalfont\sffamily\relscale{1.1}}
