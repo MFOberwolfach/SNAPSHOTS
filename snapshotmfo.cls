@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \listfiles
-\ProvidesClass{snapshotmfo}[2014/07/21 Document class for "Snapshots of modern mathematics from Oberwolfach"]
+\ProvidesClass{snapshotmfo}[2014/07/22 Document class for "Snapshots of modern mathematics from Oberwolfach"]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % output warning if obsolute features are used
 \IfFileExists{nag.sty}{\RequirePackage[l2tabu]{nag}}{}
@@ -48,13 +48,12 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % footnotes
-\def\@fnsymbol#1{\ensuremath{\ifcase#1%
-	\or *\or \ddagger\or \mathsection\or \|%
-	\or **\or \ddagger\ddagger\or \mathsection\mathsection%
-	\else%
-		*^{\the#1}
-	\fi}}
-\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\def\@fnsymbol#1{%
+	\setlength{\fboxsep}{0.1em}%
+	\setlength{\fboxrule}{0.04em}%
+	\framebox{\raisebox{0pt}[1.05\height][0.025\height]{\the#1}}%
+}
+\renewcommand{\thefootnote}{\protect\fnsymbol{footnote}}
 \deffootnote[1.5em]{0em}{1.5em}{\rlap{\textsuperscript{\thefootnotemark}}\hspace{1.5em}}
 \deffootnotemark{\textsuperscript{\thefootnotemark}}
 \@ifclasslater{scrartcl}{2010/06/17}{%
