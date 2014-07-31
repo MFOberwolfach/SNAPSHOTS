@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \listfiles
-\ProvidesClass{snapshotmfo}[2014/07/22 Document class for "Snapshots of modern mathematics from Oberwolfach"]
+\ProvidesClass{snapshotmfo}[2014/07/31 Document class for "Snapshots of modern mathematics from Oberwolfach"]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % output warning if obsolute features are used
 \IfFileExists{nag.sty}{\RequirePackage[l2tabu]{nag}}{}
@@ -69,13 +69,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % fonts & symbols
 \RequirePackage{fix-cm}
-\RequirePackage[scaled=0.82304487406237511878]{helvet}
+\RequirePackage[T1]{fontenc}%
 \RequirePackage{textcomp}
-\IfFileExists{t1phv.fd}{%
-	\RequirePackage[T1]{fontenc}%
-}{%
-	\ClassError{snapshotmfo}{package 'cm-super' not found}{Please install the 'cm-super' package for improved font support}%
-}
+\RequirePackage{lmodern}
+\RequirePackage[scaled=0.82304487406237511878]{helvet}
 \RequirePackage{relsize}
 \RequirePackage{ellipsis}
 \RequirePackage[tracking=true]{microtype}
