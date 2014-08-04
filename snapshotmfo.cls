@@ -194,6 +194,9 @@
 	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@life science}{Lebenswissenschaften}
 	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@physics}{Physik}
 	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@reflections on mathematics}{Betrachtungen über Mathematik}
+	% section name for image credits
+	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@image credits}{Image credits}
+	\newcscaptionname{german,ngerman}{snaphot@l@image credits}{Bildquellen}	
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -212,6 +215,8 @@
 \setenumerate[2]{noitemsep,leftmargin=1.5em,labelsep=*,label=\sffamily\alph*)}
 \setenumerate[3]{noitemsep,align=left,leftmargin=1.5em,labelsep=*,label=\sffamily\roman*.}
 \setenumerate[4]{noitemsep,leftmargin=1.5em,labelsep=*,label=\sffamily\Alph*.}
+
+\setdescription{font=\normalfont\sffamily\relscale{1.1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % hyperlinks
@@ -245,6 +250,10 @@
 \setkomafont{captionlabel}{\normalfont\sffamily\relscale{1.1}}
 
 \setkomafont{title}{\renewcommand{\baselinestretch}{0.8}\color[gray]{0.25}\sffamily\relscale{1.8}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% environment for image credits
+\newenvironment{imagecredits}{\section*{\csname snaphot@l@image credits\endcsname}\begin{description}}{\end{description}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % snapshot id and DOI computation
