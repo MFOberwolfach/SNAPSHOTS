@@ -69,14 +69,14 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % footnotes
-\def\@fnsymbol#1{%
+\def\thefootnote{\framebox{\arabic{footnote}}}
+\newcommand\snapshot@footnotemark{%
 	\setlength{\fboxsep}{0.1em}%
 	\setlength{\fboxrule}{0.04em}%
-	\framebox{\raisebox{0pt}[1.05\height][0.025\height]{\the#1}}%
+	\textsuperscript{\framebox{\raisebox{0pt}[1.05\height][0.025\height]{\thefootnotemark}}}%
 }
-\renewcommand{\thefootnote}{\protect\fnsymbol{footnote}}
-\deffootnote[1.5em]{0em}{1.5em}{\rlap{\textsuperscript{\thefootnotemark}}\hspace{1.5em}}
-\deffootnotemark{\textsuperscript{\thefootnotemark}}
+\deffootnote[1.5em]{0em}{1.5em}{\rlap{\snapshot@footnotemark}\hspace{1.5em}}
+\deffootnotemark{\snapshot@footnotemark}
 \@ifclasslater{scrartcl}{2010/06/17}{%
 \setfootnoterule[0.526pt]{\textwidth}
 }{%
@@ -419,9 +419,6 @@
 	\par
 	\begingroup
 		\snapshot@define@spaces%
-		\renewcommand*\thefootnote{\@fnsymbol\c@footnote}%
-		\let\@oldmakefnmark\@makefnmark
-		\renewcommand*{\@makefnmark}{\rlap\@oldmakefnmark}
 		\newpage
 		\global\@topnum\z@
 		\@maketitle
