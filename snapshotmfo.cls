@@ -389,9 +389,6 @@
 	\par
 	\begingroup
 		\snapshot@define@spaces%
-		\renewcommand*\thefootnote{\@fnsymbol\c@footnote}%
-		\let\@oldmakefnmark\@makefnmark
-		\renewcommand*{\@makefnmark}{\rlap\@oldmakefnmark}
 		\newpage
 		\global\@topnum\z@
 		\@maketitle
