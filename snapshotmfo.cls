@@ -69,7 +69,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % footnotes
-\def\thefootnote{\framebox{\arabic{footnote}}}
+%\def\thefootnote{\framebox{\arabic{footnote}}}
 \newcommand\snapshot@footnotemark{%
 	\setlength{\fboxsep}{0.1em}%
 	\setlength{\fboxrule}{0.04em}%
