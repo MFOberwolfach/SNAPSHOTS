@@ -18,6 +18,15 @@
 %
 % This work consists of the file snapshotmfo.cls.
 %
+% The following authors contributed to this work (alphabetical order):
+%   Carla Cederbaum (concept)
+%   Konrad Renner (design)
+%   Christian Stussak (programming)
+%
+% with additional support by
+%   Christoph Knoth (design)
+%   Andreas Daniel Matt (concept)
+%
 %%
 \NeedsTeXFormat{LaTeX2e}
 \listfiles
