@@ -24,8 +24,10 @@
 %   Christian Stussak (programming)
 %
 % with additional support by
+%   Sophia Jahns (testing)
 %   Christoph Knoth (design)
 %   Andreas Daniel Matt (concept)
+%   Lea Renner (testing)
 %
 %%
 \NeedsTeXFormat{LaTeX2e}
