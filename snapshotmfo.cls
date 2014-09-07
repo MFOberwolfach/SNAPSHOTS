@@ -1,6 +1,38 @@
+%% snapshotmfo.cls
+%% Copyright 2014 Mathematisches Forschungsinstitut Oberwolfach, www.mfo.de
+%%  developed within the project IMAGINARY, www.imaginary.org
+%%  supported by the Klaus Tschira Stiftung
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+% 
+% This work has the LPPL maintenance status `maintained'.
+% 
+% The Current Maintainer of this work is Christian Stussak
+% (Mathematisches Forschungsinstitut Oberwolfach).
+%
+% This work consists of the file snapshotmfo.cls.
+%
+% The following authors contributed to this work (alphabetical order):
+%   Carla Cederbaum (concept)
+%   Konrad Renner (design)
+%   Christian Stussak (programming)
+%
+% with additional support by
+%   Sophia Jahns (testing)
+%   Christoph Knoth (design)
+%   Andreas Daniel Matt (concept)
+%   Lea Renner (testing)
+%
+%%
 \NeedsTeXFormat{LaTeX2e}
 \listfiles
-\ProvidesClass{snapshotmfo}[2014/05/06 Document class for "Snapshots of modern mathematics from Oberwolfach"]
+\ProvidesClass{snapshotmfo}[2014/07/31 Document class for "Snapshots of modern mathematics from Oberwolfach"]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % output warning if obsolute features are used
 \IfFileExists{nag.sty}{\RequirePackage[l2tabu]{nag}}{}
@@ -48,15 +80,14 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % footnotes
-\def\@fnsymbol#1{\ensuremath{\ifcase#1%
-	\or *\or \ddagger\or \mathsection\or \|%
-	\or **\or \ddagger\ddagger\or \mathsection\mathsection%
-	\else%
-		*^{\the#1}
-	\fi}}
-\renewcommand{\thefootnote}{\fnsymbol{footnote}}
-\deffootnote[1.5em]{0em}{1.5em}{\rlap{\textsuperscript{\thefootnotemark}}\hspace{1.5em}}
-\deffootnotemark{\textsuperscript{\thefootnotemark}}
+%\def\thefootnote{\framebox{\arabic{footnote}}}
+\newcommand\snapshot@footnotemark{%
+	\setlength{\fboxsep}{0.1em}%
+	\setlength{\fboxrule}{0.04em}%
+	\textsuperscript{\framebox{\raisebox{0pt}[1.05\height][0.025\height]{\thefootnotemark}}}%
+}
+\deffootnote[1.5em]{0em}{1.5em}{\rlap{\snapshot@footnotemark}\hspace{1.5em}}
+\deffootnotemark{\snapshot@footnotemark}
 \@ifclasslater{scrartcl}{2010/06/17}{%
 \setfootnoterule[0.526pt]{\textwidth}
 }{%
@@ -69,9 +100,11 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % fonts & symbols
-\RequirePackage{type1cm}
-\RequirePackage[scaled=0.82304487406237511878]{helvet}
+\RequirePackage{fix-cm}
+\RequirePackage[T1]{fontenc}%
 \RequirePackage{textcomp}
+\RequirePackage{lmodern}
+\RequirePackage[scaled=0.82304487406237511878]{helvet}
 \RequirePackage{relsize}
 \RequirePackage{ellipsis}
 \RequirePackage[tracking=true]{microtype}
@@ -172,6 +205,9 @@
 	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@life science}{Lebenswissenschaften}
 	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@physics}{Physik}
 	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@reflections on mathematics}{Betrachtungen über Mathematik}
+	% section name for image credits
+	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@image credits}{Image credits}
+	\newcscaptionname{german,ngerman}{snaphot@l@image credits}{Bildquellen}	
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -190,6 +226,8 @@
 \setenumerate[2]{noitemsep,leftmargin=1.5em,labelsep=*,label=\sffamily\alph*)}
 \setenumerate[3]{noitemsep,align=left,leftmargin=1.5em,labelsep=*,label=\sffamily\roman*.}
 \setenumerate[4]{noitemsep,leftmargin=1.5em,labelsep=*,label=\sffamily\Alph*.}
+
+\setdescription{font=\normalfont\sffamily\relscale{1.1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % hyperlinks
@@ -211,13 +249,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % font settings
 
-% \underline command which always adds an invisible depth of the letter 'g' 
-\newcommand{\snapshot@gunderline}[1]{\ifmmode \@@underline {#1\protect\vphantom{g}}\else $\@@underline {\hbox {#1\protect\vphantom{g}}}\m@th $\relax \fi}
-
 \renewcommand\UrlFont{}%
 
 \setkomafont{pagenumber}{\normalfont\sffamily\relscale{1.1}}
-\setkomafont{section}{\normalfont\sffamily\relscale{1.32}\snapshot@gunderline}
+\setkomafont{section}{\normalfont\sffamily\relscale{1.32}}
 
 \setkomafont{subsection}{\normalfont\sffamily\relscale{1.1}}
 \setkomafont{subsubsection}{\normalfont\sffamily\relscale{1.1}}
@@ -226,6 +261,10 @@
 \setkomafont{captionlabel}{\normalfont\sffamily\relscale{1.1}}
 
 \setkomafont{title}{\renewcommand{\baselinestretch}{0.8}\color[gray]{0.25}\sffamily\relscale{1.8}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% environment for image credits
+\newenvironment{imagecredits}{\section*{\csname snaphot@l@image credits\endcsname}\begin{description}}{\end{description}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % snapshot id and DOI computation
@@ -391,9 +430,6 @@
 	\par
 	\begingroup
 		\snapshot@define@spaces%
-		\renewcommand*\thefootnote{\@fnsymbol\c@footnote}%
-		\let\@oldmakefnmark\@makefnmark
-		\renewcommand*{\@makefnmark}{\rlap\@oldmakefnmark}
 		\newpage
 		\global\@topnum\z@
 		\@maketitle
