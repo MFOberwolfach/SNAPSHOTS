@@ -1,3 +1,35 @@
+%% snapshotmfo.cls
+%% Copyright 2014 Mathematisches Forschungsinstitut Oberwolfach, www.mfo.de
+%%  developed within the project IMAGINARY, www.imaginary.org
+%%  supported by the Klaus Tschira Stiftung
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+% 
+% This work has the LPPL maintenance status `maintained'.
+% 
+% The Current Maintainer of this work is Christian Stussak
+% (Mathematisches Forschungsinstitut Oberwolfach).
+%
+% This work consists of the file snapshotmfo.cls.
+%
+% The following authors contributed to this work (alphabetical order):
+%   Carla Cederbaum (concept)
+%   Konrad Renner (design)
+%   Christian Stussak (programming)
+%
+% with additional support by
+%   Sophia Jahns (testing)
+%   Christoph Knoth (design)
+%   Andreas Daniel Matt (concept)
+%   Lea Renner (testing)
+%
+%%
 \NeedsTeXFormat{LaTeX2e}
 \listfiles
 \ProvidesClass{snapshotmfo}[2014/07/31 Document class for "Snapshots of modern mathematics from Oberwolfach"]
@@ -173,6 +205,9 @@
 	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@life science}{Lebenswissenschaften}
 	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@physics}{Physik}
 	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@reflections on mathematics}{Betrachtungen über Mathematik}
+	% section name for image credits
+	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@image credits}{Image credits}
+	\newcscaptionname{german,ngerman}{snaphot@l@image credits}{Bildquellen}	
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -191,6 +226,8 @@
 \setenumerate[2]{noitemsep,leftmargin=1.5em,labelsep=*,label=\sffamily\alph*)}
 \setenumerate[3]{noitemsep,align=left,leftmargin=1.5em,labelsep=*,label=\sffamily\roman*.}
 \setenumerate[4]{noitemsep,leftmargin=1.5em,labelsep=*,label=\sffamily\Alph*.}
+
+\setdescription{font=\normalfont\sffamily\relscale{1.1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % hyperlinks
@@ -224,6 +261,10 @@
 \setkomafont{captionlabel}{\normalfont\sffamily\relscale{1.1}}
 
 \setkomafont{title}{\renewcommand{\baselinestretch}{0.8}\color[gray]{0.25}\sffamily\relscale{1.8}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% environment for image credits
+\newenvironment{imagecredits}{\section*{\csname snaphot@l@image credits\endcsname}\begin{description}}{\end{description}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % snapshot id and DOI computation

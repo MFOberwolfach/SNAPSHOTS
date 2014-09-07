@@ -1,7 +1,29 @@
-%%% Template for a snapshot of modern mathematics from Oberwolfach. Please use pdflatex for compiling this file.
+%% template.tex - Template for a snapshot of modern mathematics from Oberwolfach.
+%
+% The following authors contributed to this work (alphabetical order):
+%   Carla Cederbaum (concept, testing)
+%   Konrad Renner (design)
+%   Christian Stussak (programming)
+%
+% with additional support by
+%   Sophia Jahns (testing)
+%   Christoph Knoth (design)
+%   Andreas Daniel Matt (concept)
+%   Lea Renner (testing)
+%
+% To the extent possible under law, the author(s) have dedicated all copyright
+% and related and neighboring rights to this software to the public domain worldwide.
+% This software is distributed without any warranty. 
+%
+% You should have received a copy of the CC0 Public Domain Dedication along with
+% this file. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>. 
+%
+%%
+
+%%% Please use pdflatex for compiling this file.
 \documentclass{snapshotmfo}
 
-%%%%%%%%%%%%%%%% WILL BE FILLED OUT BY EDITORS ACCORDING TO YOUR SPECIFICATIONS ON IMAGINARY %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% WILL BE FILLED OUT BY EDITORS ACCORDING TO YOUR SPECIFICATIONS ON IMAGINARY.ORG %%%%%%%%%%%%%
 %\categorizationmath{algebra and number theory,analysis,discrete mathematics and foundations,geometry and topology,numerics and scientific computing,probability theory and statistics} %at least one must be chosen. 
 %\categorizationconnect{chemistry and earth science,computer science,engineering and technology,finance,humanities and social sciences,life science,physics,reflections on mathematics} %can be void.
 %\license{CC-BY-NC-SA-3.0} %recommended
@@ -36,7 +58,7 @@
 
 
 %%% Please separate your names by \and if there are several authors.
-\author{Author One \and Author Two}
+\author{Author One\thanks{Author One is supported by the Mathematical Dreams Come True Foundation.} \and Author Two}
 
 %%% Please insert the title of your snapshot.
 \title{Your title}
@@ -95,7 +117,7 @@
 @inproceedings{sample11,
 author={Example, C.},
 title={A new perspective on mathematics},
-conference={New perspectives on arts and sciences},
+booktitle={New perspectives on arts and sciences},
 year={2011}
 }
 
@@ -127,7 +149,7 @@ We appreciate if you include images or other graphics that illustrate your snaps
 %%% Please use this format to include images. Supported image formats: jpg, pdf, png. Please convert your images to those formats.
 \begin{figure}[h]
         \centering 
-        \includegraphics[width= 0.33 \textwidth]{sample-image.jpg}
+        \includegraphics[width= 0.33 \textwidth]{mfo.jpg}
         \caption{An image scaled to 33\% of the textwidth.}
 \label{fig:sample-image}
 \end{figure}
@@ -142,6 +164,25 @@ Formula \eqref{real} refers to $\mathbb{R}$, formula \eqref{char.2} does not.
 
 \section{More information}
 We have composed guidelines to help you write a beautiful and accessible snapshot which you can download here: \href{http://www.mfo.de/math-in-public/snapshots/guidelines-for-snapshots}{www.mfo.de/math-in-public/snapshots/ guidelines-for-snapshots}. For more information on the snapshot project (including example snapshots), please see \href{http://www.mfo.de/math-in-public/snapshots}{www.mfo.de/math-in-public/snapshots}.
+
+%%% Please use this format to include images. Supported image formats: jpg, pdf, png. Please convert your images to those formats.
+\begin{figure}[h]
+        \centering 
+        \includegraphics[width= 0.33 \textwidth]{maya.pdf}
+        \caption{Exemplary image: Maya numerals.}
+\label{fig:maya}
+\end{figure}
+
+If you download an image form Wikipedia or similar sources, please always check the applicable license terms. Most licenses require an adequate attribution. For Wikipedia, you can find the correct reference by clicking on the image and then clicking on the button saying 'use this file‘. Some licenses may have further restrictions, such as 'modifications are not allowed'. If modifications are allowed you may still have to mark those modifications. Please verify that you comply with all license requirements.
+
+If you use your own images, please check if you still have the rights of use. The images may be copyrighted by your institution or a publisher of your previous publications.
+\clearpage
+
+%%% Image credits: If you download an image form Wikipedia or similar sources, please always check the applicable license terms. Most licenses require an adequate attribution. For Wikipedia, you can find the correct reference by clicking on the image and then clicking on the button saying 'use this file‘. Some licenses may have further restrictions, such as 'modifications are not allowed'. If modifications are allowed you may still have to mark those modifications. Please verify that you comply with all license requirements. If you use your own images, please check if you still have the rights of use. The images may be copyrighted by your institution or a publisher of your previous publications.
+\begin{imagecredits}
+  \item[Fig. \ref{fig:sample-image}] Archives of the Mathematisches Forschungsinstitut Oberwolfach,\\\url{http://www.mfo.de}, 2004
+  \item[Fig. \ref{fig:maya}] ``Maya''. Author: Bryan Derkson. Licensed under Creative Commons Attribution-Share Alike 3.0 via Wikimedia Commons, \url{http://commons.wikimedia.org/wiki/File:Maya.svg}, [Online; accessed 05-September-2014]
+\end{imagecredits}
 
 %%%%%%%%%%%% Bibliography via BibTeX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Please use this command in case you prefer to use the filecontents environment and edit your BibTeX entries above. If you prefer to use \bibitems, you will need to silence the \bibliography following command with a % symbol.
