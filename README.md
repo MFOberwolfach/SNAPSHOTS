@@ -1,10 +1,17 @@
-LaTeX document class for the Snapshots of modern mathematics from Oberwolfach
+LaTeX document class for the snapshots of modern mathematics from Oberwolfach
 =============================================================================
+
+Snapshots of modern mathematics from Oberwolfach' is a project run by the
+Mathematisches Forschungsinstitut Oberwolfach (MFO) and funded by the Klaus
+Tschira Foundation. The snapshots give an accessible introduction into
+different aspects of modern mathematics and mathematical research.
+
+For more information, please see http://www.mfo.de/math-in-public/snapshots. 
 
 snapshotmfo.cls
 ---------------
 
-The LaTeX document class. Place this file somewhere LaTeX can find it, e.g into
+The LaTeX document class. Place this file somewhere LaTeX can find it, e.g. into
 the same folder as your main LaTeX file. It is released under the LaTeX Project
 Public License.
 
@@ -28,7 +35,7 @@ maya.pdf
 Schematic of the Maya numerals (Source: "Maya" by Bryan Derksen - Image:Maya.png.
 Licensed under Creative Commons Attribution-Share Alike 3.0 via Wikimedia
 Commons - http://commons.wikimedia.org/wiki/File:Maya.svg#mediaviewer/File:Maya.svg,
-converted to PDF). Used to illustrate proper attributation of images from Wikimedia
+converted to PDF). Used to illustrate proper attribution of images from Wikimedia
 Commons.
 
 
