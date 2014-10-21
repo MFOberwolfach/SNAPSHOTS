@@ -112,8 +112,9 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % references (via BibTeX)
+\usepackage[fixlanguage,languagenames]{babelbib}
 \let\snapshot@bibliography\bibliography
-\def\bibliography{\bibliographystyle{amsplain}\snapshot@bibliography}
+\def\bibliography{\bibliographystyle{babamspl}\snapshot@bibliography}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % language specific settings
