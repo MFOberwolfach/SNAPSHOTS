@@ -111,10 +111,14 @@
 \DeclareMicrotypeSet*[tracking]{letterspacedHelvetica}{family=phv}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% references (via BibTeX)
+% references (via BibTeX, babelbib and isodate)
 \usepackage[fixlanguage,languagenames]{babelbib}
+
 \let\snapshot@bibliography\bibliography
 \def\bibliography{\bibliographystyle{babamspl}\snapshot@bibliography}
+
+\usepackage[german,ngerman,english,USenglish,UKenglish]{isodate}
+\setbibliographyfont{urldate}{\printdate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % language specific settings
