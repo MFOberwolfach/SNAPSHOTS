@@ -568,6 +568,7 @@
 		}%
 	}}}%
 	\clearpage%
+	\thispagestyle{empty}%
 	\noindent\null\vfill%
 	\noindent\usebox{\snapshot@credits}%
 }
