@@ -299,6 +299,11 @@
 		\renewcaptionname{german,ngerman}{\snapshot@doi}{10.14760/SNAP-#2-\ifnum#1>99\else\ifnum#1>9 0\else00\fi\fi\number#1-DE}%
 	}%
 	\gdef\snapshot@doilink{\href{\snapshot@doiurlprefix\snapshot@doi}{\snapshot@doi}}%
+	\AtEndDocument{%
+		\def\snapshot@doi@warning{\ClassWarningNoLine{snapshotmfo}{DOI changed. Rerun to get PDF meta data right}}%
+		\ifthenelse{\isundefined{\snapshot@doi@meta}}{\snapshot@doi@warning}{\ifthenelse{\NOT\equal{\snapshot@doi}{\snapshot@doi@meta}}{\snapshot@doi@warning}{}}
+		\immediate\write\@auxout{\noexpand\gdef\noexpand\snapshot@doi@meta{\snapshot@doi}}%
+	}
 }%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -353,7 +358,7 @@
 	\ifblank{#1}{%
 		\ClassError{snapshotmfo}{Mathematical subject must not be blank}{}%
 	}{%
-		\gdef\snapshot@categorization@math{\begingroup\def\and{\def\and{,\space}}}%
+		\gdef\snapshot@categorization@math{\space}%
 		\begingroup%
 			\listadd\snapshot@categorization@math@subjects{algebra and number theory}%
 			\listadd\snapshot@categorization@math@subjects{analysis}%
@@ -364,7 +369,7 @@
 			\def\snapshot@add@categorization@math##1{%
 				\xifinlist{##1}{\snapshot@categorization@math@subjects}%
 				{%
-					\gappto\snapshot@categorization@math{\and \expandafter\csname snaphot@l@categorization@math@##1\endcsname}%
+					\gappto\snapshot@categorization@math{,\space\expandafter\csname snaphot@l@categorization@math@##1\endcsname}%
 				}{%
 					\ClassError{snapshotmfo}{Unknown category "##1" in \@backslashchar categorizationmath}{possibilities: \snapshot@categorization@math@subjects}%
 				}%
@@ -372,7 +377,12 @@
 			\def\do##1{\snapshot@add@categorization@math{##1}}%
 			\docsvlist{#1}%
 		\endgroup%
-		\gappto\snapshot@categorization@math{\endgroup}%
+		\patchcmd{\snapshot@categorization@math}{\space,\space}{}{}{}% remove leading ,
+		\AtEndDocument{%
+			\def\snapshot@categorization@math@warning{\ClassWarningNoLine{snapshotmfo}{Mathematical categorization changed. Rerun to get PDF meta data right}}%
+			\ifthenelse{\isundefined{\snapshot@categorization@math@meta}}{\snapshot@categorization@math@warning}{\ifthenelse{\NOT\equal{\snapshot@categorization@math}{\snapshot@categorization@math@meta}}{\snapshot@categorization@math@warning}{}}
+			\immediate\write\@auxout{\noexpand\gdef\noexpand\snapshot@categorization@math@meta{\snapshot@categorization@math}}%
+		}
 	}%
 }%
 
@@ -384,7 +394,7 @@
 	\ifblank{#1}{%
 		\@snapshot@show@categorization@connectfalse% disable display of this field
 	}{%
-		\gdef\snapshot@categorization@connect{\begingroup\def\and{\def\and{,\space}}}%
+		\gdef\snapshot@categorization@connect{\space}%
 		\begingroup%
 			\listadd\snapshot@categorization@connect@subjects{chemistry and earth science}%
 			\listadd\snapshot@categorization@connect@subjects{computer science}%
@@ -397,7 +407,7 @@
 			\def\snapshot@add@categorization@connect##1{%
 				\xifinlist{##1}{\snapshot@categorization@connect@subjects}%
 				{%
-					\gappto\snapshot@categorization@connect{\and \expandafter\csname snaphot@l@categorization@connect@##1\endcsname}%
+					\gappto\snapshot@categorization@connect{,\space\expandafter\csname snaphot@l@categorization@connect@##1\endcsname}%
 				}{%
 					\ClassError{snapshotmfo}{Unknown category "##1" in \@backslashchar categorizationconnect}{possibilities: \snapshot@categorization@connect@subjects}%
 				}%
@@ -405,7 +415,12 @@
 			\def\do##1{\snapshot@add@categorization@connect{##1}}%
 			\docsvlist{#1}%
 		\endgroup%
-		\gappto\snapshot@categorization@connect{\endgroup}%
+		\patchcmd{\snapshot@categorization@connect}{\space,\space}{}{}{}% remove leading ,
+		\AtEndDocument{%
+			\def\snapshot@categorization@connect@warning{\ClassWarningNoLine{snapshotmfo}{Connection to other fields changed. Rerun to get PDF meta data right}}%
+			\ifthenelse{\isundefined{\snapshot@categorization@connect@meta}}{\snapshot@categorization@connect@warning}{\ifthenelse{\NOT\equal{\snapshot@categorization@connect}{\snapshot@categorization@connect@meta}}{\snapshot@categorization@connect@warning}{}}
+			\immediate\write\@auxout{\noexpand\gdef\noexpand\snapshot@categorization@connect@meta{\snapshot@categorization@connect}}%
+		}
 	}%
 }%
 
@@ -450,18 +465,19 @@
 		\def\and{\iffalse{\fi}, \noexpand\trim@spaces{\iffalse}\fi}%
 		\protected@edef\@metaauthor{\noexpand\trim@spaces{\@author}}%
 		\hypersetup{pdfauthor={\@metaauthor},pdftitle={\@title}}%
-		\hypersetup{%
-			pdfinfo={%
-				Volume={\snapshot@year},
-				Issue={\snapshot@id},
-				DOI={\snapshot@doi},
-				MathematicalSubjects={\snapshot@categorization@math},
-				ConnectedFields={\snapshot@categorization@connect},
-				SeniorEditor={\snapshot@senioreditor},
-				JuniorEditor={\snapshot@junioreditor},
-				Director={\snapshot@director}
-			}%
+		\def\ClassWarningNoLine#1#2{}%
+		\def\snapshot@pdfinfo{%
+				Volume={\snapshot@year},%
+				Issue={\snapshot@id},%
+				SeniorEditor={\snapshot@senioreditor},%
+				JuniorEditor={\snapshot@junioreditor},%
+				Director={\snapshot@director}%
 		}%
+		\ifthenelse{\isundefined{\snapshot@doi@meta}}{}{\appto{\snapshot@pdfinfo}{,DOI={\snapshot@doi@meta}}}%
+		\ifthenelse{\isundefined{\snapshot@categorization@math@meta}}{}{\appto{\snapshot@pdfinfo}{,MathematicalSubjects={\snapshot@categorization@math@meta}}}%
+		\ifthenelse{\isundefined{\snapshot@categorization@connect@meta}}{}{\appto{\snapshot@pdfinfo}{,ConnectedFields={\snapshot@categorization@connect@meta}}}%
+		\edef\snapshot@pdfinfo{pdfinfo={\snapshot@pdfinfo}}%
+		\expandafter\hypersetup\expandafter{\snapshot@pdfinfo}%
 	\egroup%
 }%
 
