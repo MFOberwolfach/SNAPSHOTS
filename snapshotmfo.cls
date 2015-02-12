@@ -69,7 +69,17 @@
 \RequirePackage{etoolbox,ifthen}
 \@ifpackagelater{etoolbox}{2009/08/06}{}{\ClassError{snapshotmfo}{etoolbox v1.8 (2009/08/06) or later required}{Please update your TeX distribution to meet the requirements.}\stop}
 
-\appto{\abstract}{\relscale{1.3}\noindent\ignorespaces} 
+\usepackage{environ}
+
+\let\snapshot@abstract\abstract
+\let\snapshot@endabstract\endabstract
+\let\abstract\undefined
+\let\endabstract\undefined
+\NewEnviron{abstract}{%
+	\snapshot@abstract\relscale{1.3}\noindent\ignorespaces\BODY\snapshot@endabstract% add special formatting and print \BODY
+	\def\par{ } % collaps paragraphs for meta data inclusion
+	\hypersetup{pdfsubject={\BODY}}% copy abstract into meta data
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % page layout
@@ -429,6 +439,30 @@
 \newcommand{\snapshot@director}{\ClassWarningNoLine{snapshotmfo}{No director given}\snapshot@defaultcontent}%
 \newcommand*{\director}[1]{%
 	\gdef\snapshot@director{#1}%
+}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PDF meta data
+\usepackage{trimspaces}
+\AtBeginDocument{%
+	\bgroup%
+		\def\thanks#1{}%
+		\def\and{\iffalse{\fi}, \noexpand\trim@spaces{\iffalse}\fi}%
+		\protected@edef\@metaauthor{\noexpand\trim@spaces{\@author}}%
+		\hypersetup{pdfauthor={\@metaauthor},pdftitle={\@title}}%
+		\hypersetup{%
+			pdfinfo={%
+				Volume={\snapshot@year},
+				Issue={\snapshot@id},
+				DOI={\snapshot@doi},
+				MathematicalSubjects={\snapshot@categorization@math},
+				ConnectedFields={\snapshot@categorization@connect},
+				SeniorEditor={\snapshot@senioreditor},
+				JuniorEditor={\snapshot@junioreditor},
+				Director={\snapshot@director}
+			}%
+		}%
+	\egroup%
 }%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
