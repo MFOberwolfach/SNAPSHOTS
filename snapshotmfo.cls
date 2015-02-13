@@ -106,7 +106,7 @@
 \RequirePackage{lmodern}
 \RequirePackage[scaled=0.82304487406237511878]{helvet}
 \RequirePackage{relsize}
-\RequirePackage{ellipsis}
+\AtBeginDocument{\RequirePackage{ellipsis}}% delayed loading for compatibility with babel
 \RequirePackage[tracking=true]{microtype}
 \DeclareMicrotypeSet*[tracking]{letterspacedHelvetica}{family=phv}
 
