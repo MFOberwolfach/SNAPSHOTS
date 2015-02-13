@@ -66,11 +66,11 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % tools
-\RequirePackage{etoolbox,ifthen}
+\RequirePackage{etoolbox,ifthen,environ,trimspaces}
 \@ifpackagelater{etoolbox}{2009/08/06}{}{\ClassError{snapshotmfo}{etoolbox v1.8 (2009/08/06) or later required}{Please update your TeX distribution to meet the requirements.}\stop}
 
-\usepackage{environ}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% formatting of abstract and setting it 'subject' PDF meta data
 \let\snapshot@abstract\abstract
 \let\snapshot@endabstract\endabstract
 \let\abstract\undefined
@@ -458,7 +458,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PDF meta data
-\usepackage{trimspaces}
 \AtBeginDocument{%
 	\bgroup%
 		\def\thanks#1{}%
