@@ -271,7 +271,7 @@
 % environment for image credits
 \newenvironment{imagecredits}{%
 	% assure that image credits are printed before the bibliography
-	\ifdefined\snapshot@bib@printed\ClassError{snapshotmfo}{\noexpand\bibliography cannot be used before imagecredits environment}{Change the order of image credits and the bibliography}\fi%
+	\ifdefined\snapshot@bib@printed\ClassError{snapshotmfo}{\noexpand\bibliography must not be used before imagecredits environment}{Change the order of image credits and the bibliography}\fi%
 	% print the image credits
 	\section*{\csname snaphot@l@image credits\endcsname}\begin{description}}{\end{description}%
 }
