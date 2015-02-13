@@ -113,7 +113,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % references (via BibTeX)
 \let\snapshot@bibliography\bibliography
-\def\bibliography{\bibliographystyle{amsplain}\snapshot@bibliography}
+\def\bibliography{\gdef\snapshot@bib@printed\relax\bibliographystyle{amsplain}\snapshot@bibliography}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % language specific settings
@@ -269,7 +269,12 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % environment for image credits
-\newenvironment{imagecredits}{\section*{\csname snaphot@l@image credits\endcsname}\begin{description}}{\end{description}}
+\newenvironment{imagecredits}{%
+	% assure that image credits are printed before the bibliography
+	\ifdefined\snapshot@bib@printed\ClassError{snapshotmfo}{\noexpand\bibliography cannot be used before imagecredits environment}{Change the order of image credits and the bibliography}\fi%
+	% print the image credits
+	\section*{\csname snaphot@l@image credits\endcsname}\begin{description}}{\end{description}%
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % snapshot id and DOI computation
