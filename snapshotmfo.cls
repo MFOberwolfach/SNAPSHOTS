@@ -111,9 +111,14 @@
 \DeclareMicrotypeSet*[tracking]{letterspacedHelvetica}{family=phv}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% references (via BibTeX)
+% references (via BibTeX, babelbib and isodate)
+\usepackage[fixlanguage,languagenames]{babelbib}
+
 \let\snapshot@bibliography\bibliography
-\def\bibliography{\gdef\snapshot@bib@printed\relax\bibliographystyle{amsplain}\snapshot@bibliography}
+\def\bibliography{\gdef\snapshot@bib@printed{\relax}\bibliographystyle{babamspl}\snapshot@bibliography}
+
+\usepackage[german,ngerman,english,USenglish,UKenglish]{isodate}
+\setbibliographyfont{urldate}{\printdate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % language specific settings
@@ -582,7 +587,7 @@
 		}%
 	}}}%
 	\clearpage%
-	\thispagestyle{empty}%c
+	\thispagestyle{empty}%
 	\noindent\null\vfill%
 	\noindent\usebox{\snapshot@credits}%
 }
