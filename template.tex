@@ -30,10 +30,10 @@
 %\license{CC-BY-NC-ND-3.0}
 %\license{CC-BY-SA-3.0}
 %\snapshotid{id}{year}
-%\organizer{Main Organizer}
+%\translator{german}{Trans Lator}
 \junioreditor{will be filled out by editors}{junior-editors@mfo.de}
-\senioreditor{Dr.\;Carla Cederbaum}{cederbaum@mfo.de}
-\director{Prof.\;Dr.\;Gerhard Huisken}
+\senioreditor{Carla Cederbaum}{senior-editor@mfo.de}
+\director{Gerhard Huisken}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -64,19 +64,20 @@
 \title{Your title}
 
 %%% Please provide some information on the author(s).
-\authorinfo{\authorname{Author One} is a professor for pure mathematics at the First University.\\\mailtoref{author.one@first.edu}}
-\authorinfo{\authorname{Author Two} is a lecturer for applied mathematics at the Second Institution.\\\mailtoref{author.two@uni-second.de}}
+\authorinfo{\authorname{Author One} is a professor of pure mathematics at the First University.}
+\authorinfo{\authorname{Author Two} is a lecturer in applied mathematics at the Second Institution.}
 
 
 %%% Please provide your references here or as a .bib file. If you use a .bib file, please replace the bibliography name 'yourbibfile' with the name of your .bib file in the \bibliography command at the bottom of this file. If you prefer to use \bibitems, you will need to silence the \bibliography command at the end of this file (see below). 
 \usepackage{filecontents}
 \begin{filecontents}{\jobname.bib}
-@book{knuth1986texbook,
-  title = {The texbook},
-  author = {Knuth, D.E. and Bibby, D.},
-  volume = {1993},
-  year = {1986},
-  publisher = {Addison-Wesley}
+@book{knuth1984texbook,
+  title = {The TeXbook},
+  author = {Knuth, D.E.},
+  year = {1984},
+  edition={1},
+  publisher = {Addison-Wesley},
+  isbn = {978-0201134483}
 }
 
 @article{snapshot,
@@ -139,7 +140,7 @@ This is your abstract. It should give a brief overview of your snapshot. If poss
 
 %%% Please insert the main body of your snapshot, here.
 \section{A heading}
-Your actual snapshot.\footnote{This is a footnote.} As usual, you can give references such as \cite{snapshot, knuth1986texbook, wikiMath, sample13, sample12, sample11, sample14} via the \verb+\cite+ command.\\
+Your actual snapshot.\footnote{This is a footnote.} As usual, you can give references such as \cite{snapshot, knuth1984texbook, wikiMath, sample13, sample12, sample11, sample14} via the \verb+\cite+ command.\\
 
 We appreciate if you include images or other graphics that illustrate your snapshot. However, please do keep in mind the copyright issues explained in our email in case you include images and graphics you have not produced yourself.
 
@@ -175,10 +176,10 @@ If you download an image form Wikipedia or similar sources, please always check 
 If you use your own images, please check if you still have the rights of use. The images may be copyrighted by your institution or a publisher of your previous publications.
 \clearpage
 
-%%% Image credits: If you download an image form Wikipedia or similar sources, please always check the applicable license terms. Most licenses require an adequate attribution. For Wikipedia, you can find the correct reference by clicking on the image and then clicking on the button saying 'use this file‘. Some licenses may have further restrictions, such as 'modifications are not allowed'. If modifications are allowed you may still have to mark those modifications. Please verify that you comply with all license requirements. If you use your own images, please check if you still have the rights of use. The images may be copyrighted by your institution or a publisher of your previous publications.
+%%% Image credits: If you download an image form Wikipedia or similar sources, please always check the applicable license terms. Most licenses require an adequate attribution. For Wikipedia, you can find the correct reference by clicking on the image and then clicking on the button saying 'More details' and then on the link 'use this file' or similar. Some licenses may have further restrictions, such as 'modifications are not allowed'. If modifications are allowed you may still have to mark those modifications. Please verify that you comply with all license requirements. If you use your own images, please check if you still have the rights of use. The images may be copyrighted by your institution or a publisher of your previous publications.
 \begin{imagecredits}
-  \item[Fig. \ref{fig:sample-image}] Archives of the Mathematisches Forschungsinstitut Oberwolfach,\\\url{http://www.mfo.de}, 2004
-  \item[Fig. \ref{fig:maya}] ``Maya''. Author: Bryan Derkson. Licensed under Creative Commons Attribution-Share Alike 3.0 via Wikimedia Commons, \url{http://commons.wikimedia.org/wiki/File:Maya.svg}, [Online; accessed 05-September-2014]
+  \item[Fig. \ref{fig:sample-image}] Archives of the Mathematisches Forschungsinstitut Oberwolfach,\\\url{http://www.mfo.de}, 2004.
+  \item[Fig. \ref{fig:maya}] ``Maya''. Author: Bryan Derkson. Licensed under Creative Commons Attribution-Share Alike 3.0 via Wikimedia Commons, \url{http://commons.wikimedia.org/wiki/File:Maya.svg}, visited on September 5, 2014.
 \end{imagecredits}
 
 %%%%%%%%%%%% Bibliography via BibTeX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
