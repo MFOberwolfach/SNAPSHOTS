@@ -116,14 +116,19 @@
 \RequirePackage{lmodern}
 \RequirePackage[scaled=0.82304487406237511878]{helvet}
 \RequirePackage{relsize}
-\RequirePackage{ellipsis}
+\AtBeginDocument{\RequirePackage{ellipsis}}% delayed loading for compatibility with babel
 \RequirePackage[tracking=true]{microtype}
 \DeclareMicrotypeSet*[tracking]{letterspacedHelvetica}{family=phv}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% references (via BibTeX)
+% references (via BibTeX, babelbib and isodate)
+\usepackage[fixlanguage,languagenames]{babelbib}
+
 \let\snapshot@bibliography\bibliography
-\def\bibliography{\bibliographystyle{amsplain}\snapshot@bibliography}
+\def\bibliography{\gdef\snapshot@bib@printed{\relax}\bibliographystyle{babamspl}\snapshot@bibliography}
+
+\usepackage[german,ngerman,english,USenglish,UKenglish]{isodate}
+\setbibliographyfont{urldate}{\printdate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % language specific settings
@@ -152,8 +157,8 @@
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@header}{Snapshots of modern mathematics\\from Oberwolfach}%
 	\newcaptionname{german,ngerman}{\snapshot@l@header}{Schnappsch\"usse moderner Mathematik\\aus Oberwolfach}%
 	%
-	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@creditstext}{\emph{Snapshots of modern mathematics from Oberwolfach} are written by participants in the scientific program of the Mathematisches Forschungsinstitut Oberwolfach (MFO). The snapshot project is designed to promote the understanding and appreciation \\of modern mathematics and mathematical research in the general public worldwide. \\It is part of the mathematics communication project ``Oberwolfach meets IMAGINARY'' funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. All snapshots can be found on \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}}.}%
-	\newcaptionname{german,ngerman}{\snapshot@l@creditstext}{\emph{Schnappsch\"usse moderner Mathematik aus Oberwolfach} werden von Teilnehmerinnen und Teilnehmern des wissenschaftlichen Programms des Mathematischen Forschungs-\\instituts Oberwolfach (MFO) geschrieben. Das Schnappschuss-Projekt hat zum Ziel, Verst\"andnis und Wertsch\"atzung f\"ur moderne Mathematik und mathematische Forschung in der allgemeinen Bev\"olkerung weltweit zu f\"ordern. Es ist Teil des Mathe-\\matikkommunikation-Projekts \glqq Oberwolfach trifft IMAGINARY\grqq, welches von der Klaus Tschira Stiftung und der Oberwolfach Stiftung gef\"ordert wird. Alle Schnapp-\\sch\"usse k\"onnen unter \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}} abgerufen werden.}%
+	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@creditstext}{\emph{Snapshots of modern mathematics from Oberwolfach} are written by participants in the scientific program of the Mathematisches Forschungsinstitut Oberwolfach (MFO). The snapshot project is designed to promote the understanding and appreciation \\of modern mathematics and mathematical research in the general public worldwide. \\It is part of the mathematics communication project ``Oberwolfach meets IMAGINARY'' funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. All snapshots can be found on \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}} and on \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}}.}%
+	\newcaptionname{german,ngerman}{\snapshot@l@creditstext}{\emph{Schnappsch\"usse moderner Mathematik aus Oberwolfach} werden von Teilnehmerinnen und Teilnehmern des wissenschaftlichen Programms des Mathematischen Forschungs-\\instituts Oberwolfach (MFO) geschrieben. Das Schnappschuss-Projekt hat zum Ziel, Verst\"andnis und Wertsch\"atzung f\"ur moderne Mathematik und mathematische Forschung in der allgemeinen Bev\"olkerung weltweit zu f\"ordern. Es ist Teil des Mathe-\\matikkommunikation-Projekts \glqq Oberwolfach trifft IMAGINARY\grqq, welches von der Klaus Tschira Stiftung und der Oberwolfach Stiftung gef\"ordert wird. Alle Schnapp-\\sch\"usse k\"onnen unter \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}} sowie unter \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}} abgerufen werden.}%
 	%
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@translator@german}{Translated from German by}%
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@translator@english}{Translated from English by\ClassWarningNoLine{snapshotmfo}{Translated by: from English to English}}%
@@ -279,7 +284,12 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % environment for image credits
-\newenvironment{imagecredits}{\section*{\csname snaphot@l@image credits\endcsname}\begin{description}}{\end{description}}
+\newenvironment{imagecredits}{%
+	% assure that image credits are printed before the bibliography
+	\ifdefined\snapshot@bib@printed\ClassError{snapshotmfo}{\noexpand\bibliography must not be used before imagecredits environment}{Change the order of image credits and the bibliography}\fi%
+	% print the image credits
+	\section*{\csname snaphot@l@image credits\endcsname}\begin{description}}{\end{description}%
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % snapshot id and DOI computation
@@ -626,7 +636,7 @@
 		}%
 	}}}%
 	\clearpage%
-	\thispagestyle{empty}%c
+	\thispagestyle{empty}%
 	\noindent\null\vfill%
 	\noindent\usebox{\snapshot@credits}%
 }
