@@ -470,6 +470,7 @@
 % PDF meta data
 \AtBeginDocument{%
 	\bgroup%
+		\Hy@pdfstringtrue%
 		\def\thanks#1{}%
 		\def\and{\iffalse{\fi}, \noexpand\trim@spaces{\iffalse}\fi}%
 		\protected@edef\@metaauthor{\noexpand\trim@spaces{\@author}}%
