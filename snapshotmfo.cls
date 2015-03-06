@@ -75,10 +75,9 @@
 \let\snapshot@endabstract\endabstract
 \let\abstract\undefined
 \let\endabstract\undefined
-\NewEnviron{abstract}{%
+\NewEnviron{abstract}[1][\BODY]{%
 	\snapshot@abstract\relscale{1.3}\noindent\ignorespaces\BODY\snapshot@endabstract% add special formatting and print \BODY
-	\def\par{ } % collaps paragraphs for meta data inclusion
-	\hypersetup{pdfsubject={\BODY}}% copy abstract into meta data
+	\hypersetup{pdfsubject={#1}}% copy abstract into meta data
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -252,6 +251,20 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % hyperlinks
 \RequirePackage{hyperref}
+\catcode`\#=12
+\newcommand{\patchpdfstringdef}{%
+	\patchcmd\pdfstringdef%
+		{\def \begin #1{\csname #1\endcsname }}%
+		{\def \begin ##1{\csname ##1\endcsname }}%
+		{}{\ClassError{snapshotmfo}{Unable to patch certain hyperref commands. Please report this to the maintainer of the snapshotmfo document class}{}}%
+	\patchcmd\pdfstringdef%
+		{\def \end #1{\csname end#1\endcsname }}%
+		{\def \end ##1{\csname end##1\endcsname }}%
+		{}{\ClassError{snapshotmfo}{Unable to patch certain hyperref commands. Please report this to the maintainer of the snapshotmfo document class}{}}%
+}
+\catcode`\#=6
+\patchpdfstringdef
+
 \@ifpackagelater{hyperref}{2011/02/05}{\hypersetup{hidelinks}}{\hypersetup{colorlinks=false,pdfborder={0 0 0}}}
 
 \newcommand{\mailtoref}[1]{\href{mailto://#1}{\nolinkurl{#1}}}
