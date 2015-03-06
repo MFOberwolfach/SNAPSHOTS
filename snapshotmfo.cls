@@ -66,7 +66,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % tools
-\RequirePackage{etoolbox,ifthen,environ,trimspaces}
+\RequirePackage{etoolbox,ifthen,environ}
 \@ifpackagelater{etoolbox}{2009/08/06}{}{\ClassError{snapshotmfo}{etoolbox v1.8 (2009/08/06) or later required}{Please update your TeX distribution to meet the requirements.}\stop}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -250,7 +250,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % hyperlinks
-\RequirePackage{hyperref}
+\RequirePackage[unicode]{hyperref}
 \catcode`\#=12
 \newcommand{\patchpdfstringdef}{%
 	\patchcmd\pdfstringdef%
@@ -331,6 +331,17 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % author info
+\renewcommand\author[1]{%
+	\gdef\@author{#1}%
+	\let\@metaauthor\@author%
+	% strip spaces before \and in \@metaauthor (slow)
+	\newif\ifsnapshot@removespaces\snapshot@removespacestrue%
+	\loop%
+		\patchcmd\@metaauthor{ \and}{\and}{}{\snapshot@removespacesfalse}%
+	\ifsnapshot@removespaces%
+	\repeat%
+}
+
 \newcounter{ctrmaxmfosnapshotauthorinfo}
 \setcounter{ctrmaxmfosnapshotauthorinfo}{0}
 \newcommand*{\authorinfo}[1]{%
@@ -485,8 +496,7 @@
 	\bgroup%
 		\Hy@pdfstringtrue%
 		\def\thanks#1{}%
-		\def\and{\iffalse{\fi}, \noexpand\trim@spaces{\iffalse}\fi}%
-		\protected@edef\@metaauthor{\noexpand\trim@spaces{\@author}}%
+		\def\and{, \ignorespaces}%
 		\hypersetup{pdfauthor={\@metaauthor},pdftitle={\@title}}%
 		\def\ClassWarningNoLine#1#2{}%
 		\def\snapshot@pdfinfo{%
