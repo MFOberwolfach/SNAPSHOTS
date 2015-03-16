@@ -531,8 +531,9 @@
 		\snapshot@define@spaces%
 		\newpage
 		\global\@topnum\z@
+		\let\thanks\footnote%
 		\@maketitle
-		\thispagestyle{\titlepagestyle}\@thanks
+		\thispagestyle{\titlepagestyle}
 	\endgroup
 	\let\thanks\relax
 	\let\maketitle\relax
