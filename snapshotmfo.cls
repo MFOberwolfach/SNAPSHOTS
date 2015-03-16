@@ -223,7 +223,7 @@
 	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@humanities and social sciences}{Geistes- und Sozialwissenschaften}
 	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@life science}{Lebenswissenschaften}
 	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@physics}{Physik}
-	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@reflections on mathematics}{Betrachtungen über Mathematik}
+	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@reflections on mathematics}{Betrachtungen \texorpdfstring{\"uber}{über} Mathematik}
 	% section name for image credits
 	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@image credits}{Image credits}
 	\newcscaptionname{german,ngerman}{snaphot@l@image credits}{Bildquellen}	
@@ -325,7 +325,10 @@
 	\AtEndDocument{%
 		\def\snapshot@doi@warning{\ClassWarningNoLine{snapshotmfo}{DOI changed. Rerun to get PDF meta data right}}%
 		\ifthenelse{\isundefined{\snapshot@doi@meta}}{\snapshot@doi@warning}{\ifthenelse{\NOT\equal{\snapshot@doi}{\snapshot@doi@meta}}{\snapshot@doi@warning}{}}
-		\immediate\write\@auxout{\noexpand\gdef\noexpand\snapshot@doi@meta{\snapshot@doi}}%
+		\bgroup%
+			\Hy@pdfstringtrue%
+			\immediate\write\@auxout{\noexpand\gdef\noexpand\snapshot@doi@meta{\snapshot@doi}}%
+		\egroup%
 	}
 }%
 
@@ -365,11 +368,11 @@
 					%
 					\csname snapshot@authorinfo\the\value{ctrauthorinfo} \endcsname}\strut%
 				\egroup%
-			\egroup
+			\egroup%
 			\stepcounter{ctrauthorinfo}%
 			\vskip\medskipamount%
 		}%
-	\egroup
+	\egroup%
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -415,7 +418,10 @@
 		\AtEndDocument{%
 			\def\snapshot@categorization@math@warning{\ClassWarningNoLine{snapshotmfo}{Mathematical categorization changed. Rerun to get PDF meta data right}}%
 			\ifthenelse{\isundefined{\snapshot@categorization@math@meta}}{\snapshot@categorization@math@warning}{\ifthenelse{\NOT\equal{\snapshot@categorization@math}{\snapshot@categorization@math@meta}}{\snapshot@categorization@math@warning}{}}
-			\immediate\write\@auxout{\noexpand\gdef\noexpand\snapshot@categorization@math@meta{\snapshot@categorization@math}}%
+			\bgroup%
+				\Hy@pdfstringtrue%
+				\immediate\write\@auxout{\noexpand\gdef\noexpand\snapshot@categorization@math@meta{\snapshot@categorization@math}}%
+			\egroup%
 		}
 	}%
 }%
@@ -453,7 +459,10 @@
 		\AtEndDocument{%
 			\def\snapshot@categorization@connect@warning{\ClassWarningNoLine{snapshotmfo}{Connection to other fields changed. Rerun to get PDF meta data right}}%
 			\ifthenelse{\isundefined{\snapshot@categorization@connect@meta}}{\snapshot@categorization@connect@warning}{\ifthenelse{\NOT\equal{\snapshot@categorization@connect}{\snapshot@categorization@connect@meta}}{\snapshot@categorization@connect@warning}{}}
-			\immediate\write\@auxout{\noexpand\gdef\noexpand\snapshot@categorization@connect@meta{\snapshot@categorization@connect}}%
+			\bgroup%
+				\Hy@pdfstringtrue%
+				\immediate\write\@auxout{\noexpand\gdef\noexpand\snapshot@categorization@connect@meta{\snapshot@categorization@connect}}%
+			\egroup%
 		}
 	}%
 }%
