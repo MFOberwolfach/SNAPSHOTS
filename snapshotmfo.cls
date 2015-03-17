@@ -561,6 +561,16 @@
 	\global\let\dedication\relax
 	\global\let\date\relax
 	\global\let\and\relax
+	% undefine snapshotmfo commands to be used in preamble only
+	\global\let\authorinfo\relax
+	\global\let\categorizationmath\relax 
+	\global\let\categorizationconnect\relax
+	\global\let\license\relax
+	\global\let\snapshotid\relax
+	\global\let\translator\relax
+	\global\let\junioreditor\relax
+	\global\let\senioreditor\relax
+	\global\let\director\relax
 }%
 \renewcommand*{\@maketitle}{%
   \clearpage
