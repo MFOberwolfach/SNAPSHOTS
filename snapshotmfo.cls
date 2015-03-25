@@ -13,13 +13,14 @@
 % 
 % This work has the LPPL maintenance status `maintained'.
 % 
-% The Current Maintainer of this work is Christian Stussak
+% The Current Maintainer of this work is Helmut Kastenholz
 % (Mathematisches Forschungsinstitut Oberwolfach).
 %
 % This work consists of the file snapshotmfo.cls.
 %
 % The following authors contributed to this work (alphabetical order):
 %   Carla Cederbaum (concept)
+%   Helmut Kastenholz (programming)
 %   Konrad Renner (design)
 %   Christian Stussak (programming)
 %
