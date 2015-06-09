@@ -382,7 +382,7 @@
 \csdef{snapshot@license@CC-BY-SA-4.0}{\href{http://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons BY-SA 4.0}}
 \csdef{snapshot@license@CC-BY-ND-4.0}{\href{http://creativecommons.org/licenses/by-nd/4.0/}{Creative Commons BY-ND 4.0}}
 \csdef{snapshot@license@CC-BY-NC-SA-4.0}{\href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Creative Commons BY-NC-SA 4.0}}
-% keep the next three lines for compatability with previous v1.x.x releases
+% keep the next three lines for compatibility with previous v1.x.x releases
 \csdef{snapshot@license@CC-BY-NC-SA-3.0}{\href{http://creativecommons.org/licenses/by-nc-sa/3.0/}{Creative Commons BY-NC-SA 3.0}}
 \csdef{snapshot@license@CC-BY-NC-ND-3.0}{\href{http://creativecommons.org/licenses/by-nc-nd/3.0/}{Creative Commons BY-NC-ND 3.0}}
 \csdef{snapshot@license@CC-BY-SA-3.0}{\href{http://creativecommons.org/licenses/by-sa/3.0/}{Creative Commons BY-SA 3.0}}
