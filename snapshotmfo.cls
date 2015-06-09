@@ -47,7 +47,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % misc (internal)
-\def\snapshot@defaultcontent{will be filled out by editors}
+\def\snapshot@defaultcontent{will be filled out by the editors}
 
 \newcommand{\snapshot@define@spaces}{% define text mode spaces like in amsmath
 	\DeclareRobustCommand{\tmspace}[3]{%
@@ -378,15 +378,19 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % license info
-% use \license{CC-BY-SA-4.0} (default), \license{CC-BY-ND-4.0} or \licence{CC-BY-NC-SA-4.0}
+% use \license{CC-BY-SA-4.0} (recommended), \license{CC-BY-ND-4.0} or \licence{CC-BY-NC-SA-4.0}
 \csdef{snapshot@license@CC-BY-SA-4.0}{\href{http://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons BY-SA 4.0}}
 \csdef{snapshot@license@CC-BY-ND-4.0}{\href{http://creativecommons.org/licenses/by-nd/4.0/}{Creative Commons BY-ND 4.0}}
 \csdef{snapshot@license@CC-BY-NC-SA-4.0}{\href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Creative Commons BY-NC-SA 4.0}}
+% keep the next three lines for compatability with previous v1.x.x releases
+\csdef{snapshot@license@CC-BY-NC-SA-3.0}{\href{http://creativecommons.org/licenses/by-nc-sa/3.0/}{Creative Commons BY-NC-SA 3.0}}
+\csdef{snapshot@license@CC-BY-NC-ND-3.0}{\href{http://creativecommons.org/licenses/by-nc-nd/3.0/}{Creative Commons BY-NC-ND 3.0}}
+\csdef{snapshot@license@CC-BY-SA-3.0}{\href{http://creativecommons.org/licenses/by-sa/3.0/}{Creative Commons BY-SA 3.0}}
 \newcommand{\snapshot@license}{\ClassWarningNoLine{snapshotmfo}{No license information given}\snapshot@defaultcontent}
 \newcommand{\license}[1]{%
 	\expandafter\ifcsdef\expandafter{snapshot@license@#1}{%
 		\renewcommand{\snapshot@license}{\csname snapshot@license@#1\endcsname}%
-	}{\ClassError{snapshotmfo}{Unknown license name}{Please use one of CC-BY-SA-4.0, CC-BY-ND-4.0 or CC-BY-NC-SA-4.0}}%	
+	}{\ClassError{snapshotmfo}{Unknown license name}{Please use one of CC-BY-SA-4.0, CC-BY-ND-4.0 or CC-BY-NC-SA-4.0. (CC-BY-NC-SA-3.0, CC-BY-NC-ND-3.0 and CC-BY-SA-3.0 still work, too.)}}%	
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
