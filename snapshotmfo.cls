@@ -157,8 +157,8 @@
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@header}{Snapshots of modern mathematics\\from Oberwolfach}%
 	\newcaptionname{german,ngerman}{\snapshot@l@header}{Schnappsch\"usse moderner Mathematik\\aus Oberwolfach}%
 	%
-	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@creditstext}{\emph{Snapshots of modern mathematics from Oberwolfach} are written by participants in the scientific program of the Mathematisches Forschungsinstitut Oberwolfach (MFO). The snapshot project is designed to promote the understanding and appreciation \\of modern mathematics and mathematical research in the general public worldwide. \\It is part of the mathematics communication project ``Oberwolfach meets IMAGINARY'' funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. All snapshots can be found on \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}} and on \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}}.}%
-	\newcaptionname{german,ngerman}{\snapshot@l@creditstext}{\emph{Schnappsch\"usse moderner Mathematik aus Oberwolfach} werden von Teilnehmerinnen und Teilnehmern des wissenschaftlichen Programms des Mathematischen Forschungs-\\instituts Oberwolfach (MFO) geschrieben. Das Schnappschuss-Projekt hat zum Ziel, Verst\"andnis und Wertsch\"atzung f\"ur moderne Mathematik und mathematische Forschung in der allgemeinen Bev\"olkerung weltweit zu f\"ordern. Es ist Teil des Mathe-\\matikkommunikation-Projekts \glqq Oberwolfach trifft IMAGINARY\grqq, welches von der Klaus Tschira Stiftung und der Oberwolfach Stiftung gef\"ordert wird. Alle Schnapp-\\sch\"usse k\"onnen unter \href{http://www.imaginary.org}{\nolinkurl{www.imaginary.org}} sowie unter \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}} abgerufen werden.}%
+	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@creditstext}{\emph{Snapshots of modern mathematics from Oberwolfach} are written by participants in the scientific program of the Mathematisches Forschungsinstitut Oberwolfach (MFO). The snapshot project is designed to promote the understanding and appreciation \\of modern mathematics and mathematical research in the general public worldwide. \\It is part of the mathematics communication project ``Oberwolfach meets IMAGINARY'' funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. All snapshots can be found on \href{http://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} and on \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}}.}%
+	\newcaptionname{german,ngerman}{\snapshot@l@creditstext}{\emph{Schnappsch\"usse moderner Mathematik aus Oberwolfach} werden von Teilnehmerinnen und Teilnehmern des wissenschaftlichen Programms des Mathematischen Forschungs-\\instituts Oberwolfach (MFO) geschrieben. Das Schnappschuss-Projekt hat zum Ziel, Verst\"andnis und Wertsch\"atzung f\"ur moderne Mathematik und mathematische Forschung in der allgemeinen Bev\"olkerung weltweit zu f\"ordern. Es ist Teil des Mathe-\\matikkommunikation-Projekts \glqq Oberwolfach trifft IMAGINARY\grqq, welches von der Klaus Tschira Stiftung und der Oberwolfach Stiftung gef\"ordert wird. Alle Schnapp-\\sch\"usse k\"onnen unter \href{http://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} sowie unter \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}} abgerufen werden.}%
 	%
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@translator@german}{Translated from German by}%
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@translator@english}{Translated from English by\ClassWarningNoLine{snapshotmfo}{Translated by: from English to English}}%
@@ -257,11 +257,11 @@
 	\patchcmd\pdfstringdef%
 		{\def \begin #1{\csname #1\endcsname }}%
 		{\def \begin ##1{\csname ##1\endcsname }}%
-		{}{\ClassError{snapshotmfo}{Unable to patch certain hyperref commands. Please report this to the maintainer of the snapshotmfo document class}{}}%
+		{}{\ClassError{snapshotmfo}{Unable to patch certain hyperref commands (1). Please report this to the maintainer of the snapshotmfo document class}{}}%
 	\patchcmd\pdfstringdef%
 		{\def \end #1{\csname end#1\endcsname }}%
 		{\def \end ##1{\csname end##1\endcsname }}%
-		{}{\ClassError{snapshotmfo}{Unable to patch certain hyperref commands. Please report this to the maintainer of the snapshotmfo document class}{}}%
+		{}{\ClassError{snapshotmfo}{Unable to patch certain hyperref commands (2). Please report this to the maintainer of the snapshotmfo document class}{}}%
 }
 \catcode`\#=6
 \patchpdfstringdef
@@ -282,7 +282,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % font settings
-
 \renewcommand\UrlFont{}%
 
 \setkomafont{pagenumber}{\normalfont\sffamily\relscale{1.1}}

@@ -69,7 +69,10 @@
 \authorinfo{\authorname{Author Two} is a lecturer in applied mathematics at the Second Institution.}
 
 
-%%% Please provide your references here or as a .bib file. If you use a .bib file, please replace the bibliography name 'yourbibfile' with the name of your .bib file in the \bibliography command at the bottom of this file. If you prefer to use \bibitems, you will need to silence the \bibliography command at the end of this file (see below). 
+%%% To provide your references you may
+%%%   - either replace the following references by your own ones and leave the \bibliography command at the end of this file unchanged
+%%%   - or provide your own .bib file, delete everything until \end{filecontents} and make the \bibliography command at the end of this file point to your .bib file
+%%%   - or use the \bibitem command, delete everything until \end{filecontents} and delete the \bibliography command at the end of this file.
 \usepackage{filecontents}
 \begin{filecontents}{\jobname.bib}
 @book{knuth1984texbook,
@@ -136,10 +139,10 @@
 
 %%% Please insert your abstract here. 
 \begin{abstract}[Plain text abstract used as PDF meta data (optional)]
-This is your abstract. It should give a brief overview of your snapshot. If possible, please do not use formulas in your abstract. Please do not use more than 500 symbols. You will be asked to copy your abstract into the upload form on \href{http://www.imaginary.org}{www.imaginary.org}. 
+This is your abstract. It should give a brief overview of your snapshot. If possible, please do not use formulas in your abstract. Otherwise, please suggest an additional plain text abstract in square brackets, that can be used in the PDF's metadata field. Please do not use more than 500 symbols.
 \end{abstract}
 
-%%% Please insert the main body of your snapshot, here.
+%%% Please insert the main body of your snapshot here.
 \section{A heading}
 Your actual snapshot.\footnote{This is a footnote.} As usual, you can give references such as \cite{snapshot, knuth1984texbook, wikiMath, sample13, sample12, sample11, sample14} via the \verb+\cite+ command.\\
 
@@ -162,7 +165,7 @@ More text and some formulas:
 Formula \eqref{real} refers to $\mathbb{R}$, formula \eqref{char.2} does not.
 
 \section{More information}
-We have composed guidelines to help you write a beautiful and accessible snapshot which you can download here: \href{http://www.mfo.de/math-in-public/snapshots/guidelines-for-snapshots}{www.mfo.de/math-in-public/snapshots/ guidelines-for-snapshots}. For more information on the snapshot project (including example snapshots), please see \href{http://www.mfo.de/math-in-public/snapshots}{www.mfo.de/math-in-public/snapshots}.
+We have composed guidelines to help you write a beautiful and accessible snapshot which you can download at \href{http://www.mfo.de/snapshots/guidelines-for-snapshots}{www.mfo.de/snapshots/guidelines-for-snapshots}. For more information on the snapshot project (including example snapshots), please see \href{http://www.mfo.de/snapshots}{www.mfo.de/snapshots}.
 
 %%% Please use this format to include images. Supported image formats: jpg, pdf, png. Please convert your images to those formats.
 \begin{figure}[h]
@@ -184,10 +187,11 @@ If you use your own images, please check if you still have the rights of use. Th
 \end{imagecredits}
 
 %%%%%%%%%%%% Bibliography via BibTeX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Please use this command in case you prefer to use the filecontents environment and edit your BibTeX entries above. If you prefer to use \bibitems, you will need to silence the \bibliography following command with a % symbol.
+%%% According to your above choice on how to handle your references you will
+%%%   - either want to leave the following command unchanged
+%%%   - or make it point to your .bib file like \bibliography{yourbibfile}
+%%%   - or delete the command completely:
 \bibliography{\jobname}
-
-%%% Please use this command in case you supply your own .bib file. Replace 'yourbibfile' by the name of your .bib file. Please silence the above command \bibliography{\jobname} with a %-symbol. Also, please do not forget to *submit* your .bib file with your .tex file when uploading it on www.imaginary.org.
-%\bibliography{yourbibfile}
+%%% If you provide your own .bib file, please do not forget to *submit* it together with your .tex file and your graphics files, if applicable.
 
 \end{document}

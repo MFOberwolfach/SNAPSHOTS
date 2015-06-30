@@ -1,12 +1,12 @@
 LaTeX document class for the snapshots of modern mathematics from Oberwolfach
 =============================================================================
 
-Snapshots of modern mathematics from Oberwolfach' is a project run by the
+'Snapshots of modern mathematics from Oberwolfach' is a project run by the
 Mathematisches Forschungsinstitut Oberwolfach (MFO) and funded by the Klaus
 Tschira Foundation. The snapshots give an accessible introduction into
 different aspects of modern mathematics and mathematical research.
 
-For more information, please see http://www.mfo.de/math-in-public/snapshots. 
+For more information, please see http://www.mfo.de/snapshots. 
 
 snapshotmfo.cls
 ---------------
