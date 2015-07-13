@@ -157,8 +157,8 @@
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@header}{Snapshots of modern mathematics\\from Oberwolfach}%
 	\newcaptionname{german,ngerman}{\snapshot@l@header}{Schnappsch\"usse moderner Mathematik\\aus Oberwolfach}%
 	%
-	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@creditstext}{\emph{Snapshots of modern mathematics from Oberwolfach} are written by participants in the scientific program of the Mathematisches Forschungsinstitut Oberwolfach (MFO). The snapshot project is designed to promote the understanding and appreciation \\of modern mathematics and mathematical research in the general public worldwide. \\It is part of the mathematics communication project ``Oberwolfach meets IMAGINARY'' funded by the Klaus Tschira Foundation and the Oberwolfach Foundation. All snapshots can be found on \href{http://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} and on \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}}.}%
-	\newcaptionname{german,ngerman}{\snapshot@l@creditstext}{\emph{Schnappsch\"usse moderner Mathematik aus Oberwolfach} werden von Teilnehmerinnen und Teilnehmern des wissenschaftlichen Programms des Mathematischen Forschungs-\\instituts Oberwolfach (MFO) geschrieben. Das Schnappschuss-Projekt hat zum Ziel, Verst\"andnis und Wertsch\"atzung f\"ur moderne Mathematik und mathematische Forschung in der allgemeinen Bev\"olkerung weltweit zu f\"ordern. Es ist Teil des Mathe-\\matikkommunikation-Projekts \glqq Oberwolfach trifft IMAGINARY\grqq, welches von der Klaus Tschira Stiftung und der Oberwolfach Stiftung gef\"ordert wird. Alle Schnapp-\\sch\"usse k\"onnen unter \href{http://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} sowie unter \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}} abgerufen werden.}%
+	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@creditstext}{\emph{Snapshots of modern mathematics from Oberwolfach} are written by participants in the scientific program of the Mathematisches Forschungsinstitut Oberwolfach (MFO). The snapshot project is designed to promote the understanding and appreciation \\of modern mathematics and mathematical research in the general public worldwide. It started as part of the project ``Oberwolfach meets IMAGINARY'' in 2013 with a grant by the Klaus Tschira Foundation. The project has also been supported by the Oberwolfach Foundation and the MFO. All snapshots can be found on \href{http://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} and on \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}}.}%
+	\newcaptionname{german,ngerman}{\snapshot@l@creditstext}{\emph{Schnappsch\"usse moderner Mathematik aus Oberwolfach} werden von Teilnehmerinnen und Teilnehmern des wissenschaftlichen Programms des Mathematischen Forschungs-\\instituts Oberwolfach (MFO) geschrieben. Das Schnappschuss-Projekt hat zum Ziel, Verst\"andnis und Wertsch\"atzung f\"ur moderne Mathematik und mathematische For-\\schung in der allgemeinen Bev\"olkerung weltweit zu f\"ordern. Es begann als Teil des Projekts \glqq Oberwolfach trifft IMAGINARY\grqq, welches von der Klaus Tschira Stiftung gef\"ordert wird. Das Projekt wurde auch von der Oberwolfach Stiftung sowie vom MFO unterst\"utzt. Alle Schnappsch\"usse k\"onnen unter \href{http://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} sowie unter \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}} abgerufen werden.}%
 	%
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@translator@german}{Translated from German by}%
 	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@translator@english}{Translated from English by\ClassWarningNoLine{snapshotmfo}{Translated by: from English to English}}%
@@ -482,25 +482,31 @@
 % junior editor
 \newcommand{\snapshot@junioreditor}{\ClassWarningNoLine{snapshotmfo}{No junior editor given}\snapshot@defaultcontent}%
 \newcommand{\snapshot@junioreditoremail}{--}%
-\newcommand*{\junioreditor}[2]{%
-	\gdef\snapshot@junioreditor{#1}%
-	\gdef\snapshot@junioreditoremail{\mailtoref{#2}}%
+\newcommand*{\junioreditor}[3][n]{%
+	\ifthenelse{\equal{#1}{f}}{\renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editorin}}{}%
+	\ifthenelse{\equal{#1}{m}}{\renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editor}}{}%
+	\gdef\snapshot@junioreditor{#2}%
+	\gdef\snapshot@junioreditoremail{\mailtoref{#3}}%
 }%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % senior editor
 \newcommand{\snapshot@senioreditor}{\ClassWarningNoLine{snapshotmfo}{No senior editor given}\snapshot@defaultcontent}%
 \newcommand{\snapshot@senioreditoremail}{--}%
-\newcommand*{\senioreditor}[2]{%
-	\gdef\snapshot@senioreditor{#1}%
-	\gdef\snapshot@senioreditoremail{\mailtoref{#2}}%
+\newcommand*{\senioreditor}[3][n]{%
+	\ifthenelse{\equal{#1}{f}}{\renewcaptionname{german,ngerman}{\snapshot@l@senioreditor}{Chefeditorin}}{}%
+	\ifthenelse{\equal{#1}{m}}{\renewcaptionname{german,ngerman}{\snapshot@l@senioreditor}{Chefeditor}}{}%
+	\gdef\snapshot@senioreditor{#2}%
+	\gdef\snapshot@senioreditoremail{\mailtoref{#3}}%
 }%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % director
 \newcommand{\snapshot@director}{\ClassWarningNoLine{snapshotmfo}{No director given}\snapshot@defaultcontent}%
-\newcommand*{\director}[1]{%
-	\gdef\snapshot@director{#1}%
+\newcommand*{\director}[2][n]{%
+	\ifthenelse{\equal{#1}{f}}{\renewcaptionname{german,ngerman}{\snapshot@l@director}{Direktorin}}{}%
+	\ifthenelse{\equal{#1}{m}}{\renewcaptionname{german,ngerman}{\snapshot@l@director}{Direktor}}{}%
+	\gdef\snapshot@director{#2}%
 }%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
