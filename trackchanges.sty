@@ -220,7 +220,7 @@
 \RequirePackage{color}
 \RequirePackage{ifthen}
 \RequirePackage{calc}
-\RequirePackage{soul}
+\RequirePackage{soulutf8}
 \RequirePackage{morefloats}
 
 % I ran into some conflicts with other packages that deal 
@@ -519,7 +519,7 @@
   \if@TCignoremode%
     \TC@ResetIgnores%
   \fi%
-  \renewcommand{\thefootnote}{\oldfootnote}
+  \let\thefootnote\oldfootnote
 }
 
 
@@ -592,7 +592,7 @@
       \marginText{#1}{\userst{#2}}%
     \else%
       \if@trackinline%
-        {\footnotesize\textsuperscript{\UserLabel}\usertext{\st{#2}}}% 
+      {\footnotesize\textsuperscript{\UserLabel}\usertext{\st{#2}}}% 
       \else%
         \footnote{\UserLabel~\userst{#2}}%
       \fi%
