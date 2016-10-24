@@ -235,6 +235,10 @@
 \RequirePackage{graphicx,color}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% string manipulation 
+\RequirePackage{xstring}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % formatting of lists
 \RequirePackage{enumitem}
 \setitemize[1]{noitemsep,leftmargin=1.5em,labelsep=*,label={$\bullet$}}
@@ -251,7 +255,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % hyperlinks
-\RequirePackage[unicode]{hyperref}
+\RequirePackage[unicode, breaklinks]{hyperref}
 \catcode`\#=12
 \newcommand{\patchpdfstringdef}{%
 	\patchcmd\pdfstringdef%
@@ -268,7 +272,7 @@
 
 \@ifpackagelater{hyperref}{2011/02/05}{\hypersetup{hidelinks}}{\hypersetup{colorlinks=false,pdfborder={0 0 0}}}
 
-\newcommand{\mailtoref}[1]{\href{mailto:#1}{\nolinkurl{#1}}}
+\newcommand{\mailtoref}[1]{\href{mailto://#1}{\nolinkurl{#1}}}
 \newcommand{\httpref}[1]{\href{http://#1}{\nolinkurl{#1}}}
 \newcommand{\ftpref}[1]{\href{ftp://#1}{\nolinkurl{#1}}}
 
@@ -483,8 +487,10 @@
 \newcommand{\snapshot@junioreditor}{\ClassWarningNoLine{snapshotmfo}{No junior editor given}\snapshot@defaultcontent}%
 \newcommand{\snapshot@junioreditoremail}{--}%
 \newcommand*{\junioreditor}[3][n]{%
-	\ifthenelse{\equal{#1}{f}}{\renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editorin}}{}%
-	\ifthenelse{\equal{#1}{m}}{\renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editor}}{}%
+	\ifthenelse{\equal{#1}{f}}{\IfSubStr{#2}{ und }{\renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editorinnen}}{\renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editorin}}}{}%
+	\ifthenelse{\equal{#1}{m}}{\IfSubStr{#2}{ und }{\renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editoren}}{\renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editor}}}{}%
+	\IfSubStr{#2}{ and }{\renewcaptionname{english,USenglish,UKenglish}{\snapshot@l@junioreditor}{Junior Editors}}{}%
+
 	\gdef\snapshot@junioreditor{#2}%
 	\gdef\snapshot@junioreditoremail{\mailtoref{#3}}%
 }%
