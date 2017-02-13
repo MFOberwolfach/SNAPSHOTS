@@ -1,0 +1,35 @@
+\documentclass{snapshotmfo}
+
+\categorizationmath{algebra and number theory,analysis,discrete mathematics and foundations,geometry and topology,numerics and scientific computing,probability theory and statistics} %at least one must be chosen. 
+\categorizationconnect{chemistry and earth science,engineering and technology,finance,humanities and social sciences,life science,physics,reflections on mathematics} %can be void.
+\license{CC-BY-SA-4.0} %recommended
+\snapshotid{137}{1950}
+\junioreditor{Some One}{junior-editors@mfo.de}
+\senioreditor[f]{Carla Cederbaum}{senior-editor@mfo.de}
+\director[m]{Gerhard Huisken}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+%%% Wrap text around tables and figures:
+\usepackage{wrapfig}
+\usepackage{lipsum}
+
+%\usepackage[ngerman]{babel}
+\usepackage[USenglish]{babel}
+
+\author{Test Author}
+\title{wrapfig}
+\begin{document}
+
+\begin{abstract}
+Does the latex package wrapfig work?
+\end{abstract}
+
+\begin{wrapfigure}{I}{0.6\textwidth}
+\centering
+\includegraphics[width= 0.6 \textwidth]{mfo.jpg}
+\caption{An image scaled to 60\% of the textwidth.}
+\end{wrapfigure}
+
+\lipsum[1]
+
+\end{document}

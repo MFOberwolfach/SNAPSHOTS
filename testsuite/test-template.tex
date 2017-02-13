@@ -85,6 +85,7 @@
 \authorinfo{\authorname{Author One} is a professor of pure mathematics at the First University.}
 \authorinfo{\authorname{Author Two} is a lecturer in applied mathematics at the Second Institution.}
 
+
 %%%%%%%%%%%%%%%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% There are three ways to provide your references:
 %%% 
@@ -175,6 +176,40 @@
 This is your abstract. It should give a brief overview of your snapshot. If possible, please do not use formulas in your abstract. Otherwise, please suggest an additional plain text abstract in square brackets, that can be used in the PDF's metadata field. Please do not use more than 500 symbols.
 \end{abstract}
 
+\section{Comment on test-template.tex}
+template.tex and test-template.tex differ only by this section!
+After three or more compilations of this file the following warnings will remain:
+\begin{verbatim}
+LaTeX Warning: Overwriting file `./test-template.bib'.
+Class snapshotmfo Warning: No snapshot id given.
+Class snapshotmfo Warning: No mathematical subject given.
+Class snapshotmfo Warning: No connection to other fields given.
+Class snapshotmfo Warning: No license information given.
+Class snapshotmfo Warning: Unable to compute DOI.
+
+Warning--empty language in sample14
+Warning--empty language in sample11
+Warning--empty language in snapshot
+Warning--empty language in knuth1984texbook
+Warning--empty language in sample12
+Warning--empty language in sample13
+Warning--empty language in wikiMath
+\end{verbatim}
+
+With MikTeX on Windows the compilation summary will read:
+\begin{verbatim}
+LaTeX-Result: 0 Error(s), 6 Warning(s), 2 Bad Box(es), 5 Pages(s)
+BibTeX-Result: 0 Error(s), 7 Warning(s)
+\end{verbatim}
+
+The ``overwriting file'' warning is ok as long as you provide the references that way.
+
+The ``class snapshotmfo'' warnings will disappear as soon as you supply the expected information.
+
+Do not make the ``empty language'' warnings disappear by supplying a language,
+unless you want it explicitely printed in the references!
+
+
 %%% Please insert the main body of your snapshot here.
 \section{A heading}
 Your actual snapshot.\footnote{This is a footnote.} As usual, you can give references such as \cite{snapshot, knuth1984texbook, wikiMath, sample13, sample12, sample11, sample14} via the \verb+\cite+ command.\\
@@ -241,5 +276,6 @@ If you use your own images, please check if you still have the rights of use. Th
 %\bibitem[6]{sample13}\underline{\hphantom{J.\ Sam}}\,, {\slshape Interesting facts in mathematics}, arxiv:8765.4321v1, 2013.
 %\bibitem[7]{wikiMath}Wikipedia, {\slshape Mathematics --- {W}ikipedia{,} The Free Encyclopedia}, 2014, https://en.wikipedia.org/wiki/Mathematics, visited on May 19, 2014.
 %\end{thebibliography}
+
 
 \end{document}

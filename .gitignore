@@ -8,4 +8,8 @@
 *.bbl
 *.blg
 template.bib
+Thumbs.db
+testsuite/mfo.jpg
+testsuite/snapshotmfo.cls
+testsuite/template.tex
 

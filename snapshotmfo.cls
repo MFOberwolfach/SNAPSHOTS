@@ -1,5 +1,5 @@
 %% snapshotmfo.cls
-%% Copyright 2014 Mathematisches Forschungsinstitut Oberwolfach, www.mfo.de
+%% Copyright 2014 - 2017 Mathematisches Forschungsinstitut Oberwolfach, www.mfo.de
 %%  developed within the project IMAGINARY, www.imaginary.org
 %%  supported by the Klaus Tschira Stiftung
 %
@@ -50,20 +50,23 @@
 \def\snapshot@defaultcontent{will be filled out by the editors}
 
 \newcommand{\snapshot@define@spaces}{% define text mode spaces like in amsmath
-	\DeclareRobustCommand{\tmspace}[3]{%
-	  \ifmmode\mskip##1##2\else\kern##1##3\fi\relax}
-	\renewcommand{\,}{\tmspace+\thinmuskip{.1667em}}
-	\let\thinspace\,
-	\renewcommand{\!}{\tmspace-\thinmuskip{.1667em}}
-	\let\negthinspace\!
-	\renewcommand{\:}{\tmspace+\medmuskip{.2222em}}
-	\let\medspace\:
-	\providecommand{\negmedspace}{\tmspace-\medmuskip{.2222em}}
-	\renewcommand{\;}{\tmspace+\thickmuskip{.2777em}}
-	\let\thickspace\;
-	\providecommand{\negthickspace}{\tmspace-\thickmuskip{.2777em}}
-	\providecommand{\mspace}[1]{\mskip##1\relax}
+  \DeclareRobustCommand{\tmspace}[3]{%
+    \ifmmode\mskip##1##2\else\kern##1##3\fi\relax}
+  \renewcommand{\,}{\tmspace+\thinmuskip{.1667em}}
+  \let\thinspace\,
+  \renewcommand{\!}{\tmspace-\thinmuskip{.1667em}}
+  \let\negthinspace\!
+  \renewcommand{\:}{\tmspace+\medmuskip{.2222em}}
+  \let\medspace\:
+  \providecommand{\negmedspace}{\tmspace-\medmuskip{.2222em}}
+  \renewcommand{\;}{\tmspace+\thickmuskip{.2777em}}
+  \let\thickspace\;
+  \providecommand{\negthickspace}{\tmspace-\thickmuskip{.2777em}}
+  \providecommand{\mspace}[1]{\mskip##1\relax}
 }%
+
+\def\snapshot@logo@version{2}
+\newcommand{\logoversionone}{\renewcommand{\snapshot@logo@version}{1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % tools
@@ -77,8 +80,8 @@
 \let\abstract\undefined
 \let\endabstract\undefined
 \NewEnviron{abstract}[1][\BODY]{%
-	\snapshot@abstract\relscale{1.3}\noindent\ignorespaces\BODY\snapshot@endabstract% add special formatting and print \BODY
-	\hypersetup{pdfsubject={#1}}% copy abstract into meta data
+  \snapshot@abstract\relscale{1.3}\noindent\ignorespaces\BODY\snapshot@endabstract% add special formatting and print \BODY
+  \hypersetup{pdfsubject={#1}}% copy abstract into meta data
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -92,20 +95,20 @@
 % footnotes
 %\def\thefootnote{\framebox{\arabic{footnote}}}
 \newcommand\snapshot@footnotemark{%
-	\setlength{\fboxsep}{0.1em}%
-	\setlength{\fboxrule}{0.04em}%
-	\textsuperscript{\framebox{\raisebox{0pt}[1.05\height][0.025\height]{\thefootnotemark}}}%
+  \setlength{\fboxsep}{0.1em}%
+  \setlength{\fboxrule}{0.04em}%
+  \textsuperscript{\framebox{\raisebox{0pt}[1.05\height][0.025\height]{\thefootnotemark}}}%
 }
 \deffootnote[1.5em]{0em}{1.5em}{\rlap{\snapshot@footnotemark}\hspace{1.5em}}
 \deffootnotemark{\snapshot@footnotemark}
 \@ifclasslater{scrartcl}{2010/06/17}{%
 \setfootnoterule[0.526pt]{\textwidth}
 }{%
-	\renewcommand{\footnoterule}{%
-	  \kern -3pt
-	  \hrule width \textwidth height 0.526pt
-	  \kern 2.474pt
-	}
+  \renewcommand{\footnoterule}{%
+    \kern -3pt
+    \hrule width \textwidth height 0.526pt
+    \kern 2.474pt
+  }
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -140,94 +143,99 @@
 \def\renewcaptionname#1#2#3{\def\do##1{\@orig@renewcaptionname{##1}{#2}{#3}}\docsvlist{#1}}%
 
 \def\newcscaptionname#1#2#3{%
-	\begingroup%
-		\def\newcscaptionname@tmp{\newcaptionname{#1}}%
-		\expandafter\newcscaptionname@tmp\csname #2\endcsname{#3}%
-	\endgroup%
+  \begingroup%
+    \def\newcscaptionname@tmp{\newcaptionname{#1}}%
+    \expandafter\newcscaptionname@tmp\csname #2\endcsname{#3}%
+  \endgroup%
 }
 \def\renewcscaptionname#1#2#3{%
-	\begingroup%
-		\def\renewcscaptionname@tmp{\newcaptionname{#1}}%
-		\expandafter\renewcscaptionname@tmp\csname #2\endcsname{#3}%
-	\endgroup%
+  \begingroup%
+    \def\renewcscaptionname@tmp{\newcaptionname{#1}}%
+    \expandafter\renewcscaptionname@tmp\csname #2\endcsname{#3}%
+  \endgroup%
 }
 
 % define captions
 \AtBeginDocument{%
-	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@header}{Snapshots of modern mathematics\\from Oberwolfach}%
-	\newcaptionname{german,ngerman}{\snapshot@l@header}{Schnappsch\"usse moderner Mathematik\\aus Oberwolfach}%
-	%
-	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@creditstext}{\emph{Snapshots of modern mathematics from Oberwolfach} are written by participants in the scientific program of the Mathematisches Forschungsinstitut Oberwolfach (MFO). The snapshot project is designed to promote the understanding and appreciation \\of modern mathematics and mathematical research in the general public worldwide. It started as part of the project ``Oberwolfach meets IMAGINARY'' in 2013 with a grant by the Klaus Tschira Foundation. The project has also been supported by the Oberwolfach Foundation and the MFO. All snapshots can be found on \href{http://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} and on \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}}.}%
-	\newcaptionname{german,ngerman}{\snapshot@l@creditstext}{\emph{Schnappsch\"usse moderner Mathematik aus Oberwolfach} werden von Teilnehmerinnen und Teilnehmern des wissenschaftlichen Programms des Mathematischen Forschungs-\\instituts Oberwolfach (MFO) geschrieben. Das Schnappschuss-Projekt hat zum Ziel, Verst\"andnis und Wertsch\"atzung f\"ur moderne Mathematik und mathematische For-\\schung in der allgemeinen Bev\"olkerung weltweit zu f\"ordern. Es begann als Teil des Projekts \glqq Oberwolfach trifft IMAGINARY\grqq, welches von der Klaus Tschira Stiftung gef\"ordert wird. Das Projekt wurde auch von der Oberwolfach Stiftung sowie vom MFO unterst\"utzt. Alle Schnappsch\"usse k\"onnen unter \href{http://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} sowie unter \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}} abgerufen werden.}%
-	%
-	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@translator@german}{Translated from German by}%
-	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@translator@english}{Translated from English by\ClassWarningNoLine{snapshotmfo}{Translated by: from English to English}}%
-	\newcaptionname{german,ngerman}{\snapshot@l@translator@english}{\"Ubersetzt aus dem Englischen von}%
-	\newcaptionname{german,ngerman}{\snapshot@l@translator@german}{\"Ubersetzt aus dem Deutschen von\ClassWarningNoLine{snapshotmfo}{Translated by: from German to German}}%
-	\let\snapshot@l@translator@ngerman\snapshot@l@translator@german%
-	\let\snapshot@l@translator@USenglish\snapshot@l@translator@english%
-	\let\snapshot@l@translator@UKenglish\snapshot@l@translator@english%
-	%
-	\newcaptionname{english,USenglish,UKenglish}{\snapshot@label@l@categorization@math}{Mathematical subjects}%
-	\newcaptionname{german,ngerman}{\snapshot@label@l@categorization@math}{Mathematische Gebiete}%
-	%
-	\newcaptionname{english,USenglish,UKenglish}{\snapshot@label@l@categorization@connect}{Connections to other fields}%
-	\newcaptionname{german,ngerman}{\snapshot@label@l@categorization@connect}{Verbindungen zu anderen Gebieten}%
-	%
-	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@license}{License}%
-	\newcaptionname{german,ngerman}{\snapshot@l@license}{Lizenz}%
-	%
-	\newcaptionname{english,USenglish,UKenglish,german,ngerman}{\snapshot@l@doi}{DOI}%
-	%
-	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@junioreditor}{Junior Editor}%
-	\newcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editor/in}%
-	%
-	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@senioreditor}{Senior Editor}%
-	\newcaptionname{german,ngerman}{\snapshot@l@senioreditor}{Chefeditor/in}%
-	%
-	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@director}{Director}%
-	\newcaptionname{german,ngerman}{\snapshot@l@director}{Direktor/in}%
-	%
-	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@mfoaddress}{Mathematisches Forschungsinstitut\\Oberwolfach gGmbH\\Schwarzwaldstr. 9\,--1\!1\\77709 Oberwolfach\\Germany}%
-	\newcaptionname{german,ngerman}{\snapshot@l@mfoaddress}{Mathematisches Forschungsinstitut\\Oberwolfach gGmbH\\Schwarzwaldstr. 9\,--1\!1\\77709 Oberwolfach\\Deutschland}%
-	%
-	\newcaptionname{english,USenglish,UKenglish}{\snapshot@l@epslogo}{\snapshot@includemps{\snapshot@logo@en}{1}{1}}%
-	\newcaptionname{german,ngerman}{\snapshot@l@epslogo}{\snapshot@includemps{\snapshot@logo@de}{1}{1}}%
-	%
-	% categorization: math
-	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@math@algebra and number theory}{Algebra and Number Theory}
-	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@math@analysis}{Analysis}
-	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@math@discrete mathematics and foundations}{Discrete Mathematics and Foundations}
-	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@math@geometry and topology}{Geometry and Topology}
-	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@math@numerics and scientific computing}{Numerics and Scientific Computing}
-	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@math@probability theory and statistics}{Probability Theory and Statistics}
-	\newcscaptionname{german,ngerman}{snaphot@l@categorization@math@algebra and number theory}{Algebra und Zahlentheorie}
-	\newcscaptionname{german,ngerman}{snaphot@l@categorization@math@analysis}{Analysis}
-	\newcscaptionname{german,ngerman}{snaphot@l@categorization@math@discrete mathematics and foundations}{Diskrete Mathematik und Grundlagen}
-	\newcscaptionname{german,ngerman}{snaphot@l@categorization@math@geometry and topology}{Geometrie und Topologie}
-	\newcscaptionname{german,ngerman}{snaphot@l@categorization@math@numerics and scientific computing}{Numerik und Wissenschaftliches Rechnen}
-	\newcscaptionname{german,ngerman}{snaphot@l@categorization@math@probability theory and statistics}{Wahrscheinlichkeitstheorie und Statistik}
-	%
-	% categorization: connection to other fields
-	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@chemistry and earth science}{Chemistry and Earth Science}
-	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@computer science}{Computer Science}
-	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@engineering and technology}{Engineering and Technology}
-	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@finance}{Finance}
-	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@humanities and social sciences}{Humanities and Social Sciences}
-	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@life science}{Life Science}
-	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@physics}{Physics}
-	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@reflections on mathematics}{Reflections on Mathematics}
-	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@chemistry and earth science}{Chemie und Geowissenschaften}
-	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@computer science}{Informatik}
-	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@engineering and technology}{Ingenieurwissenschaften und Technik}
-	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@finance}{Finanzwissenschaften}
-	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@humanities and social sciences}{Geistes- und Sozialwissenschaften}
-	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@life science}{Lebenswissenschaften}
-	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@physics}{Physik}
-	\newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@reflections on mathematics}{Betrachtungen \texorpdfstring{\"uber}{über} Mathematik}
-	% section name for image credits
-	\newcscaptionname{english,USenglish,UKenglish}{snaphot@l@image credits}{Image credits}
-	\newcscaptionname{german,ngerman}{snaphot@l@image credits}{Bildquellen}	
+  \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@header}{Snapshots of modern mathematics\\from Oberwolfach}%
+  \newcaptionname{german,ngerman}{\snapshot@l@header}{Schnappsch\"usse moderner Mathematik\\aus Oberwolfach}%
+  %
+  \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@creditstext}{\emph{Snapshots of modern mathematics from Oberwolfach} are written by participants in the scientific program of the Mathematisches Forschungsinstitut Oberwolfach (MFO). The snapshot project is designed to promote the understanding and appreciation \\of modern mathematics and mathematical research in the interested public worldwide. It started as part of the project ``Oberwolfach meets IMAGINARY'' in 2013 with a grant by the Klaus Tschira Foundation. The project has also been supported by the Oberwolfach Foundation and the MFO. All snapshots can be found on \href{http://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} and on \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}}.}%
+  \newcaptionname{german,ngerman}{\snapshot@l@creditstext}{\emph{Schnappsch\"usse moderner Mathematik aus Oberwolfach} werden von Teilnehmerinnen und Teilnehmern des wissenschaftlichen Programms des Mathematischen Forschungs-\\instituts Oberwolfach (MFO) geschrieben. Das Schnappschuss-Projekt hat zum Ziel, Verst\"andnis und Wertsch\"atzung f\"ur moderne Mathematik und mathematische For-\\schung in der interessierten Bev\"olkerung weltweit zu f\"ordern. Es begann als Teil des Projekts \glqq Oberwolfach trifft IMAGINARY\grqq, welches von der Klaus Tschira Stiftung gef\"ordert wird. Das Projekt wurde auch von der Oberwolfach Stiftung sowie vom MFO unterst\"utzt. Alle Schnappsch\"usse k\"onnen unter \href{http://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} sowie unter \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}} abgerufen werden.}%
+  %
+  \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@translator@german}{Translated from German by}%
+  \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@translator@english}{Translated from English by\ClassWarningNoLine{snapshotmfo}{Translated by: from English to English}}%
+  \newcaptionname{german,ngerman}{\snapshot@l@translator@english}{\"Ubersetzt aus dem Englischen von}%
+  \newcaptionname{german,ngerman}{\snapshot@l@translator@german}{\"Ubersetzt aus dem Deutschen von\ClassWarningNoLine{snapshotmfo}{Translated by: from German to German}}%
+  \let\snapshot@l@translator@ngerman\snapshot@l@translator@german%
+  \let\snapshot@l@translator@USenglish\snapshot@l@translator@english%
+  \let\snapshot@l@translator@UKenglish\snapshot@l@translator@english%
+  %
+  \newcaptionname{english,USenglish,UKenglish}{\snapshot@label@l@categorization@math}{Mathematical subjects}%
+  \newcaptionname{german,ngerman}{\snapshot@label@l@categorization@math}{Mathematische Gebiete}%
+  %
+  \newcaptionname{english,USenglish,UKenglish}{\snapshot@label@l@categorization@connect}{Connections to other fields}%
+  \newcaptionname{german,ngerman}{\snapshot@label@l@categorization@connect}{Verbindungen zu anderen Gebieten}%
+  %
+  \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@license}{License}%
+  \newcaptionname{german,ngerman}{\snapshot@l@license}{Lizenz}%
+  %
+  \newcaptionname{english,USenglish,UKenglish,german,ngerman}{\snapshot@l@doi}{DOI}%
+  %
+  \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@junioreditor}{Junior Editor}%
+  \newcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editor/in}%
+  %
+  \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@senioreditor}{Senior Editor}%
+  \newcaptionname{german,ngerman}{\snapshot@l@senioreditor}{Chefeditor/in}%
+  %
+  \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@director}{Director}%
+  \newcaptionname{german,ngerman}{\snapshot@l@director}{Direktor/in}%
+  %
+  \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@mfoaddress}{Mathematisches Forschungsinstitut\\Oberwolfach gGmbH\\Schwarzwaldstr. 9\,--1\!1\\77709 Oberwolfach\\Germany}%
+  \newcaptionname{german,ngerman}{\snapshot@l@mfoaddress}{Mathematisches Forschungsinstitut\\Oberwolfach gGmbH\\Schwarzwaldstr. 9\,--1\!1\\77709 Oberwolfach\\Deutschland}%
+  %
+  \ifthenelse{\equal{\snapshot@logo@version}{2}}{
+    \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@epslogo}{\snapshot@includemps{\snapshot@logo@en}{1}{1}}%
+    \newcaptionname{german,ngerman}{\snapshot@l@epslogo}{\snapshot@includemps{\snapshot@logo@de}{1}{1}}%
+  }{
+    \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@epslogo}{\snapshot@includemps{\snapshot@logo@versionone@en}{1}{1}}%
+    \newcaptionname{german,ngerman}{\snapshot@l@epslogo}{\snapshot@includemps{\snapshot@logo@versionone@de}{1}{1}}%
+  }
+  %
+  % categorization: math
+  \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@math@algebra and number theory}{Algebra and Number Theory}
+  \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@math@analysis}{Analysis}
+  \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@math@discrete mathematics and foundations}{Discrete Mathematics and Foundations}
+  \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@math@geometry and topology}{Geometry and Topology}
+  \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@math@numerics and scientific computing}{Numerics and Scientific Computing}
+  \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@math@probability theory and statistics}{Probability Theory and Statistics}
+  \newcscaptionname{german,ngerman}{snaphot@l@categorization@math@algebra and number theory}{Algebra und Zahlentheorie}
+  \newcscaptionname{german,ngerman}{snaphot@l@categorization@math@analysis}{Analysis}
+  \newcscaptionname{german,ngerman}{snaphot@l@categorization@math@discrete mathematics and foundations}{Diskrete Mathematik und Grundlagen}
+  \newcscaptionname{german,ngerman}{snaphot@l@categorization@math@geometry and topology}{Geometrie und Topologie}
+  \newcscaptionname{german,ngerman}{snaphot@l@categorization@math@numerics and scientific computing}{Numerik und Wissenschaftliches Rechnen}
+  \newcscaptionname{german,ngerman}{snaphot@l@categorization@math@probability theory and statistics}{Wahrscheinlichkeitstheorie und Statistik}
+  %
+  % categorization: connection to other fields
+  \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@chemistry and earth science}{Chemistry and Earth Science}
+  \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@computer science}{Computer Science}
+  \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@engineering and technology}{Engineering and Technology}
+  \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@finance}{Finance}
+  \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@humanities and social sciences}{Humanities and Social Sciences}
+  \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@life science}{Life Science}
+  \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@physics}{Physics}
+  \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@reflections on mathematics}{Reflections on Mathematics}
+  \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@chemistry and earth science}{Chemie und Geowissenschaften}
+  \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@computer science}{Informatik}
+  \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@engineering and technology}{Ingenieurwissenschaften und Technik}
+  \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@finance}{Finanzwissenschaften}
+  \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@humanities and social sciences}{Geistes- und Sozialwissenschaften}
+  \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@life science}{Lebenswissenschaften}
+  \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@physics}{Physik}
+  \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@reflections on mathematics}{Betrachtungen \texorpdfstring{\"uber}{über} Mathematik}
+  % section name for image credits
+  \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@image credits}{Image credits}
+  \newcscaptionname{german,ngerman}{snaphot@l@image credits}{Bildquellen}  
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -258,21 +266,21 @@
 \RequirePackage[unicode, breaklinks]{hyperref}
 \catcode`\#=12
 \newcommand{\patchpdfstringdef}{%
-	\patchcmd\pdfstringdef%
-		{\def \begin #1{\csname #1\endcsname }}%
-		{\def \begin ##1{\csname ##1\endcsname }}%
-		{}{\ClassError{snapshotmfo}{Unable to patch certain hyperref commands (1). Please report this to the maintainer of the snapshotmfo document class}{}}%
-	\patchcmd\pdfstringdef%
-		{\def \end #1{\csname end#1\endcsname }}%
-		{\def \end ##1{\csname end##1\endcsname }}%
-		{}{\ClassError{snapshotmfo}{Unable to patch certain hyperref commands (2). Please report this to the maintainer of the snapshotmfo document class}{}}%
+  \patchcmd\pdfstringdef%
+    {\def \begin #1{\csname #1\endcsname }}%
+    {\def \begin ##1{\csname ##1\endcsname }}%
+    {}{\ClassError{snapshotmfo}{Unable to patch certain hyperref commands (1). Please report this to the maintainer of the snapshotmfo document class}{}}%
+  \patchcmd\pdfstringdef%
+    {\def \end #1{\csname end#1\endcsname }}%
+    {\def \end ##1{\csname end##1\endcsname }}%
+    {}{\ClassError{snapshotmfo}{Unable to patch certain hyperref commands (2). Please report this to the maintainer of the snapshotmfo document class}{}}%
 }
 \catcode`\#=6
 \patchpdfstringdef
 
 \@ifpackagelater{hyperref}{2011/02/05}{\hypersetup{hidelinks}}{\hypersetup{colorlinks=false,pdfborder={0 0 0}}}
 
-\newcommand{\mailtoref}[1]{\href{mailto://#1}{\nolinkurl{#1}}}
+\newcommand{\mailtoref}[1]{\href{mailto:#1}{\nolinkurl{#1}}}
 \newcommand{\httpref}[1]{\href{http://#1}{\nolinkurl{#1}}}
 \newcommand{\ftpref}[1]{\href{ftp://#1}{\nolinkurl{#1}}}
 
@@ -302,10 +310,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % environment for image credits
 \newenvironment{imagecredits}{%
-	% assure that image credits are printed before the bibliography
-	\ifdefined\snapshot@bib@printed\ClassError{snapshotmfo}{\noexpand\bibliography must not be used before imagecredits environment}{Change the order of image credits and the bibliography}\fi%
-	% print the image credits
-	\section*{\csname snaphot@l@image credits\endcsname}\begin{description}}{\end{description}%
+  % assure that image credits are printed before the bibliography
+  \ifdefined\snapshot@bib@printed\ClassError{snapshotmfo}{\noexpand\bibliography must not be used before imagecredits environment}{Change the order of image credits and the bibliography}\fi%
+  % print the image credits
+  \section*{\csname snaphot@l@image credits\endcsname}\begin{description}}{\end{description}%
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -316,67 +324,67 @@
 \gdef\snapshot@doiurlprefix{http://dx.doi.org/}%
 \gdef\snapshot@doilink{\snapshot@doi}%
 \newcommand*{\snapshotid}[2]{%
-	\begingroup%
-		\@tempcnta=#1%
-		\global\edef\snapshot@id{\the\@tempcnta}%
-	\endgroup%
-	\gdef\snapshot@year{#2}%
-	\AtBeginDocument{%
-		\renewcaptionname{english,USenglish,UKenglish}{\snapshot@doi}{10.14760/SNAP-#2-\ifnum#1>99\else\ifnum#1>9 0\else00\fi\fi\number#1-EN}%
-		\renewcaptionname{german,ngerman}{\snapshot@doi}{10.14760/SNAP-#2-\ifnum#1>99\else\ifnum#1>9 0\else00\fi\fi\number#1-DE}%
-	}%
-	\gdef\snapshot@doilink{\href{\snapshot@doiurlprefix\snapshot@doi}{\snapshot@doi}}%
-	\AtEndDocument{%
-		\def\snapshot@doi@warning{\ClassWarningNoLine{snapshotmfo}{DOI changed. Rerun to get PDF meta data right}}%
-		\ifthenelse{\isundefined{\snapshot@doi@meta}}{\snapshot@doi@warning}{\ifthenelse{\NOT\equal{\snapshot@doi}{\snapshot@doi@meta}}{\snapshot@doi@warning}{}}
-		\bgroup%
-			\Hy@pdfstringtrue%
-			\immediate\write\@auxout{\noexpand\gdef\noexpand\snapshot@doi@meta{\snapshot@doi}}%
-		\egroup%
-	}
+  \begingroup%
+    \@tempcnta=#1%
+    \global\edef\snapshot@id{\the\@tempcnta}%
+  \endgroup%
+  \gdef\snapshot@year{#2}%
+  \AtBeginDocument{%
+    \renewcaptionname{english,USenglish,UKenglish}{\snapshot@doi}{10.14760/SNAP-#2-\ifnum#1<100 0\ifnum#1<10 0\fi\fi\number#1-EN}%
+    \renewcaptionname{german,ngerman}{\snapshot@doi}{10.14760/SNAP-#2-\ifnum#1<100 0\ifnum#1<10 0\fi\fi\number#1-DE}%
+  }%
+  \gdef\snapshot@doilink{\href{\snapshot@doiurlprefix\snapshot@doi}{\snapshot@doi}}%
+  \AtEndDocument{%
+    \def\snapshot@doi@warning{\ClassWarningNoLine{snapshotmfo}{DOI changed. Rerun to get PDF meta data right}}%
+    \ifthenelse{\isundefined{\snapshot@doi@meta}}{\snapshot@doi@warning}{\ifthenelse{\NOT\equal{\snapshot@doi}{\snapshot@doi@meta}}{\snapshot@doi@warning}{}}
+    \bgroup%
+      \Hy@pdfstringtrue%
+      \immediate\write\@auxout{\noexpand\gdef\noexpand\snapshot@doi@meta{\snapshot@doi}}%
+    \egroup%
+  }
 }%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % author info
 \renewcommand\author[1]{%
-	\gdef\@author{#1}%
-	\let\@metaauthor\@author%
-	% strip spaces before \and in \@metaauthor (slow)
-	\newif\ifsnapshot@removespaces\snapshot@removespacestrue%
-	\loop%
-		\patchcmd\@metaauthor{ \and}{\and}{}{\snapshot@removespacesfalse}%
-	\ifsnapshot@removespaces%
-	\repeat%
+  \gdef\@author{#1}%
+  \let\@metaauthor\@author%
+  % strip spaces before \and in \@metaauthor (slow)
+  \newif\ifsnapshot@removespaces\snapshot@removespacestrue%
+  \loop%
+    \patchcmd\@metaauthor{ \and}{\and}{}{\snapshot@removespacesfalse}%
+  \ifsnapshot@removespaces%
+  \repeat%
 }
 
 \newcounter{ctrmaxmfosnapshotauthorinfo}
 \setcounter{ctrmaxmfosnapshotauthorinfo}{0}
 \newcommand*{\authorinfo}[1]{%
-	\expandafter\newcommand\csname snapshot@authorinfo\the\value{ctrmaxmfosnapshotauthorinfo} \endcsname{#1}%
-	\stepcounter{ctrmaxmfosnapshotauthorinfo}%
+  \expandafter\newcommand\csname snapshot@authorinfo\the\value{ctrmaxmfosnapshotauthorinfo} \endcsname{#1}%
+  \stepcounter{ctrmaxmfosnapshotauthorinfo}%
 }
 
 \newcommand{\@authorinfo}{%
-	\bgroup
-		\newcounter{ctrauthorinfo}%
-		\setcounter{ctrauthorinfo}{0}%
-		\whiledo {\value{ctrauthorinfo} < \value{ctrmaxmfosnapshotauthorinfo}}%
-		{%
-			\bgroup%
-				\def\authorname##1{\emph{##1}}%
-				\renewcommand\UrlFont{\em}%
-				\textit{%
-				\bgroup%
-					%
-					\DeclareRobustCommand\\{\let \reserved@e \relax\let \reserved@f \relax\@ifstar{}{}\let \reserved@e \vadjust \let \reserved@f \nobreak \@xnewline}%
-					%
-					\csname snapshot@authorinfo\the\value{ctrauthorinfo} \endcsname}\strut%
-				\egroup%
-			\egroup%
-			\stepcounter{ctrauthorinfo}%
-			\vskip\medskipamount%
-		}%
-	\egroup%
+  \bgroup
+    \newcounter{ctrauthorinfo}%
+    \setcounter{ctrauthorinfo}{0}%
+    \whiledo {\value{ctrauthorinfo} < \value{ctrmaxmfosnapshotauthorinfo}}%
+    {%
+      \bgroup%
+        \def\authorname##1{\emph{##1}}%
+        \renewcommand\UrlFont{\em}%
+        \textit{%
+        \bgroup%
+          %
+          \DeclareRobustCommand\\{\let \reserved@e \relax\let \reserved@f \relax\@ifstar{}{}\let \reserved@e \vadjust \let \reserved@f \nobreak \@xnewline}%
+          %
+          \csname snapshot@authorinfo\the\value{ctrauthorinfo} \endcsname}\strut%
+        \egroup%
+      \egroup%
+      \stepcounter{ctrauthorinfo}%
+      \vskip\medskipamount%
+    }%
+  \egroup%
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -391,47 +399,47 @@
 \csdef{snapshot@license@CC-BY-SA-3.0}{\href{http://creativecommons.org/licenses/by-sa/3.0/}{Creative Commons BY-SA 3.0}}
 \newcommand{\snapshot@license}{\ClassWarningNoLine{snapshotmfo}{No license information given}\snapshot@defaultcontent}
 \newcommand{\license}[1]{%
-	\expandafter\ifcsdef\expandafter{snapshot@license@#1}{%
-		\renewcommand{\snapshot@license}{\csname snapshot@license@#1\endcsname}%
-	}{\ClassError{snapshotmfo}{Unknown license name}{Please use one of CC-BY-SA-4.0, CC-BY-ND-4.0 or CC-BY-NC-SA-4.0. (CC-BY-NC-SA-3.0, CC-BY-NC-ND-3.0 and CC-BY-SA-3.0 still work, too.)}}%	
+  \expandafter\ifcsdef\expandafter{snapshot@license@#1}{%
+    \renewcommand{\snapshot@license}{\csname snapshot@license@#1\endcsname}%
+  }{\ClassError{snapshotmfo}{Unknown license name}{Please use one of CC-BY-SA-4.0, CC-BY-ND-4.0 or CC-BY-NC-SA-4.0. (CC-BY-NC-SA-3.0, CC-BY-NC-ND-3.0 and CC-BY-SA-3.0 still work, too.)}}%  
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % categorization: math
 \gdef\snapshot@categorization@math{\ClassWarningNoLine{snapshotmfo}{No mathematical subject given}\snapshot@defaultcontent}
 \newcommand*{\categorizationmath}[1]{%
-	\ifblank{#1}{%
-		\ClassError{snapshotmfo}{Mathematical subject must not be blank}{}%
-	}{%
-		\gdef\snapshot@categorization@math{\space}%
-		\begingroup%
-			\listadd\snapshot@categorization@math@subjects{algebra and number theory}%
-			\listadd\snapshot@categorization@math@subjects{analysis}%
-			\listadd\snapshot@categorization@math@subjects{discrete mathematics and foundations}%
-			\listadd\snapshot@categorization@math@subjects{geometry and topology}%
-			\listadd\snapshot@categorization@math@subjects{numerics and scientific computing}%
-			\listadd\snapshot@categorization@math@subjects{probability theory and statistics}%
-			\def\snapshot@add@categorization@math##1{%
-				\xifinlist{##1}{\snapshot@categorization@math@subjects}%
-				{%
-					\gappto\snapshot@categorization@math{,\space\expandafter\csname snaphot@l@categorization@math@##1\endcsname}%
-				}{%
-					\ClassError{snapshotmfo}{Unknown category "##1" in \@backslashchar categorizationmath}{possibilities: \snapshot@categorization@math@subjects}%
-				}%
-			}%
-			\def\do##1{\snapshot@add@categorization@math{##1}}%
-			\docsvlist{#1}%
-		\endgroup%
-		\patchcmd{\snapshot@categorization@math}{\space,\space}{}{}{}% remove leading ,
-		\AtEndDocument{%
-			\def\snapshot@categorization@math@warning{\ClassWarningNoLine{snapshotmfo}{Mathematical categorization changed. Rerun to get PDF meta data right}}%
-			\ifthenelse{\isundefined{\snapshot@categorization@math@meta}}{\snapshot@categorization@math@warning}{\ifthenelse{\NOT\equal{\snapshot@categorization@math}{\snapshot@categorization@math@meta}}{\snapshot@categorization@math@warning}{}}
-			\bgroup%
-				\Hy@pdfstringtrue%
-				\immediate\write\@auxout{\noexpand\gdef\noexpand\snapshot@categorization@math@meta{\snapshot@categorization@math}}%
-			\egroup%
-		}
-	}%
+  \ifblank{#1}{%
+    \ClassError{snapshotmfo}{Mathematical subject must not be blank}{}%
+  }{%
+    \gdef\snapshot@categorization@math{\space}%
+    \begingroup%
+      \listadd\snapshot@categorization@math@subjects{algebra and number theory}%
+      \listadd\snapshot@categorization@math@subjects{analysis}%
+      \listadd\snapshot@categorization@math@subjects{discrete mathematics and foundations}%
+      \listadd\snapshot@categorization@math@subjects{geometry and topology}%
+      \listadd\snapshot@categorization@math@subjects{numerics and scientific computing}%
+      \listadd\snapshot@categorization@math@subjects{probability theory and statistics}%
+      \def\snapshot@add@categorization@math##1{%
+        \xifinlist{##1}{\snapshot@categorization@math@subjects}%
+        {%
+          \gappto\snapshot@categorization@math{,\space\expandafter\csname snaphot@l@categorization@math@##1\endcsname}%
+        }{%
+          \ClassError{snapshotmfo}{Unknown category "##1" in \@backslashchar categorizationmath}{possibilities: \snapshot@categorization@math@subjects}%
+        }%
+      }%
+      \def\do##1{\snapshot@add@categorization@math{##1}}%
+      \docsvlist{#1}%
+    \endgroup%
+    \patchcmd{\snapshot@categorization@math}{\space,\space}{}{}{}% remove leading ,
+    \AtEndDocument{%
+      \def\snapshot@categorization@math@warning{\ClassWarningNoLine{snapshotmfo}{Mathematical categorization changed. Rerun to get PDF meta data right}}%
+      \ifthenelse{\isundefined{\snapshot@categorization@math@meta}}{\snapshot@categorization@math@warning}{\ifthenelse{\NOT\equal{\snapshot@categorization@math}{\snapshot@categorization@math@meta}}{\snapshot@categorization@math@warning}{}}
+      \bgroup%
+        \Hy@pdfstringtrue%
+        \immediate\write\@auxout{\noexpand\gdef\noexpand\snapshot@categorization@math@meta{\snapshot@categorization@math}}%
+      \egroup%
+    }
+  }%
 }%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -439,47 +447,51 @@
 \newif\if@snapshot@show@categorization@connect\@snapshot@show@categorization@connecttrue
 \gdef\snapshot@categorization@connect{\ClassWarningNoLine{snapshotmfo}{No connection to other fields given}\snapshot@defaultcontent}
 \newcommand*{\categorizationconnect}[1]{%
-	\ifblank{#1}{%
-		\@snapshot@show@categorization@connectfalse% disable display of this field
-	}{%
-		\gdef\snapshot@categorization@connect{\space}%
-		\begingroup%
-			\listadd\snapshot@categorization@connect@subjects{chemistry and earth science}%
-			\listadd\snapshot@categorization@connect@subjects{computer science}%
-			\listadd\snapshot@categorization@connect@subjects{engineering and technology}%
-			\listadd\snapshot@categorization@connect@subjects{finance}%
-			\listadd\snapshot@categorization@connect@subjects{humanities and social sciences}%
-			\listadd\snapshot@categorization@connect@subjects{life science}%
-			\listadd\snapshot@categorization@connect@subjects{physics}%
-			\listadd\snapshot@categorization@connect@subjects{reflections on mathematics}%
-			\def\snapshot@add@categorization@connect##1{%
-				\xifinlist{##1}{\snapshot@categorization@connect@subjects}%
-				{%
-					\gappto\snapshot@categorization@connect{,\space\expandafter\csname snaphot@l@categorization@connect@##1\endcsname}%
-				}{%
-					\ClassError{snapshotmfo}{Unknown category "##1" in \@backslashchar categorizationconnect}{possibilities: \snapshot@categorization@connect@subjects}%
-				}%
-			}%
-			\def\do##1{\snapshot@add@categorization@connect{##1}}%
-			\docsvlist{#1}%
-		\endgroup%
-		\patchcmd{\snapshot@categorization@connect}{\space,\space}{}{}{}% remove leading ,
-		\AtEndDocument{%
-			\def\snapshot@categorization@connect@warning{\ClassWarningNoLine{snapshotmfo}{Connection to other fields changed. Rerun to get PDF meta data right}}%
-			\ifthenelse{\isundefined{\snapshot@categorization@connect@meta}}{\snapshot@categorization@connect@warning}{\ifthenelse{\NOT\equal{\snapshot@categorization@connect}{\snapshot@categorization@connect@meta}}{\snapshot@categorization@connect@warning}{}}
-			\bgroup%
-				\Hy@pdfstringtrue%
-				\immediate\write\@auxout{\noexpand\gdef\noexpand\snapshot@categorization@connect@meta{\snapshot@categorization@connect}}%
-			\egroup%
-		}
-	}%
+  \ifblank{#1}{%
+    \@snapshot@show@categorization@connectfalse% disable display of this field
+  }{%
+    \gdef\snapshot@categorization@connect{\space}%
+    \gdef\snapshot@categorization@connectraw{\space}%
+    \begingroup%
+      \listadd\snapshot@categorization@connect@subjects{chemistry and earth science}%
+      \listadd\snapshot@categorization@connect@subjects{computer science}%
+      \listadd\snapshot@categorization@connect@subjects{engineering and technology}%
+      \listadd\snapshot@categorization@connect@subjects{finance}%
+      \listadd\snapshot@categorization@connect@subjects{humanities and social sciences}%
+      \listadd\snapshot@categorization@connect@subjects{life science}%
+      \listadd\snapshot@categorization@connect@subjects{physics}%
+      \listadd\snapshot@categorization@connect@subjects{reflections on mathematics}%
+      \def\snapshot@add@categorization@connect##1{%
+        \xifinlist{##1}{\snapshot@categorization@connect@subjects}%
+        {%
+          \gappto\snapshot@categorization@connect{,\space\expandafter\csname snaphot@l@categorization@connect@##1\endcsname}%
+          \gappto\snapshot@categorization@connectraw{,\space ##1}%
+        }{%
+          \ClassError{snapshotmfo}{Unknown category "##1" in \@backslashchar categorizationconnect}{possibilities: \snapshot@categorization@connect@subjects}%
+        }%
+      }%
+      \def\do##1{\snapshot@add@categorization@connect{##1}}%
+      \docsvlist{#1}%
+    \endgroup%
+    \patchcmd{\snapshot@categorization@connect}{\space,\space}{}{}{}% remove leading ,
+    \patchcmd{\snapshot@categorization@connectraw}{\space,\space}{}{}{}% remove leading ,
+    \AtEndDocument{%
+      \def\snapshot@categorization@connect@warning{\ClassWarningNoLine{snapshotmfo}{Connection to other fields changed. Rerun to get PDF meta data right}}%
+      \ifthenelse{\isundefined{\snapshot@categorization@connectraw@meta}}{\snapshot@categorization@connect@warning}{\ifthenelse{\NOT\equal{\snapshot@categorization@connectraw}{\snapshot@categorization@connectraw@meta}}{\snapshot@categorization@connect@warning}{}}
+      \bgroup%
+        \Hy@pdfstringtrue%
+        \immediate\write\@auxout{\noexpand\gdef\noexpand\snapshot@categorization@connect@meta{\snapshot@categorization@connect}}%
+        \immediate\write\@auxout{\noexpand\gdef\noexpand\snapshot@categorization@connectraw@meta{\snapshot@categorization@connectraw}}%
+      \egroup%
+    }
+  }%
 }%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % translator
 \newcommand*{\translator}[2]{%
-	\gdef\snapshot@l@translator{\expandafter\csname snapshot@l@translator@#1\endcsname}%
-	\gdef\snapshot@translator{#2}%
+  \gdef\snapshot@l@translator{\expandafter\csname snapshot@l@translator@#1\endcsname}%
+  \gdef\snapshot@translator{#2}%
 }%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -487,12 +499,39 @@
 \newcommand{\snapshot@junioreditor}{\ClassWarningNoLine{snapshotmfo}{No junior editor given}\snapshot@defaultcontent}%
 \newcommand{\snapshot@junioreditoremail}{--}%
 \newcommand*{\junioreditor}[3][n]{%
-	\ifthenelse{\equal{#1}{f}}{\IfSubStr{#2}{ und }{\renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editorinnen}}{\renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editorin}}}{}%
-	\ifthenelse{\equal{#1}{m}}{\IfSubStr{#2}{ und }{\renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editoren}}{\renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editor}}}{}%
-	\IfSubStr{#2}{ and }{\renewcaptionname{english,USenglish,UKenglish}{\snapshot@l@junioreditor}{Junior Editors}}{}%
-
-	\gdef\snapshot@junioreditor{#2}%
-	\gdef\snapshot@junioreditoremail{\mailtoref{#3}}%
+  \ifthenelse{\equal{#1}{f}}
+  {% female
+    \IfSubStr{#2}{ und }
+    {% female and plural
+      \renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editorinnen}
+    }%
+    {% female and singular
+      \renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editorin}
+    }%
+  }%
+  {% not female
+    \ifthenelse{\equal{#1}{m}}
+    {% male
+      \IfSubStr{#2}{ und }
+      {% male and plural
+        \renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editoren}
+      }%
+      {% male and singular
+        \renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editor}
+      }%
+    }%
+    {% not male
+      \IfSubStr{#2}{ und }
+      {% general and plural
+        \renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editor(inn)en}
+      }%
+      {% general and singular
+      }%
+    }%
+  }%
+  \IfSubStr{#2}{ and }{\renewcaptionname{english,USenglish,UKenglish}{\snapshot@l@junioreditor}{Junior Editors}}{}%
+  \gdef\snapshot@junioreditor{#2}%
+  \gdef\snapshot@junioreditoremail{\mailtoref{#3}}%
 }%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -500,93 +539,93 @@
 \newcommand{\snapshot@senioreditor}{\ClassWarningNoLine{snapshotmfo}{No senior editor given}\snapshot@defaultcontent}%
 \newcommand{\snapshot@senioreditoremail}{--}%
 \newcommand*{\senioreditor}[3][n]{%
-	\ifthenelse{\equal{#1}{f}}{\renewcaptionname{german,ngerman}{\snapshot@l@senioreditor}{Chefeditorin}}{}%
-	\ifthenelse{\equal{#1}{m}}{\renewcaptionname{german,ngerman}{\snapshot@l@senioreditor}{Chefeditor}}{}%
-	\gdef\snapshot@senioreditor{#2}%
-	\gdef\snapshot@senioreditoremail{\mailtoref{#3}}%
+  \ifthenelse{\equal{#1}{f}}{\renewcaptionname{german,ngerman}{\snapshot@l@senioreditor}{Chefeditorin}}{}%
+  \ifthenelse{\equal{#1}{m}}{\renewcaptionname{german,ngerman}{\snapshot@l@senioreditor}{Chefeditor}}{}%
+  \gdef\snapshot@senioreditor{#2}%
+  \gdef\snapshot@senioreditoremail{\mailtoref{#3}}%
 }%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % director
 \newcommand{\snapshot@director}{\ClassWarningNoLine{snapshotmfo}{No director given}\snapshot@defaultcontent}%
 \newcommand*{\director}[2][n]{%
-	\ifthenelse{\equal{#1}{f}}{\renewcaptionname{german,ngerman}{\snapshot@l@director}{Direktorin}}{}%
-	\ifthenelse{\equal{#1}{m}}{\renewcaptionname{german,ngerman}{\snapshot@l@director}{Direktor}}{}%
-	\gdef\snapshot@director{#2}%
+  \ifthenelse{\equal{#1}{f}}{\renewcaptionname{german,ngerman}{\snapshot@l@director}{Direktorin}}{}%
+  \ifthenelse{\equal{#1}{m}}{\renewcaptionname{german,ngerman}{\snapshot@l@director}{Direktor}}{}%
+  \gdef\snapshot@director{#2}%
 }%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PDF meta data
 \AtBeginDocument{%
-	\bgroup%
-		\Hy@pdfstringtrue%
-		\def\thanks#1{}%
-		\def\and{, \ignorespaces}%
-		\hypersetup{pdfauthor={\@metaauthor},pdftitle={\@title}}%
-		\def\ClassWarningNoLine#1#2{}%
-		\def\snapshot@pdfinfo{%
-				Volume={\snapshot@year},%
-				Issue={\snapshot@id},%
-				SeniorEditor={\snapshot@senioreditor},%
-				JuniorEditor={\snapshot@junioreditor},%
-				Director={\snapshot@director}%
-		}%
-		\ifthenelse{\isundefined{\snapshot@doi@meta}}{}{\appto{\snapshot@pdfinfo}{,DOI={\snapshot@doi@meta}}}%
-		\ifthenelse{\isundefined{\snapshot@categorization@math@meta}}{}{\appto{\snapshot@pdfinfo}{,MathematicalSubjects={\snapshot@categorization@math@meta}}}%
-		\ifthenelse{\isundefined{\snapshot@categorization@connect@meta}}{}{\appto{\snapshot@pdfinfo}{,ConnectedFields={\snapshot@categorization@connect@meta}}}%
-		\edef\snapshot@pdfinfo{pdfinfo={\snapshot@pdfinfo}}%
-		\expandafter\hypersetup\expandafter{\snapshot@pdfinfo}%
-	\egroup%
+  \bgroup%
+    \Hy@pdfstringtrue%
+    \def\thanks#1{}%
+    \def\and{, \ignorespaces}%
+    \hypersetup{pdfauthor={\@metaauthor},pdftitle={\@title}}%
+    \def\ClassWarningNoLine#1#2{}%
+    \def\snapshot@pdfinfo{%
+        Volume={\snapshot@year},%
+        Issue={\snapshot@id},%
+        SeniorEditor={\snapshot@senioreditor},%
+        JuniorEditor={\snapshot@junioreditor},%
+        Director={\snapshot@director}%
+    }%
+    \ifthenelse{\isundefined{\snapshot@doi@meta}}{}{\appto{\snapshot@pdfinfo}{,DOI={\snapshot@doi@meta}}}%
+    \ifthenelse{\isundefined{\snapshot@categorization@math@meta}}{}{\appto{\snapshot@pdfinfo}{,MathematicalSubjects={\snapshot@categorization@math@meta}}}%
+    \ifthenelse{\isundefined{\snapshot@categorization@connect@meta}}{}{\appto{\snapshot@pdfinfo}{,ConnectedFields={\snapshot@categorization@connect@meta}}}%
+    \edef\snapshot@pdfinfo{pdfinfo={\snapshot@pdfinfo}}%
+    \expandafter\hypersetup\expandafter{\snapshot@pdfinfo}%
+  \egroup%
 }%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % define title
 \renewcommand*\maketitle{%
-	\par
-	\begingroup
-		\snapshot@define@spaces%
-		\newpage
-		\global\@topnum\z@
-		\let\thanks\footnote%
-		\@maketitle
-		\thispagestyle{\titlepagestyle}
-	\endgroup
-	\let\thanks\relax
-	\let\maketitle\relax
-	\let\@maketitle\relax
-	\global\let\@thanks\@empty
-	\global\let\@author\@empty
-	\global\let\@date\@empty
-	\global\let\@title\@empty
-	\global\let\@subtitle\@empty
-	\global\let\@extratitle\@empty
-	\global\let\@titlehead\@empty
-	\global\let\@subject\@empty
-	\global\let\@publishers\@empty
-	\global\let\@uppertitleback\@empty
-	\global\let\@lowertitleback\@empty
-	\global\let\@dedication\@empty
-	\global\let\author\relax
-	\global\let\title\relax
-	\global\let\extratitle\relax
-	\global\let\titlehead\relax
-	\global\let\subject\relax
-	\global\let\publishers\relax
-	\global\let\uppertitleback\relax
-	\global\let\lowertitleback\relax
-	\global\let\dedication\relax
-	\global\let\date\relax
-	\global\let\and\relax
-	% undefine snapshotmfo commands to be used in preamble only
-	\global\let\authorinfo\relax
-	\global\let\categorizationmath\relax 
-	\global\let\categorizationconnect\relax
-	\global\let\license\relax
-	\global\let\snapshotid\relax
-	\global\let\translator\relax
-	\global\let\junioreditor\relax
-	\global\let\senioreditor\relax
-	\global\let\director\relax
+  \par
+  \begingroup
+    \snapshot@define@spaces%
+    \newpage
+    \global\@topnum\z@
+    \let\thanks\footnote%
+    \@maketitle
+    \thispagestyle{\titlepagestyle}
+  \endgroup
+  \let\thanks\relax
+  \let\maketitle\relax
+  \let\@maketitle\relax
+  \global\let\@thanks\@empty
+  \global\let\@author\@empty
+  \global\let\@date\@empty
+  \global\let\@title\@empty
+  \global\let\@subtitle\@empty
+  \global\let\@extratitle\@empty
+  \global\let\@titlehead\@empty
+  \global\let\@subject\@empty
+  \global\let\@publishers\@empty
+  \global\let\@uppertitleback\@empty
+  \global\let\@lowertitleback\@empty
+  \global\let\@dedication\@empty
+  \global\let\author\relax
+  \global\let\title\relax
+  \global\let\extratitle\relax
+  \global\let\titlehead\relax
+  \global\let\subject\relax
+  \global\let\publishers\relax
+  \global\let\uppertitleback\relax
+  \global\let\lowertitleback\relax
+  \global\let\dedication\relax
+  \global\let\date\relax
+  \global\let\and\relax
+  % undefine snapshotmfo commands to be used in preamble only
+  \global\let\authorinfo\relax
+  \global\let\categorizationmath\relax 
+  \global\let\categorizationconnect\relax
+  \global\let\license\relax
+  \global\let\snapshotid\relax
+  \global\let\translator\relax
+  \global\let\junioreditor\relax
+  \global\let\senioreditor\relax
+  \global\let\director\relax
 }%
 \renewcommand*{\@maketitle}{%
   \clearpage
@@ -599,7 +638,7 @@
   \begin{center}%
     \parbox[t]{0.75\linewidth}{\centering\titlefont \@title}\\[2em]
 
-	\rule[0.5ex]{1cm}{0.526pt}\\[1.5em]%
+  \rule[0.5ex]{1cm}{0.526pt}\\[1.5em]%
     {%
       \relscale{1.2}%
       \lineskip .5em%
@@ -621,84 +660,84 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % define last page (credits, footer, ...)
 \AtEndDocument{%
-	\patchcmd{\footnoterule}{\vskip \z@ \@plus .05fil}{}{}{}%
-	\raggedbottom%
-	\newsavebox{\snapshot@credits}%
-	\sbox{\snapshot@credits}{\hbox{\parbox[t]{\linewidth}{%
-		\snapshot@define@spaces%
-		\raggedcolumns
-		\renewcommand\UrlFont{}%
-		\relscale{0.9}%
-		\widowpenalties 1 10000%
-		\medskipamount2ex%
-		\multicolsep=0pt%
-		\begin{multicols}{2}%
-			\renewcommand{\baselinestretch}{0.8}
-			\sffamily%
-			\raggedright%
-			\@authorinfo%
-			%
-			\ifdef{\snapshot@l@translator}{%
-				\textit{\snapshot@l@translator}\\*
-				\snapshot@translator\\[\medskipamount]
-			}{}%
-			%
-			\textit{\snapshot@label@l@categorization@math}\\*
-			\snapshot@categorization@math\\[\medskipamount]
-			%
-			\if@snapshot@show@categorization@connect
-				\textit{\snapshot@label@l@categorization@connect}\\*
-				\snapshot@categorization@connect\\[\medskipamount]
-			\fi
-			%
-			\textit{\snapshot@l@license}\\*
-			\snapshot@license\\[\medskipamount]
-			%
-			\textit{\snapshot@l@doi}\\*
-			\snapshot@doilink%
-		\end{multicols}%
-		\vskip 0.3cm%
-		\par\hfill\rule[0.5ex]{1cm}{0.526pt}\hfill\null%
-		\vskip 0.25cm
-		\raggedright\normalfont\snapshot@l@creditstext%
-		%\vskip-\baselineskip%
-		\vskip 0.25cm%
-		\par\hfill\rule[0.5ex]{1cm}{0.526pt}\hfill\null%
-		\vskip 0.4cm%
-	    %{\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
-    	%
-		\begin{multicols}{2}%
-			\renewcommand{\baselinestretch}{0.8}%
-	    	\sffamily
-			\parbox{\linewidth}{%
-				\raggedright
-				\textit{\snapshot@l@junioreditor}\\
-				\snapshot@junioreditor\\
-				\snapshot@junioreditoremail\\[\medskipamount]
-				%
-				\textit{\snapshot@l@senioreditor}\\
-				\snapshot@senioreditor\\
-				\snapshot@senioreditoremail%
-			}\columnbreak\par%
-			\parbox{\linewidth}{%
-				\raggedright
-				\snapshot@l@mfoaddress\\[\medskipamount]
-				%
-				\textit{\snapshot@l@director}\\
-				\snapshot@director%
-			}\par%
-		\end{multicols}%
-		\vskip 0.75cm
-		\noindent%
-		\def\testtest{\snapshot@logo@de}%
-		\raisebox{-.34725559716718504883\height}[.65274440283281495117\height][-.34725559716718504883\height]{%
-			\resizebox*{\linewidth}{!}{\snapshot@l@epslogo}%
-		}%
-	}}}%
-	\clearpage%
-	\thispagestyle{empty}%
-	\noindent\null\vfill%
-	\noindent\usebox{\snapshot@credits}%
+  \patchcmd{\footnoterule}{\vskip \z@ \@plus .05fil}{}{}{}%
+  \raggedbottom%
+  \newsavebox{\snapshot@credits}%
+  \sbox{\snapshot@credits}{\hbox{\parbox[t]{\linewidth}{%
+    \snapshot@define@spaces%
+    \raggedcolumns
+    \renewcommand\UrlFont{}%
+    \relscale{0.9}%
+    \widowpenalties 1 10000%
+    \medskipamount2ex%
+    \multicolsep=0pt%
+    \begin{multicols}{2}%
+      \renewcommand{\baselinestretch}{0.8}
+      \sffamily%
+      \raggedright%
+      \@authorinfo%
+      %
+      \ifdef{\snapshot@l@translator}{%
+        \textit{\snapshot@l@translator}\\*
+        \snapshot@translator\\[\medskipamount]
+      }{}%
+      %
+      \textit{\snapshot@label@l@categorization@math}\\*
+      \snapshot@categorization@math\\[\medskipamount]
+      %
+      \if@snapshot@show@categorization@connect
+        \textit{\snapshot@label@l@categorization@connect}\\*
+        \snapshot@categorization@connect\\[\medskipamount]
+      \fi
+      %
+      \textit{\snapshot@l@license}\\*
+      \snapshot@license\\[\medskipamount]
+      %
+      \textit{\snapshot@l@doi}\\*
+      \snapshot@doilink%
+    \end{multicols}%
+    \vskip 0.3cm%
+    \par\hfill\rule[0.5ex]{1cm}{0.526pt}\hfill\null%
+    \vskip 0.25cm
+    \raggedright\normalfont\snapshot@l@creditstext%
+    %\vskip-\baselineskip%
+    \vskip 0.25cm%
+    \par\hfill\rule[0.5ex]{1cm}{0.526pt}\hfill\null%
+    \vskip 0.4cm%
+      %{\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
+      %
+    \begin{multicols}{2}%
+      \renewcommand{\baselinestretch}{0.8}%
+        \sffamily
+      \parbox{\linewidth}{%
+        \raggedright
+        \textit{\snapshot@l@junioreditor}\\
+        \snapshot@junioreditor\\
+        \snapshot@junioreditoremail\\[\medskipamount]
+        %
+        \textit{\snapshot@l@senioreditor}\\
+        \snapshot@senioreditor\\
+        \snapshot@senioreditoremail%
+      }\columnbreak\par%
+      \parbox{\linewidth}{%
+        \raggedright
+        \snapshot@l@mfoaddress\\[\medskipamount]
+        %
+        \textit{\snapshot@l@director}\\
+        \snapshot@director%
+      }\par%
+    \end{multicols}%
+    \vskip 0.75cm
+    \noindent%
+    \def\testtest{\snapshot@logo@de}%
+    \raisebox{-.34725559716718504883\height}[.65274440283281495117\height][-.34725559716718504883\height]{%
+      \resizebox*{\linewidth}{!}{\snapshot@l@epslogo}%
+    }%
+  }}}%
+  \clearpage%
+  \thispagestyle{empty}%
+  \noindent\null\vfill%
+  \noindent\usebox{\snapshot@credits}%
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -748,7 +787,7 @@
 % e.g. using ghostscript via shrinkpdf
 % http://www.alfredklomp.com/programming/shrinkpdf
 
-\snapshot@savemps\snapshot@logo@en{
+\snapshot@savemps\snapshot@logo@versionone@en{
 %!PS-Adobe-3.0 EPSF-3.0
 %%BoundingBox: 0 0 525 44 
 %%HiResBoundingBox: 0.08498 0.71169 524.82 43.22661 
@@ -4513,7 +4552,7 @@ showpage
 %%EOF
 }
 
-\snapshot@savemps\snapshot@logo@de{
+\snapshot@savemps\snapshot@logo@versionone@de{
 %!PS-Adobe-3.0 EPSF-3.0
 %%BoundingBox: 0 0 525 44 
 %%HiResBoundingBox: 0.08498 0.53389 524.82 43.22661 
@@ -8284,3 +8323,4665 @@ newpath 129.301 40.4648 moveto
 showpage
 %%EOF
 }
+
+\snapshot@savemps\snapshot@logo@en{
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 516 43 
+%%HiResBoundingBox: 0.48376 0.53497 515.10199 42.47836 
+%%Creator: MetaPost 1.999
+%%CreationDate: 2017.01.25:1309
+%%Pages: 1
+%%BeginProlog
+%%EndProlog
+%%Page: 1 1
+ 0 0 0 setrgbcolor 0 2.46121 dtransform truncate idtransform setlinewidth pop
+ [] 0 setdash 0 setlinecap 0 setlinejoin 10 setmiterlimit
+newpath 11.5586 6.78906 moveto
+28.6133 6.78906 lineto
+34.0469 6.78906 38.457 11.1992 38.457 16.6367 curveto
+38.457 22.0703 34.0469 26.4805 28.6133 26.4805 curveto
+20.08589 26.4805 lineto
+11.5586 26.4805 lineto
+28.6133 26.4805 lineto stroke
+newpath 37.1367 21.5586 moveto
+28.6133 36.3242 lineto
+25.8945 41.0313 19.8711 42.6445 15.1641 39.9297 curveto
+10.457 37.21089 8.84375 31.1875 11.5586 26.4805 curveto
+11.5586 26.4805 lineto
+15.8242 19.0938 lineto
+20.08589 11.7109 lineto
+11.5586 26.4805 lineto stroke
+newpath 11.5586 36.3242 moveto
+3.03516 21.5586 lineto
+0.3164 16.85161 1.92969 10.8242 6.63672 8.10938 curveto
+11.3438 5.39063 17.3672 7.00781 20.08589 11.7109 curveto
+24.3477 19.0938 lineto
+20.08589 11.7109 lineto
+28.6133 26.4805 lineto stroke
+newpath 54.457 33.83589 moveto
+53.5078 33.83589 lineto
+53.5078 40.0039 lineto
+51.5156 35.8086 lineto
+50.9492 35.8086 lineto
+48.9727 40.0039 lineto
+48.9727 33.83589 lineto
+48.08589 33.83589 lineto
+48.08589 40.9961 lineto
+49.3828 40.9961 lineto
+51.28911 37.0117 lineto
+53.1367 40.9961 lineto
+54.457 40.9961 lineto
+ closepath fill
+newpath 60.4805 33.83589 moveto
+59.582 33.83589 lineto
+59.582 34.4102 lineto
+59.5039 34.3555 59.3945 34.2773 59.2578 34.1797 curveto
+58.85161 34.7148 lineto
+59.1133 34.8398 59.3594 34.9883 59.582 35.1602 curveto
+59.582 35.1602 lineto
+59.582 36.6563 lineto
+59.3047 36.6367 58.9805 36.6133 58.6094 36.582 curveto
+58.2344 36.5508 57.9414 36.5039 57.7227 36.4414 curveto
+57.46089 36.3711 57.2539 36.2539 57.0938 36.0977 curveto
+56.9336 35.9453 56.85161 35.7305 56.85161 35.457 curveto
+56.85161 35.14839 56.9453 34.918 57.1328 34.7617 curveto
+57.3164 34.6094 57.60161 34.5313 57.9805 34.5313 curveto
+58.2969 34.5313 58.5898 34.5898 58.85161 34.7148 curveto
+59.2578 34.1797 lineto
+59.1211 34.082 58.9883 34.0078 58.8594 33.9492 curveto
+58.71089 33.875 58.53911 33.8125 58.3438 33.7617 curveto
+58.14839 33.7148 57.918 33.6875 57.6563 33.6875 curveto
+57.1719 33.6875 56.7617 33.8477 56.4258 34.168 curveto
+56.08589 34.4883 55.918 34.89839 55.918 35.3945 curveto
+55.918 35.8008 56.0078 36.1328 56.1797 36.3828 curveto
+56.3555 36.6328 56.6055 36.832 56.9297 36.97661 curveto
+57.2578 37.1211 57.64839 37.2188 58.1055 37.2695 curveto
+58.5664 37.3203 59.0547 37.3594 59.582 37.3867 curveto
+59.582 37.52339 lineto
+59.582 37.7305 59.5469 37.89839 59.4727 38.0352 curveto
+59.4023 38.168 59.2969 38.27339 59.16411 38.35161 curveto
+59.0352 38.4258 58.8828 38.47661 58.7031 38.5 curveto
+58.52339 38.5273 58.33589 38.53911 58.1406 38.53911 curveto
+57.9023 38.53911 57.6406 38.5078 57.3477 38.4453 curveto
+57.0547 38.3828 56.7539 38.293 56.4453 38.1719 curveto
+56.3945 38.1719 lineto
+56.3945 39.0898 lineto
+56.5703 39.1406 56.8281 39.1914 57.1602 39.25 curveto
+57.4922 39.3086 57.8203 39.33589 58.1445 39.33589 curveto
+58.52339 39.33589 58.85161 39.3047 59.1328 39.2422 curveto
+59.41411 39.1797 59.6563 39.0742 59.8594 38.9219 curveto
+60.0625 38.7773 60.2188 38.58589 60.3242 38.35161 curveto
+60.4297 38.1172 60.4805 37.8281 60.4805 37.4805 curveto
+ closepath fill
+newpath 65.0078 33.8867 moveto
+64.8398 33.8398 64.6563 33.8047 64.4531 33.77339 curveto
+64.2539 33.7461 64.0742 33.7305 63.918 33.7305 curveto
+63.3711 33.7305 62.9531 33.8789 62.668 34.1758 curveto
+62.3828 34.4688 62.2422 34.9414 62.2422 35.5938 curveto
+62.2422 38.4492 lineto
+61.6289 38.4492 lineto
+61.6289 39.207 lineto
+62.2422 39.207 lineto
+62.2422 40.75 lineto
+63.1445 40.75 lineto
+63.1445 39.207 lineto
+65.0078 39.207 lineto
+65.0078 38.4492 lineto
+63.1445 38.4492 lineto
+63.1445 36 lineto
+63.1445 35.7188 63.1523 35.5 63.16411 35.3398 curveto
+63.1758 35.1797 63.2227 35.0313 63.2969 34.8945 curveto
+63.3672 34.7656 63.4648 34.6719 63.5898 34.6133 curveto
+63.71089 34.5547 63.9023 34.52339 64.1523 34.52339 curveto
+64.3008 34.52339 64.457 34.5469 64.6133 34.5898 curveto
+64.7773 34.6328 64.8906 34.668 64.96089 34.6992 curveto
+65.0078 34.6992 lineto
+ closepath fill
+newpath 70.5898 33.83589 moveto
+69.6875 33.83589 lineto
+69.6875 36.8945 lineto
+69.6875 37.1406 69.6719 37.375 69.6445 37.5898 curveto
+69.6133 37.8047 69.5625 37.97661 69.4844 38.0977 curveto
+69.4063 38.2305 69.28911 38.332 69.1406 38.39839 curveto
+68.9883 38.46089 68.793 38.4961 68.5508 38.4961 curveto
+68.3047 38.4961 68.0469 38.4336 67.7773 38.3125 curveto
+67.5078 38.1914 67.25 38.0352 67.0039 37.8477 curveto
+67.0039 33.83589 lineto
+66.10161 33.83589 lineto
+66.10161 41.3164 lineto
+67.0039 41.3164 lineto
+67.0039 38.6094 lineto
+67.2852 38.8438 67.5781 39.0273 67.8789 39.1602 curveto
+68.1797 39.28911 68.4883 39.3555 68.8086 39.3555 curveto
+69.3867 39.3555 69.8281 39.1797 70.1328 38.832 curveto
+70.4375 38.4844 70.5898 37.9805 70.5898 37.3242 curveto
+ closepath fill
+newpath 76.8242 36.4297 moveto
+72.8672 36.4297 lineto
+72.8672 37.1211 lineto
+75.9453 37.1211 lineto
+75.9414 37.5938 75.8242 37.96089 75.58589 38.2227 curveto
+75.35161 38.4805 74.9922 38.6094 74.5117 38.6094 curveto
+74.0313 38.6094 73.6445 38.4688 73.3555 38.1836 curveto
+73.0703 37.89839 72.9063 37.543 72.8672 37.1211 curveto
+72.8672 36.4297 lineto
+72.8672 36.0977 72.918 35.8125 73.0195 35.5664 curveto
+73.1172 35.3203 73.2539 35.1211 73.4258 34.96089 curveto
+73.5938 34.8086 73.78911 34.6914 74.0195 34.6172 curveto
+74.25 34.53911 74.5039 34.5 74.7773 34.5 curveto
+75.1445 34.5 75.5117 34.5742 75.8828 34.7188 curveto
+76.25 34.8672 76.5156 35.0078 76.6719 35.14839 curveto
+76.7188 35.14839 lineto
+76.7188 34.16411 lineto
+76.41411 34.0352 76.1055 33.9297 75.7852 33.8438 curveto
+75.4688 33.7578 75.1367 33.71089 74.7852 33.71089 curveto
+73.8945 33.71089 73.1992 33.9531 72.6992 34.4375 curveto
+72.1992 34.918 71.9531 35.60161 71.9531 36.4922 curveto
+71.9531 37.3711 72.1914 38.0664 72.668 38.582 curveto
+73.14839 39.0977 73.7813 39.3555 74.5625 39.3555 curveto
+75.2852 39.3555 75.8438 39.1445 76.2344 38.7227 curveto
+76.6289 38.2969 76.8242 37.6992 76.8242 36.918 curveto
+ closepath fill
+newpath 86.0313 33.83589 moveto
+85.1289 33.83589 lineto
+85.1289 36.8945 lineto
+85.1289 37.125 85.1172 37.3477 85.0977 37.5625 curveto
+85.0742 37.7773 85.0313 37.9492 84.9648 38.0781 curveto
+84.8906 38.2148 84.7852 38.3203 84.64839 38.3906 curveto
+84.5078 38.46089 84.3086 38.4961 84.0508 38.4961 curveto
+83.7969 38.4961 83.543 38.4336 83.28911 38.3047 curveto
+83.03911 38.1797 82.7852 38.0195 82.5313 37.8242 curveto
+82.53911 37.75 82.5469 37.66411 82.5547 37.5664 curveto
+82.5625 37.4688 82.5664 37.3711 82.5664 37.27339 curveto
+82.5664 33.83589 lineto
+81.6602 33.83589 lineto
+81.6602 36.8945 lineto
+81.6602 37.1328 81.6523 37.3555 81.6289 37.5703 curveto
+81.6094 37.7852 81.5664 37.9531 81.4961 38.082 curveto
+81.4258 38.2188 81.3203 38.3242 81.1797 38.3906 curveto
+81.043 38.46089 80.8438 38.4961 80.58589 38.4961 curveto
+80.3398 38.4961 80.0898 38.4336 79.8438 38.3125 curveto
+79.5938 38.1914 79.3477 38.0352 79.0977 37.8477 curveto
+79.0977 33.83589 lineto
+78.1953 33.83589 lineto
+78.1953 39.207 lineto
+79.0977 39.207 lineto
+79.0977 38.6094 lineto
+79.3828 38.8438 79.66411 39.0273 79.9414 39.1602 curveto
+80.2227 39.28911 80.52339 39.3555 80.8398 39.3555 curveto
+81.2031 39.3555 81.5156 39.2773 81.7695 39.125 curveto
+82.02339 38.9727 82.2148 38.7578 82.3398 38.4844 curveto
+82.7031 38.793 83.03911 39.0156 83.3398 39.1523 curveto
+83.6406 39.28911 83.96089 39.3555 84.3047 39.3555 curveto
+84.8945 39.3555 85.332 39.1758 85.6094 38.8203 curveto
+85.8906 38.46089 86.0313 37.9648 86.0313 37.3242 curveto
+ closepath fill
+newpath 91.9453 33.83589 moveto
+91.043 33.83589 lineto
+91.043 34.4102 lineto
+90.9648 34.3555 90.8555 34.2773 90.7188 34.1797 curveto
+90.3125 34.7148 lineto
+90.5781 34.8398 90.8203 34.9883 91.043 35.1602 curveto
+91.043 35.1602 lineto
+91.043 36.6563 lineto
+90.7695 36.6367 90.4453 36.6133 90.0703 36.582 curveto
+89.6992 36.5508 89.4023 36.5039 89.1836 36.4414 curveto
+88.9258 36.3711 88.7148 36.2539 88.5547 36.0977 curveto
+88.3945 35.9453 88.3125 35.7305 88.3125 35.457 curveto
+88.3125 35.14839 88.4063 34.918 88.5938 34.7617 curveto
+88.7773 34.6094 89.0625 34.5313 89.4453 34.5313 curveto
+89.7617 34.5313 90.0508 34.5898 90.3125 34.7148 curveto
+90.7188 34.1797 lineto
+90.582 34.082 90.4531 34.0078 90.3242 33.9492 curveto
+90.1719 33.875 90 33.8125 89.8047 33.7617 curveto
+89.6094 33.7148 89.3789 33.6875 89.1172 33.6875 curveto
+88.6328 33.6875 88.2227 33.8477 87.8867 34.168 curveto
+87.5508 34.4883 87.3828 34.89839 87.3828 35.3945 curveto
+87.3828 35.8008 87.4688 36.1328 87.6445 36.3828 curveto
+87.8164 36.6328 88.0664 36.832 88.3906 36.97661 curveto
+88.7188 37.1211 89.1094 37.2188 89.5703 37.2695 curveto
+90.0273 37.3203 90.5195 37.3594 91.043 37.3867 curveto
+91.043 37.52339 lineto
+91.043 37.7305 91.0078 37.89839 90.9375 38.0352 curveto
+90.8633 38.168 90.7617 38.27339 90.625 38.35161 curveto
+90.4961 38.4258 90.3438 38.47661 90.16411 38.5 curveto
+89.9844 38.5273 89.7969 38.53911 89.60161 38.53911 curveto
+89.3633 38.53911 89.10161 38.5078 88.8086 38.4453 curveto
+88.5156 38.3828 88.2148 38.293 87.9063 38.1719 curveto
+87.8555 38.1719 lineto
+87.8555 39.0898 lineto
+88.0352 39.1406 88.28911 39.1914 88.6211 39.25 curveto
+88.9531 39.3086 89.2852 39.33589 89.6055 39.33589 curveto
+89.9844 39.33589 90.3164 39.3047 90.5938 39.2422 curveto
+90.875 39.1797 91.1172 39.0742 91.3242 38.9219 curveto
+91.52339 38.7773 91.6797 38.58589 91.7852 38.35161 curveto
+91.8906 38.1172 91.9453 37.8281 91.9453 37.4805 curveto
+ closepath fill
+newpath 96.4727 33.8867 moveto
+96.3008 33.8398 96.1172 33.8047 95.918 33.77339 curveto
+95.7148 33.7461 95.53911 33.7305 95.3828 33.7305 curveto
+94.832 33.7305 94.41411 33.8789 94.1328 34.1758 curveto
+93.8477 34.4688 93.7031 34.9414 93.7031 35.5938 curveto
+93.7031 38.4492 lineto
+93.0938 38.4492 lineto
+93.0938 39.207 lineto
+93.7031 39.207 lineto
+93.7031 40.75 lineto
+94.6055 40.75 lineto
+94.6055 39.207 lineto
+96.4727 39.207 lineto
+96.4727 38.4492 lineto
+94.6055 38.4492 lineto
+94.6055 36 lineto
+94.6055 35.7188 94.6133 35.5 94.625 35.3398 curveto
+94.6406 35.1797 94.6836 35.0313 94.7617 34.8945 curveto
+94.832 34.7656 94.9258 34.6719 95.0508 34.6133 curveto
+95.1758 34.5547 95.3633 34.52339 95.6172 34.52339 curveto
+95.7656 34.52339 95.918 34.5469 96.0781 34.5898 curveto
+96.2383 34.6328 96.35161 34.668 96.4219 34.6992 curveto
+96.4727 34.6992 lineto
+ closepath fill
+newpath 98.47661 33.83589 moveto
+97.5742 33.83589 lineto
+97.5742 39.207 lineto
+98.47661 39.207 lineto
+ closepath fill
+newpath 98.5352 40.1055 moveto
+97.5156 40.1055 lineto
+97.5156 41.043 lineto
+98.5352 41.043 lineto
+ closepath fill
+newpath 104.10199 35.3867 moveto
+104.10199 34.8945 103.89801 34.4922 103.492 34.1797 curveto
+103.086 33.8633 102.53099 33.707 101.832 33.707 curveto
+101.43399 33.707 101.07 33.7539 100.738 33.85161 curveto
+100.40599 33.9453 100.129 34.0469 99.9023 34.1602 curveto
+99.9023 35.1758 lineto
+99.9531 35.1758 lineto
+100.238 34.96089 100.555 34.78911 100.902 34.6602 curveto
+101.254 34.5352 101.59 34.4727 101.90599 34.4727 curveto
+102.305 34.4727 102.617 34.5352 102.84 34.66411 curveto
+103.06601 34.793 103.17601 34.9961 103.17601 35.2695 curveto
+103.17601 35.4805 103.117 35.6406 102.996 35.75 curveto
+102.871 35.8594 102.641 35.9531 102.293 36.0313 curveto
+102.164 36.0586 101.996 36.0938 101.789 36.1289 curveto
+101.586 36.168 101.395 36.21089 101.22699 36.2539 curveto
+100.754 36.3789 100.422 36.5625 100.223 36.8047 curveto
+100.027 37.0469 99.9258 37.3438 99.9258 37.6992 curveto
+99.9258 37.918 99.9727 38.1289 100.06601 38.3242 curveto
+100.15599 38.5195 100.297 38.6914 100.48 38.8477 curveto
+100.66 38.9961 100.887 39.1172 101.164 39.2031 curveto
+101.44101 39.293 101.754 39.33589 102.098 39.33589 curveto
+102.414 39.33589 102.742 39.2969 103.07 39.2188 curveto
+103.39801 39.1406 103.672 39.0469 103.891 38.9336 curveto
+103.891 37.9688 lineto
+103.84 37.9688 lineto
+103.609 38.1367 103.328 38.2813 103 38.39839 curveto
+102.668 38.5156 102.348 38.5742 102.027 38.5742 curveto
+101.69899 38.5742 101.418 38.5078 101.19101 38.3828 curveto
+100.965 38.2578 100.85199 38.0664 100.85199 37.8164 curveto
+100.85199 37.5977 100.918 37.4297 101.05899 37.3164 curveto
+101.19101 37.207 101.41 37.1133 101.711 37.043 curveto
+101.879 37.0039 102.063 36.9688 102.27 36.9297 curveto
+102.47699 36.8906 102.64801 36.8555 102.789 36.8242 curveto
+103.207 36.72661 103.53099 36.5625 103.758 36.3281 curveto
+103.984 36.0898 104.10199 35.7773 104.10199 35.3867 curveto
+ closepath fill
+newpath 109.363 34.1758 moveto
+109.063 34.0313 108.777 33.918 108.508 33.83589 curveto
+108.234 33.7578 107.94899 33.7188 107.645 33.7188 curveto
+107.254 33.7188 106.89801 33.77339 106.57399 33.8867 curveto
+106.254 34 105.97699 34.1758 105.746 34.4063 curveto
+105.512 34.6367 105.328 34.9258 105.19899 35.2813 curveto
+105.07399 35.6328 105.008 36.043 105.008 36.5156 curveto
+105.008 37.3945 105.25 38.082 105.73 38.582 curveto
+106.215 39.082 106.85199 39.332 107.645 39.332 curveto
+107.94899 39.332 108.254 39.28911 108.55101 39.2031 curveto
+108.848 39.1172 109.117 39.0117 109.363 38.8867 curveto
+109.363 37.8789 lineto
+109.31601 37.8789 lineto
+109.039 38.0938 108.758 38.2617 108.465 38.375 curveto
+108.172 38.4922 107.883 38.5469 107.605 38.5469 curveto
+107.09401 38.5469 106.688 38.375 106.391 38.0313 curveto
+106.09401 37.6875 105.945 37.1836 105.945 36.5156 curveto
+105.945 35.8672 106.09 35.3711 106.383 35.02339 curveto
+106.672 34.6758 107.078 34.5 107.605 34.5 curveto
+107.789 34.5 107.973 34.52339 108.164 34.5742 curveto
+108.35199 34.6211 108.52 34.6836 108.672 34.7617 curveto
+108.805 34.8281 108.92601 34.89839 109.043 34.9727 curveto
+109.15599 35.0508 109.25 35.1133 109.31601 35.168 curveto
+109.363 35.168 lineto
+ closepath fill
+newpath 115.012 33.83589 moveto
+114.109 33.83589 lineto
+114.109 36.8945 lineto
+114.109 37.1406 114.09401 37.375 114.06601 37.5898 curveto
+114.035 37.8047 113.984 37.97661 113.90599 38.0977 curveto
+113.828 38.2305 113.711 38.332 113.563 38.39839 curveto
+113.41 38.46089 113.215 38.4961 112.973 38.4961 curveto
+112.72699 38.4961 112.46901 38.4336 112.19899 38.3125 curveto
+111.93 38.1914 111.672 38.0352 111.42601 37.8477 curveto
+111.42601 33.83589 lineto
+110.52301 33.83589 lineto
+110.52301 41.3164 lineto
+111.42601 41.3164 lineto
+111.42601 38.6094 lineto
+111.707 38.8438 112 39.0273 112.30101 39.1602 curveto
+112.60199 39.28911 112.91 39.3555 113.23 39.3555 curveto
+113.80899 39.3555 114.25 39.1797 114.555 38.832 curveto
+114.859 38.4844 115.012 37.9805 115.012 37.3242 curveto
+ closepath fill
+newpath 121.246 36.4297 moveto
+117.289 36.4297 lineto
+117.289 37.1211 lineto
+120.367 37.1211 lineto
+120.363 37.5938 120.246 37.96089 120.008 38.2227 curveto
+119.77301 38.4805 119.414 38.6094 118.93399 38.6094 curveto
+118.44899 38.6094 118.06601 38.4688 117.777 38.1836 curveto
+117.492 37.89839 117.328 37.543 117.289 37.1211 curveto
+117.289 36.4297 lineto
+117.289 36.0977 117.34 35.8125 117.44101 35.5664 curveto
+117.539 35.3203 117.67601 35.1211 117.848 34.96089 curveto
+118.016 34.8086 118.215 34.6914 118.44101 34.6172 curveto
+118.672 34.53911 118.92601 34.5 119.19899 34.5 curveto
+119.56601 34.5 119.93399 34.5742 120.305 34.7188 curveto
+120.672 34.8672 120.938 35.0078 121.09401 35.14839 curveto
+121.141 35.14839 lineto
+121.141 34.16411 lineto
+120.836 34.0352 120.527 33.9297 120.211 33.8438 curveto
+119.891 33.7578 119.55899 33.71089 119.211 33.71089 curveto
+118.31601 33.71089 117.621 33.9531 117.121 34.4375 curveto
+116.621 34.918 116.371 35.60161 116.371 36.4922 curveto
+116.371 37.3711 116.613 38.0664 117.09 38.582 curveto
+117.57 39.0977 118.19899 39.3555 118.984 39.3555 curveto
+119.707 39.3555 120.266 39.1445 120.65599 38.7227 curveto
+121.05101 38.2969 121.246 37.6992 121.246 36.918 curveto
+ closepath fill
+newpath 126.453 35.3867 moveto
+126.453 34.8945 126.25 34.4922 125.84401 34.1797 curveto
+125.438 33.8633 124.887 33.707 124.18399 33.707 curveto
+123.785 33.707 123.422 33.7539 123.09 33.85161 curveto
+122.758 33.9453 122.48 34.0469 122.258 34.1602 curveto
+122.258 35.1758 lineto
+122.305 35.1758 lineto
+122.59 34.96089 122.90599 34.78911 123.258 34.6602 curveto
+123.605 34.5352 123.94101 34.4727 124.262 34.4727 curveto
+124.65599 34.4727 124.96901 34.5352 125.19101 34.66411 curveto
+125.418 34.793 125.53099 34.9961 125.53099 35.2695 curveto
+125.53099 35.4805 125.46901 35.6406 125.348 35.75 curveto
+125.22699 35.8594 124.992 35.9531 124.645 36.0313 curveto
+124.516 36.0586 124.35199 36.0938 124.145 36.1289 curveto
+123.938 36.168 123.746 36.21089 123.578 36.2539 curveto
+123.105 36.3789 122.77301 36.5625 122.57399 36.8047 curveto
+122.379 37.0469 122.28099 37.3438 122.28099 37.6992 curveto
+122.28099 37.918 122.32399 38.1289 122.418 38.3242 curveto
+122.508 38.5195 122.64801 38.6914 122.832 38.8477 curveto
+123.012 38.9961 123.242 39.1172 123.52 39.2031 curveto
+123.797 39.293 124.105 39.33589 124.44899 39.33589 curveto
+124.77 39.33589 125.09401 39.2969 125.422 39.2188 curveto
+125.75 39.1406 126.02301 39.0469 126.242 38.9336 curveto
+126.242 37.9688 lineto
+126.19101 37.9688 lineto
+125.961 38.1367 125.68399 38.2813 125.35199 38.39839 curveto
+125.02301 38.5156 124.69899 38.5742 124.383 38.5742 curveto
+124.05101 38.5742 123.77301 38.5078 123.543 38.3828 curveto
+123.31601 38.2578 123.203 38.0664 123.203 37.8164 curveto
+123.203 37.5977 123.27301 37.4297 123.41 37.3164 curveto
+123.543 37.207 123.762 37.1133 124.063 37.043 curveto
+124.23 37.0039 124.418 36.9688 124.625 36.9297 curveto
+124.832 36.8906 125.004 36.8555 125.141 36.8242 curveto
+125.563 36.72661 125.883 36.5625 126.109 36.3281 curveto
+126.34 36.0898 126.453 35.7773 126.453 35.3867 curveto
+ closepath fill
+newpath 52.6563 26.7813 moveto
+49.0352 26.7813 lineto
+49.0352 24.7617 lineto
+52.1445 24.7617 lineto
+52.1445 23.918 lineto
+49.0352 23.918 lineto
+49.0352 20.4688 lineto
+48.08589 20.4688 lineto
+48.08589 27.6289 lineto
+52.6563 27.6289 lineto
+ closepath fill
+newpath 58.0117 23.1523 moveto
+58.0117 22.2773 57.7852 21.58589 57.33589 21.082 curveto
+56.8867 20.5742 56.2852 20.3203 55.5352 20.3203 curveto
+54.77339 20.3203 54.1719 20.5742 53.7227 21.082 curveto
+53.2773 21.58589 53.0547 22.2773 53.0547 23.1523 curveto
+53.0547 24.0273 53.2773 24.7188 53.7227 25.22661 curveto
+54.1719 25.7344 54.77339 25.9883 55.5352 25.9883 curveto
+55.5352 25.21089 lineto
+55.043 25.21089 54.66411 25.043 54.3906 24.7031 curveto
+54.1211 24.3633 53.9844 23.8477 53.9844 23.1523 curveto
+53.9844 22.4805 54.1211 21.9688 54.3945 21.6211 curveto
+54.668 21.27339 55.0469 21.10161 55.5352 21.10161 curveto
+56.0156 21.10161 56.3906 21.27339 56.66411 21.6172 curveto
+56.9414 21.96089 57.0781 22.4727 57.0781 23.1523 curveto
+57.0781 23.1523 lineto
+57.0781 23.8477 56.9414 24.3633 56.668 24.7031 curveto
+56.3945 25.043 56.0195 25.21089 55.5352 25.21089 curveto
+55.5352 25.9883 lineto
+56.2852 25.9883 56.8867 25.7344 57.33589 25.22661 curveto
+57.7852 24.7188 58.0117 24.0273 58.0117 23.1523 curveto
+ closepath fill
+newpath 62.7617 24.8555 moveto
+62.7148 24.8555 lineto
+62.5781 24.8867 62.4492 24.9102 62.3203 24.9258 curveto
+62.1953 24.9375 62.043 24.9453 61.8711 24.9453 curveto
+61.5938 24.9453 61.3242 24.8828 61.0625 24.7617 curveto
+60.8047 24.6367 60.5547 24.47661 60.3125 24.2813 curveto
+60.3125 20.4688 lineto
+59.4102 20.4688 lineto
+59.4102 25.8398 lineto
+60.3125 25.8398 lineto
+60.3125 25.0469 lineto
+60.6719 25.33589 60.9883 25.53911 61.2617 25.6602 curveto
+61.53911 25.7813 61.8164 25.8398 62.10161 25.8398 curveto
+62.2578 25.8398 62.3711 25.83589 62.4453 25.8281 curveto
+62.5156 25.8203 62.6211 25.8047 62.7617 25.7813 curveto
+ closepath fill
+newpath 67.4492 22.0195 moveto
+67.4492 21.5273 67.2461 21.125 66.8398 20.8125 curveto
+66.4336 20.4961 65.8789 20.3398 65.1797 20.3398 curveto
+64.7813 20.3398 64.418 20.3867 64.08589 20.4805 curveto
+63.7539 20.5781 63.47661 20.6797 63.25 20.793 curveto
+63.25 21.8047 lineto
+63.2969 21.8047 lineto
+63.58589 21.5898 63.9023 21.4219 64.25 21.293 curveto
+64.60161 21.168 64.9336 21.1055 65.2539 21.1055 curveto
+65.6523 21.1055 65.9648 21.168 66.1875 21.2969 curveto
+66.4102 21.4258 66.52339 21.625 66.52339 21.9023 curveto
+66.52339 22.1133 66.4648 22.27339 66.3438 22.3828 curveto
+66.2188 22.4922 65.9844 22.58589 65.6406 22.66411 curveto
+65.5117 22.6914 65.3438 22.72661 65.1367 22.7617 curveto
+64.9297 22.8008 64.7422 22.8438 64.5742 22.8867 curveto
+64.10161 23.0117 63.7695 23.1992 63.5703 23.4375 curveto
+63.375 23.6797 63.27339 23.97661 63.27339 24.332 curveto
+63.27339 24.5508 63.3203 24.7617 63.4102 24.957 curveto
+63.5039 25.1523 63.6406 25.3242 63.8281 25.4805 curveto
+64.0078 25.6289 64.2344 25.75 64.5117 25.83589 curveto
+64.78911 25.9258 65.10161 25.9688 65.4414 25.9688 curveto
+65.7617 25.9688 66.0898 25.9297 66.418 25.85161 curveto
+66.7461 25.77339 67.0195 25.6797 67.2344 25.5664 curveto
+67.2344 24.60161 lineto
+67.1875 24.60161 lineto
+66.957 24.7695 66.6758 24.91411 66.3477 25.0313 curveto
+66.0156 25.14839 65.6914 25.207 65.375 25.207 curveto
+65.0469 25.207 64.7656 25.1406 64.53911 25.0156 curveto
+64.3125 24.8906 64.1992 24.6992 64.1992 24.4492 curveto
+64.1992 24.2305 64.2656 24.0625 64.4063 23.9492 curveto
+64.53911 23.8398 64.7578 23.7461 65.0586 23.6758 curveto
+65.22661 23.6367 65.4102 23.60161 65.6172 23.5625 curveto
+65.8242 23.52339 65.9961 23.4883 66.1367 23.457 curveto
+66.5547 23.3594 66.8789 23.1953 67.1055 22.96089 curveto
+67.332 22.7227 67.4492 22.4102 67.4492 22.0195 curveto
+ closepath fill
+newpath 72.71089 20.8047 moveto
+72.4102 20.66411 72.125 20.5508 71.85161 20.4688 curveto
+71.582 20.3906 71.293 20.35161 70.9922 20.35161 curveto
+70.60161 20.35161 70.2461 20.4063 69.9219 20.5195 curveto
+69.5977 20.6367 69.3242 20.8047 69.0938 21.03911 curveto
+68.8594 21.2695 68.6758 21.5586 68.5469 21.9102 curveto
+68.4219 22.2656 68.3555 22.6758 68.3555 23.14839 curveto
+68.3555 24.0273 68.5977 24.7148 69.0781 25.2148 curveto
+69.5625 25.7148 70.1992 25.9648 70.9922 25.9648 curveto
+71.2969 25.9648 71.60161 25.9219 71.89839 25.83589 curveto
+72.1914 25.75 72.4648 25.6445 72.71089 25.5195 curveto
+72.71089 24.5117 lineto
+72.66411 24.5117 lineto
+72.3867 24.72661 72.10161 24.8945 71.8086 25.0078 curveto
+71.5156 25.125 71.2305 25.1797 70.9531 25.1797 curveto
+70.4414 25.1797 70.0352 25.0078 69.7383 24.66411 curveto
+69.4414 24.3203 69.293 23.8164 69.293 23.14839 curveto
+69.293 22.5 69.4375 22.0039 69.72661 21.6563 curveto
+70.0195 21.3086 70.4258 21.1367 70.9531 21.1367 curveto
+71.1367 21.1367 71.3203 21.1563 71.5117 21.207 curveto
+71.6992 21.2539 71.8672 21.3164 72.0195 21.3945 curveto
+72.1523 21.46089 72.27339 21.5313 72.3906 21.6055 curveto
+72.5039 21.6836 72.5977 21.7461 72.66411 21.8008 curveto
+72.71089 21.8008 lineto
+ closepath fill
+newpath 78.3594 20.4688 moveto
+77.457 20.4688 lineto
+77.457 23.5273 lineto
+77.457 23.77339 77.4414 24.0078 77.41411 24.2227 curveto
+77.3828 24.4375 77.332 24.6094 77.2539 24.7305 curveto
+77.1719 24.8633 77.0586 24.9648 76.9063 25.0313 curveto
+76.7578 25.0938 76.5625 25.1289 76.3203 25.1289 curveto
+76.0742 25.1289 75.8164 25.0664 75.5469 24.9453 curveto
+75.2773 24.8242 75.0195 24.668 74.77339 24.4805 curveto
+74.77339 20.4688 lineto
+73.8711 20.4688 lineto
+73.8711 27.9492 lineto
+74.77339 27.9492 lineto
+74.77339 25.2422 lineto
+75.0547 25.47661 75.3477 25.6602 75.64839 25.793 curveto
+75.9492 25.9219 76.2578 25.9883 76.5781 25.9883 curveto
+77.1563 25.9883 77.5977 25.8125 77.9023 25.4648 curveto
+78.207 25.1172 78.3594 24.6133 78.3594 23.957 curveto
+ closepath fill
+newpath 84.5508 20.4688 moveto
+83.64839 20.4688 lineto
+83.64839 21.0664 lineto
+83.3438 20.8242 83.0508 20.6406 82.77339 20.5117 curveto
+82.4922 20.3867 82.1875 20.3203 81.8477 20.3203 curveto
+81.2852 20.3203 80.8477 20.4922 80.5313 20.83589 curveto
+80.2188 21.1836 80.0625 21.6875 80.0625 22.3555 curveto
+80.0625 25.8398 lineto
+80.9648 25.8398 lineto
+80.9648 22.7813 lineto
+80.9648 22.5117 80.97661 22.2773 81.0039 22.082 curveto
+81.0313 21.8906 81.082 21.7227 81.168 21.58589 curveto
+81.2539 21.4453 81.3672 21.3398 81.5039 21.2773 curveto
+81.6406 21.2148 81.8398 21.1797 82.1055 21.1797 curveto
+82.3398 21.1797 82.5938 21.2422 82.8711 21.3633 curveto
+83.14839 21.4844 83.4063 21.6406 83.64839 21.832 curveto
+83.64839 25.8398 lineto
+84.5508 25.8398 lineto
+ closepath fill
+newpath 90.8203 20.4688 moveto
+89.91411 20.4688 lineto
+89.91411 23.5273 lineto
+89.91411 23.77339 89.9023 24.0078 89.8711 24.2227 curveto
+89.8438 24.4375 89.78911 24.6094 89.7148 24.7305 curveto
+89.6328 24.8633 89.5195 24.9648 89.3672 25.0313 curveto
+89.2188 25.0938 89.02339 25.1289 88.7813 25.1289 curveto
+88.5352 25.1289 88.2773 25.0664 88.0078 24.9453 curveto
+87.7383 24.8242 87.4805 24.668 87.2344 24.4805 curveto
+87.2344 20.4688 lineto
+86.3281 20.4688 lineto
+86.3281 25.8398 lineto
+87.2344 25.8398 lineto
+87.2344 25.2422 lineto
+87.5156 25.47661 87.8086 25.6602 88.1094 25.793 curveto
+88.4102 25.9219 88.7188 25.9883 89.0352 25.9883 curveto
+89.6172 25.9883 90.0586 25.8125 90.3633 25.4648 curveto
+90.668 25.1172 90.8203 24.6133 90.8203 23.957 curveto
+ closepath fill
+newpath 96.91411 21.082 moveto
+96.91411 20.1719 96.707 19.5039 96.293 19.0781 curveto
+95.8828 18.64839 95.2461 18.4375 94.3867 18.4375 curveto
+94.10161 18.4375 93.8242 18.457 93.5508 18.4961 curveto
+93.2813 18.5352 93.0156 18.5938 92.7539 18.668 curveto
+92.7539 19.5898 lineto
+92.8008 19.5898 lineto
+92.9492 19.5313 93.1797 19.46089 93.5039 19.375 curveto
+93.8242 19.293 94.1445 19.25 94.4648 19.25 curveto
+94.7695 19.25 95.0273 19.2852 95.22661 19.3594 curveto
+95.4297 19.4336 95.58589 19.5352 95.6992 19.668 curveto
+95.8125 19.793 95.8906 19.9453 95.9375 20.1211 curveto
+95.9883 20.2969 96.0117 20.4922 96.0117 20.71089 curveto
+96.0117 21.1992 lineto
+95.7383 20.9844 95.47661 20.8203 95.2305 20.71089 curveto
+94.9805 20.6055 94.66411 20.5508 94.2813 20.5508 curveto
+93.6406 20.5508 93.1328 20.7813 92.7539 21.2461 curveto
+92.3789 21.71089 92.1914 22.3633 92.1914 23.207 curveto
+92.1914 23.668 92.2539 24.0664 92.3828 24.39839 curveto
+92.5156 24.7344 92.6914 25.02339 92.91411 25.2695 curveto
+93.125 25.4961 93.3789 25.6719 93.6758 25.8008 curveto
+93.9727 25.9258 94.2695 25.9883 94.5664 25.9883 curveto
+94.875 25.9883 95.1367 25.957 95.3438 25.8945 curveto
+95.5547 25.832 95.7773 25.7383 96.0117 25.6094 curveto
+96.0117 24.875 lineto
+95.7695 24.9844 95.5469 25.0586 95.3398 25.1055 curveto
+95.1328 25.1523 94.9258 25.1758 94.7227 25.1758 curveto
+94.22661 25.1758 93.83589 25.0117 93.5508 24.6758 curveto
+93.2656 24.3438 93.1211 23.8594 93.1211 23.22661 curveto
+93.1211 22.6211 93.22661 22.16411 93.4414 21.8555 curveto
+93.6523 21.543 94.0039 21.3867 94.4922 21.3867 curveto
+94.7539 21.3867 95.0195 21.4375 95.2813 21.53911 curveto
+95.5469 21.6406 95.78911 21.7773 96.0117 21.9453 curveto
+96.0117 21.9453 lineto
+96.0117 24.875 lineto
+96.0117 25.6094 lineto
+96.0703 25.8398 lineto
+96.91411 25.8398 lineto
+ closepath fill
+newpath 102.527 22.0195 moveto
+102.527 21.5273 102.328 21.125 101.922 20.8125 curveto
+101.516 20.4961 100.961 20.3398 100.262 20.3398 curveto
+99.8633 20.3398 99.5 20.3867 99.168 20.4805 curveto
+98.83589 20.5781 98.5586 20.6797 98.332 20.793 curveto
+98.332 21.8047 lineto
+98.3828 21.8047 lineto
+98.66411 21.5898 98.9844 21.4219 99.332 21.293 curveto
+99.6836 21.168 100.016 21.1055 100.336 21.1055 curveto
+100.734 21.1055 101.047 21.168 101.27 21.2969 curveto
+101.492 21.4258 101.605 21.625 101.605 21.9023 curveto
+101.605 22.1133 101.547 22.27339 101.42601 22.3828 curveto
+101.30101 22.4922 101.06601 22.58589 100.723 22.66411 curveto
+100.59401 22.6914 100.42601 22.72661 100.21901 22.7617 curveto
+100.012 22.8008 99.8242 22.8438 99.6563 22.8867 curveto
+99.1836 23.0117 98.8477 23.1992 98.6523 23.4375 curveto
+98.457 23.6797 98.3555 23.97661 98.3555 24.332 curveto
+98.3555 24.5508 98.4023 24.7617 98.4922 24.957 curveto
+98.58589 25.1523 98.7227 25.3242 98.9102 25.4805 curveto
+99.0898 25.6289 99.3164 25.75 99.5938 25.83589 curveto
+99.8711 25.9258 100.18399 25.9688 100.52301 25.9688 curveto
+100.84401 25.9688 101.172 25.9297 101.5 25.85161 curveto
+101.828 25.77339 102.10199 25.6797 102.31601 25.5664 curveto
+102.31601 24.60161 lineto
+102.27 24.60161 lineto
+102.039 24.7695 101.758 24.91411 101.43 25.0313 curveto
+101.098 25.14839 100.77301 25.207 100.457 25.207 curveto
+100.129 25.207 99.8477 25.1406 99.6211 25.0156 curveto
+99.3945 24.8906 99.2813 24.6992 99.2813 24.4492 curveto
+99.2813 24.2305 99.3477 24.0625 99.4883 23.9492 curveto
+99.6211 23.8398 99.8398 23.7461 100.141 23.6758 curveto
+100.30899 23.6367 100.492 23.60161 100.69899 23.5625 curveto
+100.90599 23.52339 101.078 23.4883 101.21901 23.457 curveto
+101.637 23.3594 101.961 23.1953 102.188 22.96089 curveto
+102.414 22.7227 102.527 22.4102 102.527 22.0195 curveto
+ closepath fill
+newpath 104.734 20.4688 moveto
+103.832 20.4688 lineto
+103.832 25.8398 lineto
+104.734 25.8398 lineto
+ closepath fill
+newpath 104.793 26.7383 moveto
+103.77301 26.7383 lineto
+103.77301 27.6758 lineto
+104.793 27.6758 lineto
+ closepath fill
+newpath 111.016 20.4688 moveto
+110.109 20.4688 lineto
+110.109 23.5273 lineto
+110.109 23.77339 110.098 24.0078 110.06601 24.2227 curveto
+110.039 24.4375 109.984 24.6094 109.90599 24.7305 curveto
+109.828 24.8633 109.715 24.9648 109.563 25.0313 curveto
+109.41 25.0938 109.215 25.1289 108.97699 25.1289 curveto
+108.73 25.1289 108.473 25.0664 108.203 24.9453 curveto
+107.93399 24.8242 107.67601 24.668 107.43 24.4805 curveto
+107.43 20.4688 lineto
+106.52301 20.4688 lineto
+106.52301 25.8398 lineto
+107.43 25.8398 lineto
+107.43 25.2422 lineto
+107.711 25.47661 108 25.6602 108.305 25.793 curveto
+108.605 25.9219 108.914 25.9883 109.23 25.9883 curveto
+109.813 25.9883 110.254 25.8125 110.55899 25.4648 curveto
+110.863 25.1172 111.016 24.6133 111.016 23.957 curveto
+ closepath fill
+newpath 116.59 22.0195 moveto
+116.59 21.5273 116.387 21.125 115.98 20.8125 curveto
+115.578 20.4961 115.02301 20.3398 114.32 20.3398 curveto
+113.92601 20.3398 113.55899 20.3867 113.22699 20.4805 curveto
+112.895 20.5781 112.617 20.6797 112.395 20.793 curveto
+112.395 21.8047 lineto
+112.44101 21.8047 lineto
+112.72699 21.5898 113.043 21.4219 113.395 21.293 curveto
+113.742 21.168 114.078 21.1055 114.39801 21.1055 curveto
+114.797 21.1055 115.105 21.168 115.332 21.2969 curveto
+115.555 21.4258 115.668 21.625 115.668 21.9023 curveto
+115.668 22.1133 115.605 22.27339 115.484 22.3828 curveto
+115.363 22.4922 115.129 22.58589 114.78099 22.66411 curveto
+114.652 22.6914 114.488 22.72661 114.28099 22.7617 curveto
+114.07399 22.8008 113.887 22.8438 113.715 22.8867 curveto
+113.242 23.0117 112.91 23.1992 112.715 23.4375 curveto
+112.516 23.6797 112.418 23.97661 112.418 24.332 curveto
+112.418 24.5508 112.465 24.7617 112.555 24.957 curveto
+112.645 25.1523 112.785 25.3242 112.96901 25.4805 curveto
+113.14801 25.6289 113.379 25.75 113.65599 25.83589 curveto
+113.93399 25.9258 114.242 25.9688 114.586 25.9688 curveto
+114.90599 25.9688 115.23 25.9297 115.55899 25.85161 curveto
+115.887 25.77339 116.16 25.6797 116.379 25.5664 curveto
+116.379 24.60161 lineto
+116.332 24.60161 lineto
+116.10199 24.7695 115.82 24.91411 115.488 25.0313 curveto
+115.16 25.14839 114.836 25.207 114.52 25.207 curveto
+114.188 25.207 113.91 25.1406 113.68399 25.0156 curveto
+113.453 24.8906 113.34 24.6992 113.34 24.4492 curveto
+113.34 24.2305 113.41 24.0625 113.547 23.9492 curveto
+113.68399 23.8398 113.89801 23.7461 114.19899 23.6758 curveto
+114.367 23.6367 114.555 23.60161 114.762 23.5625 curveto
+114.96901 23.52339 115.141 23.4883 115.277 23.457 curveto
+115.69899 23.3594 116.02 23.1953 116.25 22.96089 curveto
+116.47699 22.7227 116.59 22.4102 116.59 22.0195 curveto
+ closepath fill
+newpath 120.672 20.5195 moveto
+120.5 20.4727 120.31601 20.4375 120.117 20.4063 curveto
+119.914 20.3789 119.738 20.3633 119.578 20.3633 curveto
+119.03099 20.3633 118.613 20.5117 118.328 20.8047 curveto
+118.047 21.10161 117.902 21.5742 117.902 22.22661 curveto
+117.902 25.082 lineto
+117.293 25.082 lineto
+117.293 25.8398 lineto
+117.902 25.8398 lineto
+117.902 27.3828 lineto
+118.805 27.3828 lineto
+118.805 25.8398 lineto
+120.672 25.8398 lineto
+120.672 25.082 lineto
+118.805 25.082 lineto
+118.805 22.6328 lineto
+118.805 22.35161 118.813 22.1328 118.82399 21.9727 curveto
+118.84 21.8125 118.883 21.66411 118.961 21.5273 curveto
+119.03099 21.39839 119.129 21.3047 119.25 21.2461 curveto
+119.375 21.1875 119.563 21.1563 119.81601 21.1563 curveto
+119.965 21.1563 120.117 21.1797 120.277 21.2227 curveto
+120.438 21.2656 120.55101 21.3008 120.621 21.332 curveto
+120.672 21.332 lineto
+ closepath fill
+newpath 122.67601 20.4688 moveto
+121.77301 20.4688 lineto
+121.77301 25.8398 lineto
+122.67601 25.8398 lineto
+ closepath fill
+newpath 122.734 26.7383 moveto
+121.715 26.7383 lineto
+121.715 27.6758 lineto
+122.734 27.6758 lineto
+ closepath fill
+newpath 127.254 20.5195 moveto
+127.082 20.4727 126.89801 20.4375 126.695 20.4063 curveto
+126.496 20.3789 126.31601 20.3633 126.16 20.3633 curveto
+125.613 20.3633 125.195 20.5117 124.91 20.8047 curveto
+124.625 21.10161 124.484 21.5742 124.484 22.22661 curveto
+124.484 25.082 lineto
+123.871 25.082 lineto
+123.871 25.8398 lineto
+124.484 25.8398 lineto
+124.484 27.3828 lineto
+125.387 27.3828 lineto
+125.387 25.8398 lineto
+127.254 25.8398 lineto
+127.254 25.082 lineto
+125.387 25.082 lineto
+125.387 22.6328 lineto
+125.387 22.35161 125.395 22.1328 125.40599 21.9727 curveto
+125.418 21.8125 125.465 21.66411 125.539 21.5273 curveto
+125.609 21.39839 125.707 21.3047 125.832 21.2461 curveto
+125.953 21.1875 126.145 21.1563 126.395 21.1563 curveto
+126.543 21.1563 126.69899 21.1797 126.859 21.2227 curveto
+127.02 21.2656 127.133 21.3008 127.203 21.332 curveto
+127.254 21.332 lineto
+ closepath fill
+newpath 132.793 20.4688 moveto
+131.891 20.4688 lineto
+131.891 21.0664 lineto
+131.586 20.8242 131.293 20.6406 131.016 20.5117 curveto
+130.738 20.3867 130.43 20.3203 130.094 20.3203 curveto
+129.527 20.3203 129.09 20.4922 128.773 20.83589 curveto
+128.461 21.1836 128.305 21.6875 128.305 22.3555 curveto
+128.305 25.8398 lineto
+129.207 25.8398 lineto
+129.207 22.7813 lineto
+129.207 22.5117 129.223 22.2773 129.246 22.082 curveto
+129.273 21.8906 129.328 21.7227 129.41 21.58589 curveto
+129.496 21.4453 129.609 21.3398 129.746 21.2773 curveto
+129.883 21.2148 130.086 21.1797 130.348 21.1797 curveto
+130.582 21.1797 130.836 21.2422 131.113 21.3633 curveto
+131.391 21.4844 131.648 21.6406 131.891 21.832 curveto
+131.891 25.8398 lineto
+132.793 25.8398 lineto
+ closepath fill
+newpath 137.355 20.5195 moveto
+137.184 20.4727 137 20.4375 136.801 20.4063 curveto
+136.598 20.3789 136.422 20.3633 136.266 20.3633 curveto
+135.715 20.3633 135.301 20.5117 135.016 20.8047 curveto
+134.73 21.10161 134.586 21.5742 134.586 22.22661 curveto
+134.586 25.082 lineto
+133.977 25.082 lineto
+133.977 25.8398 lineto
+134.586 25.8398 lineto
+134.586 27.3828 lineto
+135.488 27.3828 lineto
+135.488 25.8398 lineto
+137.355 25.8398 lineto
+137.355 25.082 lineto
+135.488 25.082 lineto
+135.488 22.6328 lineto
+135.488 22.35161 135.496 22.1328 135.508 21.9727 curveto
+135.52 21.8125 135.566 21.66411 135.645 21.5273 curveto
+135.715 21.39839 135.813 21.3047 135.934 21.2461 curveto
+136.059 21.1875 136.246 21.1563 136.5 21.1563 curveto
+136.645 21.1563 136.801 21.1797 136.961 21.2227 curveto
+137.121 21.2656 137.234 21.3008 137.309 21.332 curveto
+137.355 21.332 lineto
+ closepath fill
+newpath 53.418 12.6875 moveto
+53.71089 12.3672 53.9336 11.9766 54.0898 11.5117 curveto
+54.2461 11.0469 54.3242 10.5195 54.3242 9.92969 curveto
+54.3242 9.33984 54.2422 8.8125 54.08589 8.34375 curveto
+53.9258 7.8789 53.707 7.49219 53.418 7.17969 curveto
+53.125 6.85547 52.7773 6.61328 52.375 6.44922 curveto
+51.9727 6.28516 51.5117 6.20313 50.9961 6.20313 curveto
+51.0039 7.02734 lineto
+51.7148 7.02734 52.2813 7.27344 52.7031 7.77344 curveto
+53.1211 8.27344 53.332 8.99219 53.332 9.92969 curveto
+53.332 9.92969 lineto
+53.332 10.8594 53.125 11.5742 52.707 12.082 curveto
+52.293 12.5859 51.7227 12.8359 51.0039 12.8359 curveto
+50.27339 12.8359 49.7031 12.5859 49.28911 12.082 curveto
+48.8711 11.5742 48.66411 10.8594 48.66411 9.92969 curveto
+48.66411 8.99219 48.8789 8.27344 49.3008 7.77344 curveto
+49.7227 7.27344 50.28911 7.02734 51.0039 7.02734 curveto
+50.9961 6.20313 lineto
+50.4922 6.20313 50.0352 6.28906 49.625 6.45313 curveto
+49.2148 6.6211 48.8633 6.86328 48.5742 7.17969 curveto
+48.2852 7.4961 48.0625 7.88672 47.9102 8.34766 curveto
+47.7539 8.8086 47.6758 9.33594 47.6758 9.92969 curveto
+47.6758 10.5117 47.7539 11.0352 47.9063 11.5 curveto
+48.0586 11.9609 48.2852 12.3594 48.5781 12.6875 curveto
+48.8594 13.0039 49.21089 13.2422 49.6289 13.4102 curveto
+50.0469 13.5781 50.5039 13.6602 50.9961 13.6602 curveto
+51.5117 13.6602 51.9688 13.5742 52.3789 13.4063 curveto
+52.78911 13.2383 53.1328 13 53.418 12.6875 curveto
+ closepath fill
+newpath 60.4844 9.07813 moveto
+60.4844 8.63281 60.4219 8.22656 60.2969 7.86719 curveto
+60.168 7.50781 60 7.20703 59.7852 6.96484 curveto
+59.5547 6.71094 59.3047 6.51953 59.0352 6.39453 curveto
+58.7617 6.26563 58.46089 6.20313 58.1367 6.20313 curveto
+57.832 6.20313 57.5664 6.23828 57.33589 6.3125 curveto
+57.1094 6.38672 56.8867 6.48047 56.66411 6.60156 curveto
+56.66411 7.32422 lineto
+56.9219 7.20703 57.1406 7.1289 57.3242 7.08203 curveto
+57.5117 7.03906 57.7188 7.01563 57.9531 7.01563 curveto
+58.4531 7.01563 58.8438 7.17969 59.1289 7.51172 curveto
+59.4102 7.83594 59.5547 8.35156 59.5547 9.05469 curveto
+59.5547 9.05469 lineto
+59.5547 9.69531 59.4492 10.1836 59.2344 10.5117 curveto
+59.02339 10.8438 58.6836 11.0117 58.21089 11.0117 curveto
+57.9492 11.0117 57.6836 10.9531 57.41411 10.8398 curveto
+57.1445 10.7266 56.8945 10.5781 56.66411 10.4023 curveto
+56.66411 7.32422 lineto
+56.66411 6.60156 lineto
+56.6055 6.35156 lineto
+55.7617 6.35156 lineto
+55.7617 13.832 lineto
+56.66411 13.832 lineto
+56.66411 11.1602 lineto
+56.918 11.3672 57.1875 11.5391 57.4727 11.6719 curveto
+57.7578 11.8047 58.0781 11.8711 58.4336 11.8711 curveto
+59.0703 11.8711 59.5703 11.6289 59.9375 11.1406 curveto
+60.3008 10.6523 60.4844 9.96484 60.4844 9.07813 curveto
+ closepath fill
+newpath 66.3906 8.94531 moveto
+62.4336 8.94531 lineto
+62.4336 9.63672 lineto
+65.5117 9.63672 lineto
+65.5078 10.1094 65.3867 10.4766 65.1523 10.7383 curveto
+64.91411 10.9961 64.5586 11.125 64.0781 11.125 curveto
+63.5938 11.125 63.207 10.9844 62.9219 10.6992 curveto
+62.6328 10.4141 62.4727 10.0586 62.4336 9.63672 curveto
+62.4336 8.94531 lineto
+62.4336 8.61328 62.4844 8.32813 62.582 8.08203 curveto
+62.6797 7.83594 62.8164 7.63672 62.9922 7.47656 curveto
+63.1563 7.32422 63.3555 7.20703 63.58589 7.13281 curveto
+63.8125 7.05469 64.0664 7.01563 64.3398 7.01563 curveto
+64.707 7.01563 65.0742 7.08984 65.4453 7.23438 curveto
+65.8164 7.38281 66.0781 7.52344 66.2344 7.66406 curveto
+66.2852 7.66406 lineto
+66.2852 6.67969 lineto
+65.9805 6.55078 65.668 6.44531 65.35161 6.35938 curveto
+65.0352 6.26953 64.6992 6.22656 64.35161 6.22656 curveto
+63.46089 6.22656 62.7656 6.46875 62.2656 6.95313 curveto
+61.7656 7.4336 61.5156 8.11719 61.5156 9.00781 curveto
+61.5156 9.88672 61.7539 10.582 62.2344 11.0977 curveto
+62.71089 11.6133 63.3438 11.8711 64.125 11.8711 curveto
+64.8477 11.8711 65.4063 11.6602 65.8008 11.2383 curveto
+66.1914 10.8125 66.3906 10.2148 66.3906 9.4336 curveto
+ closepath fill
+newpath 71.1094 10.7383 moveto
+71.0625 10.7383 lineto
+70.9258 10.7695 70.7969 10.793 70.668 10.8086 curveto
+70.543 10.8203 70.3945 10.8281 70.2188 10.8281 curveto
+69.9414 10.8281 69.6719 10.7656 69.41411 10.6445 curveto
+69.1523 10.5195 68.9023 10.3594 68.66411 10.1641 curveto
+68.66411 6.35156 lineto
+67.7578 6.35156 lineto
+67.7578 11.7227 lineto
+68.66411 11.7227 lineto
+68.66411 10.9297 lineto
+69.02339 11.2188 69.3398 11.4219 69.6133 11.543 curveto
+69.8867 11.6641 70.16411 11.7227 70.4492 11.7227 curveto
+70.6094 11.7227 70.7227 11.7188 70.793 11.7109 curveto
+70.8633 11.7031 70.9688 11.6875 71.1094 11.6641 curveto
+ closepath fill
+newpath 78.7148 11.7227 moveto
+77.3164 6.35156 lineto
+76.4805 6.35156 lineto
+75.0977 10.4922 lineto
+73.7305 6.35156 lineto
+72.89839 6.35156 lineto
+71.4844 11.7227 lineto
+72.4258 11.7227 lineto
+73.4102 7.5625 lineto
+74.7539 11.7227 lineto
+75.5 11.7227 lineto
+76.875 7.5625 lineto
+77.8047 11.7227 lineto
+ closepath fill
+newpath 84.5938 9.03516 moveto
+84.5938 8.16016 84.3672 7.46875 83.9219 6.96484 curveto
+83.4727 6.45703 82.8711 6.20313 82.1172 6.20313 curveto
+81.3594 6.20313 80.7539 6.45703 80.3086 6.96484 curveto
+79.8594 7.46875 79.6367 8.16016 79.6367 9.03516 curveto
+79.6367 9.91016 79.8594 10.6016 80.3086 11.1094 curveto
+80.7539 11.6172 81.3594 11.8711 82.1172 11.8711 curveto
+82.1172 11.0938 lineto
+81.6289 11.0938 81.2461 10.9219 80.97661 10.5859 curveto
+80.707 10.2461 80.5703 9.73047 80.5703 9.03516 curveto
+80.5703 8.36328 80.707 7.85156 80.97661 7.5039 curveto
+81.25 7.15625 81.6328 6.98438 82.1172 6.98438 curveto
+82.5977 6.98438 82.97661 7.15625 83.25 7.5 curveto
+83.52339 7.84375 83.6602 8.35547 83.6602 9.03516 curveto
+83.6602 9.03516 lineto
+83.6602 9.73047 83.52339 10.2461 83.2539 10.5859 curveto
+82.9805 10.9219 82.60161 11.0938 82.1172 11.0938 curveto
+82.1172 11.8711 lineto
+82.8711 11.8711 83.4727 11.6172 83.9219 11.1094 curveto
+84.3672 10.6016 84.5938 9.91016 84.5938 9.03516 curveto
+ closepath fill
+newpath 86.9063 6.35156 moveto
+86.0039 6.35156 lineto
+86.0039 13.832 lineto
+86.9063 13.832 lineto
+ closepath fill
+newpath 91.582 12.957 moveto
+91.5352 12.957 lineto
+91.4336 12.9883 91.3047 13.0156 91.1445 13.0469 curveto
+90.9844 13.0781 90.8438 13.0938 90.7227 13.0938 curveto
+90.33589 13.0938 90.0547 13.0078 89.8789 12.8359 curveto
+89.7031 12.6641 89.6172 12.3555 89.6172 11.9063 curveto
+89.6172 11.7227 lineto
+91.2461 11.7227 lineto
+91.2461 10.9648 lineto
+89.6445 10.9648 lineto
+89.6445 6.35156 lineto
+88.7422 6.35156 lineto
+88.7422 10.9648 lineto
+88.1328 10.9648 lineto
+88.1328 11.7227 lineto
+88.7422 11.7227 lineto
+88.7422 11.8984 lineto
+88.7422 12.5391 88.9023 13.0273 89.2188 13.3672 curveto
+89.5352 13.7109 89.9922 13.8828 90.5938 13.8828 curveto
+90.793 13.8828 90.97661 13.8711 91.1367 13.8516 curveto
+91.3008 13.832 91.4492 13.8086 91.582 13.7852 curveto
+ closepath fill
+newpath 96.3281 6.35156 moveto
+95.4297 6.35156 lineto
+95.4297 6.92578 lineto
+95.3477 6.8711 95.2383 6.79297 95.1055 6.69922 curveto
+94.6992 7.23047 lineto
+94.96089 7.35547 95.2031 7.5 95.4297 7.67578 curveto
+95.4297 7.67578 lineto
+95.4297 9.17188 lineto
+95.1523 9.15234 94.8281 9.1289 94.457 9.09766 curveto
+94.082 9.0664 93.7852 9.01953 93.5703 8.95703 curveto
+93.3086 8.88672 93.0977 8.76953 92.9375 8.61328 curveto
+92.7773 8.46094 92.6992 8.2461 92.6992 7.97266 curveto
+92.6992 7.66406 92.78911 7.4336 92.97661 7.27734 curveto
+93.16411 7.1211 93.4453 7.04688 93.8281 7.04688 curveto
+94.1445 7.04688 94.4336 7.10547 94.6992 7.23047 curveto
+95.1055 6.69922 lineto
+94.9688 6.59766 94.83589 6.51953 94.707 6.46484 curveto
+94.5547 6.39063 94.3828 6.32813 94.1875 6.27734 curveto
+93.9922 6.23047 93.7656 6.20313 93.5 6.20313 curveto
+93.0156 6.20313 92.6055 6.36328 92.2695 6.6836 curveto
+91.9336 7.00781 91.7656 7.41406 91.7656 7.91016 curveto
+91.7656 8.32031 91.85161 8.64844 92.0273 8.89844 curveto
+92.2031 9.14844 92.4531 9.34766 92.77339 9.49219 curveto
+93.10161 9.63672 93.4961 9.73438 93.9531 9.78516 curveto
+94.4102 9.83594 94.9023 9.875 95.4297 9.90234 curveto
+95.4297 10.0391 lineto
+95.4297 10.2461 95.3945 10.4141 95.3203 10.5508 curveto
+95.2461 10.6836 95.1445 10.7891 95.0117 10.8672 curveto
+94.8828 10.9414 94.72661 10.9883 94.5469 11.0156 curveto
+94.3672 11.043 94.1797 11.0547 93.9844 11.0547 curveto
+93.75 11.0547 93.4844 11.0234 93.1953 10.9609 curveto
+92.9023 10.8984 92.60161 10.8086 92.28911 10.6875 curveto
+92.2422 10.6875 lineto
+92.2422 11.6055 lineto
+92.418 11.6563 92.6719 11.707 93.0078 11.7656 curveto
+93.3398 11.8242 93.668 11.8516 93.9922 11.8516 curveto
+94.3672 11.8516 94.6992 11.8203 94.9805 11.7578 curveto
+95.2578 11.6953 95.5039 11.5898 95.707 11.4375 curveto
+95.9102 11.293 96.0625 11.1016 96.168 10.8672 curveto
+96.27339 10.6328 96.3281 10.3438 96.3281 9.9961 curveto
+ closepath fill
+newpath 102.039 6.6914 moveto
+101.738 6.54688 101.44899 6.4336 101.18 6.35156 curveto
+100.91 6.27344 100.621 6.23438 100.31601 6.23438 curveto
+99.9297 6.23438 99.5742 6.28906 99.25 6.40234 curveto
+98.9258 6.51563 98.64839 6.6914 98.418 6.92188 curveto
+98.1836 7.15234 98.0039 7.44531 97.875 7.79688 curveto
+97.7461 8.14844 97.6836 8.5586 97.6836 9.03125 curveto
+97.6836 9.91016 97.9219 10.5977 98.4063 11.0977 curveto
+98.8906 11.5977 99.5273 11.8477 100.31601 11.8477 curveto
+100.625 11.8477 100.92601 11.8047 101.223 11.7188 curveto
+101.52 11.6328 101.793 11.5273 102.039 11.4023 curveto
+102.039 10.3945 lineto
+101.988 10.3945 lineto
+101.715 10.6094 101.43 10.7773 101.137 10.8906 curveto
+100.84401 11.0078 100.55899 11.0625 100.277 11.0625 curveto
+99.7656 11.0625 99.3594 10.8906 99.0664 10.5469 curveto
+98.7695 10.2031 98.6211 9.69922 98.6211 9.03125 curveto
+98.6211 8.38281 98.7656 7.88672 99.0547 7.53906 curveto
+99.3438 7.1914 99.7539 7.01563 100.277 7.01563 curveto
+100.461 7.01563 100.64801 7.03906 100.836 7.08984 curveto
+101.02301 7.13672 101.195 7.19922 101.348 7.27734 curveto
+101.47699 7.34375 101.60199 7.41406 101.715 7.48828 curveto
+101.832 7.5664 101.922 7.63281 101.988 7.6836 curveto
+102.039 7.6836 lineto
+ closepath fill
+newpath 107.688 6.35156 moveto
+106.78099 6.35156 lineto
+106.78099 9.41016 lineto
+106.78099 9.65625 106.77 9.88672 106.738 10.1055 curveto
+106.711 10.3203 106.65599 10.4922 106.582 10.6133 curveto
+106.5 10.7461 106.387 10.8477 106.234 10.9141 curveto
+106.086 10.9766 105.887 11.0117 105.64801 11.0117 curveto
+105.402 11.0117 105.145 10.9492 104.875 10.8281 curveto
+104.605 10.707 104.348 10.5508 104.10199 10.3633 curveto
+104.10199 6.35156 lineto
+103.195 6.35156 lineto
+103.195 13.832 lineto
+104.10199 13.832 lineto
+104.10199 11.125 lineto
+104.383 11.3594 104.67601 11.543 104.97699 11.6758 curveto
+105.277 11.8047 105.586 11.8711 105.902 11.8711 curveto
+106.484 11.8711 106.92601 11.6992 107.23 11.3477 curveto
+107.535 11 107.688 10.4961 107.688 9.83984 curveto
+ closepath fill
+newpath 397.719 34.375 moveto
+392.789 22.97661 lineto
+387.81299 34.375 lineto
+383.93799 18.3047 lineto
+386.39801 18.3047 lineto
+388.52701 27.7773 lineto
+392.789 17.66411 lineto
+397.051 27.7773 lineto
+399.156 18.3047 lineto
+401.621 18.3047 lineto
+ closepath fill
+newpath 430.883 26.1094 moveto
+430.883 24.1055 lineto
+434.965 24.1055 lineto
+434.52701 21.53911 432.73001 19.9492 430.012 19.9492 curveto
+426.72699 19.9492 424.51999 22.6172 424.51999 26.1875 curveto
+424.51999 29.4453 426.801 31.9883 430.06299 31.9883 curveto
+432.035 31.9883 433.47699 31.16411 434.93799 29.2656 curveto
+436.762 30.6797 lineto
+435.039 32.9883 432.80899 34.1172 430.012 34.1172 curveto
+428.215 34.1172 426.695 33.5547 425.262 32.5 curveto
+423.18399 30.96089 422.055 28.6758 422.055 26.0078 curveto
+422.055 23.7461 422.89801 21.6406 424.43799 20.10161 curveto
+425.953 18.5625 427.621 17.8203 430.012 17.8203 curveto
+432.293 17.8203 434.01599 18.58589 435.426 20.1289 curveto
+436.785 21.5664 437.453 23.2852 437.68799 26.1094 curveto
+ closepath fill
+newpath 465.66 33.6563 moveto
+463.43 33.6563 lineto
+463.43 23.207 lineto
+451.93399 33.9648 lineto
+451.93399 18.3047 lineto
+454.164 18.3047 lineto
+454.164 28.7773 lineto
+465.66 17.9961 lineto
+ closepath fill
+newpath 500.031 18.3047 moveto
+495.41 25.082 lineto
+497.56601 25.64839 498.72699 27.1367 498.72699 29.293 curveto
+498.72699 30.8594 498.031 32.2188 496.77301 32.9375 curveto
+495.76999 33.5547 494.949 33.6563 492.074 33.6563 curveto
+489.406 33.6563 lineto
+489.406 18.3047 lineto
+491.64099 18.3047 lineto
+491.64099 24.8789 lineto
+491.64099 26.9063 lineto
+491.64099 31.6523 lineto
+493.51599 31.6523 lineto
+494.56601 31.6523 495.207 31.5 495.64499 31.1133 curveto
+496.133 30.6797 496.43799 29.9336 496.43799 29.1875 curveto
+496.43799 28.2656 495.949 27.4961 495.10501 27.1367 curveto
+494.668 26.957 494.078 26.9063 492.69101 26.9063 curveto
+491.64099 26.9063 lineto
+491.64099 24.8789 lineto
+492.82 24.8789 lineto
+497.211 18.3047 lineto
+ closepath fill
+newpath 445.336 33.6563 moveto
+443.074 33.6563 lineto
+443.074 18.3047 lineto
+445.336 18.3047 lineto
+ closepath fill
+newpath 378.75 33.6563 moveto
+376.51999 33.6563 lineto
+376.51999 18.3047 lineto
+378.75 18.3047 lineto
+ closepath fill
+newpath 515.10199 33.6563 moveto
+512.76599 33.6563 lineto
+508.81299 27.3164 lineto
+504.781 33.6563 lineto
+502.31601 33.6563 lineto
+507.656 24.9805 lineto
+507.656 18.3047 lineto
+509.89099 18.3047 lineto
+509.89099 25.2383 lineto
+ closepath fill
+newpath 416.76599 18.3047 moveto
+419.23001 18.3047 lineto
+411.81299 34.2188 lineto
+404.39499 18.3047 lineto
+406.85501 18.3047 lineto
+408.445 21.9258 lineto
+415.14801 21.9258 lineto
+414.27301 23.9258 lineto
+409.34799 23.9258 lineto
+411.81299 29.4961 lineto
+414.27301 23.9258 lineto
+415.14801 21.9258 lineto
+ closepath fill
+newpath 482.449 18.3047 moveto
+484.914 18.3047 lineto
+477.496 34.2188 lineto
+470.078 18.3047 lineto
+472.539 18.3047 lineto
+474.133 21.9258 lineto
+480.832 21.9258 lineto
+479.961 23.9258 lineto
+475.031 23.9258 lineto
+477.496 29.4961 lineto
+479.961 23.9258 lineto
+480.832 21.9258 lineto
+ closepath fill
+newpath 408.32 11.582 moveto
+408.32 10.8867 lineto
+409.06299 10.8867 409.65201 10.2695 409.65201 9.52734 curveto
+409.65201 8.8086 409.06299 8.21875 408.32 8.21875 curveto
+407.60199 8.21875 407.035 8.8086 407.035 9.52734 curveto
+407.035 10.2695 407.60199 10.8867 408.32 10.8867 curveto
+408.32 10.8867 lineto
+408.32 11.582 lineto
+407.19101 11.582 406.26999 10.6836 406.26999 9.52734 curveto
+406.26999 8.3711 407.19101 7.47266 408.32 7.47266 curveto
+409.47699 7.47266 410.39801 8.3711 410.39801 9.52734 curveto
+410.39801 10.6836 409.47699 11.582 408.32 11.582 curveto
+ closepath fill
+newpath 412.426 11.4531 moveto
+411.68399 11.4531 lineto
+411.68399 5.39453 lineto
+412.426 5.39453 lineto
+412.426 8.21875 lineto
+412.449 8.21875 lineto
+412.73401 7.78125 413.195 7.47266 413.762 7.47266 curveto
+414.94101 7.47266 415.586 8.44922 415.586 9.57813 curveto
+415.586 10.6328 414.89099 11.582 413.785 11.582 curveto
+413.60501 10.9141 lineto
+414.40201 10.9141 414.863 10.2969 414.863 9.55078 curveto
+414.863 8.78125 414.40201 8.16797 413.60501 8.16797 curveto
+413.60501 8.16797 lineto
+412.81299 8.16797 412.375 8.83203 412.375 9.55078 curveto
+412.375 10.2461 412.84 10.9141 413.60501 10.9141 curveto
+413.785 11.582 lineto
+413.195 11.582 412.73401 11.2969 412.449 10.8359 curveto
+412.426 10.8359 lineto
+ closepath fill
+newpath 420.51599 9.39844 moveto
+420.51599 9.52734 lineto
+420.51599 10.6836 419.945 11.582 418.715 11.582 curveto
+417.48401 11.582 416.844 10.6836 416.844 9.5 curveto
+416.844 8.3711 417.56299 7.47266 418.715 7.47266 curveto
+419.48401 7.47266 420.15201 7.85938 420.51599 8.52734 curveto
+419.89499 8.88672 lineto
+419.613 8.42188 419.30899 8.16797 418.715 8.16797 curveto
+418.02301 8.16797 417.586 8.75781 417.586 9.39844 curveto
+417.60901 9.98828 lineto
+417.715 10.5273 418.14801 10.9375 418.715 10.9375 curveto
+419.30899 10.9375 419.69101 10.5781 419.76999 9.98828 curveto
+417.60901 9.98828 lineto
+417.586 9.39844 lineto
+ closepath fill
+newpath 422.72299 11.4531 moveto
+421.97699 11.4531 lineto
+421.97699 7.6289 lineto
+422.72299 7.6289 lineto
+422.72299 9.3711 lineto
+422.72299 10.0898 422.72299 10.9141 423.672 10.9141 curveto
+424.43799 10.9141 424.543 10.4492 424.543 9.8086 curveto
+424.543 7.6289 lineto
+425.23401 7.6289 lineto
+425.23401 9.91016 lineto
+425.23401 10.8633 425.004 11.582 423.89801 11.582 curveto
+423.43799 11.582 422.97699 11.375 422.746 10.9375 curveto
+422.72299 10.9375 lineto
+ closepath fill
+newpath 431.496 11.4531 moveto
+430.73001 11.4531 lineto
+430.73001 7.6289 lineto
+431.496 7.6289 lineto
+431.496 9.5 lineto
+431.496 10.1172 431.551 10.9141 432.34799 10.9141 curveto
+433.039 10.9141 433.06299 10.168 433.06299 9.65625 curveto
+433.06299 7.6289 lineto
+433.80899 7.6289 lineto
+433.80899 9.5 lineto
+433.80899 10.1172 433.85901 10.9141 434.656 10.9141 curveto
+435.297 10.9141 435.375 10.2969 435.375 9.78516 curveto
+435.375 7.6289 lineto
+436.094 7.6289 lineto
+436.094 9.91016 lineto
+436.094 10.7852 435.836 11.582 434.836 11.582 curveto
+434.34799 11.582 433.887 11.3242 433.629 10.9141 curveto
+433.39801 11.3477 433.039 11.582 432.52301 11.582 curveto
+432.09 11.582 431.703 11.3242 431.496 10.9648 curveto
+ closepath fill
+newpath 441.508 11.4531 moveto
+440.789 11.4531 lineto
+440.789 10.8359 lineto
+440.76599 10.8359 lineto
+440.457 11.2969 439.992 11.582 439.43 11.582 curveto
+439.55899 10.9141 lineto
+440.35501 10.9141 440.81601 10.2969 440.81601 9.55078 curveto
+440.81601 8.78125 440.35501 8.16797 439.55899 8.16797 curveto
+439.55899 8.16797 lineto
+438.76599 8.16797 438.324 8.83203 438.324 9.55078 curveto
+438.324 10.2461 438.785 10.9141 439.55899 10.9141 curveto
+439.43 11.582 lineto
+438.301 11.582 437.60501 10.6328 437.60501 9.57813 curveto
+437.60501 8.44922 438.27301 7.47266 439.43 7.47266 curveto
+439.992 7.47266 440.457 7.78125 440.76599 8.21875 curveto
+440.789 8.21875 lineto
+440.789 7.6289 lineto
+441.508 7.6289 lineto
+ closepath fill
+newpath 446.72299 13.7891 moveto
+446.72299 7.6289 lineto
+447.465 7.6289 lineto
+447.465 9.3711 lineto
+447.465 10.0898 447.465 10.9141 448.414 10.9141 curveto
+449.18399 10.9141 449.262 10.4492 449.262 9.8086 curveto
+449.262 7.6289 lineto
+450.008 7.6289 lineto
+450.008 9.91016 lineto
+450.008 10.8633 449.72299 11.582 448.617 11.582 curveto
+448.18399 11.582 447.72299 11.375 447.465 10.9375 curveto
+447.465 13.7891 lineto
+ closepath fill
+newpath 455.344 9.39844 moveto
+455.344 9.52734 lineto
+455.344 10.6836 454.754 11.582 453.51999 11.582 curveto
+452.289 11.582 451.676 10.6836 451.676 9.5 curveto
+451.676 8.3711 452.367 7.47266 453.547 7.47266 curveto
+454.289 7.47266 454.98401 7.85938 455.344 8.52734 curveto
+454.73001 8.88672 lineto
+454.445 8.42188 454.14099 8.16797 453.547 8.16797 curveto
+452.85501 8.16797 452.418 8.75781 452.39499 9.39844 curveto
+452.44101 9.98828 lineto
+452.51999 10.5273 452.957 10.9375 453.51999 10.9375 curveto
+454.14099 10.9375 454.52301 10.5781 454.60199 9.98828 curveto
+452.44101 9.98828 lineto
+452.39499 9.39844 lineto
+ closepath fill
+newpath 457.85901 11.4531 moveto
+457.113 11.4531 lineto
+457.113 7.6289 lineto
+457.85901 7.6289 lineto
+457.85901 9.5 lineto
+457.85901 10.1172 457.91 10.9141 458.707 10.9141 curveto
+459.371 10.9141 459.39801 10.168 459.39801 9.65625 curveto
+459.39801 7.6289 lineto
+460.14499 7.6289 lineto
+460.14499 9.5 lineto
+460.14499 10.1172 460.22299 10.9141 460.988 10.9141 curveto
+461.656 10.9141 461.73401 10.2969 461.73401 9.78516 curveto
+461.73401 7.6289 lineto
+462.453 7.6289 lineto
+462.453 9.91016 lineto
+462.453 10.7852 462.195 11.582 461.195 11.582 curveto
+460.711 11.582 460.246 11.3242 459.988 10.9141 curveto
+459.73401 11.3477 459.371 11.582 458.887 11.582 curveto
+458.449 11.582 458.09 11.3242 457.85901 10.9648 curveto
+ closepath fill
+newpath 467.867 11.4531 moveto
+467.125 11.4531 lineto
+467.125 10.8359 lineto
+466.81601 11.2969 466.35501 11.582 465.789 11.582 curveto
+465.922 10.9141 lineto
+466.715 10.9141 467.176 10.2969 467.176 9.55078 curveto
+467.176 8.78125 466.715 8.16797 465.922 8.16797 curveto
+465.922 8.16797 lineto
+465.121 8.16797 464.68799 8.83203 464.68799 9.55078 curveto
+464.68799 10.2461 465.14801 10.9141 465.922 10.9141 curveto
+465.789 11.582 lineto
+464.66 11.582 463.969 10.6328 463.969 9.57813 curveto
+463.969 8.44922 464.637 7.47266 465.789 7.47266 curveto
+466.35501 7.47266 466.81601 7.78125 467.125 8.21875 curveto
+467.125 7.6289 lineto
+467.867 7.6289 lineto
+ closepath fill
+newpath 473.824 11.4531 moveto
+473.10501 11.4531 lineto
+473.10501 7.6289 lineto
+473.824 7.6289 lineto
+ closepath fill
+newpath 473.492 13.7617 moveto
+473.18399 13.7617 472.98001 13.5078 472.98001 13.2227 curveto
+472.98001 12.9414 473.18399 12.7344 473.492 12.7344 curveto
+473.746 12.7344 474.004 12.9414 474.004 13.2227 curveto
+474.004 13.5078 473.746 13.7617 473.492 13.7617 curveto
+ closepath fill
+newpath 479.06299 10.7344 moveto
+478.906 10.9883 478.39499 11.582 477.51999 11.582 curveto
+476.34 11.582 475.414 10.707 475.414 9.5 curveto
+475.414 8.34766 476.34 7.47266 477.47299 7.47266 curveto
+478.31601 7.47266 478.77701 7.9336 479.012 8.26953 curveto
+478.496 8.65625 lineto
+478.26599 8.39844 478.035 8.16797 477.496 8.16797 curveto
+476.676 8.16797 476.137 8.75781 476.137 9.55078 curveto
+476.137 10.2461 476.699 10.9141 477.445 10.9141 curveto
+477.883 10.9141 478.238 10.707 478.52301 10.375 curveto
+ closepath fill
+newpath 482.47699 10.9141 moveto
+482.26999 11.3477 481.887 11.582 481.426 11.582 curveto
+480.781 11.582 480.293 11.1172 480.293 10.4492 curveto
+480.293 9.9375 480.60199 9.73047 481.01599 9.5 curveto
+481.758 9.11719 lineto
+481.91 8.98828 482.01599 8.88672 482.01599 8.67969 curveto
+482.01599 8.34766 481.758 8.16797 481.449 8.16797 curveto
+481.09 8.16797 480.887 8.34766 480.758 8.65625 curveto
+480.09 8.34766 lineto
+480.32 7.8086 480.887 7.47266 481.449 7.47266 curveto
+482.14499 7.47266 482.781 8.01172 482.781 8.75781 curveto
+482.781 9.34766 482.34799 9.65625 481.887 9.85938 curveto
+481.426 10.0391 480.98401 10.2188 480.98401 10.5273 curveto
+480.98401 10.7617 481.19101 10.9141 481.371 10.9141 curveto
+481.60501 10.9141 481.781 10.7852 481.887 10.6055 curveto
+ closepath fill
+newpath 444.332 10.7852 moveto
+445.051 10.7852 lineto
+445.051 11.4531 lineto
+444.332 11.4531 lineto
+444.332 12.9414 lineto
+443.56299 12.9414 lineto
+443.56299 11.4531 lineto
+443.15201 11.4531 lineto
+443.15201 10.7852 lineto
+443.56299 10.7852 lineto
+443.56299 7.6289 lineto
+444.332 7.6289 lineto
+ closepath fill
+newpath 470.76999 10.7852 moveto
+471.539 10.7852 lineto
+471.539 11.4531 lineto
+470.76999 11.4531 lineto
+470.76999 12.9414 lineto
+470.051 12.9414 lineto
+470.051 11.4531 lineto
+469.64499 11.4531 lineto
+469.64499 10.7852 lineto
+470.051 10.7852 lineto
+470.051 7.6289 lineto
+470.76999 7.6289 lineto
+ closepath fill
+newpath 173.246 12.5352 moveto
+173.246 9.51953 lineto
+175.02 9.51953 lineto
+175.02 9.89063 lineto
+173.656 9.89063 lineto
+173.656 12.5352 lineto
+173.246 12.5352 lineto
+ closepath fill
+newpath 177.867 10.582 moveto
+176.281 10.582 lineto
+176.289 10.8672 lineto
+177.512 10.8672 lineto
+177.512 11.0273 177.461 11.1563 177.363 11.2617 curveto
+177.254 11.3789 177.105 11.4375 176.922 11.4375 curveto
+176.922 11.4375 lineto
+176.746 11.4375 176.602 11.3828 176.48 11.2656 curveto
+176.367 11.1602 176.305 11.0273 176.289 10.8672 curveto
+176.281 10.582 lineto
+176.281 10.3242 176.352 10.1289 176.492 9.98828 curveto
+176.617 9.86719 176.777 9.8086 176.973 9.8086 curveto
+177.195 9.8086 177.383 9.8711 177.535 10.0039 curveto
+177.699 9.72266 lineto
+177.637 9.66016 177.547 9.60938 177.422 9.5664 curveto
+177.266 9.50781 177.09 9.47656 176.898 9.47656 curveto
+176.621 9.47656 176.383 9.57422 176.191 9.76172 curveto
+175.977 9.96875 175.867 10.2461 175.867 10.5977 curveto
+175.867 10.9609 175.98 11.25 176.199 11.4727 curveto
+176.398 11.668 176.633 11.7656 176.902 11.7656 curveto
+177.215 11.7656 177.461 11.6758 177.641 11.5 curveto
+177.813 11.3281 177.898 11.1055 177.898 10.8242 curveto
+177.898 10.7383 177.891 10.6563 177.867 10.582 curveto
+ closepath fill
+newpath 179.164 9.51953 moveto
+179.164 11.3945 lineto
+178.859 11.3945 lineto
+178.859 11.7227 lineto
+179.555 11.7227 lineto
+179.555 9.51953 lineto
+179.164 9.51953 lineto
+ closepath fill
+newpath 179.379 12.5586 moveto
+179.445 12.5586 179.5 12.5352 179.551 12.4883 curveto
+179.598 12.4414 179.621 12.3867 179.621 12.3203 curveto
+179.621 12.25 179.598 12.1953 179.551 12.1445 curveto
+179.5 12.0977 179.445 12.0742 179.379 12.0742 curveto
+179.313 12.0742 179.254 12.0977 179.207 12.1445 curveto
+179.16 12.1953 179.137 12.25 179.137 12.3203 curveto
+179.137 12.3867 179.16 12.4453 179.207 12.4883 curveto
+179.254 12.5352 179.309 12.5586 179.379 12.5586 curveto
+ closepath fill
+newpath 181.172 9.67969 moveto
+181.035 9.47656 lineto
+180.84 9.47656 lineto
+180.84 12.6289 lineto
+181.23 12.6289 lineto
+181.23 11.5625 lineto
+181.398 11.375 lineto
+181.313 11.332 181.254 11.2969 181.23 11.2617 curveto
+181.23 11.2617 lineto
+181.23 9.99219 lineto
+181.23 9.96875 181.277 9.9336 181.375 9.88281 curveto
+181.473 9.83203 181.547 9.8086 181.598 9.8086 curveto
+181.863 9.8086 182.055 9.8711 182.172 10 curveto
+182.285 10.125 182.344 10.3398 182.344 10.6406 curveto
+182.344 10.8906 182.273 11.0859 182.141 11.2266 curveto
+182.008 11.3672 181.824 11.4375 181.598 11.4375 curveto
+181.551 11.4375 181.484 11.4141 181.398 11.375 curveto
+181.23 11.5625 lineto
+181.266 11.6133 181.336 11.6602 181.438 11.7031 curveto
+181.539 11.7461 181.641 11.7656 181.738 11.7656 curveto
+182.043 11.7656 182.285 11.6602 182.473 11.4531 curveto
+182.66 11.2461 182.754 10.9805 182.754 10.6602 curveto
+182.754 10.293 182.66 10.0078 182.473 9.79297 curveto
+182.285 9.58203 182.031 9.47656 181.707 9.47656 curveto
+181.605 9.47656 181.504 9.4961 181.402 9.53516 curveto
+181.301 9.57422 181.223 9.6211 181.172 9.67969 curveto
+ closepath fill
+newpath 185.207 9.51953 moveto
+185.207 10.8008 lineto
+185.207 11.0352 185.172 11.1992 185.102 11.2969 curveto
+185.027 11.3906 184.91 11.4375 184.746 11.4375 curveto
+184.656 11.4375 184.563 11.4102 184.465 11.3555 curveto
+184.367 11.3008 184.293 11.2344 184.238 11.1563 curveto
+184.238 9.51953 lineto
+183.848 9.51953 lineto
+183.848 11.7227 lineto
+184.117 11.7227 lineto
+184.238 11.4414 lineto
+184.367 11.6563 184.578 11.7656 184.871 11.7656 curveto
+185.355 11.7656 185.598 11.4727 185.598 10.8867 curveto
+185.598 9.51953 lineto
+185.207 9.51953 lineto
+ closepath fill
+newpath 187.004 9.51953 moveto
+187.004 11.3945 lineto
+186.703 11.3945 lineto
+186.703 11.7227 lineto
+187.395 11.7227 lineto
+187.395 9.51953 lineto
+187.004 9.51953 lineto
+ closepath fill
+newpath 187.219 12.5586 moveto
+187.285 12.5586 187.344 12.5352 187.391 12.4883 curveto
+187.438 12.4414 187.461 12.3867 187.461 12.3203 curveto
+187.461 12.25 187.438 12.1953 187.391 12.1445 curveto
+187.344 12.0977 187.285 12.0742 187.219 12.0742 curveto
+187.152 12.0742 187.098 12.0977 187.051 12.1445 curveto
+187 12.1953 186.977 12.25 186.977 12.3203 curveto
+186.977 12.3867 187 12.4453 187.047 12.4883 curveto
+187.094 12.5352 187.152 12.5586 187.219 12.5586 curveto
+ closepath fill
+newpath 189.098 9.8711 moveto
+190.32 9.8711 lineto
+190.32 9.51953 lineto
+188.484 9.51953 lineto
+188.484 9.6211 lineto
+189.738 11.375 lineto
+188.504 11.375 lineto
+188.504 11.7227 lineto
+190.309 11.7227 lineto
+190.309 11.6133 lineto
+189.098 9.8711 lineto
+ closepath fill
+newpath 195.02 9.51953 moveto
+194.809 10.1563 lineto
+193.688 10.1563 lineto
+193.797 10.457 lineto
+194.691 10.457 lineto
+194.266 11.7852 lineto
+194.266 11.7852 lineto
+193.797 10.457 lineto
+193.688 10.1563 lineto
+193.465 9.51953 lineto
+193.004 9.51953 lineto
+194.23 12.5781 lineto
+194.34 12.5781 lineto
+195.477 9.51953 lineto
+195.02 9.51953 lineto
+ closepath fill
+newpath 196.277 9.65234 moveto
+196.418 10.0234 lineto
+196.637 9.88281 196.813 9.8086 196.945 9.8086 curveto
+197.188 9.8086 197.309 9.91016 197.309 10.1133 curveto
+197.309 10.2578 197.191 10.3828 196.957 10.4883 curveto
+196.777 10.5703 196.656 10.6328 196.594 10.6758 curveto
+196.531 10.7148 196.477 10.7656 196.43 10.8203 curveto
+196.387 10.875 196.352 10.9297 196.328 10.9922 curveto
+196.305 11.0547 196.293 11.1172 196.293 11.1875 curveto
+196.293 11.3711 196.359 11.5117 196.492 11.6133 curveto
+196.621 11.7148 196.797 11.7656 197.008 11.7656 curveto
+197.168 11.7656 197.371 11.7148 197.613 11.6133 curveto
+197.504 11.25 lineto
+197.352 11.375 197.191 11.4375 197.035 11.4375 curveto
+196.945 11.4375 196.863 11.4141 196.801 11.3711 curveto
+196.738 11.3242 196.707 11.2695 196.707 11.2031 curveto
+196.707 11.0625 196.785 10.957 196.945 10.8828 curveto
+197.227 10.7578 lineto
+197.398 10.6758 197.523 10.5859 197.602 10.4883 curveto
+197.68 10.3867 197.719 10.2617 197.719 10.1094 curveto
+197.719 9.91406 197.648 9.76172 197.512 9.64453 curveto
+197.371 9.53516 197.18 9.47656 196.934 9.47656 curveto
+196.703 9.47656 196.484 9.53516 196.277 9.65234 curveto
+ closepath fill
+newpath 198.648 9.65234 moveto
+198.785 10.0234 lineto
+199.004 9.88281 199.18 9.8086 199.313 9.8086 curveto
+199.555 9.8086 199.676 9.91016 199.676 10.1133 curveto
+199.676 10.2578 199.559 10.3828 199.324 10.4883 curveto
+199.145 10.5703 199.023 10.6328 198.961 10.6758 curveto
+198.898 10.7148 198.848 10.7656 198.801 10.8203 curveto
+198.754 10.875 198.719 10.9297 198.695 10.9922 curveto
+198.676 11.0547 198.664 11.1172 198.664 11.1875 curveto
+198.664 11.3711 198.73 11.5117 198.859 11.6133 curveto
+198.992 11.7148 199.164 11.7656 199.379 11.7656 curveto
+199.539 11.7656 199.738 11.7148 199.984 11.6133 curveto
+199.875 11.25 lineto
+199.719 11.375 199.563 11.4375 199.406 11.4375 curveto
+199.313 11.4375 199.234 11.4141 199.172 11.3711 curveto
+199.105 11.3242 199.074 11.2695 199.074 11.2031 curveto
+199.074 11.0625 199.156 10.957 199.316 10.8828 curveto
+199.594 10.7578 lineto
+199.766 10.6758 199.891 10.5859 199.969 10.4883 curveto
+200.047 10.3867 200.086 10.2617 200.086 10.1094 curveto
+200.086 9.91406 200.02 9.76172 199.879 9.64453 curveto
+199.742 9.53516 199.547 9.47656 199.305 9.47656 curveto
+199.07 9.47656 198.852 9.53516 198.648 9.65234 curveto
+ closepath fill
+newpath 201.016 10.625 moveto
+201.016 10.9688 201.109 11.2422 201.293 11.4531 curveto
+201.477 11.6602 201.715 11.7656 202.016 11.7656 curveto
+202.016 11.4492 lineto
+201.836 11.4492 201.695 11.375 201.59 11.2266 curveto
+201.48 11.082 201.43 10.8828 201.43 10.625 curveto
+201.43 10.625 lineto
+201.43 10.0742 201.625 9.79688 202.016 9.79688 curveto
+202.199 9.79688 202.34 9.8711 202.445 10.0195 curveto
+202.551 10.168 202.602 10.3711 202.602 10.625 curveto
+202.602 11.1719 202.406 11.4492 202.016 11.4492 curveto
+202.016 11.7656 lineto
+202.332 11.7656 202.574 11.6641 202.75 11.4648 curveto
+202.926 11.2617 203.012 10.9844 203.012 10.625 curveto
+203.012 10.2695 202.922 9.99219 202.742 9.78516 curveto
+202.566 9.58203 202.324 9.47656 202.016 9.47656 curveto
+201.699 9.47656 201.457 9.58203 201.281 9.78906 curveto
+201.105 9.9961 201.016 10.2773 201.016 10.625 curveto
+ closepath fill
+newpath 205.75 11.5469 moveto
+205.555 11.2695 lineto
+205.516 11.3086 205.445 11.3477 205.344 11.3828 curveto
+205.242 11.418 205.145 11.4375 205.047 11.4375 curveto
+204.836 11.4375 204.664 11.3633 204.539 11.2109 curveto
+204.414 11.0625 204.352 10.8594 204.352 10.6016 curveto
+204.352 10.3438 204.418 10.1445 204.547 10.0117 curveto
+204.672 9.875 204.852 9.8086 205.074 9.8086 curveto
+205.25 9.8086 205.43 9.875 205.605 10.0117 curveto
+205.762 9.6836 lineto
+205.551 9.54688 205.293 9.47656 204.98 9.47656 curveto
+204.68 9.47656 204.434 9.57813 204.234 9.78125 curveto
+204.039 9.98438 203.941 10.2578 203.941 10.6016 curveto
+203.941 10.9531 204.043 11.2344 204.246 11.4492 curveto
+204.449 11.6602 204.73 11.7656 205.086 11.7656 curveto
+205.199 11.7656 205.32 11.7422 205.453 11.6953 curveto
+205.59 11.6445 205.688 11.5977 205.75 11.5469 curveto
+ closepath fill
+newpath 207.023 9.51953 moveto
+207.023 11.3945 lineto
+206.723 11.3945 lineto
+206.723 11.7227 lineto
+207.414 11.7227 lineto
+207.414 9.51953 lineto
+207.023 9.51953 lineto
+ closepath fill
+newpath 207.238 12.5586 moveto
+207.305 12.5586 207.363 12.5352 207.41 12.4883 curveto
+207.457 12.4414 207.48 12.3867 207.48 12.3203 curveto
+207.48 12.25 207.457 12.1953 207.41 12.1445 curveto
+207.363 12.0977 207.305 12.0742 207.238 12.0742 curveto
+207.172 12.0742 207.117 12.0977 207.07 12.1445 curveto
+207.02 12.1953 206.996 12.25 206.996 12.3203 curveto
+206.996 12.3867 207.02 12.4453 207.066 12.4883 curveto
+207.113 12.5352 207.172 12.5586 207.238 12.5586 curveto
+ closepath fill
+newpath 209.945 9.77344 moveto
+209.789 9.57422 209.551 9.47656 209.227 9.47656 curveto
+209.055 9.47656 208.902 9.53906 208.777 9.66797 curveto
+208.648 9.79297 208.586 9.94922 208.586 10.1367 curveto
+208.586 10.3594 208.684 10.5469 208.879 10.7031 curveto
+209.074 10.8555 209.324 10.9336 209.629 10.9336 curveto
+209.711 10.9336 209.805 10.9141 209.906 10.8828 curveto
+209.906 10.6016 lineto
+209.785 10.6328 209.699 10.6445 209.648 10.6445 curveto
+209.449 10.6445 209.289 10.5938 209.164 10.4922 curveto
+209.039 10.3906 208.977 10.2695 208.977 10.1328 curveto
+208.977 9.90234 209.113 9.78906 209.383 9.78906 curveto
+209.582 9.78906 209.758 9.88281 209.906 10.0703 curveto
+209.906 10.6016 lineto
+209.906 10.6016 lineto
+209.906 10.8828 lineto
+209.906 11.2383 209.75 11.4141 209.43 11.4141 curveto
+209.188 11.4141 208.996 11.3477 208.867 11.2188 curveto
+208.703 11.5469 lineto
+208.777 11.6055 208.879 11.6563 209.008 11.6992 curveto
+209.141 11.7422 209.266 11.7656 209.387 11.7656 curveto
+209.703 11.7656 209.938 11.6953 210.082 11.5469 curveto
+210.227 11.4023 210.301 11.1719 210.301 10.8516 curveto
+210.301 10.0625 lineto
+210.301 9.8711 210.355 9.74219 210.473 9.67578 curveto
+210.473 9.48047 lineto
+210.313 9.48047 210.195 9.5039 210.117 9.54688 curveto
+210.035 9.59375 209.98 9.66797 209.945 9.77344 curveto
+ closepath fill
+newpath 211.719 11.4141 moveto
+211.461 11.4141 lineto
+211.461 11.7227 lineto
+211.719 11.7227 lineto
+211.719 12.1836 lineto
+212.109 12.3359 lineto
+212.109 11.7227 lineto
+212.715 11.7227 lineto
+212.715 11.4141 lineto
+212.109 11.4141 lineto
+212.109 10.3203 lineto
+212.109 10.1367 212.141 10.0039 212.203 9.92578 curveto
+212.266 9.84766 212.363 9.8086 212.504 9.8086 curveto
+212.605 9.8086 212.707 9.83203 212.813 9.88672 curveto
+212.871 9.53906 lineto
+212.711 9.5 212.531 9.47656 212.34 9.47656 curveto
+212.164 9.47656 212.016 9.54297 211.895 9.67188 curveto
+211.777 9.80078 211.719 9.96484 211.719 10.1641 curveto
+211.719 11.4141 lineto
+ closepath fill
+newpath 214.102 9.51953 moveto
+214.102 11.3945 lineto
+213.797 11.3945 lineto
+213.797 11.7227 lineto
+214.492 11.7227 lineto
+214.492 9.51953 lineto
+214.102 9.51953 lineto
+ closepath fill
+newpath 214.313 12.5586 moveto
+214.383 12.5586 214.438 12.5352 214.484 12.4883 curveto
+214.535 12.4414 214.559 12.3867 214.559 12.3203 curveto
+214.559 12.25 214.535 12.1953 214.484 12.1445 curveto
+214.438 12.0977 214.383 12.0742 214.313 12.0742 curveto
+214.246 12.0742 214.191 12.0977 214.145 12.1445 curveto
+214.098 12.1953 214.074 12.25 214.074 12.3203 curveto
+214.074 12.3867 214.098 12.4453 214.145 12.4883 curveto
+214.191 12.5352 214.246 12.5586 214.313 12.5586 curveto
+ closepath fill
+newpath 215.633 10.625 moveto
+215.633 10.9688 215.723 11.2422 215.906 11.4531 curveto
+216.09 11.6602 216.332 11.7656 216.629 11.7656 curveto
+216.629 11.4492 lineto
+216.449 11.4492 216.309 11.375 216.203 11.2266 curveto
+216.098 11.082 216.043 10.8828 216.043 10.625 curveto
+216.043 10.625 lineto
+216.043 10.0742 216.238 9.79688 216.629 9.79688 curveto
+216.813 9.79688 216.957 9.8711 217.059 10.0195 curveto
+217.164 10.168 217.215 10.3711 217.215 10.625 curveto
+217.215 11.1719 217.02 11.4492 216.629 11.4492 curveto
+216.629 11.7656 lineto
+216.945 11.7656 217.191 11.6641 217.363 11.4648 curveto
+217.539 11.2617 217.625 10.9844 217.625 10.625 curveto
+217.625 10.2695 217.535 9.99219 217.359 9.78516 curveto
+217.18 9.58203 216.938 9.47656 216.629 9.47656 curveto
+216.316 9.47656 216.07 9.58203 215.895 9.78906 curveto
+215.719 9.9961 215.633 10.2773 215.633 10.625 curveto
+ closepath fill
+newpath 220.059 9.51953 moveto
+220.059 10.8008 lineto
+220.059 11.0352 220.02 11.1992 219.949 11.2969 curveto
+219.879 11.3906 219.762 11.4375 219.594 11.4375 curveto
+219.508 11.4375 219.414 11.4102 219.316 11.3555 curveto
+219.219 11.3008 219.145 11.2344 219.09 11.1563 curveto
+219.09 9.51953 lineto
+218.699 9.51953 lineto
+218.699 11.7227 lineto
+218.969 11.7227 lineto
+219.09 11.4414 lineto
+219.219 11.6563 219.43 11.7656 219.723 11.7656 curveto
+220.207 11.7656 220.445 11.4727 220.445 10.8867 curveto
+220.445 9.51953 lineto
+220.059 9.51953 lineto
+ closepath fill
+newpath 219.52 17.0469 moveto
+219.938 16.6992 220.359 16.1563 221.863 17.5625 curveto
+223.367 18.9688 222.602 18.375 223.414 16.5273 curveto
+224.23 14.6797 224.746 15.6992 224.797 16.0586 curveto
+224.922 16.96089 224.645 18.7344 224.457 19.4492 curveto
+224.297 20.0547 223.262 20.3555 222.848 20.0547 curveto
+222.457 19.7695 221.418 18.5977 220.727 18.375 curveto
+220.035 18.1563 220.586 18.8203 220.41 19.9297 curveto
+220.238 21.03911 219.832 21.543 219.398 21.3555 curveto
+219.105 21.2305 218.465 20.5742 218.164 20.7422 curveto
+217.578 21.0742 217.176 22.4844 214.316 20.918 curveto
+210.988 19.0898 213.973 23.2344 213.973 23.2344 curveto
+213.973 23.2344 216.191 26.2656 214.859 28.46089 curveto
+213.527 30.6563 210.668 25.9453 210.668 25.9453 curveto
+210.668 25.9453 209.164 22.9648 208.5 19.8086 curveto
+207.832 16.64839 206.473 17.0078 205.961 17.6836 curveto
+205.41 18.41411 205.563 21.2852 203.594 20.0781 curveto
+201.621 18.8711 201.645 16.4531 200.461 19.1914 curveto
+199.277 21.9258 198.031 20.168 197.871 19.8828 curveto
+197.645 19.47661 197.762 18.5938 197.43 18.4023 curveto
+197.051 18.1836 196.578 18.96089 196.293 19.0703 curveto
+195.988 19.1797 193.996 17.3203 193.09 15.5938 curveto
+191.785 13.1055 189.691 19.08589 189.895 19.46089 curveto
+190.074 19.78911 195.172 26.8438 195.652 27.8711 curveto
+196.152 28.9336 196.887 29.25 197.254 29.3008 curveto
+197.625 29.35161 202.336 30.1406 205.738 33.7383 curveto
+209.141 37.3398 208.621 38.22661 206.996 39.1406 curveto
+206.898 38.02339 lineto
+207.281 37.582 207.313 36.5469 206.488 35.72661 curveto
+205.664 34.9023 202.957 32.1367 201.262 31.4414 curveto
+199.648 30.7813 194.133 28.14839 199.637 33.1836 curveto
+199.637 33.1836 lineto
+204.285 37.4336 204.156 37.3203 204.527 37.4688 curveto
+204.973 37.6445 206.586 38.3867 206.898 38.02339 curveto
+206.996 39.1406 lineto
+205.367 40.0508 200.727 35.5078 200.508 35.3438 curveto
+200.352 35.2227 196.516 30.9023 196.242 30.3594 curveto
+195.973 29.8203 189.66 30.16411 189.66 30.16411 curveto
+188.93 29.8047 189.738 29.5039 189.738 29.5039 curveto
+189.738 29.5039 192.57 29.0938 194.34 29.1406 curveto
+196.105 29.1914 194.938 28.1563 194.73 27.9102 curveto
+193.359 26.28911 190.777 21.8828 189.859 20.96089 curveto
+188.941 20.043 187.18 21.0664 187.078 21.082 curveto
+186.973 21.0977 184.344 21.4922 184.875 19.4844 curveto
+185.406 17.47661 187.004 18.3672 187.777 18.1758 curveto
+186.91 18.8242 lineto
+186.746 18.7578 186.285 19.1523 186.301 19.3633 curveto
+186.336 19.77339 186.762 19.35161 187.246 19.3633 curveto
+187.738 19.375 187.086 18.89839 186.91 18.8242 curveto
+186.91 18.8242 lineto
+187.777 18.1758 lineto
+188.016 18.1172 188.352 17.707 188.48 17.5 curveto
+188.871 16.875 189.059 15.8867 189.469 15.2773 curveto
+190.07 14.3828 192.352 12.1641 194.121 15.3711 curveto
+195.953 18.6992 197.121 17.4492 197.219 15.6367 curveto
+197.316 13.8242 197.895 14.5 198.551 14.7891 curveto
+199.203 15.0781 198.645 16.3398 198.719 17.9844 curveto
+198.789 19.6328 200.145 17.2578 200.051 16.6055 curveto
+199.953 15.9492 200.969 16.0742 201.867 16.4336 curveto
+202.762 16.7969 202.059 17.3555 203.293 18.4922 curveto
+204.527 19.6328 204.59 16.96089 204.914 16.33589 curveto
+205.172 15.8359 206.465 14.7891 207.117 16.1953 curveto
+207.77 17.5977 208.793 17.293 208.57 15.8594 curveto
+209.461 16.0469 lineto
+209.004 17.7188 210.191 19.1211 210.191 19.1211 curveto
+210.191 19.1211 210.695 19.7969 211.016 19.7695 curveto
+210.215 20.1133 lineto
+209.824 19.6797 209.488 19.3398 209.805 20.5469 curveto
+210.117 21.7617 210.008 21.25 210.203 21.6992 curveto
+210.391 22.1445 211.238 24.3906 211.305 24.5664 curveto
+211.34 24.6719 212.086 26.1289 212.844 27.2305 curveto
+212.844 27.2305 214.887 29.0313 214.063 25.7773 curveto
+213.512 23.5977 212.891 23.3555 211.891 21.7852 curveto
+211.891 21.7852 lineto
+211.699 21.4844 211.359 22.1836 210.672 21.3086 curveto
+210.387 20.9492 210.566 20.5039 210.215 20.1133 curveto
+211.016 19.7695 lineto
+211.406 19.7305 212.199 19.6055 211.934 18.6367 curveto
+211.934 18.6367 lineto
+211.668 17.668 211.273 16.0703 210.828 15.6563 curveto
+210.438 15.293 209.918 14.3789 209.461 16.0469 curveto
+208.57 15.8594 lineto
+208.348 14.4297 209.578 13.8672 209.977 13.8867 curveto
+210.355 13.9063 212.516 15.0977 212.543 17.4883 curveto
+212.566 19.8828 214.277 19.8672 214.563 19.9063 curveto
+214.852 19.9453 217.055 20.3008 216.855 19.6602 curveto
+216.66 19.0195 215.672 17.168 216.809 17.1953 curveto
+217.941 17.2188 217.473 18.2031 218.531 19.3125 curveto
+219.594 20.4219 219.102 17.3906 219.52 17.0469 curveto
+ closepath fill
+newpath 205.875 27.1563 moveto
+205.723 25.5508 206.711 26.0742 206.711 26.0742 curveto
+208.547 27.0195 207.094 27.8945 207.094 27.8945 curveto
+207.094 27.8945 206.023 28.7578 205.875 27.1563 curveto
+ closepath fill
+newpath 232.676 12.8281 moveto
+232.582 13.0859 232.391 13.4297 231.625 12.4883 curveto
+230.449 11.0469 230.605 11.957 230.496 12.9023 curveto
+230.48 13.0586 230.594 13.4922 229.789 14.1719 curveto
+229.367 14.5273 227.406 15.0742 227.848 15.5234 curveto
+228.977 16.668 228.684 16.5547 229.094 17.0625 curveto
+229.504 17.5742 231.027 19.0742 230.957 21.2031 curveto
+230.887 23.332 227.813 23.1406 227.813 23.1406 curveto
+225.801 22.7773 226.648 20.9375 228.102 21.0586 curveto
+229.453 21.1719 229.277 20.0352 229.172 19.668 curveto
+229.172 19.66411 229.004 19.2227 228.668 18.6953 curveto
+228.219 17.9844 227.664 16.9648 227.133 16.4492 curveto
+226.844 16.168 225.285 15.1758 226.406 14.6211 curveto
+228.27 13.6992 229.676 11.7383 228.949 10.6484 curveto
+228.223 9.5625 222.512 7.39453 221.324 6.875 curveto
+220.176 6.3711 217.91 6.22266 217.961 3.26953 curveto
+218.008 0.3164 221.156 0.33984 222.535 0.70313 curveto
+222.328 1.53906 lineto
+220.051 1.22656 218.809 2.54297 218.832 3.33984 curveto
+218.855 4.14063 219.598 5.1836 222.09 6.42188 curveto
+227.68 9.1914 228.172 9.40234 228.172 9.40234 curveto
+228.574 9.5625 229.438 10.0742 228.93 9.22266 curveto
+228.93 9.22266 lineto
+228.93 9.22266 226.703 4.92969 226.453 4.55078 curveto
+226.156 4.08984 224.602 1.85547 222.328 1.53906 curveto
+222.535 0.70313 lineto
+224.945 1.33594 225.953 2.27344 226.867 3.32031 curveto
+227.84 4.42578 229.77 8.8125 229.82 8.85938 curveto
+229.867 8.90625 230.496 11.4492 231.609 11.7383 curveto
+232.723 12.0313 232.813 12.4492 232.676 12.8281 curveto
+ closepath fill
+newpath 229.172 19.668 moveto
+229.164 19.6406 229.16 19.6172 229.152 19.5977 curveto
+229.172 19.668 lineto
+ closepath fill
+newpath 226.91 26.2344 moveto
+226.344 26.4688 224.652 25.5938 225.156 24.1367 curveto
+225.676 22.64839 229.512 25.1563 226.91 26.2344 curveto
+ closepath fill
+newpath 192.07 38.27339 moveto
+191.59 38.27339 lineto
+191.59 38.4844 lineto
+191.59 38.58589 191.594 38.6719 191.602 38.7344 curveto
+191.609 38.7969 191.625 38.85161 191.645 38.8945 curveto
+191.66 38.9375 191.684 38.9727 191.707 38.9961 curveto
+191.734 39.02339 191.762 39.043 191.793 39.0547 curveto
+191.82 39.0664 191.859 39.0703 191.902 39.0703 curveto
+191.965 39.0703 192.012 39.0547 192.047 39.02339 curveto
+192.082 38.9883 192.113 38.9336 192.137 38.8555 curveto
+192.336 38.8555 lineto
+192.336 39.2188 lineto
+192.262 39.2344 192.172 39.2383 192.066 39.2383 curveto
+191.945 39.2383 191.84 39.22661 191.75 39.1992 curveto
+191.664 39.1758 191.578 39.1289 191.5 39.0664 curveto
+191.422 39 191.363 38.9219 191.32 38.832 curveto
+191.281 38.7422 191.254 38.6211 191.242 38.47661 curveto
+191.234 38.41411 191.23 38.3672 191.219 38.332 curveto
+191.211 38.2969 191.199 38.27339 191.191 38.2539 curveto
+191.18 38.2383 191.164 38.2227 191.148 38.2148 curveto
+191.133 38.2031 191.117 38.1992 191.102 38.1914 curveto
+191.086 38.1875 191.051 38.1836 191 38.1758 curveto
+191 38.0703 lineto
+191.242 38.0703 lineto
+191.242 36.85161 lineto
+191.242 36.7617 191.238 36.6914 191.234 36.6523 curveto
+191.227 36.6055 191.215 36.5742 191.203 36.5508 curveto
+191.188 36.5273 191.168 36.5117 191.145 36.4961 curveto
+191.117 36.4805 191.074 36.4648 191.016 36.4492 curveto
+191.016 36.35161 lineto
+191.84 36.35161 lineto
+191.84 36.4492 lineto
+191.777 36.46089 191.734 36.47661 191.707 36.4922 curveto
+191.68 36.5039 191.656 36.52339 191.641 36.5469 curveto
+191.625 36.5703 191.609 36.6055 191.602 36.6523 curveto
+191.594 36.6953 191.59 36.7617 191.59 36.85161 curveto
+191.59 38.0703 lineto
+192.07 38.0703 lineto
+192.07 38.27339 lineto
+ closepath fill
+newpath 190.203 36.4336 moveto
+190.34 36.5078 190.445 36.6211 190.52 36.77339 curveto
+190.594 36.9297 190.629 37.1172 190.629 37.3398 curveto
+190.629 37.6523 190.555 37.8906 190.406 38.0586 curveto
+190.262 38.22661 190.043 38.3086 189.758 38.3086 curveto
+189.586 38.3086 189.434 38.2695 189.297 38.1953 curveto
+189.164 38.1211 189.059 38.0078 188.98 37.8555 curveto
+188.902 37.7031 188.863 37.5156 188.863 37.293 curveto
+188.863 36.9727 188.938 36.7305 189.086 36.5664 curveto
+189.23 36.4023 189.445 36.3203 189.723 36.3203 curveto
+189.754 36.47661 lineto
+189.59 36.47661 189.465 36.5508 189.379 36.6992 curveto
+189.289 36.8477 189.246 37.0586 189.246 37.33589 curveto
+189.246 37.5977 189.289 37.7969 189.375 37.9375 curveto
+189.375 37.9375 lineto
+189.461 38.0781 189.586 38.14839 189.746 38.14839 curveto
+189.844 38.14839 189.93 38.1172 190.008 38.0586 curveto
+190.082 37.9961 190.141 37.9023 190.184 37.7695 curveto
+190.227 37.6406 190.25 37.47661 190.25 37.2813 curveto
+190.25 37.1758 190.242 37.0742 190.223 36.97661 curveto
+190.207 36.8789 190.176 36.793 190.137 36.7188 curveto
+190.098 36.6445 190.047 36.58589 189.984 36.543 curveto
+189.922 36.5 189.844 36.47661 189.754 36.47661 curveto
+189.723 36.3203 lineto
+189.91 36.3203 190.07 36.3555 190.203 36.4336 curveto
+ closepath fill
+newpath 186.801 38.293 moveto
+186.68 38.293 lineto
+186.207 38.27339 lineto
+186.207 38.168 lineto
+186.27 38.1563 186.316 38.1445 186.348 38.1289 curveto
+186.383 38.1133 186.406 38.0898 186.422 38.0586 curveto
+186.438 38.0273 186.445 37.9844 186.449 37.9336 curveto
+186.453 37.8789 186.453 37.8125 186.453 37.72661 curveto
+186.453 36.8477 lineto
+186.453 36.7539 186.449 36.6836 186.441 36.6406 curveto
+186.434 36.5977 186.422 36.5625 186.406 36.543 curveto
+186.391 36.5195 186.371 36.5039 186.348 36.4922 curveto
+186.324 36.4805 186.289 36.4648 186.238 36.4492 curveto
+186.238 36.35161 lineto
+187.051 36.35161 lineto
+187.051 36.4492 lineto
+186.98 36.46089 186.93 36.47661 186.895 36.5 curveto
+186.859 36.5195 186.836 36.5547 186.82 36.60161 curveto
+186.809 36.64839 186.801 36.7305 186.801 36.85161 curveto
+186.801 37.5586 lineto
+186.801 37.6211 186.809 37.6797 186.824 37.72661 curveto
+186.844 37.77339 186.871 37.8203 186.918 37.875 curveto
+186.961 37.9297 187.008 37.9688 187.055 38 curveto
+187.102 38.0273 187.148 38.03911 187.199 38.03911 curveto
+187.262 38.03911 187.313 38.02339 187.348 37.9922 curveto
+187.383 37.957 187.418 37.9063 187.449 37.832 curveto
+187.676 37.832 lineto
+187.676 38.2969 lineto
+187.613 38.3047 187.543 38.3086 187.465 38.3086 curveto
+187.375 38.3086 187.289 38.293 187.219 38.2656 curveto
+187.145 38.2383 187.074 38.1992 187.012 38.14839 curveto
+186.949 38.0938 186.883 38.02339 186.809 37.9336 curveto
+186.781 37.9414 lineto
+186.801 38.293 lineto
+ closepath fill
+newpath 185.711 36.8242 moveto
+185.625 36.7305 185.535 36.66411 185.449 36.6211 curveto
+185.359 36.582 185.262 36.5625 185.152 36.5625 curveto
+185.02 36.5625 184.914 36.5938 184.836 36.6523 curveto
+184.754 36.7148 184.695 36.8008 184.66 36.9063 curveto
+184.625 37.0156 184.605 37.14839 184.605 37.3047 curveto
+184.605 37.3438 lineto
+185.875 37.3438 lineto
+185.871 37.52339 185.852 37.6719 185.82 37.7852 curveto
+185.789 37.89839 185.746 37.9922 185.688 38.0664 curveto
+185.633 38.1406 185.555 38.1992 185.461 38.2461 curveto
+185.363 38.2852 185.25 38.3086 185.113 38.3086 curveto
+185.094 38.14839 lineto
+185.184 38.14839 185.258 38.125 185.316 38.0742 curveto
+185.371 38.0273 185.414 37.957 185.441 37.8633 curveto
+185.469 37.77339 185.488 37.6563 185.496 37.5078 curveto
+184.617 37.5078 lineto
+184.617 37.5078 lineto
+184.633 37.7148 184.68 37.8711 184.762 37.9844 curveto
+184.844 38.0938 184.957 38.14839 185.094 38.14839 curveto
+185.113 38.3086 lineto
+184.941 38.3086 184.789 38.2656 184.656 38.1836 curveto
+184.523 38.10161 184.418 37.9805 184.348 37.8281 curveto
+184.277 37.6758 184.242 37.5 184.242 37.3008 curveto
+184.242 36.97661 184.313 36.7305 184.453 36.5664 curveto
+184.594 36.4023 184.801 36.3203 185.078 36.3203 curveto
+185.18 36.3203 185.273 36.332 185.359 36.3633 curveto
+185.445 36.3906 185.527 36.4297 185.598 36.4805 curveto
+185.668 36.5313 185.746 36.60161 185.836 36.6914 curveto
+185.711 36.8242 lineto
+ closepath fill
+newpath 182.477 39.2305 moveto
+182.359 39.2305 lineto
+181.871 39.21089 lineto
+181.871 39.1055 lineto
+181.941 39.0938 181.988 39.082 182.016 39.0703 curveto
+182.039 39.0586 182.063 39.043 182.074 39.0195 curveto
+182.09 39 182.102 38.9727 182.113 38.9375 curveto
+182.121 38.9023 182.125 38.8594 182.129 38.8086 curveto
+182.129 38.7578 182.133 38.668 182.133 38.53911 curveto
+182.133 36.35161 lineto
+182.27 36.3203 lineto
+182.41 36.4414 lineto
+182.508 36.3945 182.602 36.3633 182.688 36.3438 curveto
+182.777 36.3281 182.871 36.3203 182.969 36.3203 curveto
+183.145 36.3203 183.301 36.3555 183.43 36.4336 curveto
+183.559 36.5117 183.656 36.625 183.723 36.7773 curveto
+183.789 36.9258 183.82 37.1133 183.82 37.332 curveto
+183.82 37.543 183.793 37.7227 183.738 37.8672 curveto
+183.684 38.0156 183.605 38.125 183.5 38.1953 curveto
+183.398 38.2695 183.273 38.3047 183.133 38.3047 curveto
+183.051 38.3047 182.98 38.293 182.914 38.2695 curveto
+182.848 38.2461 182.781 38.2148 182.719 38.168 curveto
+182.656 38.125 182.578 38.0547 182.484 37.957 curveto
+182.633 37.9219 lineto
+182.684 37.9688 182.738 38.0078 182.789 38.0313 curveto
+182.844 38.0547 182.91 38.0664 182.984 38.0664 curveto
+183.141 38.0664 183.254 37.9961 183.328 37.8633 curveto
+183.406 37.7305 183.445 37.5313 183.445 37.2656 curveto
+183.445 37.0039 183.402 36.8047 183.32 36.6758 curveto
+183.234 36.543 183.113 36.47661 182.953 36.47661 curveto
+182.887 36.47661 182.828 36.4844 182.777 36.4961 curveto
+182.727 36.5078 182.68 36.5313 182.637 36.5664 curveto
+182.594 36.5977 182.563 36.6367 182.539 36.6758 curveto
+182.516 36.7148 182.5 36.7656 182.492 36.8281 curveto
+182.48 36.8906 182.477 36.9727 182.477 37.0742 curveto
+182.477 37.6094 lineto
+182.477 37.6094 lineto
+182.477 37.668 182.488 37.72661 182.516 37.77339 curveto
+182.539 37.8203 182.578 37.8711 182.633 37.9219 curveto
+182.484 37.957 lineto
+182.477 37.957 lineto
+182.477 39.2305 lineto
+ closepath fill
+newpath 179.105 38.293 moveto
+178.984 38.293 lineto
+178.512 38.27339 lineto
+178.512 38.168 lineto
+178.574 38.1563 178.621 38.1445 178.652 38.1289 curveto
+178.688 38.1133 178.711 38.0898 178.727 38.0586 curveto
+178.742 38.0273 178.754 37.9844 178.754 37.9336 curveto
+178.758 37.8789 178.758 37.8125 178.758 37.72661 curveto
+178.758 36.8477 lineto
+178.758 36.7539 178.754 36.6836 178.746 36.6406 curveto
+178.738 36.5977 178.727 36.5625 178.711 36.543 curveto
+178.695 36.5195 178.676 36.5039 178.652 36.4922 curveto
+178.633 36.4805 178.594 36.4648 178.543 36.4492 curveto
+178.543 36.35161 lineto
+179.332 36.35161 lineto
+179.332 36.4492 lineto
+179.281 36.46089 179.246 36.47661 179.219 36.4883 curveto
+179.195 36.5 179.176 36.5156 179.164 36.5273 curveto
+179.148 36.543 179.141 36.5625 179.129 36.58589 curveto
+179.121 36.6055 179.113 36.6367 179.109 36.6797 curveto
+179.105 36.7188 179.105 36.7773 179.105 36.85161 curveto
+179.105 37.6094 lineto
+179.105 37.668 179.117 37.7227 179.145 37.77339 curveto
+179.168 37.8242 179.207 37.875 179.258 37.9219 curveto
+179.309 37.9688 179.355 38.0039 179.402 38.0273 curveto
+179.453 38.0508 179.504 38.0664 179.559 38.0664 curveto
+179.598 38.0664 179.633 38.0625 179.664 38.0547 curveto
+179.695 38.0469 179.723 38.0352 179.746 38.0195 curveto
+179.77 38.0078 179.789 37.9844 179.813 37.957 curveto
+179.836 37.9297 179.852 37.8906 179.867 37.8477 curveto
+179.879 37.8008 179.891 37.7383 179.898 37.66411 curveto
+179.902 37.5898 179.906 37.4922 179.906 37.3711 curveto
+179.906 36.8477 lineto
+179.906 36.7539 179.902 36.6875 179.895 36.6406 curveto
+179.887 36.5977 179.875 36.5625 179.859 36.543 curveto
+179.844 36.5195 179.824 36.5039 179.801 36.4922 curveto
+179.777 36.4805 179.742 36.4648 179.688 36.4492 curveto
+179.688 36.35161 lineto
+180.48 36.35161 lineto
+180.48 36.4492 lineto
+180.418 36.4648 180.375 36.4805 180.352 36.4961 curveto
+180.324 36.5117 180.305 36.5313 180.293 36.5508 curveto
+180.281 36.5742 180.27 36.60161 180.266 36.6406 curveto
+180.258 36.6797 180.254 36.75 180.254 36.85161 curveto
+180.254 37.5898 lineto
+180.254 37.6563 180.266 37.7188 180.289 37.7695 curveto
+180.313 37.8203 180.355 37.875 180.406 37.9258 curveto
+180.461 37.97661 180.512 38.0117 180.559 38.0313 curveto
+180.605 38.0547 180.656 38.0664 180.707 38.0664 curveto
+180.762 38.0664 180.801 38.0586 180.832 38.0508 curveto
+180.863 38.03911 180.891 38.02339 180.91 38.0039 curveto
+180.934 37.9844 180.953 37.9648 180.973 37.9375 curveto
+180.992 37.91411 181.008 37.8789 181.02 37.832 curveto
+181.031 37.78911 181.043 37.7305 181.047 37.6563 curveto
+181.055 37.582 181.059 37.4883 181.059 37.3711 curveto
+181.059 36.8477 lineto
+181.059 36.7539 181.051 36.6875 181.043 36.6406 curveto
+181.035 36.5977 181.023 36.5625 181.008 36.543 curveto
+180.992 36.5195 180.973 36.5039 180.949 36.4922 curveto
+180.926 36.4805 180.891 36.4648 180.836 36.4492 curveto
+180.836 36.35161 lineto
+181.629 36.35161 lineto
+181.629 36.4492 lineto
+181.566 36.4648 181.523 36.4805 181.5 36.4961 curveto
+181.473 36.5117 181.453 36.5313 181.441 36.5508 curveto
+181.43 36.5742 181.422 36.60161 181.414 36.6406 curveto
+181.406 36.6797 181.402 36.75 181.402 36.85161 curveto
+181.402 37.6133 lineto
+181.402 37.75 181.395 37.8594 181.371 37.9414 curveto
+181.352 38.02339 181.316 38.0938 181.273 38.14839 curveto
+181.227 38.1992 181.172 38.2422 181.109 38.2656 curveto
+181.043 38.293 180.965 38.3047 180.875 38.3047 curveto
+180.801 38.3047 180.73 38.293 180.664 38.2656 curveto
+180.602 38.2422 180.535 38.2031 180.473 38.1563 curveto
+180.41 38.1055 180.332 38.0313 180.23 37.9297 curveto
+180.199 38.0586 180.141 38.1523 180.055 38.2148 curveto
+179.969 38.2773 179.859 38.3047 179.727 38.3047 curveto
+179.684 38.3047 179.641 38.3008 179.598 38.28911 curveto
+179.555 38.2813 179.508 38.2617 179.461 38.2383 curveto
+179.414 38.21089 179.363 38.1797 179.313 38.1367 curveto
+179.262 38.0977 179.191 38.0352 179.113 37.957 curveto
+179.086 37.9648 lineto
+179.105 38.293 lineto
+ closepath fill
+newpath 178.016 36.8242 moveto
+177.93 36.7305 177.84 36.66411 177.754 36.6211 curveto
+177.664 36.582 177.566 36.5625 177.457 36.5625 curveto
+177.328 36.5625 177.223 36.5938 177.141 36.6523 curveto
+177.059 36.7148 177 36.8008 176.965 36.9063 curveto
+176.93 37.0156 176.91 37.14839 176.91 37.3047 curveto
+176.91 37.3438 lineto
+178.18 37.3438 lineto
+178.176 37.52339 178.156 37.6719 178.125 37.7852 curveto
+178.094 37.89839 178.051 37.9922 177.992 38.0664 curveto
+177.938 38.1406 177.859 38.1992 177.766 38.2461 curveto
+177.668 38.2852 177.555 38.3086 177.418 38.3086 curveto
+177.398 38.14839 lineto
+177.488 38.14839 177.563 38.125 177.621 38.0742 curveto
+177.676 38.0273 177.719 37.957 177.746 37.8633 curveto
+177.773 37.77339 177.793 37.6563 177.801 37.5078 curveto
+176.922 37.5078 lineto
+176.922 37.5078 lineto
+176.938 37.7148 176.984 37.8711 177.066 37.9844 curveto
+177.148 38.0938 177.262 38.14839 177.398 38.14839 curveto
+177.418 38.3086 lineto
+177.246 38.3086 177.094 38.2656 176.961 38.1836 curveto
+176.828 38.10161 176.723 37.9805 176.652 37.8281 curveto
+176.582 37.6758 176.547 37.5 176.547 37.3008 curveto
+176.547 36.97661 176.613 36.7305 176.758 36.5664 curveto
+176.898 36.4023 177.105 36.3203 177.383 36.3203 curveto
+177.484 36.3203 177.578 36.332 177.664 36.3633 curveto
+177.754 36.3906 177.832 36.4297 177.902 36.4805 curveto
+177.973 36.5313 178.055 36.60161 178.141 36.6914 curveto
+178.016 36.8242 lineto
+ closepath fill
+newpath 176.094 39.0977 moveto
+175.41 39.0977 lineto
+174.637 37.1406 lineto
+173.93 39.0977 lineto
+173.211 39.0977 lineto
+173.211 39 lineto
+173.273 38.9805 173.316 38.9648 173.34 38.9531 curveto
+173.367 38.9375 173.387 38.918 173.402 38.8945 curveto
+173.418 38.8711 173.43 38.8398 173.438 38.7969 curveto
+173.441 38.7539 173.445 38.6875 173.445 38.5938 curveto
+173.445 36.85161 lineto
+173.445 36.7539 173.441 36.6797 173.434 36.6328 curveto
+173.426 36.58589 173.406 36.5469 173.379 36.5195 curveto
+173.352 36.4961 173.293 36.4727 173.211 36.4492 curveto
+173.211 36.35161 lineto
+173.945 36.35161 lineto
+173.945 36.4492 lineto
+173.883 36.4648 173.84 36.4805 173.813 36.4961 curveto
+173.785 36.5117 173.762 36.5352 173.75 36.5586 curveto
+173.734 36.582 173.727 36.6133 173.719 36.6563 curveto
+173.715 36.6992 173.711 36.7617 173.711 36.85161 curveto
+173.711 37.5898 lineto
+173.711 37.8164 173.707 38.03911 173.699 38.2539 curveto
+173.695 38.4648 173.688 38.6172 173.68 38.6953 curveto
+173.715 38.6953 lineto
+174.457 36.6719 lineto
+174.688 36.6719 lineto
+175.484 38.66411 lineto
+175.52 38.66411 lineto
+175.512 38.5898 175.504 38.4453 175.496 38.2383 curveto
+175.492 38.0313 175.488 37.8281 175.488 37.625 curveto
+175.488 36.85161 lineto
+175.488 36.7461 175.484 36.668 175.473 36.6211 curveto
+175.461 36.5742 175.441 36.53911 175.41 36.5117 curveto
+175.383 36.4883 175.328 36.4688 175.254 36.4492 curveto
+175.254 36.35161 lineto
+176.094 36.35161 lineto
+176.094 36.4492 lineto
+176.031 36.4648 175.984 36.4805 175.957 36.4961 curveto
+175.93 36.5117 175.91 36.5352 175.895 36.5586 curveto
+175.883 36.582 175.871 36.6133 175.867 36.6563 curveto
+175.859 36.6992 175.855 36.7617 175.855 36.85161 curveto
+175.855 38.5938 lineto
+175.855 38.6875 175.859 38.7539 175.867 38.8008 curveto
+175.875 38.8438 175.887 38.8789 175.902 38.89839 curveto
+175.918 38.9219 175.938 38.9414 175.965 38.9531 curveto
+175.992 38.9688 176.031 38.9844 176.094 39 curveto
+176.094 39.0977 lineto
+ closepath fill
+newpath 193.332 38.1797 moveto
+193.398 38.1875 193.453 38.207 193.492 38.2344 curveto
+193.535 38.2617 193.566 38.2969 193.594 38.33589 curveto
+193.613 38.3789 193.633 38.4336 193.648 38.4961 curveto
+193.66 38.5625 193.676 38.6523 193.688 38.7773 curveto
+193.977 38.7773 lineto
+193.977 38.2773 lineto
+194.625 38.2773 lineto
+194.625 38.0742 lineto
+193.977 38.0742 lineto
+193.977 37.1797 lineto
+193.977 37.0508 193.98 36.9453 193.992 36.8672 curveto
+194.004 36.793 194.023 36.7305 194.051 36.6875 curveto
+194.082 36.6445 194.113 36.6133 194.152 36.5938 curveto
+194.188 36.5742 194.238 36.5664 194.297 36.5664 curveto
+194.352 36.5664 194.402 36.5781 194.449 36.5977 curveto
+194.496 36.6211 194.539 36.6523 194.586 36.6953 curveto
+194.676 36.58589 lineto
+194.582 36.4922 194.492 36.4258 194.406 36.3867 curveto
+194.32 36.3438 194.234 36.3242 194.141 36.3242 curveto
+193.969 36.3242 193.84 36.375 193.758 36.47661 curveto
+193.672 36.5781 193.629 36.7383 193.629 36.957 curveto
+193.629 38.0742 lineto
+193.332 38.0742 lineto
+193.332 38.1797 lineto
+ closepath fill
+newpath 195.387 37.96089 moveto
+195.395 37.96089 lineto
+195.5 38.0664 195.582 38.1406 195.645 38.1836 curveto
+195.703 38.22661 195.766 38.2578 195.824 38.2773 curveto
+195.883 38.3008 195.945 38.3125 196.016 38.3125 curveto
+196.09 38.3125 196.156 38.3008 196.211 38.2852 curveto
+196.27 38.2656 196.32 38.2422 196.363 38.2031 curveto
+196.406 38.168 196.445 38.125 196.473 38.0742 curveto
+196.5 38.02339 196.52 37.96089 196.531 37.8906 curveto
+196.547 37.8164 196.555 37.72661 196.555 37.6172 curveto
+196.555 36.8594 lineto
+196.555 36.7422 196.559 36.6602 196.566 36.6172 curveto
+196.578 36.5781 196.598 36.543 196.621 36.5195 curveto
+196.648 36.4961 196.699 36.47661 196.781 36.4531 curveto
+196.781 36.3555 lineto
+195.988 36.3555 lineto
+195.988 36.4531 lineto
+196.039 36.4688 196.078 36.4844 196.102 36.4961 curveto
+196.121 36.5078 196.141 36.52339 196.156 36.5469 curveto
+196.172 36.5664 196.184 36.60161 196.191 36.6445 curveto
+196.203 36.6914 196.207 36.7578 196.207 36.85161 curveto
+196.207 37.375 lineto
+196.207 37.5547 196.199 37.6914 196.18 37.7852 curveto
+196.16 37.8828 196.125 37.9531 196.074 38 curveto
+196.02 38.0469 195.945 38.0703 195.852 38.0703 curveto
+195.797 38.0703 195.75 38.0586 195.707 38.03911 curveto
+195.664 38.02339 195.613 37.9883 195.559 37.9414 curveto
+195.5 37.8906 195.457 37.8438 195.43 37.793 curveto
+195.398 37.7422 195.387 37.6875 195.387 37.6289 curveto
+195.387 36.8594 lineto
+195.387 36.7656 195.387 36.7031 195.395 36.66411 curveto
+195.398 36.625 195.406 36.5898 195.422 36.5664 curveto
+195.434 36.53911 195.453 36.5156 195.48 36.5 curveto
+195.508 36.4844 195.551 36.4688 195.609 36.4531 curveto
+195.609 36.3555 lineto
+194.813 36.3555 lineto
+194.813 36.4531 lineto
+194.871 36.4688 194.914 36.4844 194.938 36.5 curveto
+194.965 36.5156 194.984 36.5313 195 36.5547 curveto
+195.012 36.5781 195.023 36.6133 195.027 36.6563 curveto
+195.035 36.6992 195.039 36.7656 195.039 36.8594 curveto
+195.039 38.543 lineto
+195.039 38.6719 195.039 38.7617 195.035 38.8125 curveto
+195.035 38.8633 195.027 38.9063 195.02 38.9414 curveto
+195.012 38.97661 195 39.0039 194.984 39.02339 curveto
+194.969 39.0469 194.949 39.0625 194.922 39.0742 curveto
+194.895 39.08589 194.848 39.0977 194.781 39.1094 curveto
+194.781 39.2148 lineto
+195.266 39.2344 lineto
+195.387 39.2344 lineto
+195.387 37.96089 lineto
+ closepath fill
+newpath 198.73 36.6953 moveto
+198.645 36.6055 198.563 36.5352 198.492 36.4844 curveto
+198.422 36.4336 198.34 36.3945 198.254 36.3672 curveto
+198.168 36.33589 198.074 36.3242 197.973 36.3242 curveto
+197.695 36.3242 197.488 36.4063 197.348 36.5703 curveto
+197.203 36.7383 197.137 36.9805 197.137 37.3047 curveto
+197.137 37.5039 197.172 37.6797 197.242 37.832 curveto
+197.313 37.9883 197.418 38.1055 197.551 38.1875 curveto
+197.684 38.2695 197.836 38.3125 198.008 38.3125 curveto
+197.988 38.1523 lineto
+197.852 38.1523 197.738 38.0977 197.656 37.9883 curveto
+197.574 37.8789 197.523 37.7188 197.512 37.5156 curveto
+198.391 37.5156 lineto
+198.391 37.5156 lineto
+198.383 37.6602 198.363 37.7773 198.336 37.8672 curveto
+198.309 37.96089 198.266 38.0313 198.211 38.082 curveto
+198.152 38.1289 198.078 38.1523 197.988 38.1523 curveto
+198.008 38.3125 lineto
+198.145 38.3125 198.258 38.293 198.355 38.25 curveto
+198.449 38.207 198.523 38.14839 198.582 38.0703 curveto
+198.641 37.9961 198.684 37.9023 198.715 37.78911 curveto
+198.746 37.6758 198.766 37.5273 198.77 37.3477 curveto
+197.5 37.3477 lineto
+197.5 37.3086 lineto
+197.5 37.1523 197.52 37.0195 197.555 36.9102 curveto
+197.59 36.8047 197.648 36.7188 197.73 36.6563 curveto
+197.809 36.5977 197.914 36.5664 198.047 36.5664 curveto
+198.156 36.5664 198.254 36.58589 198.344 36.6289 curveto
+198.43 36.668 198.52 36.7344 198.605 36.8281 curveto
+198.73 36.6953 lineto
+ closepath fill
+showpage
+%%EOF
+}
+
+\snapshot@savemps\snapshot@logo@de{
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 516 43 
+%%HiResBoundingBox: 0.48376 0.3793 515.10199 42.47836 
+%%Creator: MetaPost 1.999
+%%CreationDate: 2017.01.25:1341
+%%Pages: 1
+%%BeginProlog
+%%EndProlog
+%%Page: 1 1
+ 0 0 0 setrgbcolor 0 2.46121 dtransform truncate idtransform setlinewidth pop
+ [] 0 setdash 0 setlinecap 0 setlinejoin 10 setmiterlimit
+newpath 11.5586 6.78906 moveto
+28.6133 6.78906 lineto
+34.0469 6.78906 38.457 11.1992 38.457 16.6367 curveto
+38.457 22.0703 34.0469 26.4805 28.6133 26.4805 curveto
+20.08589 26.4805 lineto
+11.5586 26.4805 lineto
+28.6133 26.4805 lineto stroke
+newpath 37.1367 21.5586 moveto
+28.6133 36.3242 lineto
+25.8945 41.0313 19.8711 42.6445 15.1641 39.9297 curveto
+10.457 37.21089 8.84375 31.1875 11.5586 26.4805 curveto
+11.5586 26.4805 lineto
+15.8242 19.0938 lineto
+20.08589 11.7109 lineto
+11.5586 26.4805 lineto stroke
+newpath 11.5586 36.3242 moveto
+3.03516 21.5586 lineto
+0.3164 16.85161 1.92969 10.8242 6.63672 8.10938 curveto
+11.3438 5.39063 17.3672 7.00781 20.08589 11.7109 curveto
+24.3477 19.0938 lineto
+20.08589 11.7109 lineto
+28.6133 26.4805 lineto stroke
+newpath 54.457 33.83589 moveto
+53.5078 33.83589 lineto
+53.5078 40.0039 lineto
+51.5156 35.8086 lineto
+50.9492 35.8086 lineto
+48.9727 40.0039 lineto
+48.9727 33.83589 lineto
+48.08589 33.83589 lineto
+48.08589 40.9961 lineto
+49.3828 40.9961 lineto
+51.28911 37.0117 lineto
+53.1367 40.9961 lineto
+54.457 40.9961 lineto
+ closepath fill
+newpath 60.4805 33.83589 moveto
+59.582 33.83589 lineto
+59.582 34.4102 lineto
+59.5039 34.3555 59.3945 34.2773 59.2578 34.1797 curveto
+58.85161 34.7148 lineto
+59.1133 34.8398 59.3594 34.9883 59.582 35.1602 curveto
+59.582 35.1602 lineto
+59.582 36.6563 lineto
+59.3047 36.6367 58.9805 36.6133 58.6094 36.582 curveto
+58.2344 36.5508 57.9414 36.5039 57.7227 36.4414 curveto
+57.46089 36.3711 57.2539 36.2539 57.0938 36.0977 curveto
+56.9336 35.9453 56.85161 35.7305 56.85161 35.457 curveto
+56.85161 35.14839 56.9453 34.918 57.1328 34.7617 curveto
+57.3164 34.6094 57.60161 34.5313 57.9805 34.5313 curveto
+58.2969 34.5313 58.5898 34.5898 58.85161 34.7148 curveto
+59.2578 34.1797 lineto
+59.1211 34.082 58.9883 34.0078 58.8594 33.9492 curveto
+58.71089 33.875 58.53911 33.8125 58.3438 33.7617 curveto
+58.14839 33.7148 57.918 33.6875 57.6563 33.6875 curveto
+57.1719 33.6875 56.7617 33.8477 56.4258 34.168 curveto
+56.08589 34.4883 55.918 34.89839 55.918 35.3945 curveto
+55.918 35.8008 56.0078 36.1328 56.1797 36.3828 curveto
+56.3555 36.6328 56.6055 36.832 56.9297 36.97661 curveto
+57.2578 37.1211 57.64839 37.2188 58.1055 37.2695 curveto
+58.5664 37.3203 59.0547 37.3594 59.582 37.3867 curveto
+59.582 37.52339 lineto
+59.582 37.7305 59.5469 37.89839 59.4727 38.0352 curveto
+59.4023 38.168 59.2969 38.27339 59.16411 38.35161 curveto
+59.0352 38.4258 58.8828 38.47661 58.7031 38.5 curveto
+58.52339 38.5273 58.33589 38.53911 58.1406 38.53911 curveto
+57.9023 38.53911 57.6406 38.5078 57.3477 38.4453 curveto
+57.0547 38.3828 56.7539 38.293 56.4453 38.1719 curveto
+56.3945 38.1719 lineto
+56.3945 39.0898 lineto
+56.5703 39.1406 56.8281 39.1914 57.1602 39.25 curveto
+57.4922 39.3086 57.8203 39.33589 58.1445 39.33589 curveto
+58.52339 39.33589 58.85161 39.3047 59.1328 39.2422 curveto
+59.41411 39.1797 59.6563 39.0742 59.8594 38.9219 curveto
+60.0625 38.7773 60.2188 38.58589 60.3242 38.35161 curveto
+60.4297 38.1172 60.4805 37.8281 60.4805 37.4805 curveto
+ closepath fill
+newpath 65.0078 33.8867 moveto
+64.8398 33.8398 64.6563 33.8047 64.4531 33.77339 curveto
+64.2539 33.7461 64.0742 33.7305 63.918 33.7305 curveto
+63.3711 33.7305 62.9531 33.8789 62.668 34.1758 curveto
+62.3828 34.4688 62.2422 34.9414 62.2422 35.5938 curveto
+62.2422 38.4492 lineto
+61.6289 38.4492 lineto
+61.6289 39.207 lineto
+62.2422 39.207 lineto
+62.2422 40.75 lineto
+63.1445 40.75 lineto
+63.1445 39.207 lineto
+65.0078 39.207 lineto
+65.0078 38.4492 lineto
+63.1445 38.4492 lineto
+63.1445 36 lineto
+63.1445 35.7188 63.1523 35.5 63.16411 35.3398 curveto
+63.1758 35.1797 63.2227 35.0313 63.2969 34.8945 curveto
+63.3672 34.7656 63.4648 34.6719 63.5898 34.6133 curveto
+63.71089 34.5547 63.9023 34.52339 64.1523 34.52339 curveto
+64.3008 34.52339 64.457 34.5469 64.6133 34.5898 curveto
+64.7773 34.6328 64.8906 34.668 64.96089 34.6992 curveto
+65.0078 34.6992 lineto
+ closepath fill
+newpath 70.5898 33.83589 moveto
+69.6875 33.83589 lineto
+69.6875 36.8945 lineto
+69.6875 37.1406 69.6719 37.375 69.6445 37.5898 curveto
+69.6133 37.8047 69.5625 37.97661 69.4844 38.0977 curveto
+69.4063 38.2305 69.28911 38.332 69.1406 38.39839 curveto
+68.9883 38.46089 68.793 38.4961 68.5508 38.4961 curveto
+68.3047 38.4961 68.0469 38.4336 67.7773 38.3125 curveto
+67.5078 38.1914 67.25 38.0352 67.0039 37.8477 curveto
+67.0039 33.83589 lineto
+66.10161 33.83589 lineto
+66.10161 41.3164 lineto
+67.0039 41.3164 lineto
+67.0039 38.6094 lineto
+67.2852 38.8438 67.5781 39.0273 67.8789 39.1602 curveto
+68.1797 39.28911 68.4883 39.3555 68.8086 39.3555 curveto
+69.3867 39.3555 69.8281 39.1797 70.1328 38.832 curveto
+70.4375 38.4844 70.5898 37.9805 70.5898 37.3242 curveto
+ closepath fill
+newpath 76.8242 36.4297 moveto
+72.8672 36.4297 lineto
+72.8672 37.1211 lineto
+75.9453 37.1211 lineto
+75.9414 37.5938 75.8242 37.96089 75.58589 38.2227 curveto
+75.35161 38.4805 74.9922 38.6094 74.5117 38.6094 curveto
+74.0313 38.6094 73.6445 38.4688 73.3555 38.1836 curveto
+73.0703 37.89839 72.9063 37.543 72.8672 37.1211 curveto
+72.8672 36.4297 lineto
+72.8672 36.0977 72.918 35.8125 73.0195 35.5664 curveto
+73.1172 35.3203 73.2539 35.1211 73.4258 34.96089 curveto
+73.5938 34.8086 73.78911 34.6914 74.0195 34.6172 curveto
+74.25 34.53911 74.5039 34.5 74.7773 34.5 curveto
+75.1445 34.5 75.5117 34.5742 75.8828 34.7188 curveto
+76.25 34.8672 76.5156 35.0078 76.6719 35.14839 curveto
+76.7188 35.14839 lineto
+76.7188 34.16411 lineto
+76.41411 34.0352 76.1055 33.9297 75.7852 33.8438 curveto
+75.4688 33.7578 75.1367 33.71089 74.7852 33.71089 curveto
+73.8945 33.71089 73.1992 33.9531 72.6992 34.4375 curveto
+72.1992 34.918 71.9531 35.60161 71.9531 36.4922 curveto
+71.9531 37.3711 72.1914 38.0664 72.668 38.582 curveto
+73.14839 39.0977 73.7813 39.3555 74.5625 39.3555 curveto
+75.2852 39.3555 75.8438 39.1445 76.2344 38.7227 curveto
+76.6289 38.2969 76.8242 37.6992 76.8242 36.918 curveto
+ closepath fill
+newpath 86.0313 33.83589 moveto
+85.1289 33.83589 lineto
+85.1289 36.8945 lineto
+85.1289 37.125 85.1172 37.3477 85.0977 37.5625 curveto
+85.0742 37.7773 85.0313 37.9492 84.9648 38.0781 curveto
+84.8906 38.2148 84.7852 38.3203 84.64839 38.3906 curveto
+84.5078 38.46089 84.3086 38.4961 84.0508 38.4961 curveto
+83.7969 38.4961 83.543 38.4336 83.28911 38.3047 curveto
+83.03911 38.1797 82.7852 38.0195 82.5313 37.8242 curveto
+82.53911 37.75 82.5469 37.66411 82.5547 37.5664 curveto
+82.5625 37.4688 82.5664 37.3711 82.5664 37.27339 curveto
+82.5664 33.83589 lineto
+81.6602 33.83589 lineto
+81.6602 36.8945 lineto
+81.6602 37.1328 81.6523 37.3555 81.6289 37.5703 curveto
+81.6094 37.7852 81.5664 37.9531 81.4961 38.082 curveto
+81.4258 38.2188 81.3203 38.3242 81.1797 38.3906 curveto
+81.043 38.46089 80.8438 38.4961 80.58589 38.4961 curveto
+80.3398 38.4961 80.0898 38.4336 79.8438 38.3125 curveto
+79.5938 38.1914 79.3477 38.0352 79.0977 37.8477 curveto
+79.0977 33.83589 lineto
+78.1953 33.83589 lineto
+78.1953 39.207 lineto
+79.0977 39.207 lineto
+79.0977 38.6094 lineto
+79.3828 38.8438 79.66411 39.0273 79.9414 39.1602 curveto
+80.2227 39.28911 80.52339 39.3555 80.8398 39.3555 curveto
+81.2031 39.3555 81.5156 39.2773 81.7695 39.125 curveto
+82.02339 38.9727 82.2148 38.7578 82.3398 38.4844 curveto
+82.7031 38.793 83.03911 39.0156 83.3398 39.1523 curveto
+83.6406 39.28911 83.96089 39.3555 84.3047 39.3555 curveto
+84.8945 39.3555 85.332 39.1758 85.6094 38.8203 curveto
+85.8906 38.46089 86.0313 37.9648 86.0313 37.3242 curveto
+ closepath fill
+newpath 91.9453 33.83589 moveto
+91.043 33.83589 lineto
+91.043 34.4102 lineto
+90.9648 34.3555 90.8555 34.2773 90.7188 34.1797 curveto
+90.3125 34.7148 lineto
+90.5781 34.8398 90.8203 34.9883 91.043 35.1602 curveto
+91.043 35.1602 lineto
+91.043 36.6563 lineto
+90.7695 36.6367 90.4453 36.6133 90.0703 36.582 curveto
+89.6992 36.5508 89.4023 36.5039 89.1836 36.4414 curveto
+88.9258 36.3711 88.7148 36.2539 88.5547 36.0977 curveto
+88.3945 35.9453 88.3125 35.7305 88.3125 35.457 curveto
+88.3125 35.14839 88.4063 34.918 88.5938 34.7617 curveto
+88.7773 34.6094 89.0625 34.5313 89.4453 34.5313 curveto
+89.7617 34.5313 90.0508 34.5898 90.3125 34.7148 curveto
+90.7188 34.1797 lineto
+90.582 34.082 90.4531 34.0078 90.3242 33.9492 curveto
+90.1719 33.875 90 33.8125 89.8047 33.7617 curveto
+89.6094 33.7148 89.3789 33.6875 89.1172 33.6875 curveto
+88.6328 33.6875 88.2227 33.8477 87.8867 34.168 curveto
+87.5508 34.4883 87.3828 34.89839 87.3828 35.3945 curveto
+87.3828 35.8008 87.4688 36.1328 87.6445 36.3828 curveto
+87.8164 36.6328 88.0664 36.832 88.3906 36.97661 curveto
+88.7188 37.1211 89.1094 37.2188 89.5703 37.2695 curveto
+90.0273 37.3203 90.5195 37.3594 91.043 37.3867 curveto
+91.043 37.52339 lineto
+91.043 37.7305 91.0078 37.89839 90.9375 38.0352 curveto
+90.8633 38.168 90.7617 38.27339 90.625 38.35161 curveto
+90.4961 38.4258 90.3438 38.47661 90.16411 38.5 curveto
+89.9844 38.5273 89.7969 38.53911 89.60161 38.53911 curveto
+89.3633 38.53911 89.10161 38.5078 88.8086 38.4453 curveto
+88.5156 38.3828 88.2148 38.293 87.9063 38.1719 curveto
+87.8555 38.1719 lineto
+87.8555 39.0898 lineto
+88.0352 39.1406 88.28911 39.1914 88.6211 39.25 curveto
+88.9531 39.3086 89.2852 39.33589 89.6055 39.33589 curveto
+89.9844 39.33589 90.3164 39.3047 90.5938 39.2422 curveto
+90.875 39.1797 91.1172 39.0742 91.3242 38.9219 curveto
+91.52339 38.7773 91.6797 38.58589 91.7852 38.35161 curveto
+91.8906 38.1172 91.9453 37.8281 91.9453 37.4805 curveto
+ closepath fill
+newpath 96.4727 33.8867 moveto
+96.3008 33.8398 96.1172 33.8047 95.918 33.77339 curveto
+95.7148 33.7461 95.53911 33.7305 95.3828 33.7305 curveto
+94.832 33.7305 94.41411 33.8789 94.1328 34.1758 curveto
+93.8477 34.4688 93.7031 34.9414 93.7031 35.5938 curveto
+93.7031 38.4492 lineto
+93.0938 38.4492 lineto
+93.0938 39.207 lineto
+93.7031 39.207 lineto
+93.7031 40.75 lineto
+94.6055 40.75 lineto
+94.6055 39.207 lineto
+96.4727 39.207 lineto
+96.4727 38.4492 lineto
+94.6055 38.4492 lineto
+94.6055 36 lineto
+94.6055 35.7188 94.6133 35.5 94.625 35.3398 curveto
+94.6406 35.1797 94.6836 35.0313 94.7617 34.8945 curveto
+94.832 34.7656 94.9258 34.6719 95.0508 34.6133 curveto
+95.1758 34.5547 95.3633 34.52339 95.6172 34.52339 curveto
+95.7656 34.52339 95.918 34.5469 96.0781 34.5898 curveto
+96.2383 34.6328 96.35161 34.668 96.4219 34.6992 curveto
+96.4727 34.6992 lineto
+ closepath fill
+newpath 98.47661 33.83589 moveto
+97.5742 33.83589 lineto
+97.5742 39.207 lineto
+98.47661 39.207 lineto
+ closepath fill
+newpath 98.5352 40.1055 moveto
+97.5156 40.1055 lineto
+97.5156 41.043 lineto
+98.5352 41.043 lineto
+ closepath fill
+newpath 104.10199 35.3867 moveto
+104.10199 34.8945 103.89801 34.4922 103.492 34.1797 curveto
+103.086 33.8633 102.53099 33.707 101.832 33.707 curveto
+101.43399 33.707 101.07 33.7539 100.738 33.85161 curveto
+100.40599 33.9453 100.129 34.0469 99.9023 34.1602 curveto
+99.9023 35.1758 lineto
+99.9531 35.1758 lineto
+100.238 34.96089 100.555 34.78911 100.902 34.6602 curveto
+101.254 34.5352 101.59 34.4727 101.90599 34.4727 curveto
+102.305 34.4727 102.617 34.5352 102.84 34.66411 curveto
+103.06601 34.793 103.17601 34.9961 103.17601 35.2695 curveto
+103.17601 35.4805 103.117 35.6406 102.996 35.75 curveto
+102.871 35.8594 102.641 35.9531 102.293 36.0313 curveto
+102.164 36.0586 101.996 36.0938 101.789 36.1289 curveto
+101.586 36.168 101.395 36.21089 101.22699 36.2539 curveto
+100.754 36.3789 100.422 36.5625 100.223 36.8047 curveto
+100.027 37.0469 99.9258 37.3438 99.9258 37.6992 curveto
+99.9258 37.918 99.9727 38.1289 100.06601 38.3242 curveto
+100.15599 38.5195 100.297 38.6914 100.48 38.8477 curveto
+100.66 38.9961 100.887 39.1172 101.164 39.2031 curveto
+101.44101 39.293 101.754 39.33589 102.098 39.33589 curveto
+102.414 39.33589 102.742 39.2969 103.07 39.2188 curveto
+103.39801 39.1406 103.672 39.0469 103.891 38.9336 curveto
+103.891 37.9688 lineto
+103.84 37.9688 lineto
+103.609 38.1367 103.328 38.2813 103 38.39839 curveto
+102.668 38.5156 102.348 38.5742 102.027 38.5742 curveto
+101.69899 38.5742 101.418 38.5078 101.19101 38.3828 curveto
+100.965 38.2578 100.85199 38.0664 100.85199 37.8164 curveto
+100.85199 37.5977 100.918 37.4297 101.05899 37.3164 curveto
+101.19101 37.207 101.41 37.1133 101.711 37.043 curveto
+101.879 37.0039 102.063 36.9688 102.27 36.9297 curveto
+102.47699 36.8906 102.64801 36.8555 102.789 36.8242 curveto
+103.207 36.72661 103.53099 36.5625 103.758 36.3281 curveto
+103.984 36.0898 104.10199 35.7773 104.10199 35.3867 curveto
+ closepath fill
+newpath 109.363 34.1758 moveto
+109.063 34.0313 108.777 33.918 108.508 33.83589 curveto
+108.234 33.7578 107.94899 33.7188 107.645 33.7188 curveto
+107.254 33.7188 106.89801 33.77339 106.57399 33.8867 curveto
+106.254 34 105.97699 34.1758 105.746 34.4063 curveto
+105.512 34.6367 105.328 34.9258 105.19899 35.2813 curveto
+105.07399 35.6328 105.008 36.043 105.008 36.5156 curveto
+105.008 37.3945 105.25 38.082 105.73 38.582 curveto
+106.215 39.082 106.85199 39.332 107.645 39.332 curveto
+107.94899 39.332 108.254 39.28911 108.55101 39.2031 curveto
+108.848 39.1172 109.117 39.0117 109.363 38.8867 curveto
+109.363 37.8789 lineto
+109.31601 37.8789 lineto
+109.039 38.0938 108.758 38.2617 108.465 38.375 curveto
+108.172 38.4922 107.883 38.5469 107.605 38.5469 curveto
+107.09401 38.5469 106.688 38.375 106.391 38.0313 curveto
+106.09401 37.6875 105.945 37.1836 105.945 36.5156 curveto
+105.945 35.8672 106.09 35.3711 106.383 35.02339 curveto
+106.672 34.6758 107.078 34.5 107.605 34.5 curveto
+107.789 34.5 107.973 34.52339 108.164 34.5742 curveto
+108.35199 34.6211 108.52 34.6836 108.672 34.7617 curveto
+108.805 34.8281 108.92601 34.89839 109.043 34.9727 curveto
+109.15599 35.0508 109.25 35.1133 109.31601 35.168 curveto
+109.363 35.168 lineto
+ closepath fill
+newpath 115.012 33.83589 moveto
+114.109 33.83589 lineto
+114.109 36.8945 lineto
+114.109 37.1406 114.09401 37.375 114.06601 37.5898 curveto
+114.035 37.8047 113.984 37.97661 113.90599 38.0977 curveto
+113.828 38.2305 113.711 38.332 113.563 38.39839 curveto
+113.41 38.46089 113.215 38.4961 112.973 38.4961 curveto
+112.72699 38.4961 112.46901 38.4336 112.19899 38.3125 curveto
+111.93 38.1914 111.672 38.0352 111.42601 37.8477 curveto
+111.42601 33.83589 lineto
+110.52301 33.83589 lineto
+110.52301 41.3164 lineto
+111.42601 41.3164 lineto
+111.42601 38.6094 lineto
+111.707 38.8438 112 39.0273 112.30101 39.1602 curveto
+112.60199 39.28911 112.91 39.3555 113.23 39.3555 curveto
+113.80899 39.3555 114.25 39.1797 114.555 38.832 curveto
+114.859 38.4844 115.012 37.9805 115.012 37.3242 curveto
+ closepath fill
+newpath 121.246 36.4297 moveto
+117.289 36.4297 lineto
+117.289 37.1211 lineto
+120.367 37.1211 lineto
+120.363 37.5938 120.246 37.96089 120.008 38.2227 curveto
+119.77301 38.4805 119.414 38.6094 118.93399 38.6094 curveto
+118.44899 38.6094 118.06601 38.4688 117.777 38.1836 curveto
+117.492 37.89839 117.328 37.543 117.289 37.1211 curveto
+117.289 36.4297 lineto
+117.289 36.0977 117.34 35.8125 117.44101 35.5664 curveto
+117.539 35.3203 117.67601 35.1211 117.848 34.96089 curveto
+118.016 34.8086 118.215 34.6914 118.44101 34.6172 curveto
+118.672 34.53911 118.92601 34.5 119.19899 34.5 curveto
+119.56601 34.5 119.93399 34.5742 120.305 34.7188 curveto
+120.672 34.8672 120.938 35.0078 121.09401 35.14839 curveto
+121.141 35.14839 lineto
+121.141 34.16411 lineto
+120.836 34.0352 120.527 33.9297 120.211 33.8438 curveto
+119.891 33.7578 119.55899 33.71089 119.211 33.71089 curveto
+118.31601 33.71089 117.621 33.9531 117.121 34.4375 curveto
+116.621 34.918 116.371 35.60161 116.371 36.4922 curveto
+116.371 37.3711 116.613 38.0664 117.09 38.582 curveto
+117.57 39.0977 118.19899 39.3555 118.984 39.3555 curveto
+119.707 39.3555 120.266 39.1445 120.65599 38.7227 curveto
+121.05101 38.2969 121.246 37.6992 121.246 36.918 curveto
+ closepath fill
+newpath 126.453 35.3867 moveto
+126.453 34.8945 126.25 34.4922 125.84401 34.1797 curveto
+125.438 33.8633 124.887 33.707 124.18399 33.707 curveto
+123.785 33.707 123.422 33.7539 123.09 33.85161 curveto
+122.758 33.9453 122.48 34.0469 122.258 34.1602 curveto
+122.258 35.1758 lineto
+122.305 35.1758 lineto
+122.59 34.96089 122.90599 34.78911 123.258 34.6602 curveto
+123.605 34.5352 123.94101 34.4727 124.262 34.4727 curveto
+124.65599 34.4727 124.96901 34.5352 125.19101 34.66411 curveto
+125.418 34.793 125.53099 34.9961 125.53099 35.2695 curveto
+125.53099 35.4805 125.46901 35.6406 125.348 35.75 curveto
+125.22699 35.8594 124.992 35.9531 124.645 36.0313 curveto
+124.516 36.0586 124.35199 36.0938 124.145 36.1289 curveto
+123.938 36.168 123.746 36.21089 123.578 36.2539 curveto
+123.105 36.3789 122.77301 36.5625 122.57399 36.8047 curveto
+122.379 37.0469 122.28099 37.3438 122.28099 37.6992 curveto
+122.28099 37.918 122.32399 38.1289 122.418 38.3242 curveto
+122.508 38.5195 122.64801 38.6914 122.832 38.8477 curveto
+123.012 38.9961 123.242 39.1172 123.52 39.2031 curveto
+123.797 39.293 124.105 39.33589 124.44899 39.33589 curveto
+124.77 39.33589 125.09401 39.2969 125.422 39.2188 curveto
+125.75 39.1406 126.02301 39.0469 126.242 38.9336 curveto
+126.242 37.9688 lineto
+126.19101 37.9688 lineto
+125.961 38.1367 125.68399 38.2813 125.35199 38.39839 curveto
+125.02301 38.5156 124.69899 38.5742 124.383 38.5742 curveto
+124.05101 38.5742 123.77301 38.5078 123.543 38.3828 curveto
+123.31601 38.2578 123.203 38.0664 123.203 37.8164 curveto
+123.203 37.5977 123.27301 37.4297 123.41 37.3164 curveto
+123.543 37.207 123.762 37.1133 124.063 37.043 curveto
+124.23 37.0039 124.418 36.9688 124.625 36.9297 curveto
+124.832 36.8906 125.004 36.8555 125.141 36.8242 curveto
+125.563 36.72661 125.883 36.5625 126.109 36.3281 curveto
+126.34 36.0898 126.453 35.7773 126.453 35.3867 curveto
+ closepath fill
+newpath 52.6563 26.7813 moveto
+49.0352 26.7813 lineto
+49.0352 24.7617 lineto
+52.1445 24.7617 lineto
+52.1445 23.918 lineto
+49.0352 23.918 lineto
+49.0352 20.4688 lineto
+48.08589 20.4688 lineto
+48.08589 27.6289 lineto
+52.6563 27.6289 lineto
+ closepath fill
+newpath 58.0117 23.1523 moveto
+58.0117 22.2773 57.7852 21.58589 57.33589 21.082 curveto
+56.8867 20.5742 56.2852 20.3203 55.5352 20.3203 curveto
+54.77339 20.3203 54.1719 20.5742 53.7227 21.082 curveto
+53.2773 21.58589 53.0547 22.2773 53.0547 23.1523 curveto
+53.0547 24.0273 53.2773 24.7188 53.7227 25.22661 curveto
+54.1719 25.7344 54.77339 25.9883 55.5352 25.9883 curveto
+55.5352 25.21089 lineto
+55.043 25.21089 54.66411 25.043 54.3906 24.7031 curveto
+54.1211 24.3633 53.9844 23.8477 53.9844 23.1523 curveto
+53.9844 22.4805 54.1211 21.9688 54.3945 21.6211 curveto
+54.668 21.27339 55.0469 21.10161 55.5352 21.10161 curveto
+56.0156 21.10161 56.3906 21.27339 56.66411 21.6172 curveto
+56.9414 21.96089 57.0781 22.4727 57.0781 23.1523 curveto
+57.0781 23.1523 lineto
+57.0781 23.8477 56.9414 24.3633 56.668 24.7031 curveto
+56.3945 25.043 56.0195 25.21089 55.5352 25.21089 curveto
+55.5352 25.9883 lineto
+56.2852 25.9883 56.8867 25.7344 57.33589 25.22661 curveto
+57.7852 24.7188 58.0117 24.0273 58.0117 23.1523 curveto
+ closepath fill
+newpath 62.7617 24.8555 moveto
+62.7148 24.8555 lineto
+62.5781 24.8867 62.4492 24.9102 62.3203 24.9258 curveto
+62.1953 24.9375 62.043 24.9453 61.8711 24.9453 curveto
+61.5938 24.9453 61.3242 24.8828 61.0625 24.7617 curveto
+60.8047 24.6367 60.5547 24.47661 60.3125 24.2813 curveto
+60.3125 20.4688 lineto
+59.4102 20.4688 lineto
+59.4102 25.8398 lineto
+60.3125 25.8398 lineto
+60.3125 25.0469 lineto
+60.6719 25.33589 60.9883 25.53911 61.2617 25.6602 curveto
+61.53911 25.7813 61.8164 25.8398 62.10161 25.8398 curveto
+62.2578 25.8398 62.3711 25.83589 62.4453 25.8281 curveto
+62.5156 25.8203 62.6211 25.8047 62.7617 25.7813 curveto
+ closepath fill
+newpath 67.4492 22.0195 moveto
+67.4492 21.5273 67.2461 21.125 66.8398 20.8125 curveto
+66.4336 20.4961 65.8789 20.3398 65.1797 20.3398 curveto
+64.7813 20.3398 64.418 20.3867 64.08589 20.4805 curveto
+63.7539 20.5781 63.47661 20.6797 63.25 20.793 curveto
+63.25 21.8047 lineto
+63.2969 21.8047 lineto
+63.58589 21.5898 63.9023 21.4219 64.25 21.293 curveto
+64.60161 21.168 64.9336 21.1055 65.2539 21.1055 curveto
+65.6523 21.1055 65.9648 21.168 66.1875 21.2969 curveto
+66.4102 21.4258 66.52339 21.625 66.52339 21.9023 curveto
+66.52339 22.1133 66.4648 22.27339 66.3438 22.3828 curveto
+66.2188 22.4922 65.9844 22.58589 65.6406 22.66411 curveto
+65.5117 22.6914 65.3438 22.72661 65.1367 22.7617 curveto
+64.9297 22.8008 64.7422 22.8438 64.5742 22.8867 curveto
+64.10161 23.0117 63.7695 23.1992 63.5703 23.4375 curveto
+63.375 23.6797 63.27339 23.97661 63.27339 24.332 curveto
+63.27339 24.5508 63.3203 24.7617 63.4102 24.957 curveto
+63.5039 25.1523 63.6406 25.3242 63.8281 25.4805 curveto
+64.0078 25.6289 64.2344 25.75 64.5117 25.83589 curveto
+64.78911 25.9258 65.10161 25.9688 65.4414 25.9688 curveto
+65.7617 25.9688 66.0898 25.9297 66.418 25.85161 curveto
+66.7461 25.77339 67.0195 25.6797 67.2344 25.5664 curveto
+67.2344 24.60161 lineto
+67.1875 24.60161 lineto
+66.957 24.7695 66.6758 24.91411 66.3477 25.0313 curveto
+66.0156 25.14839 65.6914 25.207 65.375 25.207 curveto
+65.0469 25.207 64.7656 25.1406 64.53911 25.0156 curveto
+64.3125 24.8906 64.1992 24.6992 64.1992 24.4492 curveto
+64.1992 24.2305 64.2656 24.0625 64.4063 23.9492 curveto
+64.53911 23.8398 64.7578 23.7461 65.0586 23.6758 curveto
+65.22661 23.6367 65.4102 23.60161 65.6172 23.5625 curveto
+65.8242 23.52339 65.9961 23.4883 66.1367 23.457 curveto
+66.5547 23.3594 66.8789 23.1953 67.1055 22.96089 curveto
+67.332 22.7227 67.4492 22.4102 67.4492 22.0195 curveto
+ closepath fill
+newpath 72.71089 20.8047 moveto
+72.4102 20.66411 72.125 20.5508 71.85161 20.4688 curveto
+71.582 20.3906 71.293 20.35161 70.9922 20.35161 curveto
+70.60161 20.35161 70.2461 20.4063 69.9219 20.5195 curveto
+69.5977 20.6367 69.3242 20.8047 69.0938 21.03911 curveto
+68.8594 21.2695 68.6758 21.5586 68.5469 21.9102 curveto
+68.4219 22.2656 68.3555 22.6758 68.3555 23.14839 curveto
+68.3555 24.0273 68.5977 24.7148 69.0781 25.2148 curveto
+69.5625 25.7148 70.1992 25.9648 70.9922 25.9648 curveto
+71.2969 25.9648 71.60161 25.9219 71.89839 25.83589 curveto
+72.1914 25.75 72.4648 25.6445 72.71089 25.5195 curveto
+72.71089 24.5117 lineto
+72.66411 24.5117 lineto
+72.3867 24.72661 72.10161 24.8945 71.8086 25.0078 curveto
+71.5156 25.125 71.2305 25.1797 70.9531 25.1797 curveto
+70.4414 25.1797 70.0352 25.0078 69.7383 24.66411 curveto
+69.4414 24.3203 69.293 23.8164 69.293 23.14839 curveto
+69.293 22.5 69.4375 22.0039 69.72661 21.6563 curveto
+70.0195 21.3086 70.4258 21.1367 70.9531 21.1367 curveto
+71.1367 21.1367 71.3203 21.1563 71.5117 21.207 curveto
+71.6992 21.2539 71.8672 21.3164 72.0195 21.3945 curveto
+72.1523 21.46089 72.27339 21.5313 72.3906 21.6055 curveto
+72.5039 21.6836 72.5977 21.7461 72.66411 21.8008 curveto
+72.71089 21.8008 lineto
+ closepath fill
+newpath 78.3594 20.4688 moveto
+77.457 20.4688 lineto
+77.457 23.5273 lineto
+77.457 23.77339 77.4414 24.0078 77.41411 24.2227 curveto
+77.3828 24.4375 77.332 24.6094 77.2539 24.7305 curveto
+77.1719 24.8633 77.0586 24.9648 76.9063 25.0313 curveto
+76.7578 25.0938 76.5625 25.1289 76.3203 25.1289 curveto
+76.0742 25.1289 75.8164 25.0664 75.5469 24.9453 curveto
+75.2773 24.8242 75.0195 24.668 74.77339 24.4805 curveto
+74.77339 20.4688 lineto
+73.8711 20.4688 lineto
+73.8711 27.9492 lineto
+74.77339 27.9492 lineto
+74.77339 25.2422 lineto
+75.0547 25.47661 75.3477 25.6602 75.64839 25.793 curveto
+75.9492 25.9219 76.2578 25.9883 76.5781 25.9883 curveto
+77.1563 25.9883 77.5977 25.8125 77.9023 25.4648 curveto
+78.207 25.1172 78.3594 24.6133 78.3594 23.957 curveto
+ closepath fill
+newpath 84.5508 20.4688 moveto
+83.64839 20.4688 lineto
+83.64839 21.0664 lineto
+83.3438 20.8242 83.0508 20.6406 82.77339 20.5117 curveto
+82.4922 20.3867 82.1875 20.3203 81.8477 20.3203 curveto
+81.2852 20.3203 80.8477 20.4922 80.5313 20.83589 curveto
+80.2188 21.1836 80.0625 21.6875 80.0625 22.3555 curveto
+80.0625 25.8398 lineto
+80.9648 25.8398 lineto
+80.9648 22.7813 lineto
+80.9648 22.5117 80.97661 22.2773 81.0039 22.082 curveto
+81.0313 21.8906 81.082 21.7227 81.168 21.58589 curveto
+81.2539 21.4453 81.3672 21.3398 81.5039 21.2773 curveto
+81.6406 21.2148 81.8398 21.1797 82.1055 21.1797 curveto
+82.3398 21.1797 82.5938 21.2422 82.8711 21.3633 curveto
+83.14839 21.4844 83.4063 21.6406 83.64839 21.832 curveto
+83.64839 25.8398 lineto
+84.5508 25.8398 lineto
+ closepath fill
+newpath 90.8203 20.4688 moveto
+89.91411 20.4688 lineto
+89.91411 23.5273 lineto
+89.91411 23.77339 89.9023 24.0078 89.8711 24.2227 curveto
+89.8438 24.4375 89.78911 24.6094 89.7148 24.7305 curveto
+89.6328 24.8633 89.5195 24.9648 89.3672 25.0313 curveto
+89.2188 25.0938 89.02339 25.1289 88.7813 25.1289 curveto
+88.5352 25.1289 88.2773 25.0664 88.0078 24.9453 curveto
+87.7383 24.8242 87.4805 24.668 87.2344 24.4805 curveto
+87.2344 20.4688 lineto
+86.3281 20.4688 lineto
+86.3281 25.8398 lineto
+87.2344 25.8398 lineto
+87.2344 25.2422 lineto
+87.5156 25.47661 87.8086 25.6602 88.1094 25.793 curveto
+88.4102 25.9219 88.7188 25.9883 89.0352 25.9883 curveto
+89.6172 25.9883 90.0586 25.8125 90.3633 25.4648 curveto
+90.668 25.1172 90.8203 24.6133 90.8203 23.957 curveto
+ closepath fill
+newpath 96.91411 21.082 moveto
+96.91411 20.1719 96.707 19.5039 96.293 19.0781 curveto
+95.8828 18.64839 95.2461 18.4375 94.3867 18.4375 curveto
+94.10161 18.4375 93.8242 18.457 93.5508 18.4961 curveto
+93.2813 18.5352 93.0156 18.5938 92.7539 18.668 curveto
+92.7539 19.5898 lineto
+92.8008 19.5898 lineto
+92.9492 19.5313 93.1797 19.46089 93.5039 19.375 curveto
+93.8242 19.293 94.1445 19.25 94.4648 19.25 curveto
+94.7695 19.25 95.0273 19.2852 95.22661 19.3594 curveto
+95.4297 19.4336 95.58589 19.5352 95.6992 19.668 curveto
+95.8125 19.793 95.8906 19.9453 95.9375 20.1211 curveto
+95.9883 20.2969 96.0117 20.4922 96.0117 20.71089 curveto
+96.0117 21.1992 lineto
+95.7383 20.9844 95.47661 20.8203 95.2305 20.71089 curveto
+94.9805 20.6055 94.66411 20.5508 94.2813 20.5508 curveto
+93.6406 20.5508 93.1328 20.7813 92.7539 21.2461 curveto
+92.3789 21.71089 92.1914 22.3633 92.1914 23.207 curveto
+92.1914 23.668 92.2539 24.0664 92.3828 24.39839 curveto
+92.5156 24.7344 92.6914 25.02339 92.91411 25.2695 curveto
+93.125 25.4961 93.3789 25.6719 93.6758 25.8008 curveto
+93.9727 25.9258 94.2695 25.9883 94.5664 25.9883 curveto
+94.875 25.9883 95.1367 25.957 95.3438 25.8945 curveto
+95.5547 25.832 95.7773 25.7383 96.0117 25.6094 curveto
+96.0117 24.875 lineto
+95.7695 24.9844 95.5469 25.0586 95.3398 25.1055 curveto
+95.1328 25.1523 94.9258 25.1758 94.7227 25.1758 curveto
+94.22661 25.1758 93.83589 25.0117 93.5508 24.6758 curveto
+93.2656 24.3438 93.1211 23.8594 93.1211 23.22661 curveto
+93.1211 22.6211 93.22661 22.16411 93.4414 21.8555 curveto
+93.6523 21.543 94.0039 21.3867 94.4922 21.3867 curveto
+94.7539 21.3867 95.0195 21.4375 95.2813 21.53911 curveto
+95.5469 21.6406 95.78911 21.7773 96.0117 21.9453 curveto
+96.0117 21.9453 lineto
+96.0117 24.875 lineto
+96.0117 25.6094 lineto
+96.0703 25.8398 lineto
+96.91411 25.8398 lineto
+ closepath fill
+newpath 102.527 22.0195 moveto
+102.527 21.5273 102.328 21.125 101.922 20.8125 curveto
+101.516 20.4961 100.961 20.3398 100.262 20.3398 curveto
+99.8633 20.3398 99.5 20.3867 99.168 20.4805 curveto
+98.83589 20.5781 98.5586 20.6797 98.332 20.793 curveto
+98.332 21.8047 lineto
+98.3828 21.8047 lineto
+98.66411 21.5898 98.9844 21.4219 99.332 21.293 curveto
+99.6836 21.168 100.016 21.1055 100.336 21.1055 curveto
+100.734 21.1055 101.047 21.168 101.27 21.2969 curveto
+101.492 21.4258 101.605 21.625 101.605 21.9023 curveto
+101.605 22.1133 101.547 22.27339 101.42601 22.3828 curveto
+101.30101 22.4922 101.06601 22.58589 100.723 22.66411 curveto
+100.59401 22.6914 100.42601 22.72661 100.21901 22.7617 curveto
+100.012 22.8008 99.8242 22.8438 99.6563 22.8867 curveto
+99.1836 23.0117 98.8477 23.1992 98.6523 23.4375 curveto
+98.457 23.6797 98.3555 23.97661 98.3555 24.332 curveto
+98.3555 24.5508 98.4023 24.7617 98.4922 24.957 curveto
+98.58589 25.1523 98.7227 25.3242 98.9102 25.4805 curveto
+99.0898 25.6289 99.3164 25.75 99.5938 25.83589 curveto
+99.8711 25.9258 100.18399 25.9688 100.52301 25.9688 curveto
+100.84401 25.9688 101.172 25.9297 101.5 25.85161 curveto
+101.828 25.77339 102.10199 25.6797 102.31601 25.5664 curveto
+102.31601 24.60161 lineto
+102.27 24.60161 lineto
+102.039 24.7695 101.758 24.91411 101.43 25.0313 curveto
+101.098 25.14839 100.77301 25.207 100.457 25.207 curveto
+100.129 25.207 99.8477 25.1406 99.6211 25.0156 curveto
+99.3945 24.8906 99.2813 24.6992 99.2813 24.4492 curveto
+99.2813 24.2305 99.3477 24.0625 99.4883 23.9492 curveto
+99.6211 23.8398 99.8398 23.7461 100.141 23.6758 curveto
+100.30899 23.6367 100.492 23.60161 100.69899 23.5625 curveto
+100.90599 23.52339 101.078 23.4883 101.21901 23.457 curveto
+101.637 23.3594 101.961 23.1953 102.188 22.96089 curveto
+102.414 22.7227 102.527 22.4102 102.527 22.0195 curveto
+ closepath fill
+newpath 104.734 20.4688 moveto
+103.832 20.4688 lineto
+103.832 25.8398 lineto
+104.734 25.8398 lineto
+ closepath fill
+newpath 104.793 26.7383 moveto
+103.77301 26.7383 lineto
+103.77301 27.6758 lineto
+104.793 27.6758 lineto
+ closepath fill
+newpath 111.016 20.4688 moveto
+110.109 20.4688 lineto
+110.109 23.5273 lineto
+110.109 23.77339 110.098 24.0078 110.06601 24.2227 curveto
+110.039 24.4375 109.984 24.6094 109.90599 24.7305 curveto
+109.828 24.8633 109.715 24.9648 109.563 25.0313 curveto
+109.41 25.0938 109.215 25.1289 108.97699 25.1289 curveto
+108.73 25.1289 108.473 25.0664 108.203 24.9453 curveto
+107.93399 24.8242 107.67601 24.668 107.43 24.4805 curveto
+107.43 20.4688 lineto
+106.52301 20.4688 lineto
+106.52301 25.8398 lineto
+107.43 25.8398 lineto
+107.43 25.2422 lineto
+107.711 25.47661 108 25.6602 108.305 25.793 curveto
+108.605 25.9219 108.914 25.9883 109.23 25.9883 curveto
+109.813 25.9883 110.254 25.8125 110.55899 25.4648 curveto
+110.863 25.1172 111.016 24.6133 111.016 23.957 curveto
+ closepath fill
+newpath 116.59 22.0195 moveto
+116.59 21.5273 116.387 21.125 115.98 20.8125 curveto
+115.578 20.4961 115.02301 20.3398 114.32 20.3398 curveto
+113.92601 20.3398 113.55899 20.3867 113.22699 20.4805 curveto
+112.895 20.5781 112.617 20.6797 112.395 20.793 curveto
+112.395 21.8047 lineto
+112.44101 21.8047 lineto
+112.72699 21.5898 113.043 21.4219 113.395 21.293 curveto
+113.742 21.168 114.078 21.1055 114.39801 21.1055 curveto
+114.797 21.1055 115.105 21.168 115.332 21.2969 curveto
+115.555 21.4258 115.668 21.625 115.668 21.9023 curveto
+115.668 22.1133 115.605 22.27339 115.484 22.3828 curveto
+115.363 22.4922 115.129 22.58589 114.78099 22.66411 curveto
+114.652 22.6914 114.488 22.72661 114.28099 22.7617 curveto
+114.07399 22.8008 113.887 22.8438 113.715 22.8867 curveto
+113.242 23.0117 112.91 23.1992 112.715 23.4375 curveto
+112.516 23.6797 112.418 23.97661 112.418 24.332 curveto
+112.418 24.5508 112.465 24.7617 112.555 24.957 curveto
+112.645 25.1523 112.785 25.3242 112.96901 25.4805 curveto
+113.14801 25.6289 113.379 25.75 113.65599 25.83589 curveto
+113.93399 25.9258 114.242 25.9688 114.586 25.9688 curveto
+114.90599 25.9688 115.23 25.9297 115.55899 25.85161 curveto
+115.887 25.77339 116.16 25.6797 116.379 25.5664 curveto
+116.379 24.60161 lineto
+116.332 24.60161 lineto
+116.10199 24.7695 115.82 24.91411 115.488 25.0313 curveto
+115.16 25.14839 114.836 25.207 114.52 25.207 curveto
+114.188 25.207 113.91 25.1406 113.68399 25.0156 curveto
+113.453 24.8906 113.34 24.6992 113.34 24.4492 curveto
+113.34 24.2305 113.41 24.0625 113.547 23.9492 curveto
+113.68399 23.8398 113.89801 23.7461 114.19899 23.6758 curveto
+114.367 23.6367 114.555 23.60161 114.762 23.5625 curveto
+114.96901 23.52339 115.141 23.4883 115.277 23.457 curveto
+115.69899 23.3594 116.02 23.1953 116.25 22.96089 curveto
+116.47699 22.7227 116.59 22.4102 116.59 22.0195 curveto
+ closepath fill
+newpath 120.672 20.5195 moveto
+120.5 20.4727 120.31601 20.4375 120.117 20.4063 curveto
+119.914 20.3789 119.738 20.3633 119.578 20.3633 curveto
+119.03099 20.3633 118.613 20.5117 118.328 20.8047 curveto
+118.047 21.10161 117.902 21.5742 117.902 22.22661 curveto
+117.902 25.082 lineto
+117.293 25.082 lineto
+117.293 25.8398 lineto
+117.902 25.8398 lineto
+117.902 27.3828 lineto
+118.805 27.3828 lineto
+118.805 25.8398 lineto
+120.672 25.8398 lineto
+120.672 25.082 lineto
+118.805 25.082 lineto
+118.805 22.6328 lineto
+118.805 22.35161 118.813 22.1328 118.82399 21.9727 curveto
+118.84 21.8125 118.883 21.66411 118.961 21.5273 curveto
+119.03099 21.39839 119.129 21.3047 119.25 21.2461 curveto
+119.375 21.1875 119.563 21.1563 119.81601 21.1563 curveto
+119.965 21.1563 120.117 21.1797 120.277 21.2227 curveto
+120.438 21.2656 120.55101 21.3008 120.621 21.332 curveto
+120.672 21.332 lineto
+ closepath fill
+newpath 122.67601 20.4688 moveto
+121.77301 20.4688 lineto
+121.77301 25.8398 lineto
+122.67601 25.8398 lineto
+ closepath fill
+newpath 122.734 26.7383 moveto
+121.715 26.7383 lineto
+121.715 27.6758 lineto
+122.734 27.6758 lineto
+ closepath fill
+newpath 127.254 20.5195 moveto
+127.082 20.4727 126.89801 20.4375 126.695 20.4063 curveto
+126.496 20.3789 126.31601 20.3633 126.16 20.3633 curveto
+125.613 20.3633 125.195 20.5117 124.91 20.8047 curveto
+124.625 21.10161 124.484 21.5742 124.484 22.22661 curveto
+124.484 25.082 lineto
+123.871 25.082 lineto
+123.871 25.8398 lineto
+124.484 25.8398 lineto
+124.484 27.3828 lineto
+125.387 27.3828 lineto
+125.387 25.8398 lineto
+127.254 25.8398 lineto
+127.254 25.082 lineto
+125.387 25.082 lineto
+125.387 22.6328 lineto
+125.387 22.35161 125.395 22.1328 125.40599 21.9727 curveto
+125.418 21.8125 125.465 21.66411 125.539 21.5273 curveto
+125.609 21.39839 125.707 21.3047 125.832 21.2461 curveto
+125.953 21.1875 126.145 21.1563 126.395 21.1563 curveto
+126.543 21.1563 126.69899 21.1797 126.859 21.2227 curveto
+127.02 21.2656 127.133 21.3008 127.203 21.332 curveto
+127.254 21.332 lineto
+ closepath fill
+newpath 132.793 20.4688 moveto
+131.891 20.4688 lineto
+131.891 21.0664 lineto
+131.586 20.8242 131.293 20.6406 131.016 20.5117 curveto
+130.738 20.3867 130.43 20.3203 130.094 20.3203 curveto
+129.527 20.3203 129.09 20.4922 128.773 20.83589 curveto
+128.461 21.1836 128.305 21.6875 128.305 22.3555 curveto
+128.305 25.8398 lineto
+129.207 25.8398 lineto
+129.207 22.7813 lineto
+129.207 22.5117 129.223 22.2773 129.246 22.082 curveto
+129.273 21.8906 129.328 21.7227 129.41 21.58589 curveto
+129.496 21.4453 129.609 21.3398 129.746 21.2773 curveto
+129.883 21.2148 130.086 21.1797 130.348 21.1797 curveto
+130.582 21.1797 130.836 21.2422 131.113 21.3633 curveto
+131.391 21.4844 131.648 21.6406 131.891 21.832 curveto
+131.891 25.8398 lineto
+132.793 25.8398 lineto
+ closepath fill
+newpath 137.355 20.5195 moveto
+137.184 20.4727 137 20.4375 136.801 20.4063 curveto
+136.598 20.3789 136.422 20.3633 136.266 20.3633 curveto
+135.715 20.3633 135.301 20.5117 135.016 20.8047 curveto
+134.73 21.10161 134.586 21.5742 134.586 22.22661 curveto
+134.586 25.082 lineto
+133.977 25.082 lineto
+133.977 25.8398 lineto
+134.586 25.8398 lineto
+134.586 27.3828 lineto
+135.488 27.3828 lineto
+135.488 25.8398 lineto
+137.355 25.8398 lineto
+137.355 25.082 lineto
+135.488 25.082 lineto
+135.488 22.6328 lineto
+135.488 22.35161 135.496 22.1328 135.508 21.9727 curveto
+135.52 21.8125 135.566 21.66411 135.645 21.5273 curveto
+135.715 21.39839 135.813 21.3047 135.934 21.2461 curveto
+136.059 21.1875 136.246 21.1563 136.5 21.1563 curveto
+136.645 21.1563 136.801 21.1797 136.961 21.2227 curveto
+137.121 21.2656 137.234 21.3008 137.309 21.332 curveto
+137.355 21.332 lineto
+ closepath fill
+newpath 53.418 12.6875 moveto
+53.71089 12.3672 53.9336 11.9766 54.0898 11.5117 curveto
+54.2461 11.0469 54.3242 10.5195 54.3242 9.92969 curveto
+54.3242 9.33984 54.2422 8.8125 54.08589 8.34375 curveto
+53.9258 7.8789 53.707 7.49219 53.418 7.17969 curveto
+53.125 6.85547 52.7773 6.61328 52.375 6.44922 curveto
+51.9727 6.28516 51.5117 6.20313 50.9961 6.20313 curveto
+51.0039 7.02734 lineto
+51.7148 7.02734 52.2813 7.27344 52.7031 7.77344 curveto
+53.1211 8.27344 53.332 8.99219 53.332 9.92969 curveto
+53.332 9.92969 lineto
+53.332 10.8594 53.125 11.5742 52.707 12.082 curveto
+52.293 12.5859 51.7227 12.8359 51.0039 12.8359 curveto
+50.27339 12.8359 49.7031 12.5859 49.28911 12.082 curveto
+48.8711 11.5742 48.66411 10.8594 48.66411 9.92969 curveto
+48.66411 8.99219 48.8789 8.27344 49.3008 7.77344 curveto
+49.7227 7.27344 50.28911 7.02734 51.0039 7.02734 curveto
+50.9961 6.20313 lineto
+50.4922 6.20313 50.0352 6.28906 49.625 6.45313 curveto
+49.2148 6.6211 48.8633 6.86328 48.5742 7.17969 curveto
+48.2852 7.4961 48.0625 7.88672 47.9102 8.34766 curveto
+47.7539 8.8086 47.6758 9.33594 47.6758 9.92969 curveto
+47.6758 10.5117 47.7539 11.0352 47.9063 11.5 curveto
+48.0586 11.9609 48.2852 12.3594 48.5781 12.6875 curveto
+48.8594 13.0039 49.21089 13.2422 49.6289 13.4102 curveto
+50.0469 13.5781 50.5039 13.6602 50.9961 13.6602 curveto
+51.5117 13.6602 51.9688 13.5742 52.3789 13.4063 curveto
+52.78911 13.2383 53.1328 13 53.418 12.6875 curveto
+ closepath fill
+newpath 60.4844 9.07813 moveto
+60.4844 8.63281 60.4219 8.22656 60.2969 7.86719 curveto
+60.168 7.50781 60 7.20703 59.7852 6.96484 curveto
+59.5547 6.71094 59.3047 6.51953 59.0352 6.39453 curveto
+58.7617 6.26563 58.46089 6.20313 58.1367 6.20313 curveto
+57.832 6.20313 57.5664 6.23828 57.33589 6.3125 curveto
+57.1094 6.38672 56.8867 6.48047 56.66411 6.60156 curveto
+56.66411 7.32422 lineto
+56.9219 7.20703 57.1406 7.1289 57.3242 7.08203 curveto
+57.5117 7.03906 57.7188 7.01563 57.9531 7.01563 curveto
+58.4531 7.01563 58.8438 7.17969 59.1289 7.51172 curveto
+59.4102 7.83594 59.5547 8.35156 59.5547 9.05469 curveto
+59.5547 9.05469 lineto
+59.5547 9.69531 59.4492 10.1836 59.2344 10.5117 curveto
+59.02339 10.8438 58.6836 11.0117 58.21089 11.0117 curveto
+57.9492 11.0117 57.6836 10.9531 57.41411 10.8398 curveto
+57.1445 10.7266 56.8945 10.5781 56.66411 10.4023 curveto
+56.66411 7.32422 lineto
+56.66411 6.60156 lineto
+56.6055 6.35156 lineto
+55.7617 6.35156 lineto
+55.7617 13.832 lineto
+56.66411 13.832 lineto
+56.66411 11.1602 lineto
+56.918 11.3672 57.1875 11.5391 57.4727 11.6719 curveto
+57.7578 11.8047 58.0781 11.8711 58.4336 11.8711 curveto
+59.0703 11.8711 59.5703 11.6289 59.9375 11.1406 curveto
+60.3008 10.6523 60.4844 9.96484 60.4844 9.07813 curveto
+ closepath fill
+newpath 66.3906 8.94531 moveto
+62.4336 8.94531 lineto
+62.4336 9.63672 lineto
+65.5117 9.63672 lineto
+65.5078 10.1094 65.3867 10.4766 65.1523 10.7383 curveto
+64.91411 10.9961 64.5586 11.125 64.0781 11.125 curveto
+63.5938 11.125 63.207 10.9844 62.9219 10.6992 curveto
+62.6328 10.4141 62.4727 10.0586 62.4336 9.63672 curveto
+62.4336 8.94531 lineto
+62.4336 8.61328 62.4844 8.32813 62.582 8.08203 curveto
+62.6797 7.83594 62.8164 7.63672 62.9922 7.47656 curveto
+63.1563 7.32422 63.3555 7.20703 63.58589 7.13281 curveto
+63.8125 7.05469 64.0664 7.01563 64.3398 7.01563 curveto
+64.707 7.01563 65.0742 7.08984 65.4453 7.23438 curveto
+65.8164 7.38281 66.0781 7.52344 66.2344 7.66406 curveto
+66.2852 7.66406 lineto
+66.2852 6.67969 lineto
+65.9805 6.55078 65.668 6.44531 65.35161 6.35938 curveto
+65.0352 6.26953 64.6992 6.22656 64.35161 6.22656 curveto
+63.46089 6.22656 62.7656 6.46875 62.2656 6.95313 curveto
+61.7656 7.4336 61.5156 8.11719 61.5156 9.00781 curveto
+61.5156 9.88672 61.7539 10.582 62.2344 11.0977 curveto
+62.71089 11.6133 63.3438 11.8711 64.125 11.8711 curveto
+64.8477 11.8711 65.4063 11.6602 65.8008 11.2383 curveto
+66.1914 10.8125 66.3906 10.2148 66.3906 9.4336 curveto
+ closepath fill
+newpath 71.1094 10.7383 moveto
+71.0625 10.7383 lineto
+70.9258 10.7695 70.7969 10.793 70.668 10.8086 curveto
+70.543 10.8203 70.3945 10.8281 70.2188 10.8281 curveto
+69.9414 10.8281 69.6719 10.7656 69.41411 10.6445 curveto
+69.1523 10.5195 68.9023 10.3594 68.66411 10.1641 curveto
+68.66411 6.35156 lineto
+67.7578 6.35156 lineto
+67.7578 11.7227 lineto
+68.66411 11.7227 lineto
+68.66411 10.9297 lineto
+69.02339 11.2188 69.3398 11.4219 69.6133 11.543 curveto
+69.8867 11.6641 70.16411 11.7227 70.4492 11.7227 curveto
+70.6094 11.7227 70.7227 11.7188 70.793 11.7109 curveto
+70.8633 11.7031 70.9688 11.6875 71.1094 11.6641 curveto
+ closepath fill
+newpath 78.7148 11.7227 moveto
+77.3164 6.35156 lineto
+76.4805 6.35156 lineto
+75.0977 10.4922 lineto
+73.7305 6.35156 lineto
+72.89839 6.35156 lineto
+71.4844 11.7227 lineto
+72.4258 11.7227 lineto
+73.4102 7.5625 lineto
+74.7539 11.7227 lineto
+75.5 11.7227 lineto
+76.875 7.5625 lineto
+77.8047 11.7227 lineto
+ closepath fill
+newpath 84.5938 9.03516 moveto
+84.5938 8.16016 84.3672 7.46875 83.9219 6.96484 curveto
+83.4727 6.45703 82.8711 6.20313 82.1172 6.20313 curveto
+81.3594 6.20313 80.7539 6.45703 80.3086 6.96484 curveto
+79.8594 7.46875 79.6367 8.16016 79.6367 9.03516 curveto
+79.6367 9.91016 79.8594 10.6016 80.3086 11.1094 curveto
+80.7539 11.6172 81.3594 11.8711 82.1172 11.8711 curveto
+82.1172 11.0938 lineto
+81.6289 11.0938 81.2461 10.9219 80.97661 10.5859 curveto
+80.707 10.2461 80.5703 9.73047 80.5703 9.03516 curveto
+80.5703 8.36328 80.707 7.85156 80.97661 7.5039 curveto
+81.25 7.15625 81.6328 6.98438 82.1172 6.98438 curveto
+82.5977 6.98438 82.97661 7.15625 83.25 7.5 curveto
+83.52339 7.84375 83.6602 8.35547 83.6602 9.03516 curveto
+83.6602 9.03516 lineto
+83.6602 9.73047 83.52339 10.2461 83.2539 10.5859 curveto
+82.9805 10.9219 82.60161 11.0938 82.1172 11.0938 curveto
+82.1172 11.8711 lineto
+82.8711 11.8711 83.4727 11.6172 83.9219 11.1094 curveto
+84.3672 10.6016 84.5938 9.91016 84.5938 9.03516 curveto
+ closepath fill
+newpath 86.9063 6.35156 moveto
+86.0039 6.35156 lineto
+86.0039 13.832 lineto
+86.9063 13.832 lineto
+ closepath fill
+newpath 91.582 12.957 moveto
+91.5352 12.957 lineto
+91.4336 12.9883 91.3047 13.0156 91.1445 13.0469 curveto
+90.9844 13.0781 90.8438 13.0938 90.7227 13.0938 curveto
+90.33589 13.0938 90.0547 13.0078 89.8789 12.8359 curveto
+89.7031 12.6641 89.6172 12.3555 89.6172 11.9063 curveto
+89.6172 11.7227 lineto
+91.2461 11.7227 lineto
+91.2461 10.9648 lineto
+89.6445 10.9648 lineto
+89.6445 6.35156 lineto
+88.7422 6.35156 lineto
+88.7422 10.9648 lineto
+88.1328 10.9648 lineto
+88.1328 11.7227 lineto
+88.7422 11.7227 lineto
+88.7422 11.8984 lineto
+88.7422 12.5391 88.9023 13.0273 89.2188 13.3672 curveto
+89.5352 13.7109 89.9922 13.8828 90.5938 13.8828 curveto
+90.793 13.8828 90.97661 13.8711 91.1367 13.8516 curveto
+91.3008 13.832 91.4492 13.8086 91.582 13.7852 curveto
+ closepath fill
+newpath 96.3281 6.35156 moveto
+95.4297 6.35156 lineto
+95.4297 6.92578 lineto
+95.3477 6.8711 95.2383 6.79297 95.1055 6.69922 curveto
+94.6992 7.23047 lineto
+94.96089 7.35547 95.2031 7.5 95.4297 7.67578 curveto
+95.4297 7.67578 lineto
+95.4297 9.17188 lineto
+95.1523 9.15234 94.8281 9.1289 94.457 9.09766 curveto
+94.082 9.0664 93.7852 9.01953 93.5703 8.95703 curveto
+93.3086 8.88672 93.0977 8.76953 92.9375 8.61328 curveto
+92.7773 8.46094 92.6992 8.2461 92.6992 7.97266 curveto
+92.6992 7.66406 92.78911 7.4336 92.97661 7.27734 curveto
+93.16411 7.1211 93.4453 7.04688 93.8281 7.04688 curveto
+94.1445 7.04688 94.4336 7.10547 94.6992 7.23047 curveto
+95.1055 6.69922 lineto
+94.9688 6.59766 94.83589 6.51953 94.707 6.46484 curveto
+94.5547 6.39063 94.3828 6.32813 94.1875 6.27734 curveto
+93.9922 6.23047 93.7656 6.20313 93.5 6.20313 curveto
+93.0156 6.20313 92.6055 6.36328 92.2695 6.6836 curveto
+91.9336 7.00781 91.7656 7.41406 91.7656 7.91016 curveto
+91.7656 8.32031 91.85161 8.64844 92.0273 8.89844 curveto
+92.2031 9.14844 92.4531 9.34766 92.77339 9.49219 curveto
+93.10161 9.63672 93.4961 9.73438 93.9531 9.78516 curveto
+94.4102 9.83594 94.9023 9.875 95.4297 9.90234 curveto
+95.4297 10.0391 lineto
+95.4297 10.2461 95.3945 10.4141 95.3203 10.5508 curveto
+95.2461 10.6836 95.1445 10.7891 95.0117 10.8672 curveto
+94.8828 10.9414 94.72661 10.9883 94.5469 11.0156 curveto
+94.3672 11.043 94.1797 11.0547 93.9844 11.0547 curveto
+93.75 11.0547 93.4844 11.0234 93.1953 10.9609 curveto
+92.9023 10.8984 92.60161 10.8086 92.28911 10.6875 curveto
+92.2422 10.6875 lineto
+92.2422 11.6055 lineto
+92.418 11.6563 92.6719 11.707 93.0078 11.7656 curveto
+93.3398 11.8242 93.668 11.8516 93.9922 11.8516 curveto
+94.3672 11.8516 94.6992 11.8203 94.9805 11.7578 curveto
+95.2578 11.6953 95.5039 11.5898 95.707 11.4375 curveto
+95.9102 11.293 96.0625 11.1016 96.168 10.8672 curveto
+96.27339 10.6328 96.3281 10.3438 96.3281 9.9961 curveto
+ closepath fill
+newpath 102.039 6.6914 moveto
+101.738 6.54688 101.44899 6.4336 101.18 6.35156 curveto
+100.91 6.27344 100.621 6.23438 100.31601 6.23438 curveto
+99.9297 6.23438 99.5742 6.28906 99.25 6.40234 curveto
+98.9258 6.51563 98.64839 6.6914 98.418 6.92188 curveto
+98.1836 7.15234 98.0039 7.44531 97.875 7.79688 curveto
+97.7461 8.14844 97.6836 8.5586 97.6836 9.03125 curveto
+97.6836 9.91016 97.9219 10.5977 98.4063 11.0977 curveto
+98.8906 11.5977 99.5273 11.8477 100.31601 11.8477 curveto
+100.625 11.8477 100.92601 11.8047 101.223 11.7188 curveto
+101.52 11.6328 101.793 11.5273 102.039 11.4023 curveto
+102.039 10.3945 lineto
+101.988 10.3945 lineto
+101.715 10.6094 101.43 10.7773 101.137 10.8906 curveto
+100.84401 11.0078 100.55899 11.0625 100.277 11.0625 curveto
+99.7656 11.0625 99.3594 10.8906 99.0664 10.5469 curveto
+98.7695 10.2031 98.6211 9.69922 98.6211 9.03125 curveto
+98.6211 8.38281 98.7656 7.88672 99.0547 7.53906 curveto
+99.3438 7.1914 99.7539 7.01563 100.277 7.01563 curveto
+100.461 7.01563 100.64801 7.03906 100.836 7.08984 curveto
+101.02301 7.13672 101.195 7.19922 101.348 7.27734 curveto
+101.47699 7.34375 101.60199 7.41406 101.715 7.48828 curveto
+101.832 7.5664 101.922 7.63281 101.988 7.6836 curveto
+102.039 7.6836 lineto
+ closepath fill
+newpath 107.688 6.35156 moveto
+106.78099 6.35156 lineto
+106.78099 9.41016 lineto
+106.78099 9.65625 106.77 9.88672 106.738 10.1055 curveto
+106.711 10.3203 106.65599 10.4922 106.582 10.6133 curveto
+106.5 10.7461 106.387 10.8477 106.234 10.9141 curveto
+106.086 10.9766 105.887 11.0117 105.64801 11.0117 curveto
+105.402 11.0117 105.145 10.9492 104.875 10.8281 curveto
+104.605 10.707 104.348 10.5508 104.10199 10.3633 curveto
+104.10199 6.35156 lineto
+103.195 6.35156 lineto
+103.195 13.832 lineto
+104.10199 13.832 lineto
+104.10199 11.125 lineto
+104.383 11.3594 104.67601 11.543 104.97699 11.6758 curveto
+105.277 11.8047 105.586 11.8711 105.902 11.8711 curveto
+106.484 11.8711 106.92601 11.6992 107.23 11.3477 curveto
+107.535 11 107.688 10.4961 107.688 9.83984 curveto
+ closepath fill
+newpath 397.719 34.375 moveto
+392.789 22.97661 lineto
+387.81299 34.375 lineto
+383.93799 18.3047 lineto
+386.39801 18.3047 lineto
+388.52701 27.7773 lineto
+392.789 17.66411 lineto
+397.051 27.7773 lineto
+399.156 18.3047 lineto
+401.621 18.3047 lineto
+ closepath fill
+newpath 430.883 26.1094 moveto
+430.883 24.1055 lineto
+434.965 24.1055 lineto
+434.52701 21.53911 432.73001 19.9492 430.012 19.9492 curveto
+426.72699 19.9492 424.51999 22.6172 424.51999 26.1875 curveto
+424.51999 29.4453 426.801 31.9883 430.06299 31.9883 curveto
+432.035 31.9883 433.47699 31.16411 434.93799 29.2656 curveto
+436.762 30.6797 lineto
+435.039 32.9883 432.80899 34.1172 430.012 34.1172 curveto
+428.215 34.1172 426.695 33.5547 425.262 32.5 curveto
+423.18399 30.96089 422.055 28.6758 422.055 26.0078 curveto
+422.055 23.7461 422.89801 21.6406 424.43799 20.10161 curveto
+425.953 18.5625 427.621 17.8203 430.012 17.8203 curveto
+432.293 17.8203 434.01599 18.58589 435.426 20.1289 curveto
+436.785 21.5664 437.453 23.2852 437.68799 26.1094 curveto
+ closepath fill
+newpath 465.66 33.6563 moveto
+463.43 33.6563 lineto
+463.43 23.207 lineto
+451.93399 33.9648 lineto
+451.93399 18.3047 lineto
+454.164 18.3047 lineto
+454.164 28.7773 lineto
+465.66 17.9961 lineto
+ closepath fill
+newpath 500.031 18.3047 moveto
+495.41 25.082 lineto
+497.56601 25.64839 498.72699 27.1367 498.72699 29.293 curveto
+498.72699 30.8594 498.031 32.2188 496.77301 32.9375 curveto
+495.76999 33.5547 494.949 33.6563 492.074 33.6563 curveto
+489.406 33.6563 lineto
+489.406 18.3047 lineto
+491.64099 18.3047 lineto
+491.64099 24.8789 lineto
+491.64099 26.9063 lineto
+491.64099 31.6523 lineto
+493.51599 31.6523 lineto
+494.56601 31.6523 495.207 31.5 495.64499 31.1133 curveto
+496.133 30.6797 496.43799 29.9336 496.43799 29.1875 curveto
+496.43799 28.2656 495.949 27.4961 495.10501 27.1367 curveto
+494.668 26.957 494.078 26.9063 492.69101 26.9063 curveto
+491.64099 26.9063 lineto
+491.64099 24.8789 lineto
+492.82 24.8789 lineto
+497.211 18.3047 lineto
+ closepath fill
+newpath 445.336 33.6563 moveto
+443.074 33.6563 lineto
+443.074 18.3047 lineto
+445.336 18.3047 lineto
+ closepath fill
+newpath 378.75 33.6563 moveto
+376.51999 33.6563 lineto
+376.51999 18.3047 lineto
+378.75 18.3047 lineto
+ closepath fill
+newpath 515.10199 33.6563 moveto
+512.76599 33.6563 lineto
+508.81299 27.3164 lineto
+504.781 33.6563 lineto
+502.31601 33.6563 lineto
+507.656 24.9805 lineto
+507.656 18.3047 lineto
+509.89099 18.3047 lineto
+509.89099 25.2383 lineto
+ closepath fill
+newpath 416.76599 18.3047 moveto
+419.23001 18.3047 lineto
+411.81299 34.2188 lineto
+404.39499 18.3047 lineto
+406.85501 18.3047 lineto
+408.445 21.9258 lineto
+415.14801 21.9258 lineto
+414.27301 23.9258 lineto
+409.34799 23.9258 lineto
+411.81299 29.4961 lineto
+414.27301 23.9258 lineto
+415.14801 21.9258 lineto
+ closepath fill
+newpath 482.449 18.3047 moveto
+484.914 18.3047 lineto
+477.496 34.2188 lineto
+470.078 18.3047 lineto
+472.539 18.3047 lineto
+474.133 21.9258 lineto
+480.832 21.9258 lineto
+479.961 23.9258 lineto
+475.031 23.9258 lineto
+477.496 29.4961 lineto
+479.961 23.9258 lineto
+480.832 21.9258 lineto
+ closepath fill
+newpath 408.32 11.582 moveto
+408.32 10.8867 lineto
+409.06299 10.8867 409.65201 10.2695 409.65201 9.52734 curveto
+409.65201 8.8086 409.06299 8.21875 408.32 8.21875 curveto
+407.60199 8.21875 407.035 8.8086 407.035 9.52734 curveto
+407.035 10.2695 407.60199 10.8867 408.32 10.8867 curveto
+408.32 10.8867 lineto
+408.32 11.582 lineto
+407.19101 11.582 406.26999 10.6836 406.26999 9.52734 curveto
+406.26999 8.3711 407.19101 7.47266 408.32 7.47266 curveto
+409.47699 7.47266 410.39801 8.3711 410.39801 9.52734 curveto
+410.39801 10.6836 409.47699 11.582 408.32 11.582 curveto
+ closepath fill
+newpath 412.426 11.4531 moveto
+411.68399 11.4531 lineto
+411.68399 5.39453 lineto
+412.426 5.39453 lineto
+412.426 8.21875 lineto
+412.449 8.21875 lineto
+412.73401 7.78125 413.195 7.47266 413.762 7.47266 curveto
+414.94101 7.47266 415.586 8.44922 415.586 9.57813 curveto
+415.586 10.6328 414.89099 11.582 413.785 11.582 curveto
+413.60501 10.9141 lineto
+414.40201 10.9141 414.863 10.2969 414.863 9.55078 curveto
+414.863 8.78125 414.40201 8.16797 413.60501 8.16797 curveto
+413.60501 8.16797 lineto
+412.81299 8.16797 412.375 8.83203 412.375 9.55078 curveto
+412.375 10.2461 412.84 10.9141 413.60501 10.9141 curveto
+413.785 11.582 lineto
+413.195 11.582 412.73401 11.2969 412.449 10.8359 curveto
+412.426 10.8359 lineto
+ closepath fill
+newpath 420.51599 9.39844 moveto
+420.51599 9.52734 lineto
+420.51599 10.6836 419.945 11.582 418.715 11.582 curveto
+417.48401 11.582 416.844 10.6836 416.844 9.5 curveto
+416.844 8.3711 417.56299 7.47266 418.715 7.47266 curveto
+419.48401 7.47266 420.15201 7.85938 420.51599 8.52734 curveto
+419.89499 8.88672 lineto
+419.613 8.42188 419.30899 8.16797 418.715 8.16797 curveto
+418.02301 8.16797 417.586 8.75781 417.586 9.39844 curveto
+417.60901 9.98828 lineto
+417.715 10.5273 418.14801 10.9375 418.715 10.9375 curveto
+419.30899 10.9375 419.69101 10.5781 419.76999 9.98828 curveto
+417.60901 9.98828 lineto
+417.586 9.39844 lineto
+ closepath fill
+newpath 422.72299 11.4531 moveto
+421.97699 11.4531 lineto
+421.97699 7.6289 lineto
+422.72299 7.6289 lineto
+422.72299 9.3711 lineto
+422.72299 10.0898 422.72299 10.9141 423.672 10.9141 curveto
+424.43799 10.9141 424.543 10.4492 424.543 9.8086 curveto
+424.543 7.6289 lineto
+425.23401 7.6289 lineto
+425.23401 9.91016 lineto
+425.23401 10.8633 425.004 11.582 423.89801 11.582 curveto
+423.43799 11.582 422.97699 11.375 422.746 10.9375 curveto
+422.72299 10.9375 lineto
+ closepath fill
+newpath 431.496 11.4531 moveto
+430.73001 11.4531 lineto
+430.73001 7.6289 lineto
+431.496 7.6289 lineto
+431.496 9.5 lineto
+431.496 10.1172 431.551 10.9141 432.34799 10.9141 curveto
+433.039 10.9141 433.06299 10.168 433.06299 9.65625 curveto
+433.06299 7.6289 lineto
+433.80899 7.6289 lineto
+433.80899 9.5 lineto
+433.80899 10.1172 433.85901 10.9141 434.656 10.9141 curveto
+435.297 10.9141 435.375 10.2969 435.375 9.78516 curveto
+435.375 7.6289 lineto
+436.094 7.6289 lineto
+436.094 9.91016 lineto
+436.094 10.7852 435.836 11.582 434.836 11.582 curveto
+434.34799 11.582 433.887 11.3242 433.629 10.9141 curveto
+433.39801 11.3477 433.039 11.582 432.52301 11.582 curveto
+432.09 11.582 431.703 11.3242 431.496 10.9648 curveto
+ closepath fill
+newpath 441.508 11.4531 moveto
+440.789 11.4531 lineto
+440.789 10.8359 lineto
+440.76599 10.8359 lineto
+440.457 11.2969 439.992 11.582 439.43 11.582 curveto
+439.55899 10.9141 lineto
+440.35501 10.9141 440.81601 10.2969 440.81601 9.55078 curveto
+440.81601 8.78125 440.35501 8.16797 439.55899 8.16797 curveto
+439.55899 8.16797 lineto
+438.76599 8.16797 438.324 8.83203 438.324 9.55078 curveto
+438.324 10.2461 438.785 10.9141 439.55899 10.9141 curveto
+439.43 11.582 lineto
+438.301 11.582 437.60501 10.6328 437.60501 9.57813 curveto
+437.60501 8.44922 438.27301 7.47266 439.43 7.47266 curveto
+439.992 7.47266 440.457 7.78125 440.76599 8.21875 curveto
+440.789 8.21875 lineto
+440.789 7.6289 lineto
+441.508 7.6289 lineto
+ closepath fill
+newpath 446.72299 13.7891 moveto
+446.72299 7.6289 lineto
+447.465 7.6289 lineto
+447.465 9.3711 lineto
+447.465 10.0898 447.465 10.9141 448.414 10.9141 curveto
+449.18399 10.9141 449.262 10.4492 449.262 9.8086 curveto
+449.262 7.6289 lineto
+450.008 7.6289 lineto
+450.008 9.91016 lineto
+450.008 10.8633 449.72299 11.582 448.617 11.582 curveto
+448.18399 11.582 447.72299 11.375 447.465 10.9375 curveto
+447.465 13.7891 lineto
+ closepath fill
+newpath 455.344 9.39844 moveto
+455.344 9.52734 lineto
+455.344 10.6836 454.754 11.582 453.51999 11.582 curveto
+452.289 11.582 451.676 10.6836 451.676 9.5 curveto
+451.676 8.3711 452.367 7.47266 453.547 7.47266 curveto
+454.289 7.47266 454.98401 7.85938 455.344 8.52734 curveto
+454.73001 8.88672 lineto
+454.445 8.42188 454.14099 8.16797 453.547 8.16797 curveto
+452.85501 8.16797 452.418 8.75781 452.39499 9.39844 curveto
+452.44101 9.98828 lineto
+452.51999 10.5273 452.957 10.9375 453.51999 10.9375 curveto
+454.14099 10.9375 454.52301 10.5781 454.60199 9.98828 curveto
+452.44101 9.98828 lineto
+452.39499 9.39844 lineto
+ closepath fill
+newpath 457.85901 11.4531 moveto
+457.113 11.4531 lineto
+457.113 7.6289 lineto
+457.85901 7.6289 lineto
+457.85901 9.5 lineto
+457.85901 10.1172 457.91 10.9141 458.707 10.9141 curveto
+459.371 10.9141 459.39801 10.168 459.39801 9.65625 curveto
+459.39801 7.6289 lineto
+460.14499 7.6289 lineto
+460.14499 9.5 lineto
+460.14499 10.1172 460.22299 10.9141 460.988 10.9141 curveto
+461.656 10.9141 461.73401 10.2969 461.73401 9.78516 curveto
+461.73401 7.6289 lineto
+462.453 7.6289 lineto
+462.453 9.91016 lineto
+462.453 10.7852 462.195 11.582 461.195 11.582 curveto
+460.711 11.582 460.246 11.3242 459.988 10.9141 curveto
+459.73401 11.3477 459.371 11.582 458.887 11.582 curveto
+458.449 11.582 458.09 11.3242 457.85901 10.9648 curveto
+ closepath fill
+newpath 467.867 11.4531 moveto
+467.125 11.4531 lineto
+467.125 10.8359 lineto
+466.81601 11.2969 466.35501 11.582 465.789 11.582 curveto
+465.922 10.9141 lineto
+466.715 10.9141 467.176 10.2969 467.176 9.55078 curveto
+467.176 8.78125 466.715 8.16797 465.922 8.16797 curveto
+465.922 8.16797 lineto
+465.121 8.16797 464.68799 8.83203 464.68799 9.55078 curveto
+464.68799 10.2461 465.14801 10.9141 465.922 10.9141 curveto
+465.789 11.582 lineto
+464.66 11.582 463.969 10.6328 463.969 9.57813 curveto
+463.969 8.44922 464.637 7.47266 465.789 7.47266 curveto
+466.35501 7.47266 466.81601 7.78125 467.125 8.21875 curveto
+467.125 7.6289 lineto
+467.867 7.6289 lineto
+ closepath fill
+newpath 473.824 11.4531 moveto
+473.10501 11.4531 lineto
+473.10501 7.6289 lineto
+473.824 7.6289 lineto
+ closepath fill
+newpath 473.492 13.7617 moveto
+473.18399 13.7617 472.98001 13.5078 472.98001 13.2227 curveto
+472.98001 12.9414 473.18399 12.7344 473.492 12.7344 curveto
+473.746 12.7344 474.004 12.9414 474.004 13.2227 curveto
+474.004 13.5078 473.746 13.7617 473.492 13.7617 curveto
+ closepath fill
+newpath 479.06299 10.7344 moveto
+478.906 10.9883 478.39499 11.582 477.51999 11.582 curveto
+476.34 11.582 475.414 10.707 475.414 9.5 curveto
+475.414 8.34766 476.34 7.47266 477.47299 7.47266 curveto
+478.31601 7.47266 478.77701 7.9336 479.012 8.26953 curveto
+478.496 8.65625 lineto
+478.26599 8.39844 478.035 8.16797 477.496 8.16797 curveto
+476.676 8.16797 476.137 8.75781 476.137 9.55078 curveto
+476.137 10.2461 476.699 10.9141 477.445 10.9141 curveto
+477.883 10.9141 478.238 10.707 478.52301 10.375 curveto
+ closepath fill
+newpath 482.47699 10.9141 moveto
+482.26999 11.3477 481.887 11.582 481.426 11.582 curveto
+480.781 11.582 480.293 11.1172 480.293 10.4492 curveto
+480.293 9.9375 480.60199 9.73047 481.01599 9.5 curveto
+481.758 9.11719 lineto
+481.91 8.98828 482.01599 8.88672 482.01599 8.67969 curveto
+482.01599 8.34766 481.758 8.16797 481.449 8.16797 curveto
+481.09 8.16797 480.887 8.34766 480.758 8.65625 curveto
+480.09 8.34766 lineto
+480.32 7.8086 480.887 7.47266 481.449 7.47266 curveto
+482.14499 7.47266 482.781 8.01172 482.781 8.75781 curveto
+482.781 9.34766 482.34799 9.65625 481.887 9.85938 curveto
+481.426 10.0391 480.98401 10.2188 480.98401 10.5273 curveto
+480.98401 10.7617 481.19101 10.9141 481.371 10.9141 curveto
+481.60501 10.9141 481.781 10.7852 481.887 10.6055 curveto
+ closepath fill
+newpath 444.332 10.7852 moveto
+445.051 10.7852 lineto
+445.051 11.4531 lineto
+444.332 11.4531 lineto
+444.332 12.9414 lineto
+443.56299 12.9414 lineto
+443.56299 11.4531 lineto
+443.15201 11.4531 lineto
+443.15201 10.7852 lineto
+443.56299 10.7852 lineto
+443.56299 7.6289 lineto
+444.332 7.6289 lineto
+ closepath fill
+newpath 470.76999 10.7852 moveto
+471.539 10.7852 lineto
+471.539 11.4531 lineto
+470.76999 11.4531 lineto
+470.76999 12.9414 lineto
+470.051 12.9414 lineto
+470.051 11.4531 lineto
+469.64499 11.4531 lineto
+469.64499 10.7852 lineto
+470.051 10.7852 lineto
+470.051 7.6289 lineto
+470.76999 7.6289 lineto
+ closepath fill
+newpath 221.453 10.4492 moveto
+221.453 10.2422 221.516 10.0742 221.641 9.9414 curveto
+221.762 9.80469 221.914 9.73828 222.094 9.73828 curveto
+222.297 9.73828 222.48 9.76172 222.645 9.80469 curveto
+222.586 10.1602 lineto
+222.477 10.1055 222.367 10.0781 222.266 10.0781 curveto
+222.121 10.0781 222.02 10.1211 221.953 10.1992 curveto
+221.891 10.2813 221.855 10.418 221.855 10.6094 curveto
+221.855 11.7422 lineto
+222.484 11.7422 lineto
+222.484 12.0586 lineto
+221.855 12.0586 lineto
+221.855 12.6953 lineto
+221.453 12.5352 lineto
+221.453 12.0586 lineto
+221.188 12.0586 lineto
+221.188 11.7422 lineto
+221.453 11.7422 lineto
+221.453 10.4492 lineto
+ closepath fill
+newpath 220.648 12.9297 moveto
+220.516 12.9727 220.391 12.9922 220.27 12.9922 curveto
+220.035 12.9922 219.848 12.9102 219.703 12.7461 curveto
+219.563 12.5781 219.488 12.3516 219.488 12.0586 curveto
+219.156 12.0586 lineto
+219.156 11.7188 lineto
+219.488 11.7188 lineto
+219.488 9.78125 lineto
+219.891 9.78125 lineto
+219.891 11.7188 lineto
+220.355 11.7188 lineto
+220.355 12.0586 lineto
+219.891 12.0586 lineto
+219.887 12.1016 219.883 12.1406 219.883 12.1797 curveto
+219.883 12.3242 219.922 12.4414 220.004 12.5352 curveto
+220.082 12.6289 220.184 12.6758 220.309 12.6758 curveto
+220.379 12.6758 220.457 12.6602 220.539 12.6328 curveto
+220.648 12.9297 lineto
+ closepath fill
+newpath 218.086 9.8125 moveto
+218.168 9.76563 218.293 9.74219 218.457 9.74219 curveto
+218.457 9.94531 lineto
+218.336 10.0117 218.277 10.1445 218.277 10.3438 curveto
+218.277 11.1602 lineto
+218.277 11.4883 218.203 11.7266 218.055 11.8789 curveto
+217.902 12.0273 217.664 12.1016 217.332 12.1016 curveto
+217.211 12.1016 217.082 12.082 216.945 12.0352 curveto
+216.809 11.9922 216.703 11.9375 216.629 11.875 curveto
+216.797 11.5352 lineto
+216.934 11.6719 217.129 11.7422 217.379 11.7422 curveto
+217.711 11.7422 217.875 11.5586 217.875 11.1875 curveto
+217.875 10.9023 lineto
+217.875 10.3516 lineto
+217.875 10.3516 lineto
+217.715 10.1563 217.535 10.0586 217.332 10.0586 curveto
+217.051 10.0586 216.91 10.1758 216.91 10.4141 curveto
+216.91 10.5586 216.977 10.6797 217.105 10.7852 curveto
+217.234 10.8906 217.402 10.9453 217.605 10.9453 curveto
+217.656 10.9453 217.746 10.9297 217.875 10.9023 curveto
+217.875 11.1875 lineto
+217.766 11.2266 217.668 11.2422 217.586 11.2422 curveto
+217.27 11.2422 217.016 11.1641 216.813 11.0078 curveto
+216.609 10.8438 216.508 10.6484 216.508 10.418 curveto
+216.508 10.2266 216.574 10.0625 216.703 9.9336 curveto
+216.836 9.80469 216.992 9.73828 217.168 9.73828 curveto
+217.504 9.73828 217.75 9.83984 217.91 10.043 curveto
+217.945 9.9375 218.008 9.85938 218.086 9.8125 curveto
+ closepath fill
+newpath 215.66 9.78125 moveto
+215.66 11.2148 lineto
+215.66 11.4883 215.594 11.707 215.453 11.8633 curveto
+215.316 12.0234 215.129 12.1016 214.887 12.1016 curveto
+214.762 12.1016 214.637 12.0742 214.516 12.0195 curveto
+214.398 11.9648 214.309 11.8945 214.258 11.8086 curveto
+214.258 12.9922 lineto
+213.852 12.9922 lineto
+213.852 9.78125 lineto
+214.258 9.78125 lineto
+214.258 11.4766 lineto
+214.309 11.5508 214.387 11.6172 214.484 11.6758 curveto
+214.582 11.7344 214.68 11.7617 214.777 11.7617 curveto
+214.93 11.7617 215.047 11.7148 215.133 11.6172 curveto
+215.215 11.5195 215.258 11.3867 215.258 11.2148 curveto
+215.258 9.78125 lineto
+215.66 9.78125 lineto
+ closepath fill
+newpath 212.719 12.0273 moveto
+212.578 12.0781 212.453 12.1016 212.336 12.1016 curveto
+211.969 12.1016 211.68 11.9922 211.469 11.7734 curveto
+211.258 11.5547 211.152 11.2617 211.152 10.8984 curveto
+211.152 10.543 211.254 10.2617 211.457 10.0508 curveto
+211.66 9.84375 211.918 9.73828 212.23 9.73828 curveto
+212.551 9.73828 212.816 9.8086 213.035 9.94922 curveto
+212.875 10.2891 lineto
+212.691 10.1484 212.508 10.0781 212.324 10.0781 curveto
+212.094 10.0781 211.91 10.1484 211.777 10.2891 curveto
+211.645 10.4297 211.578 10.6328 211.578 10.8984 curveto
+211.578 11.168 211.645 11.3789 211.773 11.5313 curveto
+211.902 11.6836 212.078 11.7617 212.297 11.7617 curveto
+212.398 11.7617 212.5 11.7422 212.605 11.707 curveto
+212.707 11.6719 212.781 11.6328 212.82 11.5898 curveto
+213.023 11.875 lineto
+212.957 11.9258 212.855 11.9805 212.719 12.0273 curveto
+ closepath fill
+newpath 209.676 9.73828 moveto
+209.93 9.73828 210.129 9.79688 210.27 9.91406 curveto
+210.414 10.0273 210.484 10.1875 210.484 10.3906 curveto
+210.484 10.5469 210.445 10.6797 210.363 10.7813 curveto
+210.285 10.8867 210.156 10.9766 209.977 11.0586 curveto
+209.688 11.1914 lineto
+209.523 11.2656 209.438 11.375 209.438 11.5234 curveto
+209.438 11.5898 209.473 11.6484 209.539 11.6953 curveto
+209.605 11.7383 209.684 11.7617 209.781 11.7617 curveto
+209.941 11.7617 210.105 11.6992 210.266 11.5742 curveto
+210.379 11.9453 lineto
+210.129 12.0508 209.918 12.1016 209.75 12.1016 curveto
+209.531 12.1016 209.355 12.0508 209.219 11.9453 curveto
+209.082 11.8398 209.016 11.6953 209.016 11.5078 curveto
+209.016 11.4336 209.023 11.3672 209.047 11.3047 curveto
+209.07 11.2422 209.105 11.1797 209.156 11.125 curveto
+209.203 11.0703 209.258 11.0195 209.324 10.9766 curveto
+209.387 10.9297 209.512 10.8672 209.699 10.7813 curveto
+209.938 10.6758 210.059 10.5469 210.059 10.3945 curveto
+210.059 10.1836 209.934 10.0781 209.688 10.0781 curveto
+209.547 10.0781 209.367 10.1523 209.141 10.3008 curveto
+209 9.91797 lineto
+209.211 9.79688 209.434 9.73828 209.676 9.73828 curveto
+ closepath fill
+newpath 208.18 9.78125 moveto
+208.18 11.1953 lineto
+208.18 11.7969 207.934 12.1016 207.434 12.1016 curveto
+207.129 12.1016 206.914 11.9922 206.777 11.7656 curveto
+206.652 12.0586 lineto
+206.375 12.0586 lineto
+206.375 9.78125 lineto
+206.777 9.78125 lineto
+206.777 11.4766 lineto
+206.832 11.5547 206.91 11.625 207.012 11.6797 curveto
+207.113 11.7344 207.207 11.7617 207.301 11.7617 curveto
+207.473 11.7617 207.594 11.7148 207.668 11.6172 curveto
+207.738 11.5195 207.777 11.3516 207.777 11.1055 curveto
+207.777 9.78125 lineto
+208.18 9.78125 lineto
+ closepath fill
+newpath 205.34 9.78125 moveto
+205.34 12.0586 lineto
+204.625 12.0586 lineto
+204.625 11.7188 lineto
+204.938 11.7188 lineto
+204.938 9.78125 lineto
+205.34 9.78125 lineto
+ closepath fill
+newpath 204.98 12.8516 moveto
+204.934 12.8008 204.91 12.7422 204.91 12.6719 curveto
+204.91 12.6016 204.934 12.543 204.98 12.4961 curveto
+205.031 12.4492 205.09 12.4219 205.156 12.4219 curveto
+205.227 12.4219 205.285 12.4492 205.336 12.4961 curveto
+205.383 12.543 205.41 12.6016 205.41 12.6719 curveto
+205.41 12.7422 205.383 12.8008 205.336 12.8477 curveto
+205.285 12.8984 205.227 12.9219 205.156 12.9219 curveto
+205.09 12.9219 205.027 12.8984 204.98 12.8516 curveto
+ closepath fill
+newpath 203.922 11.1289 moveto
+203.922 11.418 203.836 11.6523 203.656 11.8281 curveto
+203.473 12.0117 203.215 12.1016 202.891 12.1016 curveto
+202.613 12.1016 202.371 12 202.164 11.7969 curveto
+201.938 11.5742 201.824 11.2695 201.824 10.8945 curveto
+201.824 10.5313 201.934 10.2461 202.156 10.0313 curveto
+202.355 9.83594 202.602 9.73828 202.887 9.73828 curveto
+203.086 9.73828 203.266 9.76953 203.426 9.82813 curveto
+203.559 9.875 203.652 9.92969 203.715 9.99219 curveto
+203.543 10.2813 lineto
+203.391 10.1484 203.195 10.0781 202.965 10.0781 curveto
+202.762 10.0781 202.598 10.1406 202.469 10.2656 curveto
+202.32 10.4102 202.25 10.6133 202.25 10.8828 curveto
+202.258 11.1758 lineto
+202.273 11.3398 202.34 11.4766 202.457 11.5859 curveto
+202.578 11.7031 202.73 11.7617 202.91 11.7617 curveto
+203.105 11.7617 203.258 11.7031 203.367 11.582 curveto
+203.367 11.582 lineto
+203.469 11.4727 203.52 11.3398 203.52 11.1758 curveto
+202.258 11.1758 lineto
+202.25 10.8828 lineto
+203.891 10.8828 lineto
+203.914 10.957 203.922 11.0391 203.922 11.1289 curveto
+ closepath fill
+newpath 201.008 9.78125 moveto
+201.008 11.3047 lineto
+201.008 11.5586 200.941 11.7539 200.813 11.8945 curveto
+200.684 12.0313 200.5 12.1016 200.266 12.1016 curveto
+200.137 12.1016 200.008 12.0742 199.887 12.0156 curveto
+199.762 11.957 199.676 11.8867 199.633 11.7969 curveto
+199.5 12 199.273 12.1016 198.945 12.1016 curveto
+198.715 12.1016 198.52 12 198.363 11.7969 curveto
+198.227 12.0586 lineto
+197.965 12.0586 lineto
+197.965 9.78125 lineto
+198.367 9.78125 lineto
+198.367 11.4609 lineto
+198.406 11.5391 198.473 11.6055 198.563 11.668 curveto
+198.652 11.7305 198.738 11.7617 198.82 11.7617 curveto
+198.961 11.7617 199.07 11.7305 199.156 11.6641 curveto
+199.242 11.6016 199.281 11.5117 199.281 11.4023 curveto
+199.281 9.78125 lineto
+199.688 9.78125 lineto
+199.688 11.4648 lineto
+199.719 11.543 199.777 11.6133 199.863 11.6719 curveto
+199.945 11.7305 200.039 11.7617 200.137 11.7617 curveto
+200.445 11.7617 200.602 11.582 200.602 11.2227 curveto
+200.602 9.78125 lineto
+201.008 9.78125 lineto
+ closepath fill
+newpath 197.145 11.1289 moveto
+197.145 11.418 197.059 11.6523 196.879 11.8281 curveto
+196.695 12.0117 196.438 12.1016 196.113 12.1016 curveto
+195.836 12.1016 195.594 12 195.391 11.7969 curveto
+195.16 11.5742 195.047 11.2695 195.047 10.8945 curveto
+195.047 10.5313 195.156 10.2461 195.379 10.0313 curveto
+195.582 9.83594 195.824 9.73828 196.109 9.73828 curveto
+196.309 9.73828 196.488 9.76953 196.652 9.82813 curveto
+196.781 9.875 196.875 9.92969 196.938 9.99219 curveto
+196.77 10.2813 lineto
+196.613 10.1484 196.422 10.0781 196.188 10.0781 curveto
+195.984 10.0781 195.82 10.1406 195.691 10.2656 curveto
+195.547 10.4102 195.473 10.6133 195.473 10.8828 curveto
+195.484 11.1758 lineto
+195.5 11.3398 195.563 11.4766 195.68 11.5859 curveto
+195.805 11.7031 195.953 11.7617 196.133 11.7617 curveto
+196.328 11.7617 196.48 11.7031 196.59 11.582 curveto
+196.59 11.582 lineto
+196.691 11.4727 196.742 11.3398 196.742 11.1758 curveto
+195.484 11.1758 lineto
+195.473 10.8828 lineto
+197.113 10.8828 lineto
+197.137 10.957 197.145 11.0391 197.145 11.1289 curveto
+ closepath fill
+newpath 193.254 12.9531 moveto
+192.789 12.9531 192.422 12.8008 192.148 12.5 curveto
+191.879 12.2031 191.738 11.8086 191.738 11.3281 curveto
+191.738 10.8438 191.863 10.457 192.113 10.1641 curveto
+192.363 9.875 192.703 9.73047 193.133 9.73047 curveto
+193.324 9.73047 193.52 9.76172 193.723 9.82031 curveto
+193.926 9.875 194.082 9.95313 194.195 10.0508 curveto
+194.195 11.4063 lineto
+193.34 11.4063 lineto
+193.34 11.0469 lineto
+193.773 11.0469 lineto
+193.773 10.3164 lineto
+193.633 10.1797 193.449 10.1133 193.223 10.1133 curveto
+192.902 10.1133 192.648 10.2227 192.465 10.4414 curveto
+192.277 10.6602 192.188 10.9531 192.188 11.3125 curveto
+192.188 11.6914 192.281 11.9961 192.469 12.2227 curveto
+192.656 12.4531 192.914 12.5703 193.242 12.5703 curveto
+193.449 12.5703 193.656 12.4883 193.871 12.332 curveto
+194.047 12.6797 lineto
+193.844 12.8633 193.578 12.9531 193.254 12.9531 curveto
+ closepath fill
+newpath 190.828 11.2305 moveto
+189.918 11.2305 lineto
+189.918 10.8594 lineto
+190.828 10.8594 lineto
+190.828 11.2305 lineto
+ closepath fill
+newpath 189.09 11.9453 moveto
+189.09 12.0586 lineto
+187.227 12.0586 lineto
+187.227 11.6992 lineto
+188.5 11.6992 lineto
+187.203 9.88672 lineto
+187.203 9.78125 lineto
+189.102 9.78125 lineto
+189.102 10.1445 lineto
+187.836 10.1445 lineto
+189.09 11.9453 lineto
+ closepath fill
+newpath 186.371 9.78125 moveto
+186.371 12.0586 lineto
+185.652 12.0586 lineto
+185.652 11.7188 lineto
+185.969 11.7188 lineto
+185.969 9.78125 lineto
+186.371 9.78125 lineto
+ closepath fill
+newpath 186.012 12.8516 moveto
+185.965 12.8008 185.938 12.7422 185.938 12.6719 curveto
+185.938 12.6016 185.965 12.543 186.012 12.4961 curveto
+186.063 12.4492 186.121 12.4219 186.188 12.4219 curveto
+186.258 12.4219 186.316 12.4492 186.367 12.4961 curveto
+186.414 12.543 186.438 12.6016 186.438 12.6719 curveto
+186.438 12.7422 186.414 12.8008 186.367 12.8477 curveto
+186.316 12.8984 186.258 12.9219 186.188 12.9219 curveto
+186.117 12.9219 186.059 12.8984 186.012 12.8516 curveto
+ closepath fill
+newpath 184.805 9.78125 moveto
+184.805 11.1953 lineto
+184.805 11.7969 184.555 12.1016 184.055 12.1016 curveto
+183.754 12.1016 183.535 11.9922 183.402 11.7656 curveto
+183.273 12.0586 lineto
+183 12.0586 lineto
+183 9.78125 lineto
+183.402 9.78125 lineto
+183.402 11.4766 lineto
+183.457 11.5547 183.535 11.625 183.637 11.6797 curveto
+183.734 11.7344 183.832 11.7617 183.926 11.7617 curveto
+184.094 11.7617 184.219 11.7148 184.289 11.6172 curveto
+184.363 11.5195 184.398 11.3516 184.398 11.1055 curveto
+184.398 9.78125 lineto
+184.805 9.78125 lineto
+ closepath fill
+newpath 180.762 9.80078 moveto
+180.867 9.76172 180.973 9.73828 181.078 9.73828 curveto
+181.41 9.73828 181.676 9.84766 181.867 10.0664 curveto
+182.063 10.2852 182.16 10.582 182.16 10.9609 curveto
+182.16 11.293 182.063 11.5625 181.871 11.7813 curveto
+181.676 11.9961 181.422 12.1016 181.109 12.1016 curveto
+181.008 12.1016 180.906 12.082 180.801 12.0352 curveto
+180.695 11.9922 180.621 11.9453 180.586 11.8906 curveto
+180.758 11.6992 lineto
+180.848 11.7422 180.914 11.7617 180.965 11.7617 curveto
+181.199 11.7617 181.387 11.6914 181.527 11.5469 curveto
+181.664 11.4023 181.734 11.1992 181.734 10.9453 curveto
+181.734 10.6328 181.676 10.4102 181.555 10.2773 curveto
+181.438 10.1445 181.238 10.0781 180.965 10.0781 curveto
+180.91 10.0781 180.836 10.1055 180.734 10.1563 curveto
+180.633 10.2109 180.586 10.2461 180.586 10.2695 curveto
+180.586 11.582 lineto
+180.609 11.6172 180.668 11.6563 180.758 11.6992 curveto
+180.758 11.6992 lineto
+180.586 11.8906 lineto
+180.586 12.9922 lineto
+180.18 12.9922 lineto
+180.18 9.73828 lineto
+180.383 9.73828 lineto
+180.523 9.94922 lineto
+180.578 9.89063 180.656 9.83984 180.762 9.80078 curveto
+ closepath fill
+newpath 179.145 9.78125 moveto
+179.145 12.0586 lineto
+178.43 12.0586 lineto
+178.43 11.7188 lineto
+178.742 11.7188 lineto
+178.742 9.78125 lineto
+179.145 9.78125 lineto
+ closepath fill
+newpath 178.785 12.8516 moveto
+178.738 12.8008 178.715 12.7422 178.715 12.6719 curveto
+178.715 12.6016 178.738 12.543 178.785 12.4961 curveto
+178.836 12.4492 178.895 12.4219 178.961 12.4219 curveto
+179.031 12.4219 179.09 12.4492 179.141 12.4961 curveto
+179.188 12.543 179.215 12.6016 179.215 12.6719 curveto
+179.215 12.7422 179.188 12.8008 179.141 12.8477 curveto
+179.09 12.8984 179.031 12.9219 178.961 12.9219 curveto
+178.895 12.9219 178.832 12.8984 178.785 12.8516 curveto
+ closepath fill
+newpath 177.727 11.1289 moveto
+177.727 11.418 177.637 11.6523 177.461 11.8281 curveto
+177.273 12.0117 177.02 12.1016 176.695 12.1016 curveto
+176.418 12.1016 176.176 12 175.969 11.7969 curveto
+175.742 11.5742 175.629 11.2695 175.629 10.8945 curveto
+175.629 10.5313 175.738 10.2461 175.961 10.0313 curveto
+176.16 9.83594 176.406 9.73828 176.691 9.73828 curveto
+176.891 9.73828 177.07 9.76953 177.23 9.82813 curveto
+177.359 9.875 177.457 9.92969 177.52 9.99219 curveto
+177.348 10.2813 lineto
+177.195 10.1484 177 10.0781 176.77 10.0781 curveto
+176.566 10.0781 176.402 10.1406 176.273 10.2656 curveto
+176.125 10.4102 176.055 10.6133 176.055 10.8828 curveto
+176.063 11.1758 lineto
+176.078 11.3398 176.145 11.4766 176.262 11.5859 curveto
+176.383 11.7031 176.535 11.7617 176.715 11.7617 curveto
+176.906 11.7617 177.059 11.7031 177.172 11.582 curveto
+177.172 11.582 lineto
+177.273 11.4727 177.324 11.3398 177.324 11.1758 curveto
+176.063 11.1758 lineto
+176.055 10.8828 lineto
+177.695 10.8828 lineto
+177.719 10.957 177.727 11.0391 177.727 11.1289 curveto
+ closepath fill
+newpath 175.043 9.78125 moveto
+175.043 10.1641 lineto
+173.637 10.1641 lineto
+173.637 12.8984 lineto
+173.211 12.8984 lineto
+173.211 9.78125 lineto
+175.043 9.78125 lineto
+ closepath fill
+newpath 218.984 17.5586 moveto
+219.418 17.1992 219.855 16.6367 221.422 18.0977 curveto
+222.984 19.5625 222.191 18.9492 223.035 17.0195 curveto
+223.887 15.0977 224.422 16.1563 224.473 16.5313 curveto
+224.605 17.4727 224.316 19.3164 224.121 20.0625 curveto
+223.953 20.6953 222.879 21.0039 222.445 20.6914 curveto
+222.039 20.3945 220.961 19.1758 220.238 18.9492 curveto
+219.52 18.7148 220.09 19.4063 219.91 20.5625 curveto
+219.73 21.7148 219.309 22.2422 218.855 22.0469 curveto
+218.551 21.91411 217.887 21.2344 217.57 21.4102 curveto
+216.965 21.75 216.543 23.2188 213.57 21.5898 curveto
+210.105 19.6875 213.211 24 213.211 24 curveto
+213.211 24 215.52 27.1563 214.133 29.4414 curveto
+212.75 31.7227 209.773 26.8242 209.773 26.8242 curveto
+209.773 26.8242 208.207 23.7188 207.516 20.4336 curveto
+206.82 17.14839 205.406 17.5195 204.875 18.2227 curveto
+204.301 18.9844 204.461 21.9727 202.406 20.7148 curveto
+200.355 19.457 200.383 16.9453 199.148 19.793 curveto
+197.918 22.6406 196.621 20.8086 196.453 20.5117 curveto
+196.223 20.0898 196.344 19.1719 195.992 18.9727 curveto
+195.602 18.7461 195.109 19.5547 194.813 19.66411 curveto
+194.492 19.7813 192.422 17.8438 191.48 16.0508 curveto
+190.121 13.4609 187.945 19.6836 188.156 20.0742 curveto
+188.34 20.41411 193.645 27.7578 194.145 28.8242 curveto
+194.668 29.9336 195.43 30.2617 195.813 30.3125 curveto
+196.199 30.3633 201.102 31.1875 204.641 34.9336 curveto
+208.18 38.6797 207.645 39.60161 205.949 40.5508 curveto
+205.852 39.3906 lineto
+206.246 38.9336 206.277 37.8555 205.422 37 curveto
+204.566 36.1445 201.746 33.2656 199.98 32.53911 curveto
+198.309 31.85161 192.563 29.1133 198.293 34.3555 curveto
+198.293 34.3555 lineto
+203.129 38.7773 202.992 38.6602 203.383 38.8125 curveto
+203.844 38.9961 205.527 39.7656 205.852 39.3906 curveto
+205.949 40.5508 lineto
+204.258 41.5 199.43 36.77339 199.199 36.60161 curveto
+199.035 36.47661 195.043 31.9805 194.762 31.418 curveto
+194.48 30.85161 187.91 31.21089 187.91 31.21089 curveto
+187.148 30.8398 187.992 30.5273 187.992 30.5273 curveto
+187.992 30.5273 190.938 30.0977 192.777 30.14839 curveto
+194.617 30.1992 193.402 29.125 193.188 28.8672 curveto
+191.762 27.1797 189.074 22.5938 188.117 21.6367 curveto
+187.16 20.6797 185.328 21.7422 185.223 21.7617 curveto
+185.113 21.7773 182.375 22.1875 182.93 20.0977 curveto
+183.484 18.0078 185.148 18.9336 185.953 18.7383 curveto
+185.051 19.41411 lineto
+184.879 19.3398 184.398 19.7578 184.414 19.9727 curveto
+184.453 20.39839 184.891 19.96089 185.398 19.9727 curveto
+185.914 19.9844 185.234 19.4883 185.051 19.41411 curveto
+185.051 19.41411 lineto
+185.953 18.7383 lineto
+186.199 18.6758 186.547 18.25 186.684 18.0313 curveto
+187.09 17.3867 187.285 16.3555 187.711 15.7188 curveto
+188.336 14.7891 190.711 12.4805 192.551 15.8203 curveto
+194.461 19.2813 195.676 17.9805 195.777 16.0938 curveto
+195.875 14.2031 196.48 14.9102 197.16 15.2109 curveto
+197.84 15.5156 197.262 16.8242 197.336 18.5352 curveto
+197.414 20.25 198.824 17.7813 198.723 17.10161 curveto
+198.621 16.4219 199.68 16.5469 200.613 16.9258 curveto
+201.543 17.3008 200.813 17.8828 202.098 19.0664 curveto
+203.383 20.25 203.445 17.4727 203.781 16.8242 curveto
+204.051 16.3047 205.395 15.2109 206.078 16.6719 curveto
+206.758 18.1367 207.82 17.8203 207.59 16.3281 curveto
+208.516 16.5195 lineto
+208.039 18.2617 209.273 19.7188 209.273 19.7188 curveto
+209.273 19.7188 209.801 20.4258 210.133 20.3945 curveto
+209.301 20.7539 lineto
+208.895 20.3008 208.547 19.9492 208.871 21.207 curveto
+209.199 22.4648 209.086 21.9375 209.285 22.4063 curveto
+209.484 22.8633 210.367 25.2031 210.434 25.3867 curveto
+210.473 25.4961 211.246 27.0117 212.035 28.1563 curveto
+212.035 28.1563 214.16 30.0352 213.305 26.64839 curveto
+212.73 24.375 212.086 24.125 211.047 22.4922 curveto
+211.047 22.4922 lineto
+210.844 22.1797 210.492 22.9102 209.777 22 curveto
+209.48 21.6211 209.664 21.1563 209.301 20.7539 curveto
+210.133 20.3945 lineto
+210.543 20.3555 211.367 20.2227 211.09 19.2148 curveto
+211.09 19.2148 lineto
+210.813 18.21089 210.402 16.543 209.941 16.1133 curveto
+209.531 15.7383 208.992 14.7852 208.516 16.5195 curveto
+207.59 16.3281 lineto
+207.359 14.8398 208.641 14.2578 209.055 14.2734 curveto
+209.445 14.2969 211.695 15.5313 211.723 18.02339 curveto
+211.746 20.5117 213.527 20.4961 213.824 20.5352 curveto
+214.125 20.5781 216.418 20.9492 216.211 20.2813 curveto
+216.008 19.6133 214.98 17.6875 216.16 17.7148 curveto
+217.34 17.7383 216.855 18.7656 217.957 19.9219 curveto
+219.059 21.0742 218.547 17.918 218.984 17.5586 curveto
+ closepath fill
+newpath 204.781 28.082 moveto
+204.625 26.41411 205.652 26.9531 205.652 26.9531 curveto
+207.563 27.9375 206.051 28.85161 206.051 28.85161 curveto
+206.051 28.85161 204.938 29.75 204.781 28.082 curveto
+ closepath fill
+newpath 232.672 13.1719 moveto
+232.574 13.4414 232.379 13.8008 231.578 12.8203 curveto
+230.355 11.3203 230.523 12.2656 230.406 13.2461 curveto
+230.387 13.4141 230.508 13.8633 229.668 14.5703 curveto
+229.23 14.9414 227.191 15.5117 227.652 15.9766 curveto
+228.824 17.168 228.52 17.0508 228.945 17.5781 curveto
+229.375 18.1094 230.961 19.6719 230.887 21.8867 curveto
+230.809 24.1055 227.613 23.9023 227.613 23.9023 curveto
+225.52 23.52339 226.402 21.6094 227.914 21.7344 curveto
+229.32 21.85161 229.137 20.6719 229.027 20.28911 curveto
+229.027 20.2852 228.855 19.8281 228.504 19.2773 curveto
+228.035 18.53911 227.461 17.47661 226.906 16.9414 curveto
+226.602 16.64839 224.98 15.6133 226.148 15.0352 curveto
+228.09 14.0742 229.551 12.0391 228.797 10.9063 curveto
+228.039 9.77344 222.098 7.51953 220.859 6.97656 curveto
+219.664 6.44922 217.313 6.29688 217.359 3.22266 curveto
+217.41 0.15234 220.688 0.17578 222.121 0.55469 curveto
+221.902 1.42578 lineto
+219.535 1.09766 218.242 2.46875 218.266 3.30078 curveto
+218.293 4.13281 219.066 5.21875 221.66 6.50781 curveto
+227.473 9.38672 227.984 9.60547 227.984 9.60547 curveto
+228.406 9.77344 229.305 10.3086 228.777 9.41797 curveto
+228.777 9.41797 lineto
+228.777 9.41797 226.457 4.95313 226.199 4.5586 curveto
+225.887 4.07813 224.273 1.7539 221.902 1.42578 curveto
+222.121 0.55469 lineto
+224.629 1.21094 225.676 2.1875 226.629 3.27344 curveto
+227.641 4.42578 229.652 8.99219 229.703 9.04297 curveto
+229.754 9.08984 230.406 11.7383 231.566 12.0391 curveto
+232.723 12.3398 232.816 12.7773 232.672 13.1719 curveto
+ closepath fill
+newpath 229.027 20.28911 moveto
+229.02 20.2617 229.016 20.2383 229.008 20.2188 curveto
+229.027 20.28911 lineto
+ closepath fill
+newpath 226.672 27.1211 moveto
+226.082 27.3633 224.324 26.457 224.852 24.9414 curveto
+225.391 23.3945 229.383 26 226.672 27.1211 curveto
+ closepath fill
+newpath 194.43 39.3633 moveto
+194.301 39.3633 lineto
+193.813 39.3438 lineto
+193.813 39.2344 lineto
+193.875 39.2227 193.922 39.207 193.957 39.1914 curveto
+193.992 39.1758 194.016 39.1523 194.031 39.1211 curveto
+194.051 39.08589 194.059 39.043 194.063 38.9883 curveto
+194.066 38.9336 194.066 38.8633 194.066 38.77339 curveto
+194.066 37.8594 lineto
+194.066 37.7617 194.063 37.6914 194.055 37.6445 curveto
+194.047 37.5977 194.031 37.5664 194.016 37.543 curveto
+194 37.5195 193.98 37.5039 193.957 37.4883 curveto
+193.934 37.47661 193.895 37.4648 193.844 37.4453 curveto
+193.844 37.3438 lineto
+194.688 37.3438 lineto
+194.688 37.4453 lineto
+194.613 37.46089 194.563 37.47661 194.523 37.5 curveto
+194.488 37.5195 194.465 37.5547 194.449 37.6055 curveto
+194.434 37.6523 194.426 37.7383 194.426 37.8672 curveto
+194.426 38.5977 lineto
+194.426 38.668 194.434 38.7227 194.453 38.77339 curveto
+194.469 38.8203 194.5 38.875 194.547 38.9297 curveto
+194.594 38.9844 194.641 39.0273 194.691 39.0586 curveto
+194.738 39.08589 194.789 39.10161 194.84 39.10161 curveto
+194.906 39.10161 194.957 39.08589 194.996 39.0508 curveto
+195.031 39.0156 195.066 38.96089 195.102 38.8867 curveto
+195.34 38.8867 lineto
+195.34 39.3672 lineto
+195.273 39.375 195.199 39.3789 195.117 39.3789 curveto
+195.023 39.3789 194.938 39.3633 194.859 39.33589 curveto
+194.785 39.3086 194.715 39.2656 194.648 39.21089 curveto
+194.582 39.1563 194.512 39.08589 194.434 38.9922 curveto
+194.406 38.9961 lineto
+194.43 39.3633 lineto
+ closepath fill
+newpath 193.293 37.83589 moveto
+193.203 37.7383 193.113 37.668 193.02 37.6289 curveto
+192.93 37.58589 192.828 37.5625 192.711 37.5625 curveto
+192.578 37.5625 192.469 37.5938 192.383 37.6602 curveto
+192.297 37.7227 192.238 37.8086 192.199 37.9219 curveto
+192.164 38.0352 192.145 38.1719 192.145 38.3398 curveto
+192.145 38.375 lineto
+193.465 38.375 lineto
+193.461 38.5664 193.441 38.7188 193.406 38.83589 curveto
+193.375 38.9531 193.328 39.0508 193.27 39.1289 curveto
+193.211 39.207 193.133 39.2695 193.031 39.3125 curveto
+192.934 39.3594 192.813 39.3789 192.672 39.3789 curveto
+192.652 39.2148 lineto
+192.746 39.2148 192.824 39.1875 192.883 39.1367 curveto
+192.941 39.08589 192.984 39.0156 193.016 38.918 curveto
+193.043 38.8242 193.063 38.6992 193.07 38.5508 curveto
+192.156 38.5508 lineto
+192.156 38.5508 lineto
+192.172 38.7617 192.223 38.9258 192.309 39.043 curveto
+192.395 39.1563 192.508 39.2148 192.652 39.2148 curveto
+192.672 39.3789 lineto
+192.492 39.3789 192.332 39.33589 192.195 39.25 curveto
+192.059 39.16411 191.949 39.03911 191.875 38.8828 curveto
+191.801 38.7227 191.766 38.53911 191.766 38.332 curveto
+191.766 37.9961 191.836 37.7422 191.984 37.5703 curveto
+192.129 37.39839 192.348 37.3125 192.637 37.3125 curveto
+192.742 37.3125 192.84 37.3242 192.93 37.3555 curveto
+193.02 37.3867 193.102 37.4258 193.176 37.4805 curveto
+193.25 37.5313 193.332 37.6055 193.422 37.6992 curveto
+193.293 37.83589 lineto
+ closepath fill
+newpath 190.785 39.2852 moveto
+190.707 39.3203 190.629 39.3438 190.551 39.3594 curveto
+190.477 39.3711 190.395 39.3789 190.301 39.3789 curveto
+190.129 39.3789 189.977 39.3398 189.84 39.2617 curveto
+189.699 39.1836 189.59 39.0664 189.512 38.9063 curveto
+189.43 38.7461 189.391 38.5508 189.391 38.3242 curveto
+189.391 37.9961 189.449 37.7461 189.574 37.5703 curveto
+189.699 37.39839 189.875 37.3125 190.105 37.3125 curveto
+190.188 37.3125 190.266 37.3242 190.34 37.35161 curveto
+190.414 37.3789 190.48 37.418 190.547 37.4648 curveto
+190.613 37.5117 190.688 37.582 190.777 37.6758 curveto
+190.641 37.7227 lineto
+190.598 37.6836 190.559 37.64839 190.52 37.6289 curveto
+190.48 37.6055 190.441 37.58589 190.398 37.5781 curveto
+190.359 37.5664 190.309 37.5625 190.246 37.5625 curveto
+190.09 37.5625 189.973 37.6328 189.898 37.7695 curveto
+189.82 37.9102 189.781 38.1133 189.781 38.3828 curveto
+189.781 38.64839 189.828 38.8555 189.922 38.9961 curveto
+190.016 39.1406 190.152 39.21089 190.332 39.21089 curveto
+190.395 39.21089 190.453 39.207 190.5 39.1914 curveto
+190.547 39.1758 190.59 39.1563 190.629 39.125 curveto
+190.668 39.0938 190.699 39.0547 190.723 39.0117 curveto
+190.742 38.9688 190.762 38.9102 190.77 38.8477 curveto
+190.781 38.7813 190.785 38.6953 190.785 38.58589 curveto
+190.785 38.1172 lineto
+190.785 38.1172 lineto
+190.785 38.0469 190.781 37.9922 190.77 37.9492 curveto
+190.762 37.9063 190.746 37.8672 190.727 37.832 curveto
+190.707 37.8008 190.68 37.7617 190.641 37.7227 curveto
+190.777 37.6758 lineto
+190.809 37.668 lineto
+190.781 37.3242 lineto
+190.91 37.3242 lineto
+191.402 37.3438 lineto
+191.402 37.4531 lineto
+191.328 37.4688 191.273 37.4844 191.242 37.5039 curveto
+191.215 37.5195 191.191 37.543 191.18 37.5703 curveto
+191.164 37.5977 191.156 37.6367 191.152 37.6836 curveto
+191.148 37.7305 191.145 37.8047 191.145 37.91411 curveto
+191.145 40.3398 lineto
+191.02 40.3398 lineto
+190.516 40.3164 lineto
+190.516 40.207 lineto
+190.586 40.1953 190.637 40.1836 190.664 40.1719 curveto
+190.688 40.1602 190.711 40.1406 190.727 40.1211 curveto
+190.742 40.10161 190.758 40.0703 190.766 40.0352 curveto
+190.773 39.9961 190.781 39.9531 190.781 39.89839 curveto
+190.785 39.8477 190.785 39.7539 190.785 39.6172 curveto
+190.785 39.2852 lineto
+ closepath fill
+newpath 187.465 39.2852 moveto
+187.383 39.3203 187.309 39.3438 187.23 39.3594 curveto
+187.156 39.3711 187.07 39.3789 186.98 39.3789 curveto
+186.809 39.3789 186.652 39.3398 186.516 39.2617 curveto
+186.379 39.1836 186.27 39.0664 186.188 38.9063 curveto
+186.109 38.7461 186.066 38.5508 186.066 38.3242 curveto
+186.066 37.9961 186.129 37.7461 186.254 37.5703 curveto
+186.379 37.39839 186.555 37.3125 186.785 37.3125 curveto
+186.867 37.3125 186.945 37.3242 187.02 37.35161 curveto
+187.094 37.3789 187.16 37.418 187.227 37.4648 curveto
+187.293 37.5117 187.367 37.582 187.457 37.6758 curveto
+187.316 37.7227 lineto
+187.277 37.6836 187.238 37.64839 187.199 37.6289 curveto
+187.16 37.6055 187.117 37.58589 187.078 37.5781 curveto
+187.039 37.5664 186.988 37.5625 186.926 37.5625 curveto
+186.77 37.5625 186.652 37.6328 186.574 37.7695 curveto
+186.5 37.9102 186.461 38.1133 186.461 38.3828 curveto
+186.461 38.64839 186.508 38.8555 186.602 38.9961 curveto
+186.695 39.1406 186.832 39.21089 187.012 39.21089 curveto
+187.074 39.21089 187.133 39.207 187.18 39.1914 curveto
+187.227 39.1758 187.27 39.1563 187.309 39.125 curveto
+187.348 39.0938 187.379 39.0547 187.398 39.0117 curveto
+187.422 38.9688 187.438 38.9102 187.449 38.8477 curveto
+187.461 38.7813 187.465 38.6953 187.465 38.58589 curveto
+187.465 38.1172 lineto
+187.465 38.1172 lineto
+187.465 38.0469 187.461 37.9922 187.449 37.9492 curveto
+187.438 37.9063 187.426 37.8672 187.406 37.832 curveto
+187.387 37.8008 187.359 37.7617 187.316 37.7227 curveto
+187.457 37.6758 lineto
+187.488 37.668 lineto
+187.461 37.3242 lineto
+187.586 37.3242 lineto
+188.082 37.3438 lineto
+188.082 37.4531 lineto
+188.008 37.4688 187.953 37.4844 187.922 37.5039 curveto
+187.895 37.5195 187.871 37.543 187.855 37.5703 curveto
+187.844 37.5977 187.836 37.6367 187.828 37.6836 curveto
+187.824 37.7305 187.824 37.8047 187.824 37.91411 curveto
+187.824 40.3398 lineto
+187.699 40.3398 lineto
+187.195 40.3164 lineto
+187.195 40.207 lineto
+187.266 40.1953 187.313 40.1836 187.34 40.1719 curveto
+187.367 40.1602 187.391 40.1406 187.406 40.1211 curveto
+187.422 40.10161 187.434 40.0703 187.445 40.0352 curveto
+187.453 39.9961 187.457 39.9531 187.461 39.89839 curveto
+187.465 39.8477 187.465 39.7539 187.465 39.6172 curveto
+187.465 39.2852 lineto
+ closepath fill
+newpath 185.504 37.83589 moveto
+185.414 37.7383 185.324 37.668 185.23 37.6289 curveto
+185.141 37.58589 185.039 37.5625 184.922 37.5625 curveto
+184.789 37.5625 184.68 37.5938 184.594 37.6602 curveto
+184.512 37.7227 184.449 37.8086 184.41 37.9219 curveto
+184.375 38.0352 184.355 38.1719 184.355 38.3398 curveto
+184.355 38.375 lineto
+185.676 38.375 lineto
+185.672 38.5664 185.652 38.7188 185.617 38.83589 curveto
+185.586 38.9531 185.539 39.0508 185.48 39.1289 curveto
+185.422 39.207 185.344 39.2695 185.242 39.3125 curveto
+185.145 39.3594 185.023 39.3789 184.883 39.3789 curveto
+184.863 39.2148 lineto
+184.957 39.2148 185.035 39.1875 185.094 39.1367 curveto
+185.152 39.08589 185.195 39.0156 185.227 38.918 curveto
+185.254 38.8242 185.273 38.6992 185.281 38.5508 curveto
+184.367 38.5508 lineto
+184.367 38.5508 lineto
+184.383 38.7617 184.434 38.9258 184.52 39.043 curveto
+184.605 39.1563 184.719 39.2148 184.863 39.2148 curveto
+184.883 39.3789 lineto
+184.703 39.3789 184.543 39.33589 184.406 39.25 curveto
+184.27 39.16411 184.16 39.03911 184.086 38.8828 curveto
+184.012 38.7227 183.977 38.53911 183.977 38.332 curveto
+183.977 37.9961 184.051 37.7422 184.195 37.5703 curveto
+184.344 37.39839 184.559 37.3125 184.848 37.3125 curveto
+184.953 37.3125 185.051 37.3242 185.141 37.3555 curveto
+185.23 37.3867 185.313 37.4258 185.387 37.4805 curveto
+185.461 37.5313 185.543 37.6055 185.633 37.6992 curveto
+185.504 37.83589 lineto
+ closepath fill
+newpath 182.77 37.3438 moveto
+183.59 37.3438 lineto
+183.59 37.4453 lineto
+183.52 37.4648 183.469 37.4844 183.438 37.5117 curveto
+183.406 37.5352 183.383 37.5703 183.371 37.6172 curveto
+183.363 37.66411 183.355 37.7461 183.355 37.8672 curveto
+183.355 39.3633 lineto
+183.23 39.3633 lineto
+182.742 39.3438 lineto
+182.742 39.2344 lineto
+182.805 39.2227 182.852 39.207 182.887 39.1914 curveto
+182.922 39.1758 182.945 39.1523 182.961 39.1211 curveto
+182.98 39.08589 182.988 39.043 182.992 38.9883 curveto
+182.996 38.9336 182.996 38.8633 182.996 38.77339 curveto
+182.996 37.8594 lineto
+182.996 37.7617 182.992 37.6914 182.98 37.6445 curveto
+182.973 37.5977 182.961 37.5664 182.945 37.543 curveto
+182.93 37.5195 182.91 37.5039 182.887 37.4883 curveto
+182.863 37.47661 182.824 37.4648 182.77 37.4453 curveto
+182.77 37.3438 lineto
+ closepath fill
+newpath 182.984 39.7578 moveto
+183.367 39.7578 lineto
+183.367 40.16411 lineto
+182.984 40.16411 lineto
+182.984 39.7578 lineto
+ closepath fill
+newpath 182.164 40.3398 moveto
+182.039 40.3398 lineto
+181.535 40.3164 lineto
+181.535 40.207 lineto
+181.605 40.1953 181.656 40.1836 181.684 40.1719 curveto
+181.711 40.1602 181.73 40.1406 181.746 40.1211 curveto
+181.766 40.10161 181.777 40.0703 181.785 40.0352 curveto
+181.793 39.9961 181.801 39.9531 181.801 39.89839 curveto
+181.805 39.8477 181.805 39.7539 181.805 39.6172 curveto
+181.805 37.8672 lineto
+181.805 37.793 181.805 37.7305 181.797 37.6836 curveto
+181.793 37.6367 181.785 37.60161 181.773 37.5742 curveto
+181.762 37.5469 181.742 37.52339 181.715 37.5039 curveto
+181.688 37.4844 181.641 37.4648 181.57 37.4453 curveto
+181.57 37.3438 lineto
+182.398 37.3438 lineto
+182.398 37.4453 lineto
+182.328 37.4648 182.277 37.4844 182.246 37.5117 curveto
+182.215 37.5352 182.191 37.5703 182.184 37.6172 curveto
+182.172 37.66411 182.164 37.7461 182.164 37.8672 curveto
+182.164 40.3398 lineto
+ closepath fill
+newpath 181.395 39.3438 moveto
+180.652 39.3438 lineto
+180.555 39.3672 180.457 39.3789 180.355 39.3789 curveto
+180.352 39.2188 lineto
+180.43 39.2188 180.496 39.2031 180.559 39.16411 curveto
+180.617 39.125 180.664 39.0664 180.699 38.9844 curveto
+180.734 38.89839 180.754 38.7969 180.754 38.6758 curveto
+180.754 38.6055 180.746 38.543 180.73 38.4805 curveto
+180.715 38.418 180.691 38.3633 180.66 38.3164 curveto
+180.629 38.2656 180.59 38.2305 180.539 38.2031 curveto
+180.488 38.1758 180.43 38.16411 180.355 38.16411 curveto
+180.223 38.16411 180.121 38.21089 180.051 38.3047 curveto
+179.977 38.39839 179.941 38.5352 179.941 38.707 curveto
+179.941 38.875 179.977 39 180.047 39.0898 curveto
+180.047 39.0898 lineto
+180.117 39.1758 180.219 39.2188 180.352 39.2188 curveto
+180.355 39.3789 lineto
+180.242 39.3789 180.141 39.3672 180.043 39.33589 curveto
+179.945 39.3086 179.863 39.2656 179.793 39.207 curveto
+179.723 39.14839 179.668 39.0781 179.629 38.9883 curveto
+179.59 38.89839 179.566 38.793 179.566 38.6758 curveto
+179.566 38.5469 179.594 38.4336 179.648 38.332 curveto
+179.699 38.2305 179.773 38.1523 179.875 38.0938 curveto
+179.762 38.0078 179.684 37.9336 179.641 37.8672 curveto
+179.594 37.8008 179.57 37.72661 179.57 37.64839 curveto
+179.57 37.5781 179.59 37.5156 179.629 37.4648 curveto
+179.668 37.41411 179.719 37.375 179.785 37.3477 curveto
+179.676 37.293 179.594 37.2305 179.535 37.1602 curveto
+179.477 37.08589 179.445 37.0078 179.445 36.918 curveto
+179.445 36.8203 179.469 36.7422 179.516 36.6758 curveto
+179.559 36.6094 179.625 36.5586 179.707 36.5195 curveto
+179.789 36.4805 179.891 36.4492 180.008 36.4336 curveto
+180.121 36.418 180.254 36.4102 180.395 36.4102 curveto
+180.391 36.5742 lineto
+180.184 36.5742 180.031 36.60161 179.93 36.66411 curveto
+179.832 36.7227 179.781 36.8125 179.781 36.9414 curveto
+179.781 37.0156 179.801 37.082 179.836 37.1406 curveto
+179.871 37.1992 179.926 37.2578 179.996 37.3125 curveto
+180.082 37.3008 180.18 37.2969 180.293 37.2969 curveto
+180.293 37.2969 lineto
+180.605 37.2969 lineto
+180.688 37.2969 180.754 37.28911 180.805 37.2695 curveto
+180.852 37.2539 180.891 37.2305 180.918 37.2031 curveto
+180.945 37.1719 180.965 37.1406 180.977 37.10161 curveto
+180.984 37.0664 180.988 37.0273 180.988 36.9883 curveto
+180.988 36.9063 180.965 36.832 180.918 36.7695 curveto
+180.871 36.707 180.801 36.6563 180.711 36.625 curveto
+180.621 36.5898 180.516 36.5742 180.391 36.5742 curveto
+180.395 36.4102 lineto
+180.582 36.4102 180.75 36.4375 180.891 36.4961 curveto
+181.031 36.5508 181.141 36.6328 181.219 36.7344 curveto
+181.293 36.83589 181.328 36.9531 181.328 37.08589 curveto
+181.328 37.1875 181.309 37.2773 181.27 37.3555 curveto
+181.23 37.4336 181.164 37.4961 181.07 37.53911 curveto
+180.977 37.58589 180.855 37.6094 180.707 37.6094 curveto
+180.207 37.6094 lineto
+180.109 37.6094 180.039 37.6172 179.992 37.625 curveto
+179.949 37.6367 179.914 37.6563 179.895 37.6836 curveto
+179.875 37.71089 179.863 37.75 179.863 37.8008 curveto
+179.863 37.8789 179.918 37.957 180.023 38.03911 curveto
+180.105 38.0078 180.207 37.9961 180.32 37.9961 curveto
+180.578 37.9961 180.777 38.0547 180.918 38.1797 curveto
+181.059 38.3047 181.129 38.4805 181.129 38.707 curveto
+181.129 38.793 181.117 38.875 181.094 38.9492 curveto
+181.066 39.02339 181.031 39.082 180.988 39.125 curveto
+181.008 39.14839 lineto
+181.395 39.1328 lineto
+181.395 39.3438 lineto
+ closepath fill
+newpath 177.973 39.1328 moveto
+178.285 39.1328 lineto
+178.285 37.9727 lineto
+178.285 37.7461 178.328 37.5781 178.414 37.4688 curveto
+178.504 37.3633 178.637 37.3125 178.816 37.3125 curveto
+178.91 37.3125 179.004 37.332 179.094 37.375 curveto
+179.18 37.418 179.273 37.4883 179.375 37.58589 curveto
+179.277 37.6992 lineto
+179.23 37.6523 179.184 37.6211 179.137 37.5977 curveto
+179.086 37.5742 179.035 37.5625 178.977 37.5625 curveto
+178.918 37.5625 178.867 37.5742 178.828 37.5938 curveto
+178.789 37.6133 178.754 37.6445 178.723 37.6914 curveto
+178.691 37.7344 178.672 37.7969 178.66 37.8789 curveto
+178.648 37.957 178.645 38.0664 178.645 38.2031 curveto
+178.645 39.1328 lineto
+179.32 39.1328 lineto
+179.32 39.3438 lineto
+178.645 39.3438 lineto
+178.645 39.8633 lineto
+178.348 39.8633 lineto
+178.332 39.7344 178.316 39.6367 178.301 39.5703 curveto
+178.289 39.5039 178.27 39.4492 178.246 39.4063 curveto
+178.219 39.3633 178.188 39.3281 178.145 39.2969 curveto
+178.102 39.2695 178.043 39.25 177.973 39.2383 curveto
+177.973 39.1328 lineto
+ closepath fill
+newpath 176.91 37.3438 moveto
+177.73 37.3438 lineto
+177.73 37.4453 lineto
+177.656 37.4648 177.605 37.4844 177.574 37.5117 curveto
+177.543 37.5352 177.523 37.5703 177.512 37.6172 curveto
+177.5 37.66411 177.496 37.7461 177.496 37.8672 curveto
+177.496 39.3633 lineto
+177.367 39.3633 lineto
+176.879 39.3438 lineto
+176.879 39.2344 lineto
+176.941 39.2227 176.988 39.207 177.023 39.1914 curveto
+177.059 39.1758 177.086 39.1523 177.102 39.1211 curveto
+177.117 39.08589 177.129 39.043 177.129 38.9883 curveto
+177.133 38.9336 177.133 38.8633 177.133 38.77339 curveto
+177.133 37.8594 lineto
+177.133 37.7617 177.129 37.6914 177.121 37.6445 curveto
+177.113 37.5977 177.102 37.5664 177.082 37.543 curveto
+177.066 37.5195 177.047 37.5039 177.023 37.4883 curveto
+177 37.47661 176.965 37.4648 176.91 37.4453 curveto
+176.91 37.3438 lineto
+ closepath fill
+newpath 177.121 39.7578 moveto
+177.508 39.7578 lineto
+177.508 40.16411 lineto
+177.121 40.16411 lineto
+177.121 39.7578 lineto
+ closepath fill
+newpath 176.453 40.1992 moveto
+175.746 40.1992 lineto
+174.938 38.16411 lineto
+174.203 40.1992 lineto
+173.457 40.1992 lineto
+173.457 40.0977 lineto
+173.52 40.0781 173.566 40.0625 173.594 40.0469 curveto
+173.617 40.0352 173.641 40.0156 173.656 39.9883 curveto
+173.672 39.9648 173.684 39.9297 173.691 39.8867 curveto
+173.695 39.8438 173.699 39.77339 173.699 39.6758 curveto
+173.699 37.8672 lineto
+173.699 37.7656 173.695 37.6875 173.688 37.6367 curveto
+173.68 37.58589 173.66 37.5469 173.629 37.5195 curveto
+173.602 37.4922 173.543 37.4688 173.457 37.4453 curveto
+173.457 37.3438 lineto
+174.219 37.3438 lineto
+174.219 37.4453 lineto
+174.156 37.4648 174.109 37.4805 174.078 37.4961 curveto
+174.051 37.5117 174.031 37.5352 174.016 37.5586 curveto
+174 37.58589 173.988 37.6172 173.984 37.6602 curveto
+173.977 37.707 173.977 37.77339 173.977 37.8672 curveto
+173.977 38.6328 lineto
+173.977 38.8672 173.973 39.0977 173.965 39.3203 curveto
+173.961 39.543 173.953 39.6992 173.945 39.7852 curveto
+173.98 39.7852 lineto
+174.75 37.6758 lineto
+174.992 37.6758 lineto
+175.82 39.75 lineto
+175.855 39.75 lineto
+175.848 39.6719 175.84 39.52339 175.836 39.3086 curveto
+175.828 39.0938 175.824 38.8789 175.824 38.668 curveto
+175.824 37.8672 lineto
+175.824 37.7539 175.82 37.6719 175.809 37.625 curveto
+175.797 37.5742 175.773 37.53911 175.746 37.5117 curveto
+175.715 37.4883 175.66 37.4648 175.578 37.4453 curveto
+175.578 37.3438 lineto
+176.453 37.3438 lineto
+176.453 37.4453 lineto
+176.387 37.4648 176.34 37.4805 176.313 37.4961 curveto
+176.285 37.5117 176.262 37.5352 176.246 37.5586 curveto
+176.234 37.58589 176.223 37.6172 176.219 37.6602 curveto
+176.211 37.707 176.207 37.77339 176.207 37.8672 curveto
+176.207 39.6758 lineto
+176.207 39.77339 176.211 39.8438 176.219 39.8906 curveto
+176.227 39.9375 176.238 39.9727 176.254 39.9922 curveto
+176.27 40.0156 176.293 40.0352 176.32 40.0508 curveto
+176.348 40.0664 176.391 40.082 176.453 40.0977 curveto
+176.453 40.1992 lineto
+ closepath fill
+showpage
+%%EOF
+}
+

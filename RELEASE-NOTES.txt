@@ -1,0 +1,94 @@
+RELEASE-NOTES.txt of https://github.com/MFOberwolfach/SNAPSHOTS
+===============================================================
+
+
+release v2.0.0
+==============
+Many thanks to the junior editors for the suggested improvements!
+
+
+notes
+-----
+Version 2.0.0 is downwards compatible in the sense that snapshots,
+that can be compiled with v1.2.0 of snapshotmfo.cls can be
+compiled with v2.0.0, too. However, the result will look different
+as the default logo band has changed. 
+
+Compile testsuite/test-template.tex to see which warnings should
+remain and which should not. For details on the testsuite see
+below.
+
+
+features of snapshotmfo.cls and template.tex
+--------------------------------------------
+* logos updated
+Snapshots submitted before 2017 must have \logoversionone in
+the latex file. By default snapshots are now printed without
+the logos of the Klaus Tischra Foundation and the
+Oberwolfach Foundation on the last page.
+
+* creditstext updated
+The description of what the snapshots are should stay
+identical in snapshotmfo.cls and in README.md.
+
+* altered latex package trackchanges.sty added
+The file as altered by Johannes Niediek has been added to
+the repository. The use of the package must be activated
+if needed. Being in the same directory as the latex file
+it precedes files of the same name that possibly come
+with the latex installation.
+
+* latex package mathtools added in template.tex
+The use of the package must be activated if needed.
+
+* latex package wrapfig added in template.tex
+The use of the package must be activated if needed.
+
+* two or more junior editors are handled properly now
+as explained in template.tex.
+
+* overfullrule for proofreading added in template.tex
+The line must be activated as needed.
+
+
+added directories and files
+---------------------------
+* testsuite added
+The directory "testsuite" has been added:
+ - The script aux_.sh copies some files from the main directory
+   into the testsuite directory, that are needed to compile the
+   tex files.
+ - The unit tests test-*.tex test most of the changes mentioned
+   above case by case. 
+ - The unit test test-template.tex documents the warnings when
+   compiling template.tex.
+ - The script all.sh runs aux_.sh, compiles all unit tests and
+   merges the output into the single file all.pdf.
+aux_.sh and all.sh are bash scripts that run on Linux and macOS.
+aux_.cmd and all.cmd are batch scripts that run on Windows.
+You may have to adapt these scripts to your system.
+ 
+* release notes added
+Comments on the previous releases were included in the e-mail
+announcements.
+
+fixed bugs
+----------
+* double slashes for mailto fixed
+The e-mail addresses in mailto references in the pdf output were
+preceded by two slashes.
+
+* warning "DOI changed" fixed
+For a snapshot number greater than or equal to 100 the
+warning "snapshot number has changed" remained forever.
+
+* warning "Connection to other fields changed" fixed
+The warning remained forever in german snapshots connected to
+the field "Betrachtungen über Mathematik".
+
+* option of figure environment updated
+The option h was replaced by ht to get rid of the respective
+warning.
+
+
+End of RELEASE-NOTES.txt

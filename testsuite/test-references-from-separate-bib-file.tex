@@ -1,0 +1,76 @@
+\documentclass{snapshotmfo}
+
+\categorizationmath{algebra and number theory,analysis,discrete mathematics and foundations,geometry and topology,numerics and scientific computing,probability theory and statistics} %at least one must be chosen. 
+\categorizationconnect{chemistry and earth science,engineering and technology,finance,humanities and social sciences,life science,physics,reflections on mathematics} %can be void.
+\license{CC-BY-SA-4.0} %recommended
+\snapshotid{134}{1950}
+\junioreditor[m]{Some One}{junior-editors@mfo.de}
+\senioreditor[f]{Carla Cederbaum}{senior-editor@mfo.de}
+\director[m]{Gerhard Huisken}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+
+%\usepackage[ngerman]{babel}
+\usepackage[USenglish]{babel}
+
+\author{Test Author}
+\title{references provided by a separate .bib file}
+
+%%%%%%%%%%%%%%%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% There are three ways to provide your references:
+%%% 
+%%% [...]
+%%% 
+%%% 2. by using a separate .bib file:
+%%%    * provide your own .bib file,
+%%%    * delete everything from \usepackage{filecontents} until \end{filecontents}
+%%%    * and make the \bibliography command at the end of this file point to your .bib file.
+%%% 
+%%% [...]
+%%% 
+
+\begin{document}
+
+\begin{abstract}
+The description of this test is given in the first section. The other section demonstrates this way of providing references.
+\end{abstract}
+
+\section{Comment on this unit test}
+We choose the second way to provide bibliographical references as explained in template.tex:
+\begin{verbatim}
+There are three ways to provide your references:
+
+[...]
+
+2. by using a separate .bib file:
+   * provide your own .bib file,
+   * delete everything from \usepackage{filecontents} until
+     \end{filecontents}
+   * and make the \bibliography command at the end of this
+     file point to your .bib file.
+
+[...]
+\end{verbatim}
+
+After three or more compilations of this file there should be no ``LaTeX'' or ``class snapshotmfo'' warnings.
+Possible ``BibTeX'' warnings depend on the personal .bib file supplied.
+
+\section{A heading}
+Your actual snapshot.\footnote{This is a footnote.} As usual, you can give references such as \cite{snapshot, knuth1984texbook, wikiMath, sample13, sample12, sample11, sample14} via the \verb+\cite+ command.\\
+
+We appreciate if you include images or other graphics that illustrate your snapshot. However, please do keep in mind the copyright issues explained in our email in case you include images and graphics you have not produced yourself.
+
+%%%%%%%%%%%%%%%% BIBLIOGRAPHY REVISITED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% [...]
+%%% 
+\bibliography{external-bibliography}
+%%%
+%%% 2. If you chose to use a separate .bib file, make the above command point to it,
+%%% e.g. \bibliography{yourbibfile}. Give the file name without the extension .bib.
+%%% Please do not forget to *submit* your .bib file together with your .tex file and
+%%% your graphics files, if applicable.
+%%% 
+%%% [...]
+%%%
+
+\end{document}
