@@ -1,22 +1,22 @@
 RELEASE-NOTES.txt of https://github.com/MFOberwolfach/SNAPSHOTS
 ===============================================================
 
-
 release v2.0.0
 ==============
-Many thanks to the junior editors for the suggested improvements!
 
 
 notes
 -----
+Many thanks to everyone who contributed to this release by
+suggesting improvements or by providing code!
+
 Version 2.0.0 is downwards compatible in the sense that snapshots,
-that can be compiled with v1.2.0 of snapshotmfo.cls can be
-compiled with v2.0.0, too. However, the result will look different
-as the default logo band has changed. 
+that can be compiled with v1.2.0 and possibly earlier versions of
+snapshotmfo.cls can be compiled with v2.0.0, too. However, the
+result will look different as the default logo band has changed. 
 
 Compile testsuite/test-template.tex to see which warnings should
-remain and which should not. For details on the testsuite see
-below.
+remain and which should not. For details see "testsuite" below.
 
 
 features of snapshotmfo.cls and template.tex
@@ -32,11 +32,10 @@ The description of what the snapshots are should stay
 identical in snapshotmfo.cls and in README.md.
 
 * altered latex package trackchanges.sty added
-The file as altered by Johannes Niediek has been added to
-the repository. The use of the package must be activated
-if needed. Being in the same directory as the latex file
-it precedes files of the same name that possibly come
-with the latex installation.
+The file as altered by Johannes Niediek has been added to the
+repository. The use of the package must be activated if needed.
+Being in the same directory as the latex file it precedes files of
+the same name that possibly come with the latex installation.
 
 * latex package mathtools added in template.tex
 The use of the package must be activated if needed.
@@ -67,10 +66,18 @@ The directory "testsuite" has been added:
 aux_.sh and all.sh are bash scripts that run on Linux and macOS.
 aux_.cmd and all.cmd are batch scripts that run on Windows.
 You may have to adapt these scripts to your system.
+
  
+documentation
+-------------
 * release notes added
 Comments on the previous releases were included in the e-mail
 announcements.
+
+* comments on references improved
+In template.tex the different ways to supply bibliographical
+references are explained in more detail now.
+
 
 fixed bugs
 ----------
@@ -89,6 +96,17 @@ the field "Betrachtungen über Mathematik".
 * option of figure environment updated
 The option h was replaced by ht to get rid of the respective
 warning.
+
+
+known bugs
+----------
+* Entering umlauts as utf-8 characters works in normal text, but
+not in \junioreditors and similar control sequences.
+On the other hand, \"a, \"o, etc. works everywhere.
+
+* Using a tilde in \junioreditors, e.g. in Walter~Becker, yields
+a hyperref warning, but produces correct output: a non-breakable
+space in the pdf and an ordinary space in the pdf metadata.
 
 
 End of RELEASE-NOTES.txt

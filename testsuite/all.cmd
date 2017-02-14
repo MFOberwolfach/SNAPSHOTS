@@ -5,9 +5,12 @@ rem Compile all test files and merge the output into a single pdf.
 call aux_.cmd
 del all.pdf test*.pdf
 for %%f in (test*.tex) do (
-  echo compiling %%f ...
-  pdflatex %%f
-)
+  echo compiling %%~nf ...
+  pdflatex %%~nf
+  bibtex %%~nf
+  pdflatex %%~nf
+  pdflatex %%~nf
+  )
 rem install pdftk-server from https://www.pdflabs.com
 pdftk test*.pdf cat output all.pdf
 

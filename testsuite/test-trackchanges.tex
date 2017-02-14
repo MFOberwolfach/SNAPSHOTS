@@ -13,6 +13,8 @@
 \usepackage{trackchanges}
 \addeditor{Alice}
 \addeditor{Bob}
+\addeditor{Carol}
+\addeditor{Dave}
 
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amssymb}
@@ -105,11 +107,11 @@ Latex should write the line
 trackchanges.sty    2015/11/07 v0.7.2 TrackChanges file 
 \end{verbatim}
 with this date and version number to standard output. Otherwise latex has not loaded the version
-adopted to the snapshotmfo.cls by Johannes Niediek.
+adapted to the snapshotmfo.cls by Johannes Niediek.
 
 %%% Please insert the main body of your snapshot here.
 \section{A heading}
-Your actual snapshot.\footnote{This is a footnote.} As usual, you can give references such as \cite{snapshot, knuth1984texbook, wikiMath, sample13, sample12, sample11, sample14} via the \verb+\cite+ command.\\
+Your actual snapshot.\footnote{This is a footnote.} As usual, you can give references such as \cite{snapshot, knuth1984texbook, wikiMath, sample13, sample12, sample11, sample14} via the \verb+\cite+ command.
 
 \change[Alice]{We appreciate if you include images or other graphics that illustrate your snapshot. However, please do keep in mind the copyright issues explained in our email in case you include images and graphics you have not produced yourself.}{Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.}
 
@@ -142,10 +144,10 @@ We have composed guidelines to help you write a beautiful and accessible snapsho
 \label{fig:maya}
 \end{figure}
 
-If you download an image from Wikipedia or similar sources, please always check the applicable license terms. Most licenses require an adequate attribution. For Wikipedia, you can find the correct reference by clicking on the image and then clicking on the button saying 'use this file‘. Some licenses may have further restrictions, such as 'modifications are not allowed'. If modifications are allowed you may still have to mark those modifications. Please verify that you comply with all license requirements.
-\note[Alice]{Stet clita kasd gubergren, no sea takimata sanctus est.} 
+If you download an image from Wikipedia\remove[Dave]{ or similar sources}, please always check the applicable license terms. Most licenses require an adequate attribution. For Wikipedia, you can find the correct reference by clicking on the image and then clicking on the button saying 'use this file‘. Some licenses may have further restrictions, such as 'modifications are not allowed'. If modifications\note[Alice]{Stet clita kasd gubergren, no sea takimata sanctus est.} are allowed you may still have to mark those modifications. Please verify that you comply with all license requirements.
 
-If you use your own images, please check if you still have the rights of use. The images may be copyrighted by your institution or a publisher of your previous publications.
+If you use your own images, please check if you still have the rights of use. \annote[Carol]{The images may be copyrighted}{At vero eos et accusam et justo duo dolores et ea rebum.} by your institution or a publisher of your previous publications.
+
 \clearpage
 
 %%% Image credits: If you download an image form Wikipedia or similar sources, please always check the applicable license terms. Most licenses require an adequate attribution. For Wikipedia, you can find the correct reference by clicking on the image and then clicking on the button saying 'More details' and then on the link 'use this file' or similar. Some licenses may have further restrictions, such as 'modifications are not allowed'. If modifications are allowed you may still have to mark those modifications. Please verify that you comply with all license requirements. If you use your own images, please check if you still have the rights of use. The images may be copyrighted by your institution or a publisher of your previous publications.
@@ -154,12 +156,6 @@ If you use your own images, please check if you still have the rights of use. Th
   \item[Fig. \ref{fig:maya}] ``Maya''. Author: Bryan Derkson. Licensed under Creative Commons Attribution-Share Alike 3.0 via Wikimedia Commons, \url{http://commons.wikimedia.org/wiki/File:Maya.svg}, visited on September 5, 2014.
 \end{imagecredits}
 
-%%%%%%%%%%%% Bibliography via BibTeX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% According to your above choice on how to handle your references you will
-%%%   - either want to leave the following command unchanged
-%%%   - or make it point to your .bib file like \bibliography{yourbibfile}
-%%%   - or delete the command completely:
 \bibliography{\jobname}
-%%% If you provide your own .bib file, please do not forget to *submit* it together with your .tex file and your graphics files, if applicable.
 
 \end{document}
