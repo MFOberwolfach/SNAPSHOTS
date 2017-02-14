@@ -176,9 +176,16 @@
 This is your abstract. It should give a brief overview of your snapshot. If possible, please do not use formulas in your abstract. Otherwise, please suggest an additional plain text abstract in square brackets, that can be used in the PDF's metadata field. Please do not use more than 500 symbols.
 \end{abstract}
 
-\section{Comment on this unit test}
-template.tex and test-template.tex differ only by this section!
-After three or more compilations of this file the following warnings will remain:
+\section{Comment on this unit test: test-template.tex}
+test-template.tex differs from template.tex only by this section!
+After the following compilations
+\begin{verbatim}
+pdflatex test-template.tex
+bibtex test-template.bib
+pdflatex test-template.tex
+pdflatex test-template.tex
+\end{verbatim}
+the following warnings will remain:
 \begin{verbatim}
 LaTeX Warning: Overwriting file `./test-template.bib'.
 Class snapshotmfo Warning: No snapshot id given.
@@ -196,18 +203,19 @@ Warning--empty language in sample13
 Warning--empty language in wikiMath
 \end{verbatim}
 
-With MikTeX on Windows the compilation summary will read:
+Using TeXnicCenter with MikTeX on Windows the final compilation summary will read:
 \begin{verbatim}
 LaTeX-Result: 0 Error(s), 6 Warning(s), 2 Bad Box(es), 5 Pages(s)
 BibTeX-Result: 0 Error(s), 7 Warning(s)
 \end{verbatim}
 
-The ``overwriting file'' warning is ok as long as you provide the references that way.
+The ``overwriting file'' warning is inevitable as long as you provide the references the default
+way, i.\,e. as an embedded .bib file.
 
 The ``class snapshotmfo'' warnings will disappear as soon as you supply the expected information.
 
-Do not make the ``empty language'' warnings disappear by supplying a language,
-unless you want it explicitely printed in the references!
+Do not make the ``empty language'' warnings disappear by supplying languages for the items,
+unless you want the languages explicitely printed in the references!
 
 
 %%% Please insert the main body of your snapshot here.
