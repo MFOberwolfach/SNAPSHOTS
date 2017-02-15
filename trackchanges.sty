@@ -507,7 +507,7 @@
   \ifthenelse{\value{userid} = -1}%
       {\TC@WarningUnknownEditor{#1}}%
       {}%
-  \let\oldfootnote\thefootnote
+  \let\oldfootnote\thefootnote%
   \renewcommand{\thefootnote}{\usertextfoot{c\arabic{changenumber}}}%
   \setulcolor{UserColor}%
   \renewcommand{\UserLabel}{\GetUserLabel{#1}}%
@@ -522,7 +522,7 @@
   \if@TCignoremode%
     \TC@ResetIgnores%
   \fi%
-  \let\thefootnote\oldfootnote
+  \let\thefootnote\oldfootnote%
 }
 
 
