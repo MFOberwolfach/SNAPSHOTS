@@ -1,0 +1,116 @@
+\documentclass{snapshotmfo}
+
+\categorizationmath{algebra and number theory,analysis,discrete mathematics and foundations,geometry and topology,numerics and scientific computing,probability theory and statistics} %at least one must be chosen. 
+\categorizationconnect{chemistry and earth science,computer science,engineering and technology,finance,humanities and social sciences,life science,physics,reflections on mathematics} %can be void.
+\license{CC-BY-SA-4.0} %recommended
+\snapshotid{105}{1950}
+\junioreditor{S\r{a}me On\'{e}}{junior-editors@mfo.de}
+\senioreditor{Carla Cederbaum}{senior-editor@mfo.de}
+\director{Gerhard Huisken}
+
+%%% Commands for editing
+% Uncomment for collaborative editing:
+\usepackage{trackchanges}
+\addeditor{Alice}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+
+%\usepackage[ngerman]{babel}
+\usepackage[USenglish]{babel}
+
+\author{Author One\thanks{Author One is supported by the Mathematical Dreams Come True Foundation.} \and Author Two}
+
+\title{\texorpdfstring{$\int$ }{}--- hyperref ---\texorpdfstring{ \reflectbox{$\int$}}{}}
+
+\authorinfo{\authorname{Author One} is a professor of pure mathematics at the First University.}
+\authorinfo{\authorname{Author Two} is a lecturer in applied mathematics at the Second Institution.}
+
+\raggedbottom
+
+\begin{document}
+
+%%% Please insert your abstract here. 
+\begin{abstract}[How to handle special content in special places?]
+How to handle special content\footnote{as explained below} in special places\footnote{as explained below}?
+\end{abstract}
+
+\noindent ``Special content'' means everything that raises a hyperref warning, e.\,g.
+\begin{itemize}
+  \item possibly some non-alphanumeric characters,
+  \item math mode,
+  \item footnotes,
+  \item many other control sequences.
+\end{itemize}
+
+\noindent ``Special places'' means strings that are processed by the hyperref package to obtain strings for pdf-specific purposes, e.\,g. 
+\begin{itemize}
+  \item the title,
+  \item the abstract,
+  \item section, subsection, and subsubsection headings,
+  \item the snapshot-specific control sequences 
+  \verb+\categorizationmath+,\\
+  \verb+\categorizationconnect+, 
+  \verb+\license+, 
+  \verb+\snapshotid+, 
+  \verb+\junioreditor+,\\ 
+  \verb+\senioreditor+, and 
+  \verb+\director+.
+\end{itemize}
+While hyperref accepts utf-8 characters in general, the snapshot-specific control sequences are more restrictive, e.\,g. ä must be written as \verb+\"a+ in \verb+\junioreditor+.
+
+\noindent Among the pdf-specific purposes are
+\begin{itemize}
+  \item hyperlinks in a pdf document,
+  \item mailto links in a pdf document,
+  \item the bookmarks ---or rather table of contents--- in the navigation pane of a pdf viewer,
+  \item the standard pdf meta data as displayed in the Adobe Reader under\\ \verb+File > Properties... > Description+,
+  \item custom pdf meta data as displayed in the Adobe Reader under\\ \verb+File > Properties... > Custom+.
+\end{itemize}
+Unfortunately, the support for pdf meta data varies among the standard pdf viewers of Windows, Linux, and macOS, respectively.
+The Document Viewer Evince of Ubuntu displays the standard pdf meta data under
+\verb+File > Properties...+\\ \verb+> General+.
+macOS' Preview does not seem to show any pdf meta data. 
+
+If hyperref finds special content in special places, it raises a warning and generates a pure text equivalent. Sometimes, the result is good, sometimes, it is not. It is hence preferable to supply the pure text equivalent manually. There are several techniques to get rid of the hyperref warnings and hyperref's automatic processing:
+\begin{itemize}
+  \item Try to reduce math mode in the title and in the headings.
+  \item Try to reduce footnotes to a minimum.
+  \item Use \verb+\texorpdfstring{tex string}{pdf substitute}+, e.\,g.\\ \verb+{$\int$}{the integral}+.
+  \item A convenient way to pass a substitute for the whole abstract is\\ \verb+\begin{abstract}[substitute for pdf meta data]Your abstract+\\ \verb+text.\end{abstract}+
+  \item The same works for ((sub)sub)section headings:\\ \verb+\section[abbreviated section heading]{full section heading}+.\\ The abbreviated section heading is commonly used in running heads and the table of contents, both of which are not present in the snapshot layout. But still the pure text equivalent of the abbreviated section heading is used in the navigation pane of a pdf viewer.
+\end{itemize}
+
+\noindent Notes to editors using trackchanges.sty:
+\begin{itemize}
+  \item Trackchanges footnotes may be used during the editing process. As they will not be part of the final document any more, hyperref warnings due to trackchanges footnotes can simply be ingored.
+  \item Footnotes in the title are dropped intentionally. If you have to comment on the title during editing, please find another way to do so.
+\end{itemize}
+
+\noindent Please activate the navigation pane (or side pane) of your pdf viewer, choose the bookmarks (or the table of contents) to be displayed and unfold the tree to compare its entries to the following headings:
+
+\section[abbr. section heading]{a section heading\footnote{An ordinary footnote within a section heading.}
+}
+The footnote has been removed from the pdf substitute of the section heading.
+
+\subsection{umlauts äöü as utf-8 characters and \"u\"o\"a in latex notation}
+hyperref processes this subsection correctly and without warning, so no substitute text is needed. 
+
+\subsubsection[a²+b²=c²]{$a^2 + b^2 = c^2$}
+A subsubsection heading which mathmode and a pdf substitute, which luckily exists.
+
+\subsubsection{B.~L.~van~der~Waerden}
+The non-breakable spaces of this heading are transformed correctly and without warning, so again no substitute text is needed.
+
+\section{another section heading\note[Alice]{Here I am.}}
+No substitute has been given for this section heading, as trackchanges footnotes are transient.
+Look at the bookmarks (or table of contents) of your pdf viewer to see the result of the automatic hyperref processing.
+By the way, this should cause the only hyperref warning.
+
+\subsection{http://www.mfo.de/snapshots}
+Point to www.mfo.de/snapshots to see the hyperlink or click on it to follow it. Hyperlinks are neither underlined nor colored not to spoil the reading experience. This hyperlink also appears in the credits of each snapshot.
+
+\subsection{junior-editors@mfo.de}
+The same holds for the mailto link junior-editors@mfo.de.
+
+\end{document}

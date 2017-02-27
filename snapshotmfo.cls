@@ -65,8 +65,8 @@
   \providecommand{\mspace}[1]{\mskip##1\relax}
 }%
 
-\def\snapshot@logo@version{2}
-\newcommand{\logoversionone}{\renewcommand{\snapshot@logo@version}{1}}
+\def\snapshot@credits@version{2}
+\newcommand{\creditsversionone}{\renewcommand{\snapshot@credits@version}{1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % tools
@@ -160,8 +160,13 @@
   \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@header}{Snapshots of modern mathematics\\from Oberwolfach}%
   \newcaptionname{german,ngerman}{\snapshot@l@header}{Schnappsch\"usse moderner Mathematik\\aus Oberwolfach}%
   %
-  \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@creditstext}{\emph{Snapshots of modern mathematics from Oberwolfach} are written by participants in the scientific program of the Mathematisches Forschungsinstitut Oberwolfach (MFO). The snapshot project is designed to promote the understanding and appreciation \\of modern mathematics and mathematical research in the interested public worldwide. It started as part of the project ``Oberwolfach meets IMAGINARY'' in 2013 with a grant by the Klaus Tschira Foundation. The project has also been supported by the Oberwolfach Foundation and the MFO. All snapshots can be found on \href{http://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} and on \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}}.}%
-  \newcaptionname{german,ngerman}{\snapshot@l@creditstext}{\emph{Schnappsch\"usse moderner Mathematik aus Oberwolfach} werden von Teilnehmerinnen und Teilnehmern des wissenschaftlichen Programms des Mathematischen Forschungs-\\instituts Oberwolfach (MFO) geschrieben. Das Schnappschuss-Projekt hat zum Ziel, Verst\"andnis und Wertsch\"atzung f\"ur moderne Mathematik und mathematische For-\\schung in der interessierten Bev\"olkerung weltweit zu f\"ordern. Es begann als Teil des Projekts \glqq Oberwolfach trifft IMAGINARY\grqq, welches von der Klaus Tschira Stiftung gef\"ordert wird. Das Projekt wurde auch von der Oberwolfach Stiftung sowie vom MFO unterst\"utzt. Alle Schnappsch\"usse k\"onnen unter \href{http://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} sowie unter \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}} abgerufen werden.}%
+  \ifthenelse{\equal{\snapshot@credits@version}{2}}{%
+    \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@creditstext}{\emph{Snapshots of modern mathematics from Oberwolfach} provide exciting insights into current mathematical research. They are written by participants in the scientific program of the Mathematisches Forschungsinstitut Oberwolfach (MFO). The snapshot project is designed to promote the understanding and appreciation of modern mathematics and mathematical research in the interested public worldwide. \\All snapshots are published in cooperation with the IMAGINARY platform and \\can be found on \href{http://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} and on \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}}.}%
+	  \newcaptionname{german,ngerman}{\snapshot@l@creditstext}{\emph{Schnappsch\"usse moderner Mathematik aus Oberwolfach} bieten spannende Einblicke \\in die aktuelle mathematische Forschung. Sie werden von Teilnehmerinnen und Teil-\\nehmern des wissenschaftlichen Programms des Mathematischen Forschungsinstituts Oberwolfach (MFO) geschrieben. Die Schnappsch\"usse haben zum Ziel, Verst\"andnis und Wertsch\"atzung f\"ur moderne Mathematik und mathematische Forschung in der interessierten Bev\"olkerung weltweit zu f\"ordern. Alle Schnappsch\"usse werden in Ko-\\operation mit der IMAGINARY Onlineplattform ver\"offentlicht und k\"onnen unter \href{http://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} sowie \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}} abgerufen werden.}%
+  }{%
+    \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@creditstext}{\emph{Snapshots of modern mathematics from Oberwolfach} are written by participants in the scientific program of the Mathematisches Forschungsinstitut Oberwolfach (MFO). The snapshot project is designed to promote the understanding and appreciation \\of modern mathematics and mathematical research in the interested public worldwide. It started as part of the project ``Oberwolfach meets IMAGINARY'' in 2013 with a grant by the Klaus Tschira Foundation. The project has also been supported by the Oberwolfach Foundation and the MFO. All snapshots can be found on \href{http://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} and on \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}}.}%
+    \newcaptionname{german,ngerman}{\snapshot@l@creditstext}{\emph{Schnappsch\"usse moderner Mathematik aus Oberwolfach} werden von Teilnehmerinnen und Teilnehmern des wissenschaftlichen Programms des Mathematischen Forschungs-\\instituts Oberwolfach (MFO) geschrieben. Das Schnappschuss-Projekt hat zum Ziel, Verst\"andnis und Wertsch\"atzung f\"ur moderne Mathematik und mathematische For-\\schung in der interessierten Bev\"olkerung weltweit zu f\"ordern. Es begann als Teil des Projekts \glqq Oberwolfach trifft IMAGINARY\grqq, welches von der Klaus Tschira Stiftung gef\"ordert wird. Das Projekt wurde auch von der Oberwolfach Stiftung sowie vom MFO unterst\"utzt. Alle Schnappsch\"usse k\"onnen unter \href{http://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} sowie unter \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}} abgerufen werden.}%
+  }%
   %
   \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@translator@german}{Translated from German by}%
   \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@translator@english}{Translated from English by\ClassWarningNoLine{snapshotmfo}{Translated by: from English to English}}%
@@ -194,13 +199,13 @@
   \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@mfoaddress}{Mathematisches Forschungsinstitut\\Oberwolfach gGmbH\\Schwarzwaldstr. 9\,--1\!1\\77709 Oberwolfach\\Germany}%
   \newcaptionname{german,ngerman}{\snapshot@l@mfoaddress}{Mathematisches Forschungsinstitut\\Oberwolfach gGmbH\\Schwarzwaldstr. 9\,--1\!1\\77709 Oberwolfach\\Deutschland}%
   %
-  \ifthenelse{\equal{\snapshot@logo@version}{2}}{
+  \ifthenelse{\equal{\snapshot@credits@version}{2}}{%
     \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@epslogo}{\snapshot@includemps{\snapshot@logo@en}{1}{1}}%
     \newcaptionname{german,ngerman}{\snapshot@l@epslogo}{\snapshot@includemps{\snapshot@logo@de}{1}{1}}%
-  }{
+  }{%
     \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@epslogo}{\snapshot@includemps{\snapshot@logo@versionone@en}{1}{1}}%
     \newcaptionname{german,ngerman}{\snapshot@l@epslogo}{\snapshot@includemps{\snapshot@logo@versionone@de}{1}{1}}%
-  }
+  }%
   %
   % categorization: math
   \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@math@algebra and number theory}{Algebra and Number Theory}
@@ -576,6 +581,7 @@
     \edef\snapshot@pdfinfo{pdfinfo={\snapshot@pdfinfo}}%
     \expandafter\hypersetup\expandafter{\snapshot@pdfinfo}%
   \egroup%
+  \pdfbookmark{\@title}{snapshot}
 }%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

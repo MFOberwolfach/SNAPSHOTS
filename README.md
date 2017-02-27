@@ -1,14 +1,13 @@
 LaTeX document class for the snapshots of modern mathematics from Oberwolfach
 =============================================================================
 
-"Snapshots of modern mathematics from Oberwolfach" are written by participants in
-the scientific program of the Mathematisches Forschungsinstitut Oberwolfach (MFO).
-The snapshot project is designed to promote the understanding and appreciation
-of modern mathematics and mathematical research in the interested public worldwide.
-It started as part of the project "Oberwolfach meets IMAGINARY" in 2013 with a
-grant by the Klaus Tschira Foundation. The project has also been supported by the
-Oberwolfach Foundation and the MFO. All snapshots can be found on
-www.imaginary.org/snapshots and on www.mfo.de/snapshots.
+"Snapshots of modern mathematics from Oberwolfach" provide exciting insights into
+current mathematical research. They are written by participants in the scientific
+program of the Mathematisches Forschungsinstitut Oberwolfach (MFO). The
+snapshot project is designed to promote the understanding and appreciation of
+modern mathematics and mathematical research in the interested public worldwide.
+All snapshots are published in cooperation with the IMAGINARY platform and
+can be found on [www.imaginary.org/snapshots](http://www.imaginary.org/snapshots) and on [www.mfo.de/snapshots](http://www.mfo.de/snapshots).
 
 snapshotmfo.cls
 ---------------
@@ -42,3 +41,15 @@ Commons.
 
 
 For the legal codes of the licenses that apply to the above files see the `LICENSE` file.
+
+trackchanges.sty
+----------------
+
+Altered version of the trackchanges style file. This file is best placed into the
+same folder as your main LaTeX file. In case you or the editor decides to use this
+style during editing, it will precede files of the same name that may have come
+with the latex installation on your computer. 
+
+testsuite
+---------
+The use of the test suite is optional. See testsuite/README.txt for details.

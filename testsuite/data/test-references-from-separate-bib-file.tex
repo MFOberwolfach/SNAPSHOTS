@@ -52,7 +52,14 @@ There are three ways to provide your references:
 [...]
 \end{verbatim}
 
-After three or more compilations of this file there should be no ``LaTeX'' or ``class snapshotmfo'' warnings.
+After the usual procedure
+\begin{verbatim}
+pdflatex test-references-from-separate-bib-file
+bibtex test-references-from-separate-bib-file
+pdflatex test-references-from-separate-bib-file
+pdflatex test-references-from-separate-bib-file
+\end{verbatim}
+there should be no ``LaTeX'' or ``class snapshotmfo'' warnings.
 Possible ``BibTeX'' warnings depend on the personal .bib file supplied.
 
 \section{A heading}

@@ -4,7 +4,6 @@ RELEASE-NOTES.txt of https://github.com/MFOberwolfach/SNAPSHOTS
 release v2.0.0
 ==============
 
-
 notes
 -----
 Many thanks to everyone who contributed to this release by
@@ -13,26 +12,24 @@ suggesting improvements or by providing code!
 Version 2.0.0 is downwards compatible in the sense that snapshots,
 that can be compiled with v1.2.0 and possibly earlier versions of
 snapshotmfo.cls can be compiled with v2.0.0, too. However, the
-result will look different as the default logo band has changed. 
+result will look different as the credits - and maybe more -
+have changed. 
 
-Compile testsuite/test-template.tex to see which warnings should
-remain and which should not. For details see "testsuite" below.
+Compile testsuite/data/test-template.tex to see which warnings
+should remain and which should not. For details see
+testsuite\README.txt.
 
 
-features of snapshotmfo.cls and template.tex
---------------------------------------------
-* logos updated
-Snapshots submitted before 2017 must have \logoversionone in
-the latex file. By default snapshots are now printed without
-the logos of the Klaus Tischra Foundation and the
-Oberwolfach Foundation on the last page.
-
-* creditstext updated
-The description of what the snapshots are should stay
-identical in snapshotmfo.cls and in README.md.
+features
+--------
+* credits updated
+Snapshots submitted before 2017 must have \creditsversionone in
+the latex file. By default snapshots are now printed with an
+updated credits text and without the logos of the Klaus Tischra
+Foundation and the Oberwolfach Foundation.
 
 * altered latex package trackchanges.sty added
-The file as altered by Johannes Niediek has been added to the
+An improved version of trackchanges.sty has been added to the
 repository. The use of the package must be activated if needed.
 Being in the same directory as the latex file it precedes files of
 the same name that possibly come with the latex installation.
@@ -49,34 +46,33 @@ as explained in template.tex.
 * overfullrule for proofreading added in template.tex
 The line must be activated as needed.
 
+* top level pdf bookmark added
+This yields a proper bookmarks - or table of contents - tree
+when the snapshot pdf is incorporated into another pdf file.
+
 
 added directories and files
 ---------------------------
-* testsuite added
-The directory "testsuite" has been added:
- - The script aux_.sh copies some files from the main directory
-   into the testsuite directory, that are needed to compile the
-   tex files.
- - The unit tests test-*.tex test most of the changes mentioned
-   above case by case. 
- - The unit test test-template.tex documents the warnings when
-   compiling template.tex.
- - The script all.sh runs aux_.sh, compiles all unit tests and
-   merges the output into the single file all.pdf.
-aux_.sh and all.sh are bash scripts that run on Linux and macOS.
-aux_.cmd and all.cmd are batch scripts that run on Windows.
-You may have to adapt these scripts to your system.
+* "testsuite" directory added
+The use of the test suite is optional. It contains numerous unit
+tests in the form of latex files and some scripts to simplify the
+testing. See testsuite/README.txt for details.
 
- 
+
 documentation
 -------------
-* release notes added
-Comments on the previous releases were included in the e-mail
-announcements.
-
 * comments on references improved
 In template.tex the different ways to supply bibliographical
 references are explained in more detail now.
+
+* release notes added
+Comments on the previous releases were
+included in the e-mail announcements and on 
+https://github.com/MFOberwolfach/SNAPSHOTS/releases 
+
+* README.md updated
+The credits text from snapshotmfo.cls and the corresponding
+passage from README.md should always stay identical.
 
 
 fixed bugs
@@ -86,8 +82,8 @@ The e-mail addresses in mailto references in the pdf output were
 preceded by two slashes.
 
 * warning "DOI changed" fixed
-For a snapshot number greater than or equal to 100 the
-warning "snapshot number has changed" remained forever.
+For a snapshot number greater than or equal to 100 the warning
+"snapshot number has changed" remained forever.
 
 * warning "Connection to other fields changed" fixed
 The warning remained forever in german snapshots connected to
@@ -108,5 +104,3 @@ On the other hand, \"a, \"o, etc. works everywhere.
 a hyperref warning, but produces correct output: a non-breakable
 space in the pdf and an ordinary space in the pdf metadata.
 
-
-End of RELEASE-NOTES.txt

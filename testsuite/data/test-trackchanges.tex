@@ -100,7 +100,11 @@ Does the style file trackchanges.sty for collaborative editing work as expected?
 \end{abstract}
 
 \section{Comment on this unit test}
-The snapshot template has been interspersed with editing by Alice and Bob. Look for colors and footnotes.
+The snapshot template has been interspersed with editing by Alice, Bob, Carol, and Dave. Look for colors and footnotes.
+
+Ordinary footnotes and trackchanges footnotes both are numbered consecutively, but independently of each other,
+througout the whole document as 1, 2, 3, \dots\ and c1, c2, c3, \dots, respectively.
+See test-hyperref.tex for footnotes in special places like section headings.
 
 Latex should write the line
 \begin{verbatim}
