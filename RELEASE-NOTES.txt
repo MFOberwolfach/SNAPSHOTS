@@ -1,6 +1,23 @@
 RELEASE-NOTES.txt of https://github.com/MFOberwolfach/SNAPSHOTS
 ===============================================================
 
+release v2.1.0
+==============
+
+features
+--------
+* logo band update
+The Leibniz Association changed their logo slightly by introducing
+a line break after the word Leibniz. Version 2 of the logo band
+has been changed accordingly. Version 1 of the logo band is left
+unchanged.
+
+* autoref names with ngerman
+The words "section", "Figure", etc. printed by \autoref are
+tacitly translated when \usepackage[ngerman]{babel} is present
+in the preamble.
+
+
 release v2.0.0
 ==============
 
