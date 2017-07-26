@@ -1,6 +1,21 @@
 RELEASE-NOTES.txt of https://github.com/MFOberwolfach/SNAPSHOTS
 ===============================================================
 
+release v2.1.1
+==============
+
+feature
+-------
+* two or more junior editors are handled better now
+as explained in template.tex.
+
+documentation
+-------------
+* optional argument of \begin{abstract}
+template.tex has been changed, such that the sample text is 
+unlikely to make it into the final document.
+
+
 release v2.1.0
 ==============
 

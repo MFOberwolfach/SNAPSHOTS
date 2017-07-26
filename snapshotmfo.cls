@@ -510,8 +510,14 @@
     {% female and plural
       \renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editorinnen}
     }%
-    {% female and singular
-      \renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editorin}
+    {%
+      \IfSubStr{#2}{, }
+      {% female and plural
+        \renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editorinnen}
+      }%
+      {% female and singular
+        \renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editorin}
+      }%
     }%
   }%
   {% not female
@@ -521,8 +527,14 @@
       {% male and plural
         \renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editoren}
       }%
-      {% male and singular
-        \renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editor}
+      {%
+        \IfSubStr{#2}{, }
+        {% male and plural
+          \renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editoren}
+        }%
+        {% male and singular
+          \renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editor}
+        }%
       }%
     }%
     {% not male
@@ -530,11 +542,18 @@
       {% general and plural
         \renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editor(inn)en}
       }%
-      {% general and singular
+      {%
+        \IfSubStr{#2}{, }
+        {% general and plural
+          \renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editor(inn)en}
+        }%
+        {% general and singular
+        }%
       }%
     }%
   }%
   \IfSubStr{#2}{ and }{\renewcaptionname{english,USenglish,UKenglish}{\snapshot@l@junioreditor}{Junior Editors}}{}%
+  \IfSubStr{#2}{, }{\renewcaptionname{english,USenglish,UKenglish}{\snapshot@l@junioreditor}{Junior Editors}}{}%
   \gdef\snapshot@junioreditor{#2}%
   \gdef\snapshot@junioreditoremail{\mailtoref{#3}}%
 }%
