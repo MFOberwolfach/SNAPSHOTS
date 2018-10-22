@@ -289,6 +289,7 @@
 \newcommand{\httpref}[1]{\href{http://#1}{\nolinkurl{#1}}}
 \newcommand{\ftpref}[1]{\href{ftp://#1}{\nolinkurl{#1}}}
 
+\RequirePackage[figure, figure*, table, table*]{hypcap}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % page header/footer
 \RequirePackage{scrpage2}

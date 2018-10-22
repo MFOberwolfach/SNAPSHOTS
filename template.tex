@@ -35,15 +35,13 @@
 \junioreditor{will be filled out by the editors}{junior-editors@mfo.de}
 \senioreditor[f]{Carla Cederbaum}{senior-editor@mfo.de}
 \director[m]{Gerhard Huisken}
-% Joining the names of two or more editors by " and ", " und " or ", " like in
-% \junioreditor{First Editor and Second Editor}{junior-editors@mfo.de} yields the plural in the caption. 
+% Joining the names of two or more editors by ", " like in
+% \junioreditor{First Editor, Second Editor}{junior-editors@mfo.de} yields the plural in the caption. 
 % With german snapshots the optional argument f for female and m for male of \junioreditor,
 % \senioreditor and \director, resp., will make the caption gender-specific, e.g.
 % \junioreditor[f]{Anne Schuster}{schuster@example.org} will yield "Editorin ..." instead of "Editor/in ..." and
 % \junioreditor[m]{Martin Schuster}{schuster@example.org} will yield "Editor ..." instead of "Editor/in ...".
 
-% Uncomment the following line for snapshots submitted before 2017:
-%\creditsversionone
 
 %%% Commands for editing
 % Uncomment for collaborative editing:
@@ -114,18 +112,6 @@
   year = {1984},
   edition={1},
   publisher = {Addison-Wesley},
-  isbn = {978-0201134483}
-}
-
-@article{snapshot,
-  title = {The first snapshot},
-  author = {Jahns, S. and Renner, L.},
-  journal = {Snapshots of modern mathematics},
-  volume = {1},
-  number = {1},
-  pages = {1--10},
-  year = {2014},
-  publisher = {MFO}
 }
 
 @misc{wikiMath,
@@ -173,11 +159,11 @@
 
 %%% Please insert your abstract here. 
 \begin{abstract}
-This is your abstract. It should give a brief overview of your snapshot. If possible, please do not use formulas in your abstract. Please do not use more than 500 symbols. 
+This is your abstract. It should give a brief overview of your snapshot. If possible, please do not use formulas in your abstract. Please do not use more than 500 characters. 
 \end{abstract}
 %%% In case of hyperref warnings like "Token not allowed in a PDF string", please use the following variant of \begin{abstract} instead: 
-%\begin{abstract}[This is a plain text equivalent of your abstract used for the PDF meta data. It should give a brief overview of your snapshot. Please do not use more than 500 symbols.]
-%This is your abstract containing some special characters or latex control sequences. It should give a brief overview of your snapshot. Please do not use more than 500 symbols.
+%\begin{abstract}[This is a plain text equivalent of your abstract used for the PDF meta data. It should give a brief overview of your snapshot. Please do not use more than 500 characters.]
+%This is your abstract containing some special characters or latex control sequences. It should give a brief overview of your snapshot. Please do not use more than 500 characters.
 %\end{abstract}
 
 %%% Please insert the main body of your snapshot here.
@@ -200,7 +186,7 @@ More text and some formulas:
 1+1&=2,\\\label{char.2}
 1+1&=0.
 \end{align}
-Formula \eqref{real} refers to $\mathbb{R}$, formula \eqref{char.2} does not.
+Formula \eqref{real} refers to $\mathbb{R}$, Formula \eqref{char.2} does not.
 
 \section{More information}
 We have composed guidelines to help you write a beautiful and accessible snapshot which you can download at \href{http://www.mfo.de/snapshots/guidelines-for-snapshots}{www.mfo.de/snapshots/guidelines-for-snapshots}. For more information on the snapshot project (including example snapshots), please see \href{http://www.mfo.de/snapshots}{www.mfo.de/snapshots}.
@@ -222,8 +208,8 @@ If you use your own images, please check if you still have the rights of use. Th
 
 %%% Image credits: If you download an image form Wikipedia or similar sources, please always check the applicable license terms. Most licenses require an adequate attribution. For Wikipedia, you can find the correct reference by clicking on the image and then clicking on the button saying 'More details' and then on the link 'use this file' or similar. Some licenses may have further restrictions, such as 'modifications are not allowed'. If modifications are allowed you may still have to mark those modifications. Please verify that you comply with all license requirements. If you use your own images, please check if you still have the rights of use. The images may be copyrighted by your institution or a publisher of your previous publications.
 \begin{imagecredits}
-  \item[Fig. \ref{fig:sample-image}] Archives of the Mathematisches Forschungsinstitut Oberwolfach,\\\url{http://www.mfo.de}, 2004.
-  \item[Fig. \ref{fig:maya}] ``Maya''. Author: Bryan Derkson. Licensed under Creative Commons Attribution-Share Alike 3.0 via Wikimedia Commons, \url{http://commons.wikimedia.org/wiki/File:Maya.svg}, visited on September 5, 2014.
+  \item[\autoref{fig:sample-image}] Archives of the Mathematisches Forschungsinstitut Oberwolfach,\\\url{http://www.mfo.de}, 2004.
+  \item[\autoref{fig:maya}] ``Maya''. Author: Bryan Derkson. Licensed under Creative Commons Attribution-Share Alike 3.0 via Wikimedia Commons, \url{http://commons.wikimedia.org/wiki/File:Maya.svg}, visited on September 5, 2014.
 \end{imagecredits}
 
 %%%%%%%%%%%%%%%% BIBLIOGRAPHY REVISITED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
