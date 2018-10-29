@@ -17,20 +17,12 @@ trap finish EXIT
 cd "$__workdir"
 
 ## main program
-m=0
 a="maya.pdf mfo.jpg snapshotmfo.cls trackchanges.sty"
 for f in $a; do
-  if test ! -e "$f" ; then
-    echo "$__script: copying $f ..."
-    cp "../../$f" .
-    m=1
-  fi
+  echo "$__script: copying $f ..."
+  cp "../../$f" .
 done
 
-if test "$m" -eq 1 ; then
-  echo "$__script: The files $a are necessary to compile the test files. Therefore the missing files have been copied into the data directory."
-  read -p 'Press RETURN to proceed!' d 
-else
-  echo "$__script: Copies of the files $a are already in the data directory."
-fi
+echo "$__script: The files $a are necessary to compile the test files. So their latest versions have been copied into the testsuite/data directory."
+read -p 'Press RETURN to proceed!' d 
 

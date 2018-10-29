@@ -2,7 +2,7 @@
 rem This is a windows batch file.
 rem This script
 rem  * copies auxiliary files into the data directory,
-rem  * removes previous pdf output,
+rem  * removes previous output,
 rem  * compiles all test-*.tex files thoroughly,
 rem  * merges the pdf output into all.pdf.
 
@@ -19,8 +19,8 @@ echo %__script%: start time: %date% %time:~0,8%
 
 call %__dir%copy-aux-files.cmd || goto error
 
-echo %__script%: removing previous pdf output ...
-del all.pdf test-*.pdf || goto error
+echo %__script%: removing previous output ...
+del all.pdf test-*.aux test-*.bbl test-*.bib test-*.blg test-*.log test-*.out test-*.pdf || goto error
 
 for %%f in (test-*.tex) do (
   echo %__script%: compiling %%~nf ...

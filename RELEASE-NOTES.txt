@@ -1,6 +1,30 @@
 RELEASE-NOTES.txt of https://github.com/MFOberwolfach/SNAPSHOTS
 ===============================================================
 
+
+release v2.2.0
+==============
+
+visible changes
+---------------
+* snapshot.cls: The ISSN, that the snapshots series has received
+recently, is shown on the last page.
+* template.tex: image credits now use autoref
+* template.tex: sample bibliography updated
+
+everything else
+---------------
+* snapshotmfo.cls now requires the hypcap package
+* template.tex: improved spelling, wording and comments
+* template.tex: hint for using \creditsversionone removed
+* testsuite updated and improved
+* snapshotmfo.cls: workaround for encoding problem with pdf
+metadata, cf. snapshotmfo.cls, line 240 et seqq.
+
+Thanks to Moritz Firsching for incorporating the changes suggested
+at the Edithon in December 2017!
+
+
 release v2.1.1
 ==============
 

@@ -1,5 +1,5 @@
 %% snapshotmfo.cls
-%% Copyright 2014 - 2017 Mathematisches Forschungsinstitut Oberwolfach, www.mfo.de
+%% Copyright 2014 - 2018 Mathematisches Forschungsinstitut Oberwolfach, www.mfo.de
 %%  developed within the project IMAGINARY, www.imaginary.org
 %%  supported by the Klaus Tschira Stiftung
 %
@@ -33,9 +33,9 @@
 %%
 \NeedsTeXFormat{LaTeX2e}
 \listfiles
-\ProvidesClass{snapshotmfo}[2014/07/31 Document class for "Snapshots of modern mathematics from Oberwolfach"]
+\ProvidesClass{snapshotmfo}[2018/10/23 Document class for "Snapshots of modern mathematics from Oberwolfach"]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% output warning if obsolute features are used
+% output warning if obsolete features are used
 \IfFileExists{nag.sty}{\RequirePackage[l2tabu]{nag}}{}
 %
 \LoadClass[10pt,twoside]{scrartcl} 
@@ -237,7 +237,10 @@
   \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@humanities and social sciences}{Geistes- und Sozialwissenschaften}
   \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@life science}{Lebenswissenschaften}
   \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@physics}{Physik}
-  \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@reflections on mathematics}{Betrachtungen \texorpdfstring{\"uber}{über} Mathematik}
+  % Control sequences evaluating to the categorizations are written to the aux file and used as pdf meta data on the next run of pdflatex.
+  % As some tex installations on some operating systems write the aux file ISO-8859 encoded, but read it UTF-8 encoded, it is safer to avoid
+  % umlauts in the categorization. This affects only german snapshots related to "Betrachtungen über Mathematik":
+  \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@reflections on mathematics}{Betrachtungen \texorpdfstring{\"uber}{ueber} Mathematik}
   % section name for image credits
   \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@image credits}{Image credits}
   \newcscaptionname{german,ngerman}{snaphot@l@image credits}{Bildquellen}  
@@ -741,6 +744,9 @@
       %
       \textit{\snapshot@l@license}\\*
       \snapshot@license\\[\medskipamount]
+      %
+      \textit{ISSN}\\*
+      2626-1995\\[\medskipamount]
       %
       \textit{\snapshot@l@doi}\\*
       \snapshot@doilink%

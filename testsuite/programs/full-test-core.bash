@@ -28,8 +28,8 @@ date +'%Y-%m-%d %H:%M:%S'
 
 "${__dir}/copy-aux-files.bash"
 
-echo "$__script: removing previous pdf output ..."
-rm -f all.pdf test-*.pdf
+echo "$__script: removing previous output ..."
+rm -f all.pdf test-*.{aux,bbl,bib,blg,log,out,pdf}
 
 for f in test-*.tex ; do
   g="${f%.*}"
