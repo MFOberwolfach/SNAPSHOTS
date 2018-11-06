@@ -33,7 +33,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}
 \listfiles
-\ProvidesClass{snapshotmfo}[2018/10/23 Document class for "Snapshots of modern mathematics from Oberwolfach"]
+\ProvidesClass{snapshotmfo}[2018/11/06 Document class for "Snapshots of modern mathematics from Oberwolfach"]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % output warning if obsolete features are used
 \IfFileExists{nag.sty}{\RequirePackage[l2tabu]{nag}}{}
@@ -745,22 +745,17 @@
       \textit{\snapshot@l@license}\\*
       \snapshot@license\\[\medskipamount]
       %
-      \textit{ISSN}\\*
-      2626-1995\\[\medskipamount]
-      %
       \textit{\snapshot@l@doi}\\*
       \snapshot@doilink%
     \end{multicols}%
     \vskip 0.3cm%
     \par\hfill\rule[0.5ex]{1cm}{0.526pt}\hfill\null%
     \vskip 0.25cm
-    \raggedright\normalfont\snapshot@l@creditstext%
-    %\vskip-\baselineskip%
+    \raggedright\normalfont\snapshot@l@creditstext\\[\medskipamount]
+    \normalfont{ISSN 2626\kern.11em-\kern-.02em1995}%
     \vskip 0.25cm%
     \par\hfill\rule[0.5ex]{1cm}{0.526pt}\hfill\null%
     \vskip 0.4cm%
-      %{\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
-      %
     \begin{multicols}{2}%
       \renewcommand{\baselinestretch}{0.8}%
         \sffamily
