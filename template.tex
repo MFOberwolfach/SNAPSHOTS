@@ -1,8 +1,7 @@
 %% template.tex - Template for a snapshot of modern mathematics from Oberwolfach.
 %
-% The following authors contributed to this work (in alphabetical order):
+% The following authors contributed to the initial version of this work (in alphabetical order):
 %   Carla Cederbaum (concept, testing)
-%   Helmut Kastenholz (programming)
 %   Konrad Renner (design)
 %   Christian Stussak (programming)
 %
@@ -17,7 +16,7 @@
 % This software is distributed without any warranty. 
 %
 % You should have received a copy of the CC0 Public Domain Dedication along with
-% this file. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>. 
+% this file. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>. 
 %
 %%
 
@@ -95,17 +94,16 @@
 %%% 
 %%% 2. by using a separate .bib file:
 %%%    * provide your own .bib file,
-%%%    * delete everything from \usepackage{filecontents} until \end{filecontents}
+%%%    * delete everything from \begin{filecontents} until \end{filecontents}
 %%%    * and make the \bibliography command at the end of this file point to your .bib file.
 %%% 
 %%% 3. by using no BibTeX at all:
-%%%    * delete everything from \usepackage{filecontents} until \end{filecontents}
+%%%    * delete everything from \begin{filecontents} until \end{filecontents}
 %%%    * replace the \bibliography command at the end of this file with the
 %%%      thebibliography environment containing a \bibitem command for each reference.
 %%% This way is deprecated as it is less flexible than the BibTeX solutions.
 %%%
-\usepackage{filecontents}
-\begin{filecontents}{\jobname.bib}
+\begin{filecontents}[overwrite]{\jobname.bib}
 @book{knuth1984texbook,
   title = {The TeXbook},
   author = {Knuth, D. E.},
@@ -124,7 +122,7 @@
 
 @misc{sample13,
   author = {Sample, J.},
-  howpublished = {\href{http://arxiv.org/abs/8765.4321v1}{arxiv:8765.4321v1}},
+  howpublished = {\href{https://arxiv.org/abs/8765.4321v1}{arxiv:8765.4321v1}},
   title = {Interesting facts in mathematics},
   year = {2013}
 }
@@ -189,7 +187,7 @@ More text and some formulas:
 Formula \eqref{real} refers to $\mathbb{R}$, Formula \eqref{char.2} does not.
 
 \section{More information}
-We have composed guidelines to help you write a beautiful and accessible snapshot which you can download at \href{http://www.mfo.de/snapshots/guidelines-for-snapshots}{www.mfo.de/snapshots/guidelines-for-snapshots}. For more information on the snapshot project (including example snapshots), please see \href{http://www.mfo.de/snapshots}{www.mfo.de/snapshots}.
+We have composed guidelines to help you write a beautiful and accessible snapshot which you can download at \href{https://www.mfo.de/snapshots/guidelines-for-snapshots}{www.mfo.de/snapshots/guidelines-for-snapshots}. For more information on the snapshot project (including example snapshots), please see \href{https://www.mfo.de/snapshots}{www.mfo.de/snapshots}.
 
 %%% Please use this format to include images. Supported image formats: jpg, pdf, png. Please convert your images to those formats.
 \begin{figure}[ht]
@@ -208,8 +206,8 @@ If you use your own images, please check if you still have the rights of use. Th
 
 %%% Image credits: If you download an image form Wikipedia or similar sources, please always check the applicable license terms. Most licenses require an adequate attribution. For Wikipedia, you can find the correct reference by clicking on the image and then clicking on the button saying 'More details' and then on the link 'use this file' or similar. Some licenses may have further restrictions, such as 'modifications are not allowed'. If modifications are allowed you may still have to mark those modifications. Please verify that you comply with all license requirements. If you use your own images, please check if you still have the rights of use. The images may be copyrighted by your institution or a publisher of your previous publications.
 \begin{imagecredits}
-  \item[\autoref{fig:sample-image}] Archives of the Mathematisches Forschungsinstitut Oberwolfach,\\\url{http://www.mfo.de}, 2004.
-  \item[\autoref{fig:maya}] ``Maya''. Author: Bryan Derkson. Licensed under Creative Commons Attribution-Share Alike 3.0 via Wikimedia Commons, \url{http://commons.wikimedia.org/wiki/File:Maya.svg}, visited on September 5, 2014.
+  \item[\autoref{fig:sample-image}] Archives of the Mathematisches Forschungsinstitut Oberwolfach,\\\url{https://www.mfo.de}, 2004.
+  \item[\autoref{fig:maya}] ``Maya''. Author: Bryan Derkson. Licensed under Creative Commons Attribution-Share Alike 3.0 via Wikimedia Commons, \url{https://commons.wikimedia.org/wiki/File:Maya.svg}, visited on September 5, 2014.
 \end{imagecredits}
 
 %%%%%%%%%%%%%%%% BIBLIOGRAPHY REVISITED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -2,6 +2,24 @@ RELEASE-NOTES.txt of https://github.com/MFOberwolfach/SNAPSHOTS
 ===============================================================
 
 
+release v2.2.1
+==============
+
+changes
+-------
+* snapshotmfo.cls: the obsolete package scrpage2 has been replaced by scrlayer-scrpage
+* snapshotmfo.cls: the class now reports with the correct date
+* snapshotmfo.cls and template.tex: in each URL http has been replaced by https
+* template.tex: the obsolete package filecontents has been removed
+* testsuite: a test of multi-line section headings has been added
+* testsuite: the wrapfig test has been repaired
+
+known bugs
+----------
+* the indentation of the second line of a multi-line section, subsection, or
+    subsubsection heading has to be adjusted manually as shown in the test suite
+
+
 release v2.2.0
 ==============
 

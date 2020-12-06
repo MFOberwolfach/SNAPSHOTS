@@ -1,5 +1,5 @@
 %% snapshotmfo.cls
-%% Copyright 2014 - 2018 Mathematisches Forschungsinstitut Oberwolfach, www.mfo.de
+%% Copyright 2014 - 2020 Mathematisches Forschungsinstitut Oberwolfach, www.mfo.de
 %%  developed within the project IMAGINARY, www.imaginary.org
 %%  supported by the Klaus Tschira Stiftung
 %
@@ -7,7 +7,7 @@
 % conditions of the LaTeX Project Public License, either version 1.3
 % of this license or (at your option) any later version.
 % The latest version of this license is in
-%   http://www.latex-project.org/lppl.txt
+%   https://www.latex-project.org/lppl.txt
 % and version 1.3 or later is part of all distributions of LaTeX
 % version 2005/12/01 or later.
 % 
@@ -18,9 +18,8 @@
 %
 % This work consists of the file snapshotmfo.cls.
 %
-% The following authors contributed to this work (in alphabetical order):
+% The following authors contributed to the initial version of this work (in alphabetical order):
 %   Carla Cederbaum (concept)
-%   Helmut Kastenholz (programming)
 %   Konrad Renner (design)
 %   Christian Stussak (programming)
 %
@@ -33,7 +32,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}
 \listfiles
-\ProvidesClass{snapshotmfo}[2018/11/06 Document class for "Snapshots of modern mathematics from Oberwolfach"]
+\ProvidesClass{snapshotmfo}[2020/12/06 Document class for "Snapshots of modern mathematics from Oberwolfach"]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % output warning if obsolete features are used
 \IfFileExists{nag.sty}{\RequirePackage[l2tabu]{nag}}{}
@@ -161,11 +160,11 @@
   \newcaptionname{german,ngerman}{\snapshot@l@header}{Schnappsch\"usse moderner Mathematik\\aus Oberwolfach}%
   %
   \ifthenelse{\equal{\snapshot@credits@version}{2}}{%
-    \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@creditstext}{\emph{Snapshots of modern mathematics from Oberwolfach} provide exciting insights into current mathematical research. They are written by participants in the scientific program of the Mathematisches Forschungsinstitut Oberwolfach (MFO). The snapshot project is designed to promote the understanding and appreciation of modern mathematics and mathematical research in the interested public worldwide. \\All snapshots are published in cooperation with the IMAGINARY platform and \\can be found on \href{http://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} and on \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}}.}%
-	  \newcaptionname{german,ngerman}{\snapshot@l@creditstext}{\emph{Schnappsch\"usse moderner Mathematik aus Oberwolfach} bieten spannende Einblicke \\in die aktuelle mathematische Forschung. Sie werden von Teilnehmerinnen und Teil-\\nehmern des wissenschaftlichen Programms des Mathematischen Forschungsinstituts Oberwolfach (MFO) geschrieben. Die Schnappsch\"usse haben zum Ziel, Verst\"andnis und Wertsch\"atzung f\"ur moderne Mathematik und mathematische Forschung in der interessierten \"Offentlichkeit weltweit zu f\"ordern. Alle Schnappsch\"usse werden in Ko-\\operation mit der IMAGINARY Onlineplattform ver\"offentlicht und k\"onnen unter \href{http://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} sowie \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}} abgerufen werden.}%
+    \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@creditstext}{\emph{Snapshots of modern mathematics from Oberwolfach} provide exciting insights into current mathematical research. They are written by participants in the scientific program of the Mathematisches Forschungsinstitut Oberwolfach (MFO). The snapshot project is designed to promote the understanding and appreciation of modern mathematics and mathematical research in the interested public worldwide. \\All snapshots are published in cooperation with the IMAGINARY platform and \\can be found on \href{https://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} and on \href{https://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}}.}%
+	  \newcaptionname{german,ngerman}{\snapshot@l@creditstext}{\emph{Schnappsch\"usse moderner Mathematik aus Oberwolfach} bieten spannende Einblicke \\in die aktuelle mathematische Forschung. Sie werden von Teilnehmerinnen und Teil-\\nehmern des wissenschaftlichen Programms des Mathematischen Forschungsinstituts Oberwolfach (MFO) geschrieben. Die Schnappsch\"usse haben zum Ziel, Verst\"andnis und Wertsch\"atzung f\"ur moderne Mathematik und mathematische Forschung in der interessierten \"Offentlichkeit weltweit zu f\"ordern. Alle Schnappsch\"usse werden in Ko-\\operation mit der IMAGINARY Onlineplattform ver\"offentlicht und k\"onnen unter \href{https://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} sowie \href{https://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}} abgerufen werden.}%
   }{%
-    \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@creditstext}{\emph{Snapshots of modern mathematics from Oberwolfach} are written by participants in the scientific program of the Mathematisches Forschungsinstitut Oberwolfach (MFO). The snapshot project is designed to promote the understanding and appreciation \\of modern mathematics and mathematical research in the interested public worldwide. It started as part of the project ``Oberwolfach meets IMAGINARY'' in 2013 with a grant by the Klaus Tschira Foundation. The project has also been supported by the Oberwolfach Foundation and the MFO. All snapshots can be found on \href{http://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} and on \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}}.}%
-    \newcaptionname{german,ngerman}{\snapshot@l@creditstext}{\emph{Schnappsch\"usse moderner Mathematik aus Oberwolfach} werden von Teilnehmerinnen und Teilnehmern des wissenschaftlichen Programms des Mathematischen Forschungs-\\instituts Oberwolfach (MFO) geschrieben. Das Schnappschuss-Projekt hat zum Ziel, Verst\"andnis und Wertsch\"atzung f\"ur moderne Mathematik und mathematische For-\\schung in der interessierten \"Offentlichkeit weltweit zu f\"ordern. Es begann als Teil des Projekts \glqq Oberwolfach trifft IMAGINARY\grqq, welches von der Klaus Tschira Stiftung gef\"ordert wird. Das Projekt wurde auch von der Oberwolfach Stiftung sowie vom MFO unterst\"utzt. Alle Schnappsch\"usse k\"onnen unter \href{http://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} sowie unter \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}} abgerufen werden.}%
+    \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@creditstext}{\emph{Snapshots of modern mathematics from Oberwolfach} are written by participants in the scientific program of the Mathematisches Forschungsinstitut Oberwolfach (MFO). The snapshot project is designed to promote the understanding and appreciation \\of modern mathematics and mathematical research in the interested public worldwide. It started as part of the project ``Oberwolfach meets IMAGINARY'' in 2013 with a grant by the Klaus Tschira Foundation. The project has also been supported by the Oberwolfach Foundation and the MFO. All snapshots can be found on \href{https://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} and on \href{https://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}}.}%
+    \newcaptionname{german,ngerman}{\snapshot@l@creditstext}{\emph{Schnappsch\"usse moderner Mathematik aus Oberwolfach} werden von Teilnehmerinnen und Teilnehmern des wissenschaftlichen Programms des Mathematischen Forschungs-\\instituts Oberwolfach (MFO) geschrieben. Das Schnappschuss-Projekt hat zum Ziel, Verst\"andnis und Wertsch\"atzung f\"ur moderne Mathematik und mathematische For-\\schung in der interessierten \"Offentlichkeit weltweit zu f\"ordern. Es begann als Teil des Projekts \glqq Oberwolfach trifft IMAGINARY\grqq, welches von der Klaus Tschira Stiftung gef\"ordert wird. Das Projekt wurde auch von der Oberwolfach Stiftung sowie vom MFO unterst\"utzt. Alle Schnappsch\"usse k\"onnen unter \href{https://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} sowie unter \href{https://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}} abgerufen werden.}%
   }%
   %
   \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@translator@german}{Translated from German by}%
@@ -289,16 +288,16 @@
 \@ifpackagelater{hyperref}{2011/02/05}{\hypersetup{hidelinks}}{\hypersetup{colorlinks=false,pdfborder={0 0 0}}}
 
 \newcommand{\mailtoref}[1]{\href{mailto:#1}{\nolinkurl{#1}}}
-\newcommand{\httpref}[1]{\href{http://#1}{\nolinkurl{#1}}}
+\newcommand{\httpref}[1]{\href{https://#1}{\nolinkurl{#1}}}
 \newcommand{\ftpref}[1]{\href{ftp://#1}{\nolinkurl{#1}}}
 
 \RequirePackage[figure, figure*, table, table*]{hypcap}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % page header/footer
-\RequirePackage{scrpage2}
+\RequirePackage{scrlayer-scrpage}
 \pagestyle{scrheadings}
 \renewcommand*{\titlepagestyle}{scrheadings}
-\clearscrheadfoot
+\clearpairofpagestyles
 \cfoot{\pagemark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -330,7 +329,7 @@
 \newcommand{\snapshot@id}{\ClassWarningNoLine{snapshotmfo}{No snapshot id given}xx}%
 \newcommand{\snapshot@year}{xxxx}%
 \AtBeginDocument{\newcaptionname{english,USenglish,UKenglish,german,ngerman}{\snapshot@doi}{\ClassWarningNoLine{snapshotmfo}{Unable to compute DOI}\snapshot@defaultcontent}}%
-\gdef\snapshot@doiurlprefix{http://dx.doi.org/}%
+\gdef\snapshot@doiurlprefix{https://dx.doi.org/}%
 \gdef\snapshot@doilink{\snapshot@doi}%
 \newcommand*{\snapshotid}[2]{%
   \begingroup%
@@ -399,13 +398,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % license info
 % use \license{CC-BY-SA-4.0} (recommended), \license{CC-BY-ND-4.0} or \licence{CC-BY-NC-SA-4.0}
-\csdef{snapshot@license@CC-BY-SA-4.0}{\href{http://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons BY-SA 4.0}}
-\csdef{snapshot@license@CC-BY-ND-4.0}{\href{http://creativecommons.org/licenses/by-nd/4.0/}{Creative Commons BY-ND 4.0}}
-\csdef{snapshot@license@CC-BY-NC-SA-4.0}{\href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Creative Commons BY-NC-SA 4.0}}
+\csdef{snapshot@license@CC-BY-SA-4.0}{\href{https://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons BY-SA 4.0}}
+\csdef{snapshot@license@CC-BY-ND-4.0}{\href{https://creativecommons.org/licenses/by-nd/4.0/}{Creative Commons BY-ND 4.0}}
+\csdef{snapshot@license@CC-BY-NC-SA-4.0}{\href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{Creative Commons BY-NC-SA 4.0}}
 % keep the next three lines for compatibility with previous v1.x.x releases
-\csdef{snapshot@license@CC-BY-NC-SA-3.0}{\href{http://creativecommons.org/licenses/by-nc-sa/3.0/}{Creative Commons BY-NC-SA 3.0}}
-\csdef{snapshot@license@CC-BY-NC-ND-3.0}{\href{http://creativecommons.org/licenses/by-nc-nd/3.0/}{Creative Commons BY-NC-ND 3.0}}
-\csdef{snapshot@license@CC-BY-SA-3.0}{\href{http://creativecommons.org/licenses/by-sa/3.0/}{Creative Commons BY-SA 3.0}}
+\csdef{snapshot@license@CC-BY-NC-SA-3.0}{\href{https://creativecommons.org/licenses/by-nc-sa/3.0/}{Creative Commons BY-NC-SA 3.0}}
+\csdef{snapshot@license@CC-BY-NC-ND-3.0}{\href{https://creativecommons.org/licenses/by-nc-nd/3.0/}{Creative Commons BY-NC-ND 3.0}}
+\csdef{snapshot@license@CC-BY-SA-3.0}{\href{https://creativecommons.org/licenses/by-sa/3.0/}{Creative Commons BY-SA 3.0}}
 \newcommand{\snapshot@license}{\ClassWarningNoLine{snapshotmfo}{No license information given}\snapshot@defaultcontent}
 \newcommand{\license}[1]{%
   \expandafter\ifcsdef\expandafter{snapshot@license@#1}{%
@@ -835,7 +834,7 @@
 %  2. copy the content of file.eps into one of the macros below
 % consider shrinking the input pdf using to an appropriate level,
 % e.g. using ghostscript via shrinkpdf
-% http://www.alfredklomp.com/programming/shrinkpdf
+% https://www.alfredklomp.com/programming/shrinkpdf
 
 \snapshot@savemps\snapshot@logo@versionone@en{
 %!PS-Adobe-3.0 EPSF-3.0
