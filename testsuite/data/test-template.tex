@@ -36,8 +36,8 @@
 \director[m]{Gerhard Huisken}
 % Joining the names of two or more editors by ", " like in
 % \junioreditor{First Editor, Second Editor}{junior-editors@mfo.de} yields the plural in the caption. 
-% With german snapshots the optional argument f for female and m for male of \junioreditor,
-% \senioreditor and \director, resp., will make the caption gender-specific, e.g.
+% If the language chosen below provides gender-specific forms, the optional argument f for female and m for male
+% of \junioreditor, \senioreditor and \director, resp., will make the caption gender-specific, e.g.
 % \junioreditor[f]{Anne Schuster}{schuster@example.org} will yield "Editorin ..." instead of "Editor/in ..." and
 % \junioreditor[m]{Martin Schuster}{schuster@example.org} will yield "Editor ..." instead of "Editor/in ...".
 
@@ -69,9 +69,11 @@
 
 % Please feel free to use your own macros but please do not change the layout of the snapshot.
 
-%%% Please select 'ngerman' instead of 'USenglish' if you want to submit your snapshot in German. If you do choose 'ngerman', please run your LaTeX compiler *twice* or delete the .aux file.
-%\usepackage[ngerman]{babel}
+% By now the documentclass supports the languages 'USenglish', 'ngerman' and 'spanish'.
+% If you change the language setting, please delete the .aux file in advance or run your LaTeX compiler *twice*.
 \usepackage[USenglish]{babel}
+%\usepackage[ngerman]{babel}
+%\usepackage[spanish]{babel}
 
 %%% Please separate your names by \and if there are several authors.
 \author{Author One\thanks{Author One is supported by the Mathematical Dreams Come True Foundation.} \and Author Two}

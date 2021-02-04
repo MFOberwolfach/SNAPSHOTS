@@ -2,6 +2,21 @@ RELEASE-NOTES.txt of https://github.com/MFOberwolfach/SNAPSHOTS
 ===============================================================
 
 
+release v2.3.0
+==============
+
+changes
+-------
+* snapshots.cls and template.tex: spanish is now supported to allow translations to spanish
+* testsuite: test-spanish.tex has been added
+* snapshotmfo.cls: the outdated package nag has been removed
+
+known shortcomings
+------------------
+* the control sequence \translator handles translations to spanish, but not translations from spanish
+* isodate produces some warnings with spanish but works fine
+
+
 release v2.2.1
 ==============
 
