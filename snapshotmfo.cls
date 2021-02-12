@@ -32,7 +32,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}
 \listfiles
-\ProvidesClass{snapshotmfo}[2021/02/04 Document class for "Snapshots of modern mathematics from Oberwolfach"]
+\ProvidesClass{snapshotmfo}[2021/02/12 Document class for "Snapshots of modern mathematics from Oberwolfach"]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % snapshotmfo is based on the Koma-Script ‘article’ class
 \LoadClass[10pt,twoside]{scrartcl}
@@ -170,11 +170,14 @@
   }%
   %
   \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@translator@german}{Translated from German by}%
+  \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@translator@spanish}{Translated from Spanish by}%
   \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@translator@english}{Translated from English by\ClassWarningNoLine{snapshotmfo}{Translated by: from English to English}}%
   \newcaptionname{german,ngerman}{\snapshot@l@translator@english}{\"Ubersetzt aus dem Englischen von}%
+  \newcaptionname{german,ngerman}{\snapshot@l@translator@spanish}{\"Ubersetzt aus dem Spanischen von}%
   \newcaptionname{german,ngerman}{\snapshot@l@translator@german}{\"Ubersetzt aus dem Deutschen von\ClassWarningNoLine{snapshotmfo}{Translated by: from German to German}}%
+  \newcaptionname{spanish}{\snapshot@l@translator@english}{Traducido del inglés por}%
   \newcaptionname{spanish}{\snapshot@l@translator@german}{Traducido del alemán por}%
-  \newcaptionname{spanish}{\snapshot@l@translator@english}{Traducido del inglés por\ClassWarningNoLine{snapshotmfo}{Translated by: from Spanish to Spanish}}%
+  \newcaptionname{spanish}{\snapshot@l@translator@english}{Traducido del español por\ClassWarningNoLine{snapshotmfo}{Translated by: from Spanish to Spanish}}%
   \let\snapshot@l@translator@ngerman\snapshot@l@translator@german%
   \let\snapshot@l@translator@USenglish\snapshot@l@translator@english%
   \let\snapshot@l@translator@UKenglish\snapshot@l@translator@english%
@@ -592,6 +595,7 @@
     }%
   }%
   \IfSubStr{#2}{ and }{\renewcaptionname{english,USenglish,UKenglish}{\snapshot@l@junioreditor}{Junior Editors}}{}%
+  \IfSubStr{#2}{ y }{\renewcaptionname{spanish}{\snapshot@l@junioreditor}{Editores}}{}%
   \IfSubStr{#2}{, }{\renewcaptionname{english,USenglish,UKenglish}{\snapshot@l@junioreditor}{Junior Editors}}{}%
   \gdef\snapshot@junioreditor{#2}%
   \gdef\snapshot@junioreditoremail{\mailtoref{#3}}%

@@ -2,8 +2,8 @@ RELEASE-NOTES.txt of https://github.com/MFOberwolfach/SNAPSHOTS
 ===============================================================
 
 
-release v2.3.0
-==============
+release v2.3.0-alpha2
+=====================
 
 changes
 -------
@@ -13,7 +13,6 @@ changes
 
 known shortcomings
 ------------------
-* the control sequence \translator handles translations to spanish, but not translations from spanish
 * isodate produces some warnings with spanish but works fine
 
 
