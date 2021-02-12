@@ -169,19 +169,18 @@
 	\newcaptionname{spanish}{\snapshot@l@creditstext}{Las \emph{Instantáneas de la actualidad matemática desde Oberwolfach} están escritas por los participantes en el programa científico del Instituto de Investigación Matemática de Oberwolfach (MFO). El proyecto de las instantáneas está concebido para promover el conocimiento y el aprecio por la matemática moderna y la investigación matemática entre todo el público interesado internacionalmente. Las instantáneas comenzaron como parte del proyecto ``Oberwolfach se encuentra con IMAGINARY'' en 2013, financiado por la Fundación Klaus Tschira. El proyecto también ha recibido el apoyo de la Fundación Oberwolfach y el MFO. Todas las instantáneas se pueden encontrar en \href{http://www.imaginary.org/es/snapshots}{\nolinkurl{www.imaginary.org/es/snapshots}} y en \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}}.}%    
   }%
   %
+  \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@translator@english}{Translated from English by\ClassWarningNoLine{snapshotmfo}{Translated by: from English to English}}%
   \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@translator@german}{Translated from German by}%
   \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@translator@spanish}{Translated from Spanish by}%
-  \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@translator@english}{Translated from English by\ClassWarningNoLine{snapshotmfo}{Translated by: from English to English}}%
   \newcaptionname{german,ngerman}{\snapshot@l@translator@english}{\"Ubersetzt aus dem Englischen von}%
-  \newcaptionname{german,ngerman}{\snapshot@l@translator@spanish}{\"Ubersetzt aus dem Spanischen von}%
   \newcaptionname{german,ngerman}{\snapshot@l@translator@german}{\"Ubersetzt aus dem Deutschen von\ClassWarningNoLine{snapshotmfo}{Translated by: from German to German}}%
+  \newcaptionname{german,ngerman}{\snapshot@l@translator@spanish}{\"Ubersetzt aus dem Spanischen von}%
   \newcaptionname{spanish}{\snapshot@l@translator@english}{Traducido del inglés por}%
   \newcaptionname{spanish}{\snapshot@l@translator@german}{Traducido del alemán por}%
-  \newcaptionname{spanish}{\snapshot@l@translator@english}{Traducido del español por\ClassWarningNoLine{snapshotmfo}{Translated by: from Spanish to Spanish}}%
+  \newcaptionname{spanish}{\snapshot@l@translator@spanish}{Traducido del español por\ClassWarningNoLine{snapshotmfo}{Translated by: from Spanish to Spanish}}%
   \let\snapshot@l@translator@ngerman\snapshot@l@translator@german%
   \let\snapshot@l@translator@USenglish\snapshot@l@translator@english%
   \let\snapshot@l@translator@UKenglish\snapshot@l@translator@english%
-  \let\snapshot@l@translator@spanish\snapshot@l@translator@spanish%
   %
   \newcaptionname{english,USenglish,UKenglish}{\snapshot@label@l@categorization@math}{Mathematical subjects}%
   \newcaptionname{german,ngerman}{\snapshot@label@l@categorization@math}{Mathematische Gebiete}%
