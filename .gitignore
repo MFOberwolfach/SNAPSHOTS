@@ -10,7 +10,7 @@
 *.pdf
 *.swp
 Thumbs.db
-testsuite/data/mfo.jpg
-testsuite/data/snapshotmfo.cls
-testsuite/data/template.tex
-testsuite/data/trackchanges.sty
+testsuite/data/*/mfo.jpg
+testsuite/data/*/snapshotmfo.cls
+testsuite/data/*/template.tex
+testsuite/data/*/trackchanges.sty

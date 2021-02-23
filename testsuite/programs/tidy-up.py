@@ -75,11 +75,12 @@ for t in mysubs:
       fc.extend(glob.glob('test-*.' + ending))
   
   for f in fc:
-    try:
-      if not args.dryrun:
-        os.remove(f)
-      print(f"{script}: file '{f}' deleted")   
-    except OSError:
-      print(f"{script}: error deleting file '{f}'")
+    if os.path.exists(f):
+      try:
+        if not args.dryrun:
+          os.remove(f)
+        print(f"{script}: file '{f}' deleted")   
+      except OSError:
+        print(f"{script}: error deleting file '{f}'")
 
 #input('Press RETURN to proceed!') 
