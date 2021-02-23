@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 
 '''This script
- * copies auxiliary files into the data subdirectories,
  * removes previous pdf output,
- * generates the latex files from the ini files, if necessary,
  * compiles the latex files thoroughly,
- * merges the relevant pdf output into 01_result.pdf,
+ * merges the pdf output into 01_result.pdf,
  * removes temporary files.
+This is done for the subdirectories other than 'junioreditor'.
 '''
 
 import argparse, configparser, glob, os, os.path, platform, re, subprocess, sys
@@ -16,15 +15,17 @@ script = os.path.basename(__file__)
 progdir = os.path.dirname(os.path.realpath(__file__))
 workdir = os.path.join(progdir, '../data')
 subs = next(os.walk(workdir))[1]
+subs.remove('junioreditor')
 langs = ('USenglish', 'ngerman', 'spanish')
 
+
 ## parse command line
-parser = argparse.ArgumentParser(description = 'generate 01_result*.pdf in each data subdirectory')
+parser = argparse.ArgumentParser(description = 'generate 01_result.pdf in the standard data subdirectories')
 parser.add_argument(
   'vars',
   nargs = '*',
   help = f'Data subdirectories to process. Admissible values: {", ".join(subs)}.\
-Without arguments, all subdirectories (relevant to the chosen language) are processed.'
+Without arguments, all standard subdirectories are processed.'
 )
 parser.add_argument(
   '-l',
@@ -47,9 +48,6 @@ args = parser.parse_args()
 
 ## start work
 print(f'{script}: start time: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
-cmd = ['python3', os.path.join(progdir, 'copy-aux-files.py')]
-if args.dryrun: cmd.insert(2, '-n')
-subprocess.Popen(cmd).communicate()
 os.chdir(workdir)
 
 ## determine subdirectories to process
@@ -79,20 +77,39 @@ print('mysubs', mysubs)
 
 ## process subdirectories
 for sub in mysubs:
-  if sub == 'junioreditor':
-    if args.lang:
-      langlist = [args.lang, ]
-    else:
-      langlist = langs
-    for lang in langlist:
-      cmd = ['python3', os.path.join(progdir, 'test-junioreditor.py'), '-c', lang]
-      if args.dryrun: cmd.insert(2, '-n')
-      subprocess.Popen(cmd).communicate()
-  else:
-    cmd = ['python3', os.path.join(progdir, 'test-standard.py'), 'sub']
-    if args.dryrun: cmd.insert(2, '-n')
+  cmd = ['pdftk', ]      
+  os.chdir(workdir)
+  os.chdir(sub)
+  
+  # remove old temporary files
+  cmd1 = ['python3', os.path.join(progdir, 'tidy-up.py'), '--pdf', sub]
+  if args.dryrun: cmd1.insert(2, '-n')
+  subprocess.Popen(cmd1).communicate()
+  
+  # remove old result
+  fnresult = '01_result.pdf'
+  if os.path.exists(fnresult):
+    os.remove(fnresult)
+  
+  # compile latex files
+  for fn in glob.glob('test-*.tex'):
+    fnbase = re.sub('.tex$', '', fn)
+    for cmd1 in ('pdflatex', 'bibtex', 'pdflatex', 'pdflatex'):
+      print(f'{script}: {cmd1} {fnbase} ...')
+      if not args.dryrun:
+        subprocess.Popen([cmd1 , fnbase]).communicate()
+    cmd.append(fnbase + '.pdf')
+  
+  ## produce final pdf
+  print(f'{script}: merging pdf output into {fnresult}')
+  cmd.extend(['cat', 'output', fnresult])    
+  if not args.dryrun:
     subprocess.Popen(cmd).communicate()
-
-print(f'{script}: end time: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
+  
+  ## tidy up directory
+  if not args.keep:
+    cmd1 = ['python3', os.path.join(progdir, 'tidy-up.py'), '--pdf', sub]
+    if args.dryrun: cmd1.insert(2, '-n')
+    subprocess.Popen(cmd1).communicate()
 
 #input('Press RETURN to proceed!') 

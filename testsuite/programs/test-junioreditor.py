@@ -1,15 +1,11 @@
 #!/usr/bin/env python3
 
-'''This scripts tests the various forms of the junior editor caption.
-It assumes pdftk to be installed and tidy-up.py to be in the search path.
-It runs on Ubuntu 20.04 and will certainly need adaptions to run on
-Windows or macoS.'''
+'''This scripts tests the various forms of the junior editor caption.'''
 
 import argparse, configparser, os, os.path, platform, re, subprocess, sys
   
 ## parse command line
-parser = argparse.ArgumentParser(description = '''
-generate tex and pdf files from junioreditor-template.tex and some ini file''')
+parser = argparse.ArgumentParser(description = 'generate tex and pdf files from junioreditor-template.tex and some ini file')
 parser.add_argument(
   'vars',
   nargs = '*',
@@ -28,14 +24,20 @@ parser.add_argument(
   help = 'preserve temporary files'
 )
 parser.add_argument(
+  '-p',
+  '--purge',
+  action = 'store_true',
+  help = 'delete the class file and others'
+)
+parser.add_argument(
 '-w',
 '--workdir',
-default = '../data/junioreditor',
-help = 'working directory relative to program directory, the default is ../data/junioreditor'
+default = 'junioreditor',
+help = "working directory relative to the data directory, the default is 'junioreditor'"
 )
 args = parser.parse_args()
 progdir = os.path.dirname(os.path.realpath(__file__))
-workdir = os.path.join(progdir, args.workdir)
+workdir = os.path.join(progdir, '../data', args.workdir)
 
 ## parse configuration file 
 os.chdir(workdir)
@@ -88,9 +90,11 @@ for s in mysections:
 ## produce final pdf file
 print(f'merging relevant pages into {fnresult}')
 cmd.extend(['cat', 'output', fnresult])    
-p = subprocess.Popen(cmd)
-p.communicate()
+subprocess.Popen(cmd).communicate()
 
 ## tidy up directory
 if not args.keep:
-  p = subprocess.Popen(['python3', os.path.join(progdir, 'tidy-up.py'), '--pdf', '--tex']).communicate()
+  cmd = ['python3', os.path.join(progdir, 'tidy-up.py'), '--pdf', '--tex']
+  if args.purge:
+    cmd.append('--purge')
+  subprocess.Popen(cmd).communicate()
