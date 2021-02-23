@@ -32,7 +32,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}
 \listfiles
-\ProvidesClass{snapshotmfo}[2021/02/12 Document class for "Snapshots of modern mathematics from Oberwolfach"]
+\ProvidesClass{snapshotmfo}[2021/02/21 Document class for "Snapshots of modern mathematics from Oberwolfach"]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % snapshotmfo is based on the Koma-Script ‘article’ class
 \LoadClass[10pt,twoside]{scrartcl}
@@ -195,10 +195,6 @@
   \newcaptionname{spanish}{\snapshot@l@license}{Licencia}%
   %
   \newcaptionname{english,USenglish,UKenglish,german,ngerman,spanish}{\snapshot@l@doi}{DOI}%
-  %
-  \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@junioreditor}{Junior Editor}%
-  \newcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editor/in}%
-  \newcaptionname{spanish}{\snapshot@l@junioreditor}{Editor/a}%
   %
   \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@senioreditor}{Senior Editor}%
   \newcaptionname{german,ngerman}{\snapshot@l@senioreditor}{Chefeditor/in}%
@@ -539,63 +535,94 @@
 % junior editor
 \newcommand{\snapshot@junioreditor}{\ClassWarningNoLine{snapshotmfo}{No junior editor given}\snapshot@defaultcontent}%
 \newcommand{\snapshot@junioreditoremail}{--}%
-\newcommand*{\junioreditor}[3][n]{%
-  \ifthenelse{\equal{#1}{f}}
-  {% female
-    \IfSubStr{#2}{ und }
-    {% female and plural
-      \renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editorinnen}
-    }%
-    {%
-      \IfSubStr{#2}{, }
-      {% female and plural
-        \renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editorinnen}
-        \renewcaptionname{spanish}{\snapshot@l@junioreditor}{Editores}
-      }%
-      {% female and singular
-        \renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editorin}
-        \renewcaptionname{spanish}{\snapshot@l@junioreditor}{Editora}
-      }%
-    }%
-  }%
-  {% not female
-    \ifthenelse{\equal{#1}{m}}
-    {% male
-      \IfSubStr{#2}{ und }
-      {% male and plural
-        \renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editoren}
-      }%
-      {%
-        \IfSubStr{#2}{, }
-        {% male and plural
-          \renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editoren}
-          \renewcaptionname{spanish}{\snapshot@l@junioreditor}{Editores}
-        }%
-        {% male and singular
-          \renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editor}
-          \renewcaptionname{spanish}{\snapshot@l@junioreditor}{Editor}
-        }%
-      }%
-    }%
-    {% not male
-      \IfSubStr{#2}{ und }
-      {% general and plural
-        \renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editor(inn)en}
-      }%
-      {%
-        \IfSubStr{#2}{, }
-        {% general and plural
-          \renewcaptionname{german,ngerman}{\snapshot@l@junioreditor}{Editor(inn)en}
-          \renewcaptionname{spanish}{\snapshot@l@junioreditor}{Editores}
-        }%
-        {% general and singular
+\newcommand*{\junioreditor}[3][g]{%
+  \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@junioreditor}{%
+    \IfSubStr{#1}{p}{%
+      Junior Editors%
+    }{% no p
+      \IfSubStr{#1}{s}{%
+        Junior Editor%
+      }{% neither p nor s
+        \IfSubStr{#2}{, }{%
+          Junior Editors%
+        }{% neither p nor s nor ', '
+          \IfSubStr{#2}{ and }{%
+            Junior Editors%
+          }{% neither p nor s nor ', ' nor ' and '
+            Junior Editor
+          }%
         }%
       }%
     }%
   }%
-  \IfSubStr{#2}{ and }{\renewcaptionname{english,USenglish,UKenglish}{\snapshot@l@junioreditor}{Junior Editors}}{}%
-  \IfSubStr{#2}{ y }{\renewcaptionname{spanish}{\snapshot@l@junioreditor}{Editores}}{}%
-  \IfSubStr{#2}{, }{\renewcaptionname{english,USenglish,UKenglish}{\snapshot@l@junioreditor}{Junior Editors}}{}%
+  \newcaptionname{german,ngerman}{\snapshot@l@junioreditor}{%
+    \IfSubStr{#1}{p}{%
+      \IfSubStr{#1}{f}{Editorinnen}{%
+        \IfSubStr{#1}{m}{Editoren}{%
+          Editor(inn)en%
+        }%
+      }%
+    }{% no p
+      \IfSubStr{#1}{s}{%
+        \IfSubStr{#1}{f}{Editorin}{%
+          \IfSubStr{#1}{m}{Editor}{%
+            Editor/in%
+          }%
+        }%
+      }{% neither p nor s
+        \IfSubStr{#2}{, }{%
+          \IfSubStr{#1}{f}{Editorinnen}{%
+            \IfSubStr{#1}{m}{Editoren}{%
+              Editor(inn)en%
+            }%
+          }%
+        }{% neither p nor s nor ', '
+          \IfSubStr{#2}{ und }{%
+            \IfSubStr{#1}{f}{Editorinnen}{%
+              \IfSubStr{#1}{m}{Editoren}{%
+                Editor(inn)en%
+              }%
+            }%
+          }{% neither p nor s nor ', ' nor ' und '
+            \IfSubStr{#1}{f}{Editorin}{%
+              \IfSubStr{#1}{m}{Editor}{%
+                Editor/in%
+              }%
+            }%
+          }%
+        }%
+      }%        
+    }%
+  }%
+  \newcaptionname{spanish}{\snapshot@l@junioreditor}{%
+    \IfSubStr{#1}{p}{%
+      \IfSubStr{#1}{f}{Editoras}{%
+        Editores%
+      }%
+    }{% no p
+      \IfSubStr{#1}{s}{%
+        \IfSubStr{#1}{f}{Editora}{%
+          Editor%
+        }%
+      }{% neither p nor s
+        \IfSubStr{#2}{, }{%
+          \IfSubStr{#1}{f}{Editoras}{%
+            Editores%
+          }%
+        }{% neither p nor s nor ', '
+          \IfSubStr{#2}{ y }{%
+            \IfSubStr{#1}{f}{Editoras}{%
+              Editores%
+            }%
+          }{% neither p nor s nor ', ' nor ' y '
+            \IfSubStr{#1}{f}{Editora}{%
+              Editor%
+            }%
+          }%
+        }%
+      }%
+    }%
+  }%
   \gdef\snapshot@junioreditor{#2}%
   \gdef\snapshot@junioreditoremail{\mailtoref{#3}}%
 }%

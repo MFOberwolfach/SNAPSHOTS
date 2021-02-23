@@ -1,0 +1,123 @@
+\documentclass{snapshotmfo}
+
+\categorizationmath{algebra and number theory,analysis,discrete mathematics and foundations,geometry and topology,numerics and scientific computing,probability theory and statistics} %at least one must be chosen. 
+\categorizationconnect{chemistry and earth science,computer science,engineering and technology,finance,humanities and social sciences,life science,physics,reflections on mathematics} %can be void.
+\license{CC-BY-SA-4.0} %recommended
+\snapshotid{5}{1950}
+\junioreditor{Some One}{junior-editors@mfo.de}
+\senioreditor[f]{Carla Cederbaum}{senior-editor@mfo.de}
+\director[m]{Gerhard Huisken}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+
+%\usepackage[ngerman]{babel}
+\usepackage[USenglish]{babel}
+
+\author{Author One\thanks{Author One is supported by the Mathematical Dreams Come True Foundation.} \and Author Two}
+\title{references from embedded .bib~file}
+
+\authorinfo{\authorname{Author One} is a professor of pure mathematics at the First University.}
+\authorinfo{\authorname{Author Two} is a lecturer in applied mathematics at the Second Institution.}
+
+%%%%%%%%%%%%%%%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% There are three ways to provide your references:
+%%% 
+%%% 1. by using the embedded .bib file:
+%%%    * replace the references below by your own ones
+%%%    * and leave the \bibliography command at the end of this file unchanged.
+%%% This is the default way as it is a full-fledged BibTex solution
+%%% while you have to edit only one file.
+%%% 
+%%% [...]
+%%% 
+\usepackage{filecontents}
+\begin{filecontents}{\jobname.bib}
+@book{knuth1984texbook,
+  title = {The TeXbook},
+  author = {Knuth, D. E.},
+  year = {1984},
+  edition={1},
+  publisher = {Addison-Wesley}
+}
+
+@misc{wikiMath,
+  author = {Wikipedia},
+  title = {Mathematics --- {W}ikipedia{,} The Free Encyclopedia},
+  year = {2014},
+  url = {https://en.wikipedia.org/wiki/Mathematics},
+  urldate = {2014-05-19}
+}
+
+@misc{sample13,
+  author = {Sample, J.},
+  howpublished = {\href{http://arxiv.org/abs/8765.4321v1}{arxiv:8765.4321v1}},
+  title = {Interesting facts in mathematics},
+  year = {2013}
+}
+
+@incollection{sample12,
+  author = {Sample, J.},
+  title = {Things you don't know about mathematics},
+  booktitle = {A bookseries about mathematics},
+  publisher = {Some publisher},
+  year = {2012}
+}
+
+@inproceedings{sample11,
+  author={Example, C.},
+  title={A new perspective on mathematics},
+  booktitle={New perspectives on arts and sciences},
+  year={2011}
+}
+
+@phdthesis{sample14,
+  author={Candidate, A.},
+  title={Thesis title},
+  school={MFO},
+  year={2014}
+}
+\end{filecontents}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+\begin{abstract}
+The description of this test is given in the first section. The other section demonstrates this way of providing references.
+\end{abstract}
+
+\section{Comment on this unit test}
+We choose the first way to provide bibliographical references as explained in template.tex:
+\begin{verbatim}
+There are three ways to provide your references:
+
+1. by using the embedded .bib file:
+   * replace the references below by your own ones
+   * and leave the \bibliography command at the end of this file
+     unchanged.
+This is the default way as it is a full-fledged BibTex solution
+while you have to edit only one file.
+
+[...]
+\end{verbatim}
+
+After three or more compilations of this file there should be only one ``LaTeX'' warning.
+Do not make the ``BibTeX'' warnings about ``empty language'' disappear by supplying a language,
+unless you want it explicitely printed in the references!
+
+As this is template.tex's default way to provide references, this test is covered by test-template.tex.
+
+\section{A heading}
+Your actual snapshot.\footnote{This is a footnote.} As usual, you can give references such as \cite{knuth1984texbook, wikiMath, sample13, sample12, sample11, sample14} via the \verb+\cite+ command.\\
+
+We appreciate if you include images or other graphics that illustrate your snapshot. However, please do keep in mind the copyright issues explained in our email in case you include images and graphics you have not produced yourself.
+
+%%%%%%%%%%%%%%%% BIBLIOGRAPHY REVISITED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% 1. If you chose to use the embedded .bib file to provide your bibliographical references,
+%%% leave the following command unchanged:
+\bibliography{\jobname}
+%%%
+%%% [...] 
+%%%
+
+\end{document}

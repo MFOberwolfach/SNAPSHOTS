@@ -1,3 +1,26 @@
+%% template.tex - Template for a snapshot of modern mathematics from Oberwolfach.
+%
+% The following authors contributed to the initial version of this work (in alphabetical order):
+%   Carla Cederbaum (concept, testing)
+%   Konrad Renner (design)
+%   Christian Stussak (programming)
+%
+% with additional support by
+%   Sophia Jahns (testing)
+%   Christoph Knoth (design)
+%   Andreas Daniel Matt (concept)
+%   Lea Renner (testing)
+%
+% To the extent possible under law, the author(s) have dedicated all copyright
+% and related and neighboring rights to this software to the public domain worldwide.
+% This software is distributed without any warranty. 
+%
+% You should have received a copy of the CC0 Public Domain Dedication along with
+% this file. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>. 
+%
+%%
+
+%%% Please use pdflatex for compiling this file.
 \documentclass{snapshotmfo}
 
 %%%%%%%%%%%%%%%% WILL BE FILLED OUT BY THE EDITORS ACCORDING TO YOUR SPECIFICATIONS %%%%%%%%%%%%%%%%%%%%%%
@@ -16,6 +39,13 @@
 % Use the optional argument of \senioreditor and of \director to indicate the gender.
 \senioreditor[f]{Carla Cederbaum}{senior-editor@mfo.de}
 \director[m]{Gerhard Huisken}
+% Joining the names of two or more editors by ", " like in
+% \junioreditor{First Editor, Second Editor}{junior-editors@mfo.de} yields the plural in the caption. 
+% If the language chosen below provides gender-specific forms, the optional argument f for female and m for male
+% of \junioreditor, \senioreditor and \director, resp., will make the caption gender-specific, e.g.
+% \junioreditor[f]{Anne Schuster}{schuster@example.org} will yield "Editorin ..." instead of "Editor/in ..." and
+% \junioreditor[m]{Martin Schuster}{schuster@example.org} will yield "Editor ..." instead of "Editor/in ...".
+
 
 %%% Commands for editing
 % Uncomment for collaborative editing:
@@ -47,8 +77,8 @@
 % By now the documentclass supports the languages 'USenglish', 'ngerman' and 'spanish'.
 % Please submit original snapshots in English or German. The support of Spanish is meant for translations.
 % If you change the language setting, please delete the .aux file in advance or run your LaTeX compiler *twice*.
-\usepackage[USenglish]{babel}
-%\usepackage[ngerman]{babel}
+%\usepackage[USenglish]{babel}
+\usepackage[ngerman]{babel}
 %\usepackage[spanish]{babel}
 
 %%% Please separate your names by \and if there are several authors.
@@ -141,6 +171,47 @@ This is your abstract. It should give a brief overview of your snapshot. If poss
 %\begin{abstract}[This is a plain text equivalent of your abstract used for the PDF meta data. It should give a brief overview of your snapshot. Please do not use more than 500 characters.]
 %This is your abstract containing some special characters or latex control sequences. It should give a brief overview of your snapshot. Please do not use more than 500 characters.
 %\end{abstract}
+
+\section{Comment on this unit test: test-template.tex}
+test-template.tex differs from template.tex only by this section!
+After the following compilations
+\begin{verbatim}
+pdflatex test-template.tex
+bibtex test-template.aux
+pdflatex test-template.tex
+pdflatex test-template.tex
+\end{verbatim}
+the following warnings will remain:
+\begin{verbatim}
+LaTeX Warning: Writing or overwriting file `./test-template.bib'.
+Class snapshotmfo Warning: No snapshot id given.
+Class snapshotmfo Warning: No mathematical subject given.
+Class snapshotmfo Warning: No connection to other fields given.
+Class snapshotmfo Warning: No license information given.
+Class snapshotmfo Warning: Unable to compute DOI.
+
+Warning--empty language in sample14
+Warning--empty language in sample11
+Warning--empty language in knuth1984texbook
+Warning--empty language in sample12
+Warning--empty language in sample13
+Warning--empty language in wikiMath
+\end{verbatim}
+
+Using TeXnicCenter with MikTeX on Windows the final compilation summary will read:
+\begin{verbatim}
+LaTeX-Result: 0 Error(s), 6 Warning(s), 1 Bad Box(es), 5 Pages(s)
+BibTeX-Result: 0 Error(s), 6 Warning(s)
+\end{verbatim}
+
+The ``overwriting file'' warning is inevitable as long as you provide the references the default
+way, i.\,e. as an embedded .bib file.
+
+The ``class snapshotmfo'' warnings will disappear as soon as you supply the expected information.
+
+Do not make the ``empty language'' warnings disappear by supplying languages for the items,
+unless you want the languages explicitely printed in the references!
+
 
 %%% Please insert the main body of your snapshot here.
 \section[Optional plain text substitute for PDF bookmark]{A heading}

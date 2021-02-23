@@ -2,18 +2,20 @@ RELEASE-NOTES.txt of https://github.com/MFOberwolfach/SNAPSHOTS
 ===============================================================
 
 
-release v2.3.0-alpha2
+release v2.3.0-alpha4
 =====================
 
 changes
 -------
-* snapshots.cls and template.tex: spanish is now supported to allow translations to spanish
-* testsuite: test-spanish.tex has been added
+* snapshotmfo.cls and template.tex: Spanish is now supported to allow translations to spanish
+* snapshotmfo.cls: \junioreditor now accepts explicit indication of gender and number,
+    see template.tex for details
 * snapshotmfo.cls: the outdated package nag has been removed
+* testsuite: some expansions and rearrangements
 
 known shortcomings
 ------------------
-* isodate produces some warnings with spanish but works fine
+* isodate produces some warnings with Spanish but works fine
 
 
 release v2.2.1
