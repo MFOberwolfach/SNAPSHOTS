@@ -10,8 +10,14 @@ file template.tex.
 Conversly, the test suite can be used to check the sanity of the
 latex and snapshots installation on a computer.
 
-Prerequisites: latex environment, python3, pdftk. On Windows
-download and install pdftk-server from https://www.pdflabs.com.
+prerequisites
+-------------
+  - latex environment
+  - python3
+  - pdftk
+  
+On Windows download and install pdftk-server from
+https://www.pdflabs.com.
 
 The scripts should work on Linux, macOS and Windows, but you may
 have to adapt them to your system. 

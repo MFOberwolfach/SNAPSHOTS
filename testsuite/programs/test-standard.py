@@ -16,21 +16,37 @@ progdir = os.path.dirname(os.path.realpath(__file__))
 workdir = os.path.join(progdir, '../data')
 subs = next(os.walk(workdir))[1]
 subs.remove('junioreditor')
-langs = ('USenglish', 'ngerman', 'spanish')
+langs = ['USenglish', 'ngerman', 'spanish']
 
+def mylog(a):
+  print(script + ': ' + a, flush = True)
+  
+def myproc(b, internal = True):
+  if internal:
+    if args.dryrun: b.insert(2, '-n')
+    mylog(f'executing \'{" ".join(b)}\' ...')
+    subprocess.Popen(b).communicate()
+  else:
+    mylog(f'executing \'{" ".join(b)}\' ...')
+    if not args.dryrun:
+      subprocess.Popen(b).communicate()
+
+mylog(f'start time: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
 
 ## parse command line
 parser = argparse.ArgumentParser(description = 'generate 01_result.pdf in the standard data subdirectories')
 parser.add_argument(
-  'vars',
-  nargs = '*',
-  help = f'Data subdirectories to process. Admissible values: {", ".join(subs)}.\
-Without arguments, all standard subdirectories are processed.'
+  '-s',
+  '--sub',
+  choices = subs,
+  action = 'append',
+  help = f'Data subdirectories to process. Without arguments, all subdirectories are processed.'
 )
 parser.add_argument(
   '-l',
   '--lang',
-  help = f'Language to process. Admissible values: {", ".join(langs)}. Default is to process all languages.'
+  choices = langs,
+  help = f'Language to process. Default is to process all languages.'
 )
 parser.add_argument(
   '-k',
@@ -39,77 +55,82 @@ parser.add_argument(
   help = 'preserve temporary files'
 )
 parser.add_argument(
+  '-p',
+  '--purge',
+  action = 'store_true',
+  help = 'include the class file and others for deletion'
+)
+parser.add_argument(
   '-n',
   '--dryrun',
   action = 'store_true',
   help = 'only pretend to execute all the work'
 )
 args = parser.parse_args()
+#mylog(f"options are {args}")
 
 ## start work
-print(f'{script}: start time: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
 os.chdir(workdir)
 
 ## determine subdirectories to process
-if args.lang in langs:
-  mysubs = ['lang_' + args.lang, 'junioreditor']
+if args.lang:
+  mysubs = ['lang_' + args.lang, ]
+  if args.sub:
+    mysubs.extend(args.sub)
 else:
-  mysubs = []
-if len(args.vars) > 0:
-  for v in args.vars:
-    if v in subs:
-      mysubs.append(v)
-    else:
-      print(f"{script}: ignoring '{v}' as it is not a subdirectory name")
-  mysubs = list(set(mysubs))
-  if len(mysubs) > 0:
-    print(f'{script}: {len(mysubs)} of {len(subs)} possible subdirectories chosen')
+  if args.sub:
+    mysubs = args.sub
   else:
-    print(f'{script}: no subdirectory chosen, nothing to do')
-    sys.exit(0)
-elif not mysubs:
-  mysubs = subs
-  print(f'{script}: processing all subdirectories as no command line arguments are present')
-
-print('args.lang =', args.lang)
-print('mysubs', mysubs)
-#sys.exit()
-
+    mysubs = subs
+    
 ## process subdirectories
 for sub in mysubs:
-  cmd = ['pdftk', ]      
+  #
+  # pdftk is not installed by default, but is freely available for Linux, macOS and Windows:
+  # pdftk test-*.pdf cat output 01_result.pdf
+  #
+  # ghostscript most likely works on Linux and macOS:
+  # gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=01_result.pdf test-*.pdf
+  #
+  # On macOS the following preinstalled python script should work, too:
+  # "/System/Library/Automator/Combine PDF Pages.action/Contents/Resources/join.py" -o 01_result.pdf test-*.pdf
+  #
+  cmd = ['pdftk', ]
   os.chdir(workdir)
+  mylog(f"descending into subdirectory '{sub}' ...")
   os.chdir(sub)
   
-  # remove old temporary files
-  cmd1 = ['python3', os.path.join(progdir, 'tidy-up.py'), '--pdf', sub]
-  if args.dryrun: cmd1.insert(2, '-n')
-  subprocess.Popen(cmd1).communicate()
+  ## remove old temporary files
+  myproc(['python3', os.path.join(progdir, 'tidy-up.py'), '--pdf', '-s', sub])
   
-  # remove old result
+  ## remove old result
   fnresult = '01_result.pdf'
   if os.path.exists(fnresult):
-    os.remove(fnresult)
-  
-  # compile latex files
+    mylog(f"deleting '{fnresult}' ...")
+    if not args.dryrun:
+      os.remove(fnresult)
+      
+  ## copy cls files
+  myproc(['python3', os.path.join(progdir, 'copy-cls-files.py'), '-s', sub])
+
+  ## compile latex files
   for fn in glob.glob('test-*.tex'):
     fnbase = re.sub('.tex$', '', fn)
     for cmd1 in ('pdflatex', 'bibtex', 'pdflatex', 'pdflatex'):
-      print(f'{script}: {cmd1} {fnbase} ...')
-      if not args.dryrun:
-        subprocess.Popen([cmd1 , fnbase]).communicate()
+      myproc([cmd1 , fnbase], internal = False)
     cmd.append(fnbase + '.pdf')
   
   ## produce final pdf
-  print(f'{script}: merging pdf output into {fnresult}')
+  mylog(f'merging pdf output into {fnresult} ...')
   cmd.extend(['cat', 'output', fnresult])    
-  if not args.dryrun:
-    subprocess.Popen(cmd).communicate()
+  myproc(cmd, internal = False)
   
   ## tidy up directory
   if not args.keep:
-    cmd1 = ['python3', os.path.join(progdir, 'tidy-up.py'), '--pdf', sub]
-    if args.dryrun: cmd1.insert(2, '-n')
-    subprocess.Popen(cmd1).communicate()
+    cmd1 = ['python3', os.path.join(progdir, 'tidy-up.py'), '--pdf', '-s', sub]
+    if args.purge: cmd1.insert(2, '-p')
+    myproc(cmd1)
+
+mylog(f'end time: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
 
 #input('Press RETURN to proceed!') 
