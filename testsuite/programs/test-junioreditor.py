@@ -2,7 +2,7 @@
 
 '''This scripts tests the various forms of the junior editor caption.'''
 
-import argparse, configparser, os, os.path, platform, re, subprocess, sys
+import argparse, configparser, os, os.path, re, subprocess, sys
 from datetime import datetime
 
 script = os.path.basename(__file__)

@@ -8,7 +8,7 @@
 This is done for the subdirectories other than 'junioreditor'.
 '''
 
-import argparse, configparser, glob, os, os.path, platform, re, subprocess, sys
+import argparse, configparser, glob, os, os.path, re, subprocess, sys
 from datetime import datetime
 
 script = os.path.basename(__file__)
@@ -114,7 +114,7 @@ for sub in mysubs:
   myproc(['python3', os.path.join(progdir, 'copy-cls-files.py'), '-s', sub])
 
   ## compile latex files
-  for fn in glob.glob('test-*.tex'):
+  for fn in sorted(glob.glob('test-*.tex')):
     fnbase = re.sub('.tex$', '', fn)
     for cmd1 in ('pdflatex', 'bibtex', 'pdflatex', 'pdflatex'):
       myproc([cmd1 , fnbase], internal = False)

@@ -9,7 +9,7 @@
  * removes temporary files.
 '''
 
-import argparse, configparser, glob, os, os.path, platform, re, subprocess, sys
+import argparse, configparser, glob, os, os.path, re, subprocess, sys
 from datetime import datetime
 
 script = os.path.basename(__file__)
