@@ -7,7 +7,12 @@ script = os.path.basename(__file__)
 clsfiles = ['maya.pdf', 'mfo.jpg', 'snapshotmfo.cls', 'trackchanges.sty']
 
 def mylog(a):
-  print(script + ': ' + a, flush = True)
+  if isinstance(a, str):
+    b = [a,]
+  else:
+    b = a
+  for line in b:
+    print(script + ': ' + line, flush = True)
 
 def do(workdir, subs, sub = None, dry = False):
   global script
@@ -24,14 +29,16 @@ def do(workdir, subs, sub = None, dry = False):
     for f in clsfiles:
   #    mylog(f'copying {f} to {s} ...')
       if not dry:
-        shutil.copy(os.path.join('../../', f), sub)
+        shutil.copy(os.path.join('../../', f), s)
   
-  mylog("The files") 
-  mylog(f"   {', '.join(clsfiles)}")
-  mylog("are necessary to compile the test files.")
-  mylog("So their latest versions have been copied into the subdirectories")
-  mylog(f"   {', '.join(sub)}")
-  mylog("of testsuite/data/.")
+  mylog([
+    "The files",
+    f"   {', '.join(clsfiles)}",
+    "are necessary to compile the test files.",
+    "So their latest versions have been copied into the subdirectories",
+    f"   {', '.join(sub)}",
+    "of testsuite/data/."
+  ])
   
   mylog(f'end time: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
   

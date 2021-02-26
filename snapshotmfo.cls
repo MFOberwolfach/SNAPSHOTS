@@ -298,7 +298,22 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % hyperlinks
-\RequirePackage[unicode, breaklinks]{hyperref}[2021-02-10]
+\RequirePackage[unicode, breaklinks]{hyperref}[2020-10-19]
+\ifpatchable{\pdfstringdef}{\def \begin #1{\csname #1\endcsname }}{\ClassWarning{snapshotmfo}{Please update the hyperref package to 2020-10-19 or newer!}%
+  \catcode`\#=12
+  \newcommand{\patchpdfstringdef}{%
+    \patchcmd\pdfstringdef%
+      {\def \begin #1{\csname #1\endcsname }}%
+      {\def \begin ##1{\csname ##1\endcsname }}%
+      {}{\ClassError{snapshotmfo}{Unable to patch certain hyperref commands (1). Please report this to the maintainer of the snapshotmfo document class}{}}%
+    \patchcmd\pdfstringdef%
+      {\def \end #1{\csname end#1\endcsname }}%
+      {\def \end ##1{\csname end##1\endcsname }}%
+      {}{\ClassError{snapshotmfo}{Unable to patch certain hyperref commands (2). Please report this to the maintainer of the snapshotmfo document class}{}}%
+  }
+  \catcode`\#=6
+  \patchpdfstringdef
+}{}
 
 \@ifpackagelater{hyperref}{2011/02/05}{\hypersetup{hidelinks}}{\hypersetup{colorlinks=false,pdfborder={0 0 0}}}
 
