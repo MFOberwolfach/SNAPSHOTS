@@ -2,152 +2,198 @@
 
 '''This scripts tests the various forms of the junior editor caption.'''
 
-import argparse, configparser, os, os.path, re, subprocess, sys
-from datetime import datetime
+import argparse, configparser, datetime, os, os.path, re, subprocess, sys
+import copy_cls_files, tidy_up
 
 script = os.path.basename(__file__)
 progdir = os.path.dirname(os.path.realpath(__file__))
 workdir = os.path.join(progdir, '../data')
+default_cfbase = 'USenglish'
+default_sub = 'junioreditor'
+default_template = 'junioreditor-template.tex'
 
 def mylog(a):
-  print(script + ': ' + a, flush = True)
-  
-def myproc(b, internal = True):
-  if internal:
-    if args.dryrun: b.insert(2, '-n')
-    mylog(f'executing \'{" ".join(b)}\' ...')
+  if isinstance(a, str):
+    b = [a,]
+  else:
+    b = a
+  for line in b:
+    print(script + ': ' + line, flush = True)
+
+def mylogtime(*a):
+  if a:
+    b = a[0]
+  else:
+    b = 'current'
+  mylog(f'{b} time: {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
+
+def myproc(b, dry = False):
+  mylog(f'executing \'{" ".join(b)}\' ...')
+  if not dry:
     subprocess.Popen(b).communicate()
-  else:
-    mylog(f'executing \'{" ".join(b)}\' ...')
-    if not args.dryrun:
-      subprocess.Popen(b).communicate()
 
-mylog(f'start time: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
+def do(
+  workdir,
+  sections = None,
+  cfbase = default_cfbase,
+  keep = False,
+  cls = False,
+  chosensub = default_sub,
+  template = default_template,
+  dry = False
+):
+  mylogtime('start')
 
-## parse command line
-parser = argparse.ArgumentParser(description = 'generate tex and pdf files from junioreditor-template.tex and some ini file')
-parser.add_argument(
-  'vars',
-  nargs = '*',
-  help = 'Sections of config.ini to process. Without arguments, all sections are processed.'
-)
-parser.add_argument(
-  '-c',
-  '--config',
-  default = 'USenglish',
-  help = "Configuration file basename. The default is 'USenglish'."
-)
-parser.add_argument(
-  '-k',
-  '--keep',
-  action = 'store_true',
-  help = 'preserve temporary files'
-)
-parser.add_argument(
-  '-p',
-  '--purge',
-  action = 'store_true',
-  help = 'delete the class file and others'
-)
-parser.add_argument(
-  '-s',
-  '--sub',
-  default = 'junioreditor',
-  help = "Subdirectory of the data directory. The default is 'junioreditor'."
-)
-parser.add_argument(
-  '-t',
-  '--template',
-  default = 'junioreditor-template.tex',
-  help = "Template file. The default is 'junioreditor-template.tex'."
-)
-parser.add_argument(
-  '-n',
-  '--dryrun',
-  action = 'store_true',
-  help = 'only pretend to execute all the work'
-)
-args = parser.parse_args()
-#mylog(f"options are {args}")
+  ## parse configuration file
+  os.chdir(workdir)
+  mylog(f"descending into subdirectory '{chosensub}' ...")
+  os.chdir(chosensub)
+  c = configparser.ConfigParser()
+  c.read_file(open(cfbase + '.ini'))
+  content = open(template).read()
 
-## parse configuration file 
-os.chdir(workdir)
-mylog(f"descending into subdirectory '{args.sub}' ...")
-os.chdir(args.sub)
-config = configparser.ConfigParser()
-config.read_file(open(args.config + '.ini'))
-content = open(args.template).read()
-
-if len(args.vars) > 0:
-  mysections = []
-  for v in args.vars:
-    if v in config.sections():
-      mysections.append(v)
+  if sections:
+    mysections = []
+    for s in sections:
+      if s in c.sections():
+        mysections.append(s)
+      else:
+        mylog(f"ignoring '{s}' as it is not a section name")
+    mysections = sorted(list(set(mysections)))
+    if mysections:
+      mylog(f'{len(mysections)} of {len(c.sections())} possible sections chosen')
     else:
-      mylog(f"ignoring '{v}' as it is not a section name")
-  mysections = list(set(mysections))
-  if len(mysections) > 0:
-    mylog(f'{len(mysections)} of {len(config.sections())} possible sections chosen')
+      mylog(f'no sections chosen, nothing to do')
+      return
   else:
-    mylog(f'no sections chosen, nothing to do')
-    sys.exit(0)
-else:
-  mysections = config.sections()
-  mylog(f'processing all sections as no command line arguments are present')
+    mysections = c.sections()
+    mylog(f'processing all sections as no sections were chosen')
 
-## remove old temporary files
-myproc(['python3', os.path.join(progdir, 'tidy-up.py'), '--pdf', '--tex', '-s', args.sub])
+  ## remove old temporary files and results
+  tidy_up.do(
+    workdir,
+    [chosensub,],
+    pdf = True,
+    tex = True,
+    res = True,
+    dry = dry
+  )
 
-# remove old result
-fnresult = '01_result_' + args.config + '.pdf'
-if os.path.exists(fnresult):
-  mylog(f"deleting '{fnresult}' ...")
-  if not args.dryrun:
-    os.remove(fnresult) 
+  ## copy cls files
+  copy_cls_files.do(workdir, [chosensub,], dry = dry)
 
-## copy cls files
-myproc(['python3', os.path.join(progdir, 'copy-cls-files.py'), '-s', args.sub])
+  ## generate tex and pdf files
+  #
+  # pdftk is not installed by default, but is freely available for Linux, macOS and Windows:
+  # pdftk test-*.pdf cat output 01_result.pdf
+  #
+  # ghostscript most likely works on Linux and macOS:
+  # gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=01_result.pdf test-*.pdf
+  #
+  # On macOS the following preinstalled python script should work, too:
+  # "/System/Library/Automator/Combine PDF Pages.action/Contents/Resources/join.py" -o 01_result.pdf test-*.pdf
+  #
+  cmd = ['pdftk',]
+  mylog(f"changing to direcotry '{workdir}' ...")
+  os.chdir(workdir)
+  mylog(f"descending into subdirectory '{chosensub}' ...")
+  os.chdir(chosensub)
+  for s in mysections:
+    mylog(f'processing section {s}')
+    fnbase = f'autogenerated-{cfbase}-{s}'
+    fntex = fnbase + '.tex'
+    copy = content
+    with open(fntex, 'w') as out:
+      cs = c[s]
+      for a in cs:
+#        mylog(f'replacing {a.upper()} with {cs[a]}')
+        copy = re.sub(a.upper(), cs[a], copy)
+      mylog(f'writing output to {fntex}')
+      out.write(copy)
+    for cmd1 in ('pdflatex', 'bibtex', 'pdflatex', 'pdflatex'):
+      myproc([cmd1 , fnbase], dry = dry)
+    myproc(['pdftk' , fnbase + '.pdf', 'burst', 'output', fnbase + '_%03d.pdf'], dry = dry)
+    cmd.append(fnbase + '_002.pdf')
 
-## generate tex and pdf files
-#
-# pdftk is not installed by default, but is freely available for Linux, macOS and Windows:
-# pdftk test-*.pdf cat output 01_result.pdf
-#
-# ghostscript most likely works on Linux and macOS:
-# gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=01_result.pdf test-*.pdf
-#
-# On macOS the following preinstalled python script should work, too:
-# "/System/Library/Automator/Combine PDF Pages.action/Contents/Resources/join.py" -o 01_result.pdf test-*.pdf
-#
-cmd = ['pdftk',]      
-for s in mysections:
-  mylog(f'processing section {s}')
-  fnbase = f'autogenerated-{args.config}-{s}'
-  fntex = fnbase + '.tex'
-  copy = content
-  with open(fntex, 'w') as out:
-    cs = config[s]
-    for a in cs:
-#      mylog(f'replacing {a.upper()} with {cs[a]}')
-      copy = re.sub(a.upper(), cs[a], copy)
-    mylog(f'writing output to {fntex}')
-    out.write(copy)
-  for cmd1 in ('pdflatex', 'bibtex', 'pdflatex', 'pdflatex'):
-    myproc([cmd1 , fnbase], internal = False)
-  myproc(['pdftk' , fnbase + '.pdf', 'burst', 'output', fnbase + '_%03d.pdf'], internal = False)  
-  cmd.append(fnbase + '_002.pdf')
+  ## produce final pdf file
+  fnresult = f'01_result_{s}.pdf'
+  mylog(f'merging relevant pages into {fnresult}')
+  cmd.extend(['cat', 'output', fnresult])
+  myproc(cmd, dry = dry)
 
-## produce final pdf file
-mylog(f'merging relevant pages into {fnresult}')
-cmd.extend(['cat', 'output', fnresult])    
-myproc(cmd, internal = False)
+  ## tidy up directory
+  if not keep:
+    tidy_up.do(
+      workdir,
+      [chosensub,],
+      pdf = True,
+      tex = True,
+      cls = cls,
+      dry = dry
+    )
 
-## tidy up directory
-if not args.keep:
-  cmd1 = ['python3', os.path.join(progdir, 'tidy-up.py'), '--pdf', '--tex', '-s', args.sub]
-  if args.purge: cmd1.insert(2, '-p')
-  myproc(cmd1)
+  mylogtime('end')
 
-mylog(f'end time: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
+if __name__ == '__main__':
+  progdir = os.path.dirname(os.path.realpath(__file__))
+  workdir = os.path.join(progdir, '../data')
+  allsubs = sorted(next(os.walk(workdir))[1])
+  jesubs = [s for s in allsubs if re.match('junioreditor', s)]
 
-#input('Press RETURN to proceed!') 
+  ## parse command line
+  parser = argparse.ArgumentParser(description = 'generate tex and pdf files from a latex template and an ini file')
+  parser.add_argument(
+    'sections',
+    nargs = '*',
+    help = 'Sections of configuration file to process. Without arguments, all sections are processed.'
+  )
+  parser.add_argument(
+    '-c',
+    '--config',
+    default = default_cfbase,
+    help = f"Configuration file basename. The default is '{default_cfbase}'."
+  )
+  parser.add_argument(
+    '-k',
+    '--keep',
+    action = 'store_true',
+    help = 'preserve temporary files'
+  )
+  parser.add_argument(
+    '--cls',
+    action = 'store_true',
+    help = 'delete the class file and others'
+  )
+  parser.add_argument(
+    '-s',
+    '--sub',
+    choices = jesubs,
+    default = default_sub,
+    help = f"Subdirectory of the data directory. The default is '{default_sub}'."
+  )
+  parser.add_argument(
+    '-t',
+    '--template',
+    default = default_template,
+    help = f"Template file. The default is '{default_template}'."
+  )
+  parser.add_argument(
+    '-n',
+    '--dry',
+    action = 'store_true',
+    help = 'pretend only to execute the tasks'
+  )
+  args = parser.parse_args()
+  mylog(f'args are {args}')
+  do(
+    workdir,
+    sections = args.sections,
+    cfbase = args.config,
+    keep = args.keep,
+    cls = args.cls,
+    chosensub = args.sub,
+    template = args.template,
+    dry = args.dry
+  )
+
+  #input('Press RETURN to proceed!')

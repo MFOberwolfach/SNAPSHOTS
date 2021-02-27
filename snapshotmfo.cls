@@ -10,9 +10,9 @@
 %   https://www.latex-project.org/lppl.txt
 % and version 1.3 or later is part of all distributions of LaTeX
 % version 2005/12/01 or later.
-% 
+%
 % This work has the LPPL maintenance status `maintained'.
-% 
+%
 % The Current Maintainer of this work is Helmut Kastenholz
 % (Mathematisches Forschungsinstitut Oberwolfach).
 %
@@ -38,7 +38,7 @@
 \LoadClass[10pt,twoside]{scrartcl}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% require pdflatex compiler if possible 
+% require pdflatex compiler if possible
 \IfFileExists{iftex.sty}{\RequirePackage{iftex}\RequirePDFTeX}{}
 \RequirePackage{ifpdf}
 \ifpdf\else\ClassError{snapshotmfo}{The snapshotmfo document class only works with pdflatex}{Use pdflatex to compile your document}\fi
@@ -166,7 +166,7 @@
   }{%
     \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@creditstext}{\emph{Snapshots of modern mathematics from Oberwolfach} are written by participants in the scientific program of the Mathematisches Forschungsinstitut Oberwolfach (MFO). The snapshot project is designed to promote the understanding and appreciation \\of modern mathematics and mathematical research in the interested public worldwide. It started as part of the project ``Oberwolfach meets IMAGINARY'' in 2013 with a grant by the Klaus Tschira Foundation. The project has also been supported by the Oberwolfach Foundation and the MFO. All snapshots can be found on \href{https://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} and on \href{https://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}}.}%
     \newcaptionname{german,ngerman}{\snapshot@l@creditstext}{\emph{Schnappsch\"usse moderner Mathematik aus Oberwolfach} werden von Teilnehmerinnen und Teilnehmern des wissenschaftlichen Programms des Mathematischen Forschungs-\\instituts Oberwolfach (MFO) geschrieben. Das Schnappschuss-Projekt hat zum Ziel, Verst\"andnis und Wertsch\"atzung f\"ur moderne Mathematik und mathematische For-\\schung in der interessierten \"Offentlichkeit weltweit zu f\"ordern. Es begann als Teil des Projekts \glqq Oberwolfach trifft IMAGINARY\grqq, welches von der Klaus Tschira Stiftung gef\"ordert wird. Das Projekt wurde auch von der Oberwolfach Stiftung sowie vom MFO unterst\"utzt. Alle Schnappsch\"usse k\"onnen unter \href{https://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} sowie unter \href{https://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}} abgerufen werden.}%
-	\newcaptionname{spanish}{\snapshot@l@creditstext}{Las \emph{Instantáneas de la actualidad matemática desde Oberwolfach} están escritas por los participantes en el programa científico del Instituto de Investigación Matemática de Oberwolfach (MFO). El proyecto de las instantáneas está concebido para promover el conocimiento y el aprecio por la matemática moderna y la investigación matemática entre todo el público interesado internacionalmente. Las instantáneas comenzaron como parte del proyecto ``Oberwolfach se encuentra con IMAGINARY'' en 2013, financiado por la Fundación Klaus Tschira. El proyecto también ha recibido el apoyo de la Fundación Oberwolfach y el MFO. Todas las instantáneas se pueden encontrar en \href{http://www.imaginary.org/es/snapshots}{\nolinkurl{www.imaginary.org/es/snapshots}} y en \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}}.}%    
+	\newcaptionname{spanish}{\snapshot@l@creditstext}{Las \emph{Instantáneas de la actualidad matemática desde Oberwolfach} están escritas por los participantes en el programa científico del Instituto de Investigación Matemática de Oberwolfach (MFO). El proyecto de las instantáneas está concebido para promover el conocimiento y el aprecio por la matemática moderna y la investigación matemática entre todo el público interesado internacionalmente. Las instantáneas comenzaron como parte del proyecto ``Oberwolfach se encuentra con IMAGINARY'' en 2013, financiado por la Fundación Klaus Tschira. El proyecto también ha recibido el apoyo de la Fundación Oberwolfach y el MFO. Todas las instantáneas se pueden encontrar en \href{http://www.imaginary.org/es/snapshots}{\nolinkurl{www.imaginary.org/es/snapshots}} y en \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}}.}%
   }%
   %
   \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@translator@english}{Translated from English by\ClassWarningNoLine{snapshotmfo}{Translated by: from English to English}}%
@@ -269,7 +269,7 @@
   \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@reflections on mathematics}{Betrachtungen \texorpdfstring{\"uber}{ueber} Mathematik}
   % section name for image credits
   \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@image credits}{Image credits}
-  \newcscaptionname{german,ngerman}{snaphot@l@image credits}{Bildquellen}  
+  \newcscaptionname{german,ngerman}{snaphot@l@image credits}{Bildquellen}
   \newcscaptionname{spanish}{snaphot@l@image credits}{Créditos de las imágenes}
 }
 
@@ -278,7 +278,7 @@
 \RequirePackage{graphicx,color}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% string manipulation 
+% string manipulation
 \RequirePackage{xstring}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -299,7 +299,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % hyperlinks
 \RequirePackage[unicode, breaklinks]{hyperref}[2020-10-19]
-\ifpatchable{\pdfstringdef}{\def \begin #1{\csname #1\endcsname }}{\ClassWarning{snapshotmfo}{Please update the hyperref package to 2020-10-19 or newer!}%
+%\ifpatchable{\pdfstringdef}{\def \begin #1{\csname #1\endcsname }}{\ClassWarning{snapshotmfo}{Please update the hyperref package to 2020-10-19 or newer!}%
   \catcode`\#=12
   \newcommand{\patchpdfstringdef}{%
     \patchcmd\pdfstringdef%
@@ -313,7 +313,7 @@
   }
   \catcode`\#=6
   \patchpdfstringdef
-}{}
+%}{}
 
 \@ifpackagelater{hyperref}{2011/02/05}{\hypersetup{hidelinks}}{\hypersetup{colorlinks=false,pdfborder={0 0 0}}}
 
@@ -440,7 +440,7 @@
 \newcommand{\license}[1]{%
   \expandafter\ifcsdef\expandafter{snapshot@license@#1}{%
     \renewcommand{\snapshot@license}{\csname snapshot@license@#1\endcsname}%
-  }{\ClassError{snapshotmfo}{Unknown license name}{Please use one of CC-BY-SA-4.0, CC-BY-ND-4.0 or CC-BY-NC-SA-4.0. (CC-BY-NC-SA-3.0, CC-BY-NC-ND-3.0 and CC-BY-SA-3.0 still work, too.)}}%  
+  }{\ClassError{snapshotmfo}{Unknown license name}{Please use one of CC-BY-SA-4.0, CC-BY-ND-4.0 or CC-BY-NC-SA-4.0. (CC-BY-NC-SA-3.0, CC-BY-NC-ND-3.0 and CC-BY-SA-3.0 still work, too.)}}%
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -593,7 +593,7 @@
             }%
           }%
         }%
-      }%        
+      }%
     }%
   }%
   \newcaptionname{spanish}{\snapshot@l@junioreditor}{%
@@ -769,7 +769,7 @@
   \global\let\and\relax
   % undefine snapshotmfo commands to be used in preamble only
   \global\let\authorinfo\relax
-  \global\let\categorizationmath\relax 
+  \global\let\categorizationmath\relax
   \global\let\categorizationconnect\relax
   \global\let\license\relax
   \global\let\snapshotid\relax
@@ -806,7 +806,7 @@
   \end{center}%
   \par
 }%
-\AtBeginDocument{\maketitle}% automatically typeset title 
+\AtBeginDocument{\maketitle}% automatically typeset title
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % define last page (credits, footer, ...)
@@ -938,8 +938,8 @@
 
 \snapshot@savemps\snapshot@logo@versionone@en{
 %!PS-Adobe-3.0 EPSF-3.0
-%%BoundingBox: 0 0 525 44 
-%%HiResBoundingBox: 0.08498 0.71169 524.82 43.22661 
+%%BoundingBox: 0 0 525 44
+%%HiResBoundingBox: 0.08498 0.71169 524.82 43.22661
 %%Creator: MetaPost 1.803
 %%CreationDate: 2014.09.12:1519
 %%Pages: 1
@@ -4703,8 +4703,8 @@ showpage
 
 \snapshot@savemps\snapshot@logo@versionone@de{
 %!PS-Adobe-3.0 EPSF-3.0
-%%BoundingBox: 0 0 525 44 
-%%HiResBoundingBox: 0.08498 0.53389 524.82 43.22661 
+%%BoundingBox: 0 0 525 44
+%%HiResBoundingBox: 0.08498 0.53389 524.82 43.22661
 %%Creator: MetaPost 1.803
 %%CreationDate: 2014.09.12:1519
 %%Pages: 1
@@ -8475,8 +8475,8 @@ showpage
 
 \snapshot@savemps\snapshot@logo@en{
 %!PS-Adobe-3.0 EPSF-3.0
-%%BoundingBox: 0 4 516 43 
-%%HiResBoundingBox: 0.48376 4.361 515.10199 42.47836 
+%%BoundingBox: 0 4 516 43
+%%HiResBoundingBox: 0.48376 4.361 515.10199 42.47836
 %%Creator: MetaPost 1.803
 %%CreationDate: 2017.05.22:1446
 %%Pages: 1
@@ -10506,8 +10506,8 @@ showpage
 
 \snapshot@savemps\snapshot@logo@de{
 %!PS-Adobe-3.0 EPSF-3.0
-%%BoundingBox: 0 4 516 43 
-%%HiResBoundingBox: 0.48376 4.70842 515.10199 42.47836 
+%%BoundingBox: 0 4 516 43
+%%HiResBoundingBox: 0.48376 4.70842 515.10199 42.47836
 %%Creator: MetaPost 1.803
 %%CreationDate: 2017.05.22:1447
 %%Pages: 1

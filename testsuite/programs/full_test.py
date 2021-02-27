@@ -9,43 +9,51 @@
  * removes temporary files.
 '''
 
-import argparse, configparser, glob, os, os.path, re, subprocess, sys
-from datetime import datetime
+import argparse, configparser, datetime, glob, os, os.path, re, subprocess, sys
+import test_standard, test_junioreditor
 
 script = os.path.basename(__file__)
 progdir = os.path.dirname(os.path.realpath(__file__))
 workdir = os.path.join(progdir, '../data')
-subs = next(os.walk(workdir))[1]
-langs = ['USenglish', 'ngerman', 'spanish']
+allsubs = sorted(next(os.walk(workdir))[1])
+alllangs = ['USenglish', 'ngerman', 'spanish']
 
 def mylog(a):
-  print(script + ': ' + a, flush = True)
-  
-def myproc(b, internal = True):
-  if internal:
-    if args.dryrun: b.insert(2, '-n')
-    mylog(f'executing \'{" ".join(b)}\' ...')
-    subprocess.Popen(b).communicate()
+  if isinstance(a, str):
+    b = [a,]
   else:
-    mylog(f'executing \'{" ".join(b)}\' ...')
-    if not args.dryrun:
-      subprocess.Popen(b).communicate()
+    b = a
+  for line in b:
+    print(script + ': ' + line, flush = True)
 
-mylog(f'start time: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
-  
+def mylogtime(*a):
+  if a:
+    b = a[0]
+  else:
+    b = 'current'
+  mylog(f'{b} time: {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
+
+def myproc(b, dry = False):
+  mylog(f'executing \'{" ".join(b)}\' ...')
+  if not dry:
+    subprocess.Popen(b).communicate()
+
+mylogtime('start')
+
 ## parse command line
 parser = argparse.ArgumentParser(description = 'generate 01_result*.pdf in each data subdirectory')
 parser.add_argument(
   '-s',
   '--sub',
-  choices = subs,
+  choices = allsubs,
   action = 'append',
   help = f'Data subdirectories to process. Without arguments, all subdirectories (relevant to the chosen language) are processed.'
 )
 parser.add_argument(
   '-l',
   '--lang',
-  help = f'Language to process. Admissible values: {", ".join(langs)}. Default is to process all languages.'
+  choices = alllangs,
+  help = f'Language to process. Default is to process all languages.'
 )
 parser.add_argument(
   '-k',
@@ -54,53 +62,50 @@ parser.add_argument(
   help = 'preserve temporary files'
 )
 parser.add_argument(
-  '-p',
-  '--purge',
+  '--cls',
   action = 'store_true',
   help = 'delete the class file and others'
 )
 parser.add_argument(
   '-n',
-  '--dryrun',
+  '--dry',
   action = 'store_true',
-  help = 'only pretend to execute all the work'
+    help = 'pretend only to execute the tasks'
 )
 args = parser.parse_args()
-#mylog(f"options are {args}")
 
-## start work
-os.chdir(workdir)
-
-## determine subdirectories to process
-if args.lang:
-  mysubs = ['lang_' + args.lang, 'junioreditor']
-  if args.sub:
-    mysubs.extend(args.sub)
+if args.sub:
+  chosensubs = args.sub
 else:
-  if args.sub:
-    mysubs = args.sub
+  chosensubs = allsubs
+chosensubs = sorted(list(set(chosensubs)))
+
+## junioreditor tests
+if 'junioreditor' in chosensubs or args.lang:
+  if args.lang:
+    langs = [args.lang, ]
   else:
-    mysubs = subs
+    langs = alllangs
+  for lang in langs:
+    test_junioreditor.do(
+      workdir,
+      cfbase = lang,
+      keep = args.keep,
+      cls = args.cls,
+      dry = args.dry
+    )
 
+## standard tests
+remains = [s for s in chosensubs if not re.match('junioreditor', s)]
+test_standard.do(
+  workdir,
+  remains,
+  lang = args.lang,
+  keep = args.keep,
+  cls = args.cls,
+  dry = args.dry
+)
 
-## process subdirectories
-for sub in mysubs:
-  if sub == 'junioreditor':
-    if args.lang:
-      langlist = [args.lang, ]
-    else:
-      langlist = langs
-    for lang in langlist:
-      cmd = ['python3', os.path.join(progdir, 'test-junioreditor.py'), '-c', lang]
-      if args.keep: cmd.insert(2, '-k')
-      if args.purge: cmd.insert(2, '-p')
-      myproc(cmd)
-  else:
-    cmd = ['python3', os.path.join(progdir, 'test-standard.py'), '-s', sub]
-    if args.keep: cmd.insert(2, '-k')
-    if args.purge: cmd.insert(2, '-p')
-    myproc(cmd)
+mylogtime('end')
 
-mylog(f'end time: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
-
-#input('Press RETURN to proceed!') 
+#input('Press RETURN to proceed!')

@@ -1,30 +1,41 @@
 #!/usr/bin/env python3
 
-import argparse, glob, os, os.path, sys
-from datetime import datetime
+import argparse, datetime, glob, os, os.path, sys
 
 script = os.path.basename(__file__)
 clsfiles = ['maya.pdf', 'mfo.jpg', 'snapshotmfo.cls', 'trackchanges.sty']
 
 def mylog(a):
-  print(script + ': ' + a, flush = True)
+  if isinstance(a, str):
+    b = [a,]
+  else:
+    b = a
+  for line in b:
+    print(script + ': ' + line, flush = True)
+
+def mylogtime(*a):
+  if a:
+    b = a[0]
+  else:
+    b = 'current'
+  mylog(f'{b} time: {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
 
 def do(
   workdir,
-  subs,
-  sub = None,
+  allsubs,
+  chosensubs = None,
   pdf = False,
   tex = False,
   cls = False,
   res = False,
   dry = False
 ):
-  global script
-  mylog(f'start time: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
+  mylogtime('start')
 
   ## determine subdirectories to process
-  if not sub:
-    sub = subs
+  if not chosensubs:
+    chosensubs = allsubs
+  chosensubs = sorted(list(set(chosensubs)))
 
   ## main program
   endings = ['aux', 'bib', 'bbl', 'blg', 'log', 'out',]
@@ -32,7 +43,7 @@ def do(
   if tex: endings.append('tex')
   files = ['doc_data.txt',]
   if cls: files.extend(clsfiles)
-  for s in sub:
+  for s in chosensubs:
     os.chdir(workdir)
     mylog(f"descending into subdirectory '{s}' ...")
     os.chdir(s)
@@ -43,31 +54,29 @@ def do(
         fc.extend(sorted(glob.glob('test-*.' + ending)))
       if res:
         fc.extend(sorted(glob.glob('01_result*.pdf')))
-    
+
     for f in fc:
       if os.path.exists(f):
         try:
-          if not dryrun:
+          if not dry:
             os.remove(f)
-  #        mylog(f"file '{f}' deleted")   
+  #        mylog(f"file '{f}' deleted")
         except OSError:
           mylog(f"error deleting file '{f}'")
-  
-  mylog(f'end time: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
-  
-  #input('Press RETURN to proceed!') 
+
+  mylogtime('end')
 
 if __name__ == '__main__':
   progdir = os.path.dirname(os.path.realpath(__file__))
   workdir = os.path.join(progdir, '../data')
-  subs = sorted(next(os.walk(workdir))[1])
-  
+  allsubs = sorted(next(os.walk(workdir))[1])
+
   ## parse command line
   parser = argparse.ArgumentParser(description = 'remove temporary files in given directory')
   parser.add_argument(
     '-s',
     '--sub',
-    choices = subs,
+    choices = allsubs,
     action = 'append',
     help = f'Data subdirectories to process. Without arguments, all subdirectories are processed.'
   )
@@ -101,8 +110,8 @@ if __name__ == '__main__':
 
   do(
     workdir,
-    subs,
-    sub = args.sub,
+    allsubs,
+    chosensubs = args.sub,
     pdf = args.pdf,
     tex = args.tex,
     cls = args.cls,
@@ -110,3 +119,4 @@ if __name__ == '__main__':
     dry = args.dry
   )
 
+  #input('Press RETURN to proceed!')
