@@ -2,8 +2,8 @@ RELEASE-NOTES.txt of https://github.com/MFOberwolfach/SNAPSHOTS
 ===============================================================
 
 
-release v2.3.0-alpha4
-=====================
+release v2.3.0
+==============
 
 changes
 -------
@@ -11,7 +11,10 @@ changes
 * snapshotmfo.cls: \junioreditor now accepts explicit indication of gender and number,
     see template.tex for details
 * snapshotmfo.cls: the outdated package nag has been removed
-* testsuite: some expansions and rearrangements
+* snapshotmfo.cls now also works with the latest version of the hyperref package
+* testsuite: the unit tests have been rearranged
+* testsuite: the testing programms have been ported to python3 making them independent
+    of the operating system
 
 known shortcomings
 ------------------

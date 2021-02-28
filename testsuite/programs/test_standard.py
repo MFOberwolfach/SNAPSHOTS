@@ -67,6 +67,7 @@ def do(
   copy_cls_files.do(workdir, standardsubs, chosensubs = chosensubs, dry = dry)
 
   fnresult = f'01_result.pdf'
+  compound = ['pdftk', ]
   for s in chosensubs:
     os.chdir(workdir)
     mylog(f"descending into subdirectory '{s}' ...")
@@ -94,6 +95,14 @@ def do(
     mylog(f'merging pdf output into {fnresult} ...')
     cmd.extend(['cat', 'output', fnresult])
     myproc(cmd, dry = dry)
+    compound.append(os.path.join(s, fnresult))
+
+  ## produce overall result file
+  os.chdir(workdir)
+  fncompound = '01_result_standard.pdf'
+  compound.extend(['cat', 'output', fncompound])
+  mylog(f"producing overall result file in direcotry '{workdir}' ...")
+  myproc(compound, dry = dry)
 
   ## tidy up directory
   if not keep:

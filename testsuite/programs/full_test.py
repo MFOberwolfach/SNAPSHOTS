@@ -53,7 +53,7 @@ parser.add_argument(
   '-l',
   '--lang',
   choices = alllangs,
-  help = f'Language to process. Default is to process all languages.'
+  help = f"Language to process. Default is to process all languages, if subdirectory 'junioreditor' is chosen."
 )
 parser.add_argument(
   '-k',
@@ -74,37 +74,58 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
-if args.sub:
-  chosensubs = args.sub
+## determine subdirectories to process
+if args.lang:
+  chosensubs = ['lang_' + args.lang, 'junioreditor',]
+  if args.sub:
+    chosensubs.extend(args.sub)
 else:
-  chosensubs = allsubs
+  if args.sub:
+    chosensubs = args.sub
+  else:
+    chosensubs = allsubs
 chosensubs = sorted(list(set(chosensubs)))
 
 ## junioreditor tests
-if 'junioreditor' in chosensubs or args.lang:
+je = False
+if 'junioreditor' in chosensubs:
+  je = True
   if args.lang:
     langs = [args.lang, ]
   else:
     langs = alllangs
-  for lang in langs:
-    test_junioreditor.do(
-      workdir,
-      cfbase = lang,
-      keep = args.keep,
-      cls = args.cls,
-      dry = args.dry
-    )
+  test_junioreditor.do(
+    workdir,
+    cfbase = langs,
+    keep = args.keep,
+    cls = args.cls,
+    dry = args.dry
+  )
 
 ## standard tests
+st = False
 remains = [s for s in chosensubs if not re.match('junioreditor', s)]
-test_standard.do(
-  workdir,
-  remains,
-  lang = args.lang,
-  keep = args.keep,
-  cls = args.cls,
-  dry = args.dry
-)
+if remains:
+  st = True
+  test_standard.do(
+    workdir,
+    remains,
+    lang = args.lang,
+    keep = args.keep,
+    cls = args.cls,
+    dry = args.dry
+  )
+
+## produce overall result file
+os.chdir(workdir)
+cmd = ['pdftk', ]
+if je:
+  cmd.append(os.path.join('junioreditor', '01_result.pdf'))
+if st:
+  cmd.append('01_result_standard.pdf')
+cmd.extend(['cat', 'output', '01_result.pdf'])
+mylog(f"producing overall result file in direcotry '{workdir}' ...")
+myproc(cmd, dry = args.dry)
 
 mylogtime('end')
 
