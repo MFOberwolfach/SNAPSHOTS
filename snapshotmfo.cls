@@ -32,7 +32,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}
 \listfiles
-\ProvidesClass{snapshotmfo}[2021/02/21 Document class for "Snapshots of modern mathematics from Oberwolfach"]
+\ProvidesClass{snapshotmfo}[2021/03/15 Document class for "Snapshots of modern mathematics from Oberwolfach"]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % snapshotmfo is based on the Koma-Script ‘article’ class
 \LoadClass[10pt,twoside]{scrartcl}
@@ -298,7 +298,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % hyperlinks
-\RequirePackage[unicode, breaklinks]{hyperref}[2020-10-19]
+\RequirePackage[unicode,breaklinks,bookmarksopen]{hyperref}[2020-10-19]
 \catcode`\#=12
 \newcommand{\patchpdfstringdef}{%
   \patchcmd\pdfstringdef%
@@ -357,7 +357,7 @@
 \newcommand{\snapshot@id}{\ClassWarningNoLine{snapshotmfo}{No snapshot id given}xx}%
 \newcommand{\snapshot@year}{xxxx}%
 \AtBeginDocument{\newcaptionname{english,USenglish,UKenglish,german,ngerman,spanish}{\snapshot@doi}{\ClassWarningNoLine{snapshotmfo}{Unable to compute DOI}\snapshot@defaultcontent}}%
-\gdef\snapshot@doiurlprefix{https://dx.doi.org/}%
+\gdef\snapshot@doiurlprefix{https://doi.org/}%
 \gdef\snapshot@doilink{\snapshot@doi}%
 \newcommand*{\snapshotid}[2]{%
   \begingroup%

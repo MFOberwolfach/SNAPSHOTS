@@ -1,3 +1,26 @@
+%% template.tex - Template for a snapshot of modern mathematics from Oberwolfach.
+%
+% The following authors contributed to the initial version of this work (in alphabetical order):
+%   Carla Cederbaum (concept, testing)
+%   Konrad Renner (design)
+%   Christian Stussak (programming)
+%
+% with additional support by
+%   Sophia Jahns (testing)
+%   Christoph Knoth (design)
+%   Andreas Daniel Matt (concept)
+%   Lea Renner (testing)
+%
+% To the extent possible under law, the author(s) have dedicated all copyright
+% and related and neighboring rights to this software to the public domain worldwide.
+% This software is distributed without any warranty. 
+%
+% You should have received a copy of the CC0 Public Domain Dedication along with
+% this file. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>. 
+%
+%%
+
+%%% Please use pdflatex for compiling this file.
 \documentclass{snapshotmfo}
 
 %%%%%%%%%%%%%%%% WILL BE FILLED OUT BY THE EDITORS ACCORDING TO YOUR SPECIFICATIONS %%%%%%%%%%%%%%%%%%%%%%
@@ -56,6 +79,12 @@
 
 %%% Please insert the title of your snapshot.
 \title{Your title}
+%%% The content of \title, \begin{abstract}...\end{abstract}, \section, and \subsection will be used for pdf bookmarks
+% or pdf metadata or both. Math mode, TeX control sequences, and some special characters will result in hyperref warnings
+% like "Token not allowed in a PDF string" and - more seriously - corrupt text in the bookmarks and metadata, resp..
+% In case of \title, please use the following variant, if necessary: 
+%\title{\texorpdfstring{This is a plain text equivalent of your title used for the pdf bookmark and the pdf metadata.}{Your title}}
+% The other control sequences offer a more elegant way to supply the alternative text, see below.
 
 %%% Please provide some information on the author(s).
 \authorinfo{\authorname{Author One} is a professor of pure mathematics at the First University.}
@@ -132,18 +161,25 @@
 
 %%%%%%%% If your latex file does not compile, please delete all .aux and .log files and try again. %%%%%%%
 \begin{document}
+%%% Starting with version 1.29 the LaTeX package "bookmark" doesn't create the title bookmark any more.
+% As a workaround, please uncomment and edit the following line:
+%\pdfbookmark{Your title (without math mode, control sequences and special characters)}{snapshottitle}
+% The second argument "snapshottitle" is just an identifier and can be left unchanged.
 
 %%% Please insert your abstract here. 
 \begin{abstract}
 This is your abstract. It should give a brief overview of your snapshot. If possible, please do not use formulas in your abstract. Please do not use more than 500 characters. 
 \end{abstract}
-%%% In case of hyperref warnings like "Token not allowed in a PDF string", please use the following variant of \begin{abstract} instead: 
-%\begin{abstract}[This is a plain text equivalent of your abstract used for the PDF meta data. It should give a brief overview of your snapshot. Please do not use more than 500 characters.]
-%This is your abstract containing some special characters or latex control sequences. It should give a brief overview of your snapshot. Please do not use more than 500 characters.
+%%% If necessary, use the optional argument to supply an alternative text for the pdf metadata, cf. the comment on \title above: 
+%\begin{abstract}[This is a plain text equivalent of your abstract used for the pdf metadata. It should give a brief overview of your snapshot. Please do not use more than 500 characters.]
+%This is your abstract containing math mode, TeX control sequences, or some special characters. It should give a brief overview of your snapshot. Please do not use more than 500 characters.
 %\end{abstract}
 
 %%% Please insert the main body of your snapshot here.
-\section[Optional plain text substitute for PDF bookmark]{A heading}
+\section{A heading}
+%%% If necessary, use the optional argument to supply an alternative text for the pdf bookmark, cf. the comment on \title above: 
+%\section[Optional plain text substitute]{A heading containing math mode, for example}
+
 Your actual snapshot.\footnote{This is a footnote.} As usual, you can give references such as \cite{knuth1984texbook, wikiMath, sample13, sample12, sample11, sample14} via the \verb+\cite+ command.\\
 
 We appreciate if you include images or other graphics that illustrate your snapshot. However, please do keep in mind the copyright issues explained in our email in case you include images and graphics you have not produced yourself.
@@ -156,7 +192,9 @@ We appreciate if you include images or other graphics that illustrate your snaps
 \label{fig:sample-image}
 \end{figure}
 
-\subsection[Optional plain text substitute for PDF bookmark]{A subsection}
+\subsection{A subsection}
+%%% If necessary, use the optional argument to supply an alternative text for the pdf bookmark, cf. the comment on \title above: 
+%\subsection[Optional plain text substitute]{A heading containing math mode, for example}
 More text and some formulas:
 \begin{align}\label{real}
 1+1&=2,\\\label{char.2}
