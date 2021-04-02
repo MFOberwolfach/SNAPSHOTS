@@ -34,8 +34,8 @@
 \junioreditor[gs]{will be filled out by the editors}{junior-editors@mfo.de}
 % The optional argument of \junioreditor indicates gender (f = female, m = male, g = gender-neutral = default)
 % and number (s = singular = default, p = plural).
-% The "soft" plural indicators ', ' and - depending on the language - ' and ', ' und ', ' y ' are
-% deprecated and may not be supported any more in future versions of snapshotmfo.cls.
+% The implicit plural indicators ', ' and - depending on the language - ' and ', ' und ', ' y ' are
+% deprecated and may not be recognized any more in future versions of snapshotmfo.cls.
 % Use the optional argument of \senioreditor and of \director to indicate the gender.
 \senioreditor[f]{Carla Cederbaum}{senior-editor@mfo.de}
 \director[m]{Gerhard Huisken}
@@ -74,6 +74,9 @@
 %\usepackage[ngerman]{babel}
 %\usepackage[spanish]{babel}
 
+% an improvement to \dots to be loaded after babel
+\usepackage{ellipsis}
+
 %%% Please separate your names by \and if there are several authors.
 \author{Author One\thanks{Author One is supported by the Mathematical Dreams Come True Foundation.} \and Author Two}
 
@@ -83,7 +86,7 @@
 % or pdf metadata or both. Math mode, TeX control sequences, and some special characters will result in hyperref warnings
 % like "Token not allowed in a PDF string" and - more seriously - corrupt text in the bookmarks and metadata, resp..
 % In case of \title, please use the following variant, if necessary: 
-%\title{\texorpdfstring{This is a plain text equivalent of your title used for the pdf bookmark and the pdf metadata.}{Your title}}
+%\title{\texorpdfstring{Your title}{This is a plain text equivalent of your title used for the pdf bookmark and the pdf metadata.}}
 % The other control sequences offer a more elegant way to supply the alternative text, see below.
 
 %%% Please provide some information on the author(s).
@@ -163,7 +166,7 @@
 \begin{document}
 %%% Starting with version 1.29 the LaTeX package "bookmark" doesn't create the title bookmark any more.
 % As a workaround, please uncomment and edit the following line:
-%\pdfbookmark{Your title (without math mode, control sequences and special characters)}{snapshottitle}
+\pdfbookmark{Your title (without math mode, control sequences and special characters)}{snapshottitle}
 % The second argument "snapshottitle" is just an identifier and can be left unchanged.
 
 %%% Please insert your abstract here. 
@@ -180,7 +183,7 @@ This is your abstract. It should give a brief overview of your snapshot. If poss
 %%% If necessary, use the optional argument to supply an alternative text for the pdf bookmark, cf. the comment on \title above: 
 %\section[Optional plain text substitute]{A heading containing math mode, for example}
 
-Your actual snapshot.\footnote{This is a footnote.} As usual, you can give references such as \cite{knuth1984texbook, wikiMath, sample13, sample12, sample11, sample14} via the \verb+\cite+ command.\\
+Your actual snapshot.\footnote{This is a footnote.} As usual, you can give references such as \cite{knuth1984texbook, wikiMath, sample13, sample12, sample11, sample14} via the \verb+\cite+ command.
 
 We appreciate if you include images or other graphics that illustrate your snapshot. However, please do keep in mind the copyright issues explained in our email in case you include images and graphics you have not produced yourself.
 

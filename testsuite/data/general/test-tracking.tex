@@ -1,0 +1,44 @@
+\documentclass{snapshotmfo}
+
+\categorizationmath{algebra and number theory,analysis,discrete mathematics and foundations,geometry and topology,numerics and scientific computing,probability theory and statistics} %at least one must be chosen. 
+\categorizationconnect{chemistry and earth science,computer science,engineering and technology,finance,humanities and social sciences,life science,physics,reflections on mathematics} %can be void.
+\license{CC-BY-SA-4.0} %recommended
+\snapshotid{9}{1950}
+\junioreditor{Some One}{junior-editors@mfo.de}
+\senioreditor[f]{Carla Cederbaum}{senior-editor@mfo.de}
+\director[m]{Gerhard Huisken}
+
+%%%%%%%%%%%%%%%% PLEASE FILL OUT THE FOLLOWING ITEMS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Optional recommended packages
+%%% Encoding
+\usepackage[utf8]{inputenc}
+%%% AMS mathematical facilities:
+\usepackage{amsmath,amssymb}
+\usepackage[USenglish]{babel}
+
+% an improvement to \dots to be loaded after babel
+\usepackage{ellipsis}
+
+\author{Author One}
+\authorinfo{\authorname{Author One} is a professor of pure mathematics at the First University.}
+
+\title{Is the sans serif font tracked (letterspaced)?}
+
+\begin{document}
+
+%%% Please insert your abstract here.
+\begin{abstract}
+\texorpdfstring{Does tracking work in the header (``Snapshots of modern [\dots]''), the title (``Is the sans serif [\dots]'') and the section heading (``Solving a [\dots]'')?
+}{Does tracking work in the header ("Snapshots of modern [...]"), the title ("Is the sans serif [...]") and the section heading ("Solving a [...]")?
+}
+\end{abstract}
+
+\section{Solving a minimization problem}
+The horizontal rules indicate the widths: \\
+\rule{67.6mm}{2mm} \\
+This section heading is approximately 67.6mm wide when tracked. \\
+\rule{56.6mm}{2mm} \\
+It is approximately 56.6mm wide when not tracked.
+
+\end{document}

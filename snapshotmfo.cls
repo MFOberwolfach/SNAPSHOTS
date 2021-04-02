@@ -32,7 +32,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}
 \listfiles
-\ProvidesClass{snapshotmfo}[2021/03/15 Document class for "Snapshots of modern mathematics from Oberwolfach"]
+\ProvidesClass{snapshotmfo}[2021/04/02 Document class for "Snapshots of modern mathematics from Oberwolfach"]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % snapshotmfo is based on the Koma-Script ‘article’ class
 \LoadClass[10pt,twoside]{scrartcl}
@@ -117,7 +117,6 @@
 \RequirePackage{lmodern}
 \RequirePackage[scaled=0.82304487406237511878]{helvet}
 \RequirePackage{relsize}
-\AtBeginDocument{\RequirePackage{ellipsis}}% delayed loading for compatibility with babel
 \RequirePackage[tracking=true]{microtype}
 \DeclareMicrotypeSet*[tracking]{letterspacedHelvetica}{family=phv}
 
