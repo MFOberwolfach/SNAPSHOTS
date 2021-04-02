@@ -13,10 +13,10 @@
 %
 % To the extent possible under law, the author(s) have dedicated all copyright
 % and related and neighboring rights to this software to the public domain worldwide.
-% This software is distributed without any warranty. 
+% This software is distributed without any warranty.
 %
 % You should have received a copy of the CC0 Public Domain Dedication along with
-% this file. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>. 
+% this file. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
 %
 %%
 
@@ -28,7 +28,7 @@
 %\categorizationconnect{chemistry and earth science,computer science,engineering and technology,finance,humanities and social sciences,life science,physics,reflections on mathematics} %can be void
 %\license{CC-BY-SA-4.0} %recommended
 %\license{CC-BY-ND-4.0}
-%\license{CC-BY-NC-SA-4.0} 
+%\license{CC-BY-NC-SA-4.0}
 %\snapshotid{id}{year}
 %\translator{german}{Trans Lator}
 \junioreditor[gs]{will be filled out by the editors}{junior-editors@mfo.de}
@@ -60,7 +60,7 @@
 %%% Consistent quotation marks and citations:
 %\usepackage{csquotes}
 %%% Enhanced typesetting of units:
-%\usepackage{siunitx}  
+%\usepackage{siunitx}
 %\sisetup{per-mode=fraction,fraction-function=\nicefrac}
 %%% Wrap text around tables and figures:
 %\usepackage{wrapfig}
@@ -85,7 +85,7 @@
 %%% The content of \title, \begin{abstract}...\end{abstract}, \section, and \subsection will be used for pdf bookmarks
 % or pdf metadata or both. Math mode, TeX control sequences, and some special characters will result in hyperref warnings
 % like "Token not allowed in a PDF string" and - more seriously - corrupt text in the bookmarks and metadata, resp..
-% In case of \title, please use the following variant, if necessary: 
+% In case of \title, please use the following variant, if necessary:
 %\title{\texorpdfstring{Your title}{This is a plain text equivalent of your title used for the pdf bookmark and the pdf metadata.}}
 % The other control sequences offer a more elegant way to supply the alternative text, see below.
 
@@ -95,18 +95,18 @@
 
 %%%%%%%%%%%%%%%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% There are three ways to provide your references:
-%%% 
+%%%
 %%% 1. by using the embedded .bib file:
 %%%    * replace the references below by your own ones
 %%%    * and leave the \bibliography command at the end of this file unchanged.
 %%% This is the default way as it is a full-fledged BibTex solution
 %%% while you have to edit only one file.
-%%% 
+%%%
 %%% 2. by using a separate .bib file:
 %%%    * provide your own .bib file,
 %%%    * delete everything from \begin{filecontents} until \end{filecontents}
 %%%    * and make the \bibliography command at the end of this file point to your .bib file.
-%%% 
+%%%
 %%% 3. by using no BibTeX at all:
 %%%    * delete everything from \begin{filecontents} until \end{filecontents}
 %%%    * replace the \bibliography command at the end of this file with the
@@ -166,14 +166,14 @@
 \begin{document}
 %%% Starting with version 1.29 the LaTeX package "bookmark" doesn't create the title bookmark any more.
 % As a workaround, please uncomment and edit the following line:
-%\pdfbookmark{Your title (without math mode, control sequences and special characters)}{snapshottitle}
+\pdfbookmark{Your title (without math mode, control sequences and special characters)}{snapshottitle}
 % The second argument "snapshottitle" is just an identifier and can be left unchanged.
 
-%%% Please insert your abstract here. 
+%%% Please insert your abstract here.
 \begin{abstract}
-This is your abstract. It should give a brief overview of your snapshot. If possible, please do not use formulas in your abstract. Please do not use more than 500 characters. 
+This is your abstract. It should give a brief overview of your snapshot. If possible, please do not use formulas in your abstract. Please do not use more than 500 characters.
 \end{abstract}
-%%% If necessary, use the optional argument to supply an alternative text for the pdf metadata, cf. the comment on \title above: 
+%%% If necessary, use the optional argument to supply an alternative text for the pdf metadata, cf. the comment on \title above:
 %\begin{abstract}[This is a plain text equivalent of your abstract used for the pdf metadata. It should give a brief overview of your snapshot. Please do not use more than 500 characters.]
 %This is your abstract containing math mode, TeX control sequences, or some special characters. It should give a brief overview of your snapshot. Please do not use more than 500 characters.
 %\end{abstract}
@@ -222,7 +222,7 @@ The ``class snapshotmfo'' warnings will disappear as soon as you supply the expe
 Do not make the ``empty language'' warnings disappear by supplying languages for the items,
 unless you want the languages explicitely printed in the references!
 
-There may be two extra ``class snapshotmfo'' warnings, which may be ignored, if your hyperref 
+There may be two extra ``class snapshotmfo'' warnings, which may be ignored, if your hyperref
 package's date is 2020-10-19 or newer.
 
 %%% Please insert the main body of your snapshot here.
@@ -233,14 +233,14 @@ We appreciate if you include images or other graphics that illustrate your snaps
 
 %%% Please use this format to include images. Supported image formats: jpg, pdf, png. Please convert your images to those formats.
 \begin{figure}[ht]
-        \centering 
+        \centering
         \includegraphics[width= 0.33 \textwidth]{mfo.jpg}
         \caption{An image scaled to 33\% of the textwidth.}
 \label{fig:sample-image}
 \end{figure}
 
 \subsection{A subsection}
-%%% If necessary, use the optional argument to supply an alternative text for the pdf bookmark, cf. the comment on \title above: 
+%%% If necessary, use the optional argument to supply an alternative text for the pdf bookmark, cf. the comment on \title above:
 %\subsection[Optional plain text substitute]{A heading containing math mode, for example}
 More text and some formulas:
 \begin{align}\label{real}
@@ -254,7 +254,7 @@ We have composed guidelines to help you write a beautiful and accessible snapsho
 
 %%% Please use this format to include images. Supported image formats: jpg, pdf, png. Please convert your images to those formats.
 \begin{figure}[ht]
-        \centering 
+        \centering
         \includegraphics[width= 0.33 \textwidth]{maya.pdf}
         \caption{Exemplary image: Maya numerals.}
 \label{fig:maya}
@@ -282,7 +282,7 @@ If you use your own images, please check if you still have the rights of use. Th
 %%% e.g. \bibliography{yourbibfile}. Give the file name without the extension .bib.
 %%% Please do not forget to *submit* your .bib file together with your .tex file and
 %%% your graphics files, if applicable.
-%%% 
+%%%
 %%% 3. If you chose to use no BibTeX at all, delete the above \bibliography command
 %%% and adopt the following lines as appropriate:
 %%%

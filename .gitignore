@@ -13,6 +13,7 @@ template.bib
 *.pdf
 *.swp
 Thumbs.db
+__pycache__
 testsuite/data/*/mfo.jpg
 testsuite/data/*/snapshotmfo.cls
 testsuite/data/*/template.tex

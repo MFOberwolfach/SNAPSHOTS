@@ -1,6 +1,6 @@
 \documentclass{snapshotmfo}
 
-\categorizationmath{algebra and number theory,analysis,discrete mathematics and foundations,geometry and topology,numerics and scientific computing,probability theory and statistics} %at least one must be chosen. 
+\categorizationmath{algebra and number theory,analysis,discrete mathematics and foundations,geometry and topology,numerics and scientific computing,probability theory and statistics} %at least one must be chosen.
 \categorizationconnect{chemistry and earth science,computer science,engineering and technology,finance,humanities and social sciences,life science,physics,reflections on mathematics} %can be void.
 \license{CC-BY-SA-4.0} %recommended
 \snapshotid{1}{1950}
@@ -19,6 +19,9 @@
 %\usepackage[ngerman]{babel}
 \usepackage[USenglish]{babel}
 
+% an improvement to \dots to be loaded after babel
+\usepackage{ellipsis}
+
 \author{Author One\thanks{Author One is supported by the Mathematical Dreams Come True Foundation.} \and Author Two}
 
 \title{\texorpdfstring{$\int$ }{}--- hyperref ---\texorpdfstring{ \reflectbox{$\int$}}{}}
@@ -29,8 +32,12 @@
 \raggedbottom
 
 \begin{document}
+%%% Starting with version 1.29 the LaTeX package "bookmark" doesn't create the title bookmark any more.
+% As a workaround, please uncomment and edit the following line:
+\pdfbookmark{--- hyperref ---}{snapshottitle}
+% The second argument "snapshottitle" is just an identifier and can be left unchanged.
 
-%%% Please insert your abstract here. 
+%%% Please insert your abstract here.
 \begin{abstract}[How to handle special content in special places?]
 How to handle special content\footnote{as explained below} in special places\footnote{as explained below}?
 \end{abstract}
@@ -43,18 +50,18 @@ How to handle special content\footnote{as explained below} in special places\foo
   \item many other control sequences.
 \end{itemize}
 
-\noindent ``Special places'' means strings that are processed by the hyperref package to obtain strings for pdf-specific purposes, e.\,g. 
+\noindent ``Special places'' means strings that are processed by the hyperref package to obtain strings for pdf-specific purposes, e.\,g.
 \begin{itemize}
   \item the title,
   \item the abstract,
   \item section, subsection, and subsubsection headings,
-  \item the snapshot-specific control sequences 
+  \item the snapshot-specific control sequences
   \verb+\categorizationmath+,\\
-  \verb+\categorizationconnect+, 
-  \verb+\license+, 
-  \verb+\snapshotid+, 
-  \verb+\junioreditor+,\\ 
-  \verb+\senioreditor+, and 
+  \verb+\categorizationconnect+,
+  \verb+\license+,
+  \verb+\snapshotid+,
+  \verb+\junioreditor+,\\
+  \verb+\senioreditor+, and
   \verb+\director+.
 \end{itemize}
 While hyperref accepts utf-8 characters in general, the snapshot-specific control sequences are more restrictive, e.\,g. ä must be written as \verb+\"a+ in \verb+\junioreditor+.
@@ -63,14 +70,14 @@ While hyperref accepts utf-8 characters in general, the snapshot-specific contro
 \begin{itemize}
   \item hyperlinks in a pdf document,
   \item mailto links in a pdf document,
-  \item the bookmarks ---or rather table of contents--- in the navigation pane of a pdf viewer,
+  \item the bookmarks---or rather table of contents---in the navigation pane of a pdf viewer,
   \item the standard pdf meta data as displayed in the Adobe Reader under\\ \verb+File > Properties... > Description+,
   \item custom pdf meta data as displayed in the Adobe Reader under\\ \verb+File > Properties... > Custom+.
 \end{itemize}
 Unfortunately, the support for pdf meta data varies among the standard pdf viewers of Windows, Linux, and macOS, respectively.
 The Document Viewer Evince of Ubuntu displays the standard pdf meta data under
 \verb+File > Properties...+\\ \verb+> General+.
-macOS' Preview does not seem to show any pdf meta data. 
+macOS' Preview does not seem to show any pdf meta data.
 
 If hyperref finds special content in special places, it raises a warning and generates a pure text equivalent. Sometimes, the result is good, sometimes, it is not. It is hence preferable to supply the pure text equivalent manually. There are several techniques to get rid of the hyperref warnings and hyperref's automatic processing:
 \begin{itemize}
@@ -94,7 +101,7 @@ If hyperref finds special content in special places, it raises a warning and gen
 The footnote has been removed from the pdf substitute of the section heading.
 
 \subsection{umlauts äöü as utf-8 characters and \"u\"o\"a in latex notation}
-hyperref processes this subsection correctly and without warning, so no substitute text is needed. 
+hyperref processes this subsection correctly and without warning, so no substitute text is needed.
 
 \subsubsection[a²+b²=c²]{$a^2 + b^2 = c^2$}
 A subsubsection heading which mathmode and a pdf substitute, which luckily exists.

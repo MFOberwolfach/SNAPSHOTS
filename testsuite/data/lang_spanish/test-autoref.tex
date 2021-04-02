@@ -1,5 +1,5 @@
 \documentclass{snapshotmfo}
-\categorizationmath{algebra and number theory,analysis,discrete mathematics and foundations,geometry and topology,numerics and scientific computing,probability theory and statistics} %at least one must be chosen. 
+\categorizationmath{algebra and number theory,analysis,discrete mathematics and foundations,geometry and topology,numerics and scientific computing,probability theory and statistics} %at least one must be chosen.
 \categorizationconnect{chemistry and earth science,computer science,engineering and technology,finance,humanities and social sciences,life science,physics,reflections on mathematics} %can be void.
 \license{CC-BY-SA-4.0} %recommended
 \snapshotid{371}{1950}
@@ -14,6 +14,7 @@
 \author{Test Author}
 \title{spanish autoref}
 \begin{document}
+\pdfbookmark{spanish autoref}{snapshottitle}
 \begin{abstract}
 Check if the following autoref names are spanish:
 \end{abstract}
@@ -42,7 +43,7 @@ for figures, tables, equations, sections, subsections, and subsubsections.
 \verb+\autoref{<labelname>}+ returns the labels together with their respective types {\em in the chosen language}.
 
 \begin{figure}[ht]
-        \centering 
+        \centering
         \includegraphics[width= 0.33 \textwidth]{mfo.jpg}
         \caption{An image scaled to 33\% of the textwidth.}
 \label{fig:Institute}
@@ -74,7 +75,7 @@ Formula \eqref{real} refers to $\mathbb{R}$, Formula \eqref{char.2} does not\foo
 \subsection{Another subsection} \label{subsec:another}
 
 \begin{figure}[ht]
-        \centering 
+        \centering
         \includegraphics[width= 0.33 \textwidth]{maya.pdf}
         \caption{Exemplary image: Maya numerals.}
 \label{fig:maya}

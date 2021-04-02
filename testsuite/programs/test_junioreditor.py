@@ -149,7 +149,7 @@ def do(
 
 if __name__ == '__main__':
   progdir = os.path.dirname(os.path.realpath(__file__))
-  workdir = os.path.join(progdir, '../data')
+  workdir = os.path.abspath(os.path.join(progdir, '../data'))
   allsubs = sorted(next(os.walk(workdir))[1])
   jesubs = [s for s in allsubs if re.match('junioreditor', s)]
 

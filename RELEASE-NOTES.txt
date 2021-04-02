@@ -10,10 +10,15 @@ changes
 * snapshotmfo.cls and template.tex: Spanish is now supported to allow translations to spanish
 * snapshotmfo.cls: \junioreditor now accepts explicit indication of gender and number,
     see template.tex for details
+* snapshotmfo.cls and template.tex: Loading of the package "ellipsis" has been moved from
+    snapshotmfo.cls to template.tex. Otherwise heading and title would not be printed in
+    tracked (letterspaced) sans serif font in current TeX environments.
+* template.tex: The title bookmark is offered as a workaround in the tex file as the title
+    bookmark in snapshotmfo.cls is ignored in current TeX environments. 
 * snapshotmfo.cls: the outdated package nag has been removed
 * snapshotmfo.cls now also works with the latest version of the hyperref package
 * testsuite: the unit tests have been rearranged
-* testsuite: the testing programms have been ported to python3 making them independent
+* testsuite: the testing programs have been ported to python3 making them independent
     of the operating system
 
 known shortcomings

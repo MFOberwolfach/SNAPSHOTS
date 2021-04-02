@@ -14,7 +14,7 @@ import test_standard, test_junioreditor
 
 script = os.path.basename(__file__)
 progdir = os.path.dirname(os.path.realpath(__file__))
-workdir = os.path.join(progdir, '../data')
+workdir = os.path.abspath(os.path.join(progdir, '../data'))
 allsubs = sorted(next(os.walk(workdir))[1])
 alllangs = ['USenglish', 'ngerman', 'spanish']
 
