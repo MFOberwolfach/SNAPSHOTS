@@ -32,7 +32,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}
 \listfiles
-\ProvidesClass{snapshotmfo}[2021/04/02 Document class for "Snapshots of modern mathematics from Oberwolfach"]
+\ProvidesClass{snapshotmfo}[2021/09/07 Document class for "Snapshots of modern mathematics from Oberwolfach"]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % snapshotmfo is based on the Koma-Script ‘article’ class
 \LoadClass[10pt,twoside]{scrartcl}
@@ -242,6 +242,7 @@
   \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@computer science}{Computer Science}
   \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@engineering and technology}{Engineering and Technology}
   \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@finance}{Finance}
+  \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@fine arts}{Fine Arts}
   \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@humanities and social sciences}{Humanities and Social Sciences}
   \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@life science}{Life Science}
   \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@physics}{Physics}
@@ -250,6 +251,7 @@
   \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@computer science}{Informatik}
   \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@engineering and technology}{Ingenieurwissenschaften und Technik}
   \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@finance}{Finanzwissenschaften}
+  \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@fine arts}{\texorpdfstring{Sch\"one K\"unste}{Schoene Kuenste}}
   \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@humanities and social sciences}{Geistes- und Sozialwissenschaften}
   \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@life science}{Lebenswissenschaften}
   \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@physics}{Physik}
@@ -257,14 +259,14 @@
   \newcscaptionname{spanish}{snaphot@l@categorization@connect@computer science}{\texorpdfstring{Informática}{Informatica}}
   \newcscaptionname{spanish}{snaphot@l@categorization@connect@engineering and technology}{\texorpdfstring{Ingeniería y Tecnología}{Ingenieria y Tecnologia}}
   \newcscaptionname{spanish}{snaphot@l@categorization@connect@finance}{Finanzas}
+  \newcscaptionname{spanish}{snaphot@l@categorization@connect@fine arts}{Bellas Artes}
   \newcscaptionname{spanish}{snaphot@l@categorization@connect@humanities and social sciences}{Humanidades y Ciencias sociales}
   \newcscaptionname{spanish}{snaphot@l@categorization@connect@life science}{Ciencias de la vida}
   \newcscaptionname{spanish}{snaphot@l@categorization@connect@physics}{\texorpdfstring{Física}{Fisica}}
   \newcscaptionname{spanish}{snaphot@l@categorization@connect@reflections on mathematics}{Reflexiones sobre las \texorpdfstring{matemáticas}{matematicas}}
   % Control sequences evaluating to the categorizations are written to the aux file and used as pdf meta data on the next run of pdflatex.
   % As some tex installations on some operating systems write the aux file ISO-8859 encoded, but read it UTF-8 encoded, it is safer to avoid
-  % umlauts in the categorization. This affects only german snapshots related to "Betrachtungen über Mathematik":
-  %CHECK FOR SPANISH
+  % umlauts in the categorization.
   \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@reflections on mathematics}{Betrachtungen \texorpdfstring{\"uber}{ueber} Mathematik}
   % section name for image credits
   \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@image credits}{Image credits}
@@ -493,6 +495,7 @@
       \listadd\snapshot@categorization@connect@subjects{computer science}%
       \listadd\snapshot@categorization@connect@subjects{engineering and technology}%
       \listadd\snapshot@categorization@connect@subjects{finance}%
+      \listadd\snapshot@categorization@connect@subjects{fine arts}%
       \listadd\snapshot@categorization@connect@subjects{humanities and social sciences}%
       \listadd\snapshot@categorization@connect@subjects{life science}%
       \listadd\snapshot@categorization@connect@subjects{physics}%

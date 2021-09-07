@@ -1,6 +1,15 @@
 RELEASE-NOTES.txt of https://github.com/MFOberwolfach/SNAPSHOTS
 ===============================================================
 
+release v2.4.0
+==============
+
+changes
+-------
+* snapshotmfo.cls and template.tex: "fine arts" added to the possible
+    connections to other fields
+* template.tex: default senior editor is now Sophia Jahns
+
 
 release v2.3.0
 ==============
