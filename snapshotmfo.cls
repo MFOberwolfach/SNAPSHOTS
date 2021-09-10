@@ -32,7 +32,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}
 \listfiles
-\ProvidesClass{snapshotmfo}[2021/09/07 Document class for "Snapshots of modern mathematics from Oberwolfach"]
+\ProvidesClass{snapshotmfo}[2021/09/10 Document class for "Snapshots of modern mathematics from Oberwolfach"]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % snapshotmfo is based on the Koma-Script ‘article’ class
 \LoadClass[10pt,twoside]{scrartcl}
@@ -259,7 +259,7 @@
   \newcscaptionname{spanish}{snaphot@l@categorization@connect@computer science}{\texorpdfstring{Informática}{Informatica}}
   \newcscaptionname{spanish}{snaphot@l@categorization@connect@engineering and technology}{\texorpdfstring{Ingeniería y Tecnología}{Ingenieria y Tecnologia}}
   \newcscaptionname{spanish}{snaphot@l@categorization@connect@finance}{Finanzas}
-  \newcscaptionname{spanish}{snaphot@l@categorization@connect@fine arts}{Bellas Artes}
+  \newcscaptionname{spanish}{snaphot@l@categorization@connect@fine arts}{Bellas artes}
   \newcscaptionname{spanish}{snaphot@l@categorization@connect@humanities and social sciences}{Humanidades y Ciencias sociales}
   \newcscaptionname{spanish}{snaphot@l@categorization@connect@life science}{Ciencias de la vida}
   \newcscaptionname{spanish}{snaphot@l@categorization@connect@physics}{\texorpdfstring{Física}{Fisica}}
