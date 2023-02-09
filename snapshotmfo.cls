@@ -32,7 +32,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}
 \listfiles
-\ProvidesClass{snapshotmfo}[2023/02/07 Document class for "Snapshots of modern mathematics from Oberwolfach"]
+\ProvidesClass{snapshotmfo}[2023/02/09 Document class for "Snapshots of modern mathematics from Oberwolfach"]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % snapshotmfo is based on the Koma-Script ‘article’ class
 \LoadClass[10pt,twoside]{scrartcl}
@@ -527,19 +527,7 @@
     \IfSubStr{#1}{p}{%
       Junior Editors%
     }{% no p
-      \IfSubStr{#1}{s}{%
-        Junior Editor%
-      }{% neither p nor s
-        \IfSubStr{#2}{, }{%
-          Junior Editors%
-        }{% neither p nor s nor ', '
-          \IfSubStr{#2}{ and }{%
-            Junior Editors%
-          }{% neither p nor s nor ', ' nor ' and '
-            Junior Editor
-          }%
-        }%
-      }%
+      Junior Editor%
     }%
   }%
   \newcaptionname{german,ngerman}{\snapshot@l@junioreditor}{%
@@ -550,33 +538,9 @@
         }%
       }%
     }{% no p
-      \IfSubStr{#1}{s}{%
-        \IfSubStr{#1}{f}{Editorin}{%
-          \IfSubStr{#1}{m}{Editor}{%
-            Editor/in%
-          }%
-        }%
-      }{% neither p nor s
-        \IfSubStr{#2}{, }{%
-          \IfSubStr{#1}{f}{Editorinnen}{%
-            \IfSubStr{#1}{m}{Editoren}{%
-              Editor(inn)en%
-            }%
-          }%
-        }{% neither p nor s nor ', '
-          \IfSubStr{#2}{ und }{%
-            \IfSubStr{#1}{f}{Editorinnen}{%
-              \IfSubStr{#1}{m}{Editoren}{%
-                Editor(inn)en%
-              }%
-            }%
-          }{% neither p nor s nor ', ' nor ' und '
-            \IfSubStr{#1}{f}{Editorin}{%
-              \IfSubStr{#1}{m}{Editor}{%
-                Editor/in%
-              }%
-            }%
-          }%
+      \IfSubStr{#1}{f}{Editorin}{%
+        \IfSubStr{#1}{m}{Editor}{%
+          Editor/in%
         }%
       }%
     }%
@@ -587,26 +551,8 @@
         Editores%
       }%
     }{% no p
-      \IfSubStr{#1}{s}{%
-        \IfSubStr{#1}{f}{Editora}{%
-          Editor%
-        }%
-      }{% neither p nor s
-        \IfSubStr{#2}{, }{%
-          \IfSubStr{#1}{f}{Editoras}{%
-            Editores%
-          }%
-        }{% neither p nor s nor ', '
-          \IfSubStr{#2}{ y }{%
-            \IfSubStr{#1}{f}{Editoras}{%
-              Editores%
-            }%
-          }{% neither p nor s nor ', ' nor ' y '
-            \IfSubStr{#1}{f}{Editora}{%
-              Editor%
-            }%
-          }%
-        }%
+      \IfSubStr{#1}{f}{Editora}{%
+        Editor%
       }%
     }%
   }%
