@@ -11,7 +11,7 @@
 %   Andreas Daniel Matt (concept)
 %   Lea Renner (testing)
 %
-% To the extent possible under law, the author(s) have dedicated all copyright
+% To the extent possible under law, the authors have dedicated all copyright
 % and related and neighboring rights to this software to the public domain worldwide.
 % This software is distributed without any warranty.
 %
@@ -34,10 +34,8 @@
 \junioreditor[gs]{will be filled out by the editors}{junior-editors@mfo.de}
 % The optional argument of \junioreditor indicates gender (f = female, m = male, g = gender-neutral = default)
 % and number (s = singular = default, p = plural).
-% The implicit plural indicators ', ' and - depending on the language - ' and ', ' und ', ' y ' are
-% deprecated and may not be recognized any more in future versions of snapshotmfo.cls.
 % Use the optional argument of \senioreditor and of \director to indicate the gender.
-\senioreditor[f]{Sophia Jahns}{senior-editor@mfo.de}
+\senioreditor[f]{Anja Randecker}{senior-editor@mfo.de}
 \director[m]{Gerhard Huisken}
 
 %%% Commands for editing
@@ -73,6 +71,7 @@
 \usepackage[USenglish]{babel}
 %\usepackage[ngerman]{babel}
 %\usepackage[spanish]{babel}
+%\usepackage[french]{babel}
 
 % an improvement to \dots to be loaded after babel
 \usepackage{ellipsis}
@@ -158,6 +157,16 @@
   school={MFO},
   year={2014}
 }
+
+@article{helfgott14,
+ Author = {Helfgott, H.},
+ Title = {{The ternary Goldbach problem}},
+ Journal = {{Snapshots of modern mathematics from Oberwolfach}},
+ Number = {03},
+ Year = {2014},
+ Publisher = {Mathematisches Forschungsinstitut Oberwolfach},
+ url = {https://doi.org/10.14760/SNAP-2014-003-EN}
+}
 \end{filecontents}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -165,17 +174,17 @@
 %%%%%%%% If your latex file does not compile, please delete all .aux and .log files and try again. %%%%%%%
 \begin{document}
 %%% Starting with version 1.29 the LaTeX package "bookmark" doesn't create the title bookmark any more.
-% As a workaround, please uncomment and edit the following line:
+% As a workaround, please edit the following line:
 \pdfbookmark{Your title (without math mode, control sequences and special characters)}{snapshottitle}
 % The second argument "snapshottitle" is just an identifier and can be left unchanged.
 
 %%% Please insert your abstract here.
 \begin{abstract}
-This is your abstract. It should give a brief overview of your snapshot. If possible, please do not use formulas in your abstract. Please do not use more than 500 characters.
+This is your abstract. It should hint at the storyline of your snapshot. Contrary to research articles, the abstract does not have to be a summary but is an advertisement for the reader to continue. For example, you can pose here a question and leave the answer to the main text. If possible, please do not use formulas in your abstract and keep it to less than 500 characters.
 \end{abstract}
 %%% If necessary, use the optional argument to supply an alternative text for the pdf metadata, cf. the comment on \title above:
-%\begin{abstract}[This is a plain text equivalent of your abstract used for the pdf metadata. It should give a brief overview of your snapshot. Please do not use more than 500 characters.]
-%This is your abstract containing math mode, TeX control sequences, or some special characters. It should give a brief overview of your snapshot. Please do not use more than 500 characters.
+%\begin{abstract}[This is a plain text equivalent of your abstract used for the pdf metadata. It should give the storyline of your snapshot. Contrary to research articles, this does not have to be a summary but something that catches the attention of a potential reader. For example, you can pose here a question and leave the answer to the text. Please do not use more than 500 characters.]
+%This is your abstract containing math mode, TeX control sequences, or some special characters. It should give the storyline of your snapshot. Contrary to research articles, this does not have to be a summary but something that catches the attention of a potential reader. For example, you can pose here a question and leave the answer to the text.
 %\end{abstract}
 
 \section{Comment on this unit test: test-template.tex}
@@ -189,7 +198,9 @@ pdflatex test-template.tex
 \end{verbatim}
 the following warnings will remain:
 \begin{verbatim}
-LaTeX Warning: Writing or overwriting file `./test-template.bib'.
+LaTeX Warning: Writing or overwriting file
+`./test-template.bib'.
+
 Class snapshotmfo Warning: No snapshot id given.
 Class snapshotmfo Warning: No mathematical subject given.
 Class snapshotmfo Warning: No connection to other fields given.
@@ -198,16 +209,18 @@ Class snapshotmfo Warning: Unable to compute DOI.
 
 Warning--empty language in sample14
 Warning--empty language in sample11
+Warning--empty language in helfgott14
+Warning--missing pages in helfgott14
 Warning--empty language in knuth1984texbook
 Warning--empty language in sample12
 Warning--empty language in sample13
 Warning--empty language in wikiMath
 \end{verbatim}
 
-Using TeXnicCenter with MikTeX on Windows the final compilation summary will read:
+Using TeXnicCenter with MikTeX on Windows, the compilation summary will read:
 \begin{verbatim}
-LaTeX-Result: 0 Error(s), 6 Warning(s), 1 Bad Box(es), 5 Pages(s)
-BibTeX-Result: 0 Error(s), 6 Warning(s)
+LaTeX-Result: 0 Error(s), 8 Warning(s), 1 Bad Box(es), 5 Pages(s)
+BibTeX-Result: 0 Error(s), 8 Warning(s)
 \end{verbatim}
 
 The ``overwriting file'' warning is inevitable as long as you provide the references the default
@@ -218,13 +231,34 @@ The ``class snapshotmfo'' warnings will disappear as soon as you supply the expe
 Do not make the ``empty language'' warnings disappear by supplying languages for the items,
 unless you want the languages explicitely printed in the references!
 
-There may be two extra ``class snapshotmfo'' warnings, which may be ignored, if your hyperref
-package's date is 2020-10-19 or newer.
+There may be two extra ``class snapshotmfo'' warnings depending on the version of your
+hyperref package:
+\begin{verbatim}
+Class snapshotmfo Warning: Unable to patch certain hyperref
+commands (1). You can ignore this warning, if your hyperref
+package's date is 2020-10-19 or newer. Otherwise please report
+this to the maintainer of the snapshotmfo document class. on
+input line 331.
+
+Class snapshotmfo Warning: Unable to patch certain hyperref
+commands (2). You can ignore this warning, if your hyperref
+package's date is 2020-10-19 or newer. Otherwise please report
+this to the maintainer of the snapshotmfo document class. on
+input line 331.
+\end{verbatim}
+
 
 %%% Please insert the main body of your snapshot here.
-\section[Optional plain text substitute for PDF bookmark]{A heading}
-Your actual snapshot.\footnote{This is a footnote.} As usual, you can give references such as \cite{knuth1984texbook, wikiMath, sample13, sample12, sample11, sample14} via the \verb+\cite+ command.
+\section{A heading}
+%%% If necessary, use the optional argument to supply an alternative text for the pdf bookmark, cf. the comment on \title above:
+%\section[Optional plain text substitute]{A heading containing math mode, for example}
 
+This is the main text of your snapshot.\footnote{This is a footnote.} Here you develop the story of your snapshot.
+How do you come up with a good idea for a snapshot?
+
+Imagine your university organizes an ``open house'' and you want to give a talk to convince high school students to study with you. If you can touch on recent research in such a talk then it is also a great topic for a snapshot. Ideally, a snapshot has 5--8 pages, so you can necessarily explain only a small ``snapshot'' of your mathematical interests.
+
+As usual, you can give references such as \cite{knuth1984texbook, wikiMath, sample13, sample12, sample11, sample14, helfgott14} via the \verb+\cite+ command.
 We appreciate if you include images or other graphics that illustrate your snapshot. However, please do keep in mind the copyright issues explained in our email in case you include images and graphics you have not produced yourself.
 
 %%% Please use this format to include images. Supported image formats: jpg, pdf, png. Please convert your images to those formats.
@@ -256,12 +290,12 @@ We have composed guidelines to help you write a beautiful and accessible snapsho
 \label{fig:maya}
 \end{figure}
 
-If you download an image from Wikipedia or similar sources, please always check the applicable license terms. Most licenses require an adequate attribution. For Wikipedia, you can find the correct reference by clicking on the image and then clicking on the button saying 'use this file‘. Some licenses may have further restrictions, such as 'modifications are not allowed'. If modifications are allowed you may still have to mark those modifications. Please verify that you comply with all license requirements.
+If you download an image from Wikipedia or similar sources, please always check the applicable license terms. Most licenses require an adequate attribution. For Wikipedia, you can find the correct reference by clicking on the image and then clicking on the button saying ``use this file''. Some licenses may have further restrictions, such as ``modifications are not allowed''. If modifications are allowed you may still have to mark those modifications. Please verify that you comply with all license requirements.
 
 If you use your own images, please check if you still have the rights of use. The images may be copyrighted by your institution or a publisher of your previous publications.
 
 %%% Wether a \clearpage before the image credits or the bibliography is a good idea, depends on the circumstances:
-\clearpage
+% \clearpage
 
 %%% Image credits: If you download an image form Wikipedia or similar sources, please always check the applicable license terms. Most licenses require an adequate attribution. For Wikipedia, you can find the correct reference by clicking on the image and then clicking on the button saying 'More details' and then on the link 'use this file' or similar. Some licenses may have further restrictions, such as 'modifications are not allowed'. If modifications are allowed you may still have to mark those modifications. Please verify that you comply with all license requirements. If you use your own images, please check if you still have the rights of use. The images may be copyrighted by your institution or a publisher of your previous publications.
 \begin{imagecredits}
@@ -283,12 +317,13 @@ If you use your own images, please check if you still have the rights of use. Th
 %%% and adopt the following lines as appropriate:
 %%%
 %\begin{thebibliography}{}
-%\bibitem[1]{sample14}A. Candidate, {\slshape Thesis title}, PhD thesis, MFO, 2014.
-%\bibitem[2]{sample11}C. Example, {\slshape A new perspective on mathematics}, New perspectives on arts and sciences, 2011.
-%\bibitem[3]{knuth1984texbook}D. E. Knuth, {\slshape The TeXbook}, 1st ed., Addison-Wesley, 1984.
-%\bibitem[4]{sample12}J.\ Sample, {\slshape Things you don't know about mathematics}, A bookseries about mathematics, Some publisher, 2012.
-%\bibitem[5]{sample13}\underline{\hphantom{J.\ Sam}}\,, {\slshape Interesting facts in mathematics}, arxiv:8765.4321v1, 2013.
-%\bibitem[6]{wikiMath}Wikipedia, {\slshape Mathematics --- {W}ikipedia{,} The Free Encyclopedia}, 2014, https://en.wikipedia.org/wiki/Mathematics, visited on May 19, 2014.
+%\bibitem[1]{sample14}A.~Candidate, {\slshape Thesis title}, PhD thesis, MFO, 2014.
+%\bibitem[2]{sample11}C.~Example, {\slshape A new perspective on mathematics}, New perspectives on arts and sciences, 2011.
+%\bibitem[3]{helfgott14}H.~Helfgott, {\slshape The ternary Goldbach problem}, Snapshots of modern mathematics from Oberwolfach (2014), no. 03, http://publications.mfo.de/handle/mfo/429.
+%\bibitem[4]{knuth1984texbook}D.\,E.~Knuth, {\slshape The TeXbook}, 1st ed., Addison-Wesley, 1984.
+%\bibitem[5]{sample12}J.~Sample, {\slshape Things you don't know about mathematics}, A bookseries about mathematics, Some publisher, 2012.
+%\bibitem[6]{sample13}\underline{\hphantom{J.\ Sam}}\,, {\slshape Interesting facts in mathematics}, arxiv:8765.4321v1, 2013.
+%\bibitem[7]{wikiMath}Wikipedia, {\slshape Mathematics --- {W}ikipedia{,} The Free Encyclopedia}, 2014, https://en.wikipedia.org/wiki/Mathematics, visited on May 19, 2014.
 %\end{thebibliography}
 
 \end{document}
