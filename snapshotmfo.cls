@@ -32,7 +32,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}
 \listfiles
-\ProvidesClass{snapshotmfo}[2023/02/09 Document class for "Snapshots of modern mathematics from Oberwolfach"]
+\ProvidesClass{snapshotmfo}[2023/02/10 Document class for "Snapshots of modern mathematics from Oberwolfach"]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % snapshotmfo is based on the Koma-Script ‘article’ class
 \LoadClass[10pt,twoside]{scrartcl}
@@ -154,20 +154,29 @@
   \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@header}{Snapshots of modern mathematics\\from Oberwolfach}%
   \newcaptionname{german,ngerman}{\snapshot@l@header}{Schnappsch\"usse moderner Mathematik\\aus Oberwolfach}%
   \newcaptionname{spanish}{\snapshot@l@header}{Instantáneas de la actualidad matemática\\desde Oberwolfach}%
+  \newcaptionname{french}{\snapshot@l@header}{Instantanés de recherche mathématique\\d'Oberwolfach}%
   %
   \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@creditstext}{\emph{Snapshots of modern mathematics from Oberwolfach} provide exciting insights into current mathematical research. They are written by participants in the scientific program of the Mathematisches Forschungsinstitut Oberwolfach (MFO). The snapshot project is designed to promote the understanding and appreciation of modern mathematics and mathematical research in the interested public worldwide. \\All snapshots are published in cooperation with the IMAGINARY platform and \\can be found on \href{https://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} and on \href{https://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}}.}%
   \newcaptionname{german,ngerman}{\snapshot@l@creditstext}{\emph{Schnappsch\"usse moderner Mathematik aus Oberwolfach} bieten spannende Einblicke \\in die aktuelle mathematische Forschung. Sie werden von Teilnehmerinnen und Teil-\\nehmern des wissenschaftlichen Programms des Mathematischen Forschungsinstituts Oberwolfach (MFO) geschrieben. Die Schnappsch\"usse haben zum Ziel, Verst\"andnis und Wertsch\"atzung f\"ur moderne Mathematik und mathematische Forschung in der interessierten \"Offentlichkeit weltweit zu f\"ordern. Alle Schnappsch\"usse werden in Ko-\\operation mit der IMAGINARY Onlineplattform ver\"offentlicht und k\"onnen unter \href{https://www.imaginary.org/snapshots}{\nolinkurl{www.imaginary.org/snapshots}} sowie \href{https://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}} abgerufen werden.}%
   \newcaptionname{spanish}{\snapshot@l@creditstext}{Las \emph{Instantáneas de la actualidad matemática desde Oberwolfach} ofrecen una mirada a investigación matemática más reciente. Estos textos están escritos por los participantes en el programa científico del Instituto de Investigación Matemática de Oberwolfach (MFO). El proyecto de las instantáneas está concebido para promover el conocimiento y el aprecio por la matemática moderna y la investigación matemática entre todo el público interesado internacionalmente. \\Todas las instantáneas se publican en cooperación con la plataforma IMAGINARY y \\pueden encontrarse en \href{http://www.imaginary.org/es/snapshots}{\nolinkurl{www.imaginary.org/es/snapshots}} y en \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}}.}%
+	\newcaptionname{french}{\snapshot@l@creditstext}{Les \emph{Instantanés de recherche mathématique d'Oberwolfach} donnent un aperçu passionant de la recherche mathématique d'aujourd'hui. Ils ont été rédigés par des participants aux conférences de l'institut de recherche mathématique d'Oberwolfach (MFO). Ce projet d'instantanés est conçu pour promouvoir la compréhension et l'appréciation des mathématiques modernes et de la recherche en mathématique, et s'adresse au public intéressé du monde entier. Tous les instantanés sont publiés en collaboration avec la plateforme IMAGINARY et sont disponibles sur \href{http://www.imaginary.org/fr/snapshots}{\nolinkurl{www.imaginary.org/fr/snapshots}} et sur \href{http://www.mfo.de/snapshots}{\nolinkurl{www.mfo.de/snapshots}}.}%
   %
   \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@translator@english}{Translated from English by\ClassWarningNoLine{snapshotmfo}{Translated by: from English to English}}%
   \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@translator@german}{Translated from German by}%
   \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@translator@spanish}{Translated from Spanish by}%
+  \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@translator@french}{Translated from French by}%
   \newcaptionname{german,ngerman}{\snapshot@l@translator@english}{\"Ubersetzt aus dem Englischen von}%
   \newcaptionname{german,ngerman}{\snapshot@l@translator@german}{\"Ubersetzt aus dem Deutschen von\ClassWarningNoLine{snapshotmfo}{Translated by: from German to German}}%
   \newcaptionname{german,ngerman}{\snapshot@l@translator@spanish}{\"Ubersetzt aus dem Spanischen von}%
+  \newcaptionname{german,ngerman}{\snapshot@l@translator@french}{\"Ubersetzt aus dem Französischen von}%
   \newcaptionname{spanish}{\snapshot@l@translator@english}{Traducido del inglés por}%
   \newcaptionname{spanish}{\snapshot@l@translator@german}{Traducido del alemán por}%
   \newcaptionname{spanish}{\snapshot@l@translator@spanish}{Traducido del español por\ClassWarningNoLine{snapshotmfo}{Translated by: from Spanish to Spanish}}%
+  \newcaptionname{spanish}{\snapshot@l@translator@french}{Traducido del francés por}%
+  \newcaptionname{french}{\snapshot@l@translator@english}{Traduit de l'anglais par}%
+  \newcaptionname{french}{\snapshot@l@translator@german}{Traduit de l'allemand par}%
+  \newcaptionname{french}{\snapshot@l@translator@spanish}{Traduit de l'espagnol par}%
+  \newcaptionname{french}{\snapshot@l@translator@french}{Traduit du français par\ClassWarningNoLine{snapshotmfo}{Translated by: from French to French}}%
   \let\snapshot@l@translator@ngerman\snapshot@l@translator@german%
   \let\snapshot@l@translator@USenglish\snapshot@l@translator@english%
   \let\snapshot@l@translator@UKenglish\snapshot@l@translator@english%
@@ -175,28 +184,34 @@
   \newcaptionname{english,USenglish,UKenglish}{\snapshot@label@l@categorization@math}{Mathematical subjects}%
   \newcaptionname{german,ngerman}{\snapshot@label@l@categorization@math}{Mathematische Gebiete}%
   \newcaptionname{spanish}{\snapshot@label@l@categorization@math}{Tema matemático}%
+  \newcaptionname{french}{\snapshot@label@l@categorization@math}{Sujets mathématiques}%
   %
   \newcaptionname{english,USenglish,UKenglish}{\snapshot@label@l@categorization@connect}{Connections to other fields}%
   \newcaptionname{german,ngerman}{\snapshot@label@l@categorization@connect}{Verbindungen zu anderen Gebieten}%
   \newcaptionname{spanish}{\snapshot@label@l@categorization@connect}{Conexiones con otras áreas}%
+  \newcaptionname{french}{\snapshot@label@l@categorization@connect}{Liens avec d'autres domaines}%
   %
   \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@license}{License}%
   \newcaptionname{german,ngerman}{\snapshot@l@license}{Lizenz}%
   \newcaptionname{spanish}{\snapshot@l@license}{Licencia}%
+  \newcaptionname{french}{\snapshot@l@license}{Licence}%
   %
-  \newcaptionname{english,USenglish,UKenglish,german,ngerman,spanish}{\snapshot@l@doi}{DOI}%
+  \newcaptionname{english,USenglish,UKenglish,german,ngerman,spanish,french}{\snapshot@l@doi}{DOI}%
   %
   \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@senioreditor}{Senior Editor}%
   \newcaptionname{german,ngerman}{\snapshot@l@senioreditor}{Chefeditor/in}%
   \newcaptionname{spanish}{\snapshot@l@senioreditor}{Editor/a en jefe}%
+  \newcaptionname{french}{\snapshot@l@senioreditor}{Rédacteur principal}% gender-neutral singular of Senior Editor in french
   %
   \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@director}{Director}%
   \newcaptionname{german,ngerman}{\snapshot@l@director}{Direktor/in}%
   \newcaptionname{spanish}{\snapshot@l@director}{Director/a}%
+  \newcaptionname{french}{\snapshot@l@director}{Directeur}% gender-neutral singular of Director in french
   %
   \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@mfoaddress}{Mathematisches Forschungsinstitut\\Oberwolfach gGmbH\\Schwarzwaldstr. 9\,--1\!1\\77709 Oberwolfach\\Germany}%
   \newcaptionname{german,ngerman}{\snapshot@l@mfoaddress}{Mathematisches Forschungsinstitut\\Oberwolfach gGmbH\\Schwarzwaldstr. 9\,--1\!1\\77709 Oberwolfach\\Deutschland}%
   \newcaptionname{spanish}{\snapshot@l@mfoaddress}{Mathematisches Forschungsinstitut\\Oberwolfach gGmbH\\Schwarzwaldstr. 9\,--1\!1\\77709 Oberwolfach\\Alemania}%
+  \newcaptionname{french}{\snapshot@l@mfoaddress}{Mathematisches Forschungsinstitut\\Oberwolfach gGmbH\\Schwarzwaldstr. 9\,--1\!1\\77709 Oberwolfach\\Allemagne}%
   %
   \newcaptionname{english,USenglish,UKenglish}{\snapshot@l@epslogo}{\snapshot@includemps{\snapshot@logo@en}{1}{1}}%
   \newcaptionname{german,ngerman}{\snapshot@l@epslogo}{\snapshot@includemps{\snapshot@logo@de}{1}{1}}%
@@ -221,6 +236,12 @@
   \newcscaptionname{spanish}{snaphot@l@categorization@math@geometry and topology}{\texorpdfstring{Geometría y Topología}{Geometria y Topologia}}
   \newcscaptionname{spanish}{snaphot@l@categorization@math@numerics and scientific computing}{\texorpdfstring{Cálculo numérico y Computación científica}{Calculo numerico y Computacion cientifica}}
   \newcscaptionname{spanish}{snaphot@l@categorization@math@probability theory and statistics}{\texorpdfstring{Teoría de la probabilidad y Estadística}{Teoria de la probabilidad y Estadistica}}
+  \newcscaptionname{french}{snaphot@l@categorization@math@algebra and number theory}{\texorpdfstring{Algèbre et théorie des nombres}{Algebre et theorie des nombres}}
+  \newcscaptionname{french}{snaphot@l@categorization@math@analysis}{Analyse}
+  \newcscaptionname{french}{snaphot@l@categorization@math@discrete mathematics and foundations}{\texorpdfstring{Mathématiques discrètes et fondements}{Mathematiques discretes et fondements}}
+  \newcscaptionname{french}{snaphot@l@categorization@math@geometry and topology}{\texorpdfstring{Géométrie et topologie}{Geometrie et topologie}}
+  \newcscaptionname{french}{snaphot@l@categorization@math@numerics and scientific computing}{\texorpdfstring{Calculs numérique et scientifique}{Calculs numerique et scientifique}}
+  \newcscaptionname{french}{snaphot@l@categorization@math@probability theory and statistics}{\texorpdfstring{Théorie des probabilités et statistique}{Theorie des probabilites et statistique}}
   %
   % categorization: connection to other fields
   \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@chemistry and earth science}{Chemistry and Earth Science}
@@ -249,6 +270,15 @@
   \newcscaptionname{spanish}{snaphot@l@categorization@connect@life science}{Ciencias de la vida}
   \newcscaptionname{spanish}{snaphot@l@categorization@connect@physics}{\texorpdfstring{Física}{Fisica}}
   \newcscaptionname{spanish}{snaphot@l@categorization@connect@reflections on mathematics}{Reflexiones sobre las \texorpdfstring{matemáticas}{matematicas}}
+  \newcscaptionname{french}{snaphot@l@categorization@connect@chemistry and earth science}{Chimie et sciences de la terre}
+  \newcscaptionname{french}{snaphot@l@categorization@connect@computer science}{Informatique}
+  \newcscaptionname{french}{snaphot@l@categorization@connect@engineering and technology}{\texorpdfstring{Ingénierie}{Ingenierie} et technologie}
+  \newcscaptionname{french}{snaphot@l@categorization@connect@finance}{Finance}
+  \newcscaptionname{french}{snaphot@l@categorization@connect@fine arts}{Beaux-arts}
+  \newcscaptionname{french}{snaphot@l@categorization@connect@humanities and social sciences}{Sciences humaines et sociales}
+  \newcscaptionname{french}{snaphot@l@categorization@connect@life science}{Sciences de la vie}
+  \newcscaptionname{french}{snaphot@l@categorization@connect@physics}{Physique}
+  \newcscaptionname{french}{snaphot@l@categorization@connect@reflections on mathematics}{\texorpdfstring{Réflexions sur les mathématiques}{Reflexions sur les mathematiques}}
   % Control sequences evaluating to the categorizations are written to the aux file and used as pdf meta data on the next run of pdflatex.
   % As some tex installations on some operating systems write the aux file ISO-8859 encoded, but read it UTF-8 encoded, it is safer to avoid
   % umlauts in the categorization.
@@ -257,6 +287,7 @@
   \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@image credits}{Image credits}
   \newcscaptionname{german,ngerman}{snaphot@l@image credits}{Bildquellen}
   \newcscaptionname{spanish}{snaphot@l@image credits}{Créditos de las imágenes}
+  \newcscaptionname{french}{snaphot@l@image credits}{Crédits images}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -342,7 +373,7 @@
 % snapshot id and DOI computation
 \newcommand{\snapshot@id}{\ClassWarningNoLine{snapshotmfo}{No snapshot id given}xx}%
 \newcommand{\snapshot@year}{xxxx}%
-\AtBeginDocument{\newcaptionname{english,USenglish,UKenglish,german,ngerman,spanish}{\snapshot@doi}{\ClassWarningNoLine{snapshotmfo}{Unable to compute DOI}\snapshot@defaultcontent}}%
+\AtBeginDocument{\newcaptionname{english,USenglish,UKenglish,german,ngerman,spanish,french}{\snapshot@doi}{\ClassWarningNoLine{snapshotmfo}{Unable to compute DOI}\snapshot@defaultcontent}}%
 \gdef\snapshot@doiurlprefix{https://doi.org/}%
 \gdef\snapshot@doilink{\snapshot@doi}%
 \newcommand*{\snapshotid}[2]{%
@@ -355,6 +386,7 @@
     \renewcaptionname{english,USenglish,UKenglish}{\snapshot@doi}{10.14760/SNAP-#2-\ifnum#1<100 0\ifnum#1<10 0\fi\fi\number#1-EN}%
     \renewcaptionname{german,ngerman}{\snapshot@doi}{10.14760/SNAP-#2-\ifnum#1<100 0\ifnum#1<10 0\fi\fi\number#1-DE}%
     \renewcaptionname{spanish}{\snapshot@doi}{10.14760/SNAP-#2-\ifnum#1<100 0\ifnum#1<10 0\fi\fi\number#1-ES}%
+    \renewcaptionname{french}{\snapshot@doi}{10.14760/SNAP-#2-\ifnum#1<100 0\ifnum#1<10 0\fi\fi\number#1-FR}%
   }%
   \gdef\snapshot@doilink{\href{\snapshot@doiurlprefix\snapshot@doi}{\snapshot@doi}}%
   \AtEndDocument{%
@@ -556,6 +588,21 @@
       }%
     }%
   }%
+  \newcaptionname{french}{\snapshot@l@junioreditor}{%
+    \IfSubStr{#1}{p}{%
+      \IfSubStr{#1}{f}{Rédactrices juniors}{% plural female
+        \IfSubStr{#1}{m}{Rédacteurs juniors}{% plural male
+          Rédacteurs/rédactrices juniors% plural gender-neutral
+        }%
+      }%
+    }{% no p
+      \IfSubStr{#1}{f}{Rédactrice junior}{% singular female
+        \IfSubStr{#1}{m}{Rédacteur junior}{% singular male
+          Rédacteur/Rédactrice junior% singular gender-neutral
+        }%
+      }%
+    }%
+  }%
   \gdef\snapshot@junioreditor{#2}%
   \gdef\snapshot@junioreditoremail{\mailtoref{#3}}%
 }%
@@ -568,10 +615,12 @@
   \ifthenelse{\equal{#1}{f}}{%
 	  \renewcaptionname{german,ngerman}{\snapshot@l@senioreditor}{Chefeditorin}%
 	  \renewcaptionname{spanish}{\snapshot@l@senioreditor}{Editora en jefe}%
+	  \renewcaptionname{french}{\snapshot@l@senioreditor}{Rédactrice principale}% female singular
 	}{}%
   \ifthenelse{\equal{#1}{m}}{%
 	  \renewcaptionname{german,ngerman}{\snapshot@l@senioreditor}{Chefeditor}%
 	  \renewcaptionname{spanish}{\snapshot@l@senioreditor}{Editor en jefe}%
+	  \renewcaptionname{french}{\snapshot@l@senioreditor}{Rédacteur principal}% male singular
 	}{}%
   \gdef\snapshot@senioreditor{#2}%
   \gdef\snapshot@senioreditoremail{\mailtoref{#3}}%
@@ -584,10 +633,12 @@
   \ifthenelse{\equal{#1}{f}}{%
 	  \renewcaptionname{german,ngerman}{\snapshot@l@director}{Direktorin}%
 	  \renewcaptionname{spanish}{\snapshot@l@director}{Directora}%
+	  \renewcaptionname{french}{\snapshot@l@director}{Directrice}% female singular
 	}{}%
   \ifthenelse{\equal{#1}{m}}{%
 	  \renewcaptionname{german,ngerman}{\snapshot@l@director}{Direktor}%
 	  \renewcaptionname{spanish}{\snapshot@l@director}{Director}%
+	  \renewcaptionname{french}{\snapshot@l@director}{Directeur}% male singular
 	}{}%
   \gdef\snapshot@director{#2}%
 }%
@@ -632,6 +683,26 @@
     \def\FancyVerbLineautorefname{línea}%
     \def\theoremautorefname{Teorema}%
     \def\pageautorefname{página}%
+  }{}%
+}%
+\AtBeginDocument{%
+  \@ifpackagewith{babel}{french}{%
+    \def\equationautorefname{Équation}%
+    \def\footnoteautorefname{note en bas de page}%
+    \def\itemautorefname{item}%
+    \def\figureautorefname{Figure}%
+    \def\tableautorefname{Table}%
+    \def\partautorefname{Partie}%
+    \def\appendixautorefname{Annexe}%
+    \def\chapterautorefname{Chapitre}%
+    \def\sectionautorefname{Section}%
+    \def\subsectionautorefname{Sous-section}%
+    \def\subsubsectionautorefname{Sous-sous-section}%
+    \def\paragraphautorefname{Paragraphe}%
+    \def\subparagraphautorefname{Sous-paragraphe}%
+    \def\FancyVerbLineautorefname{Ligne}%
+    \def\theoremautorefname{Théorème}%
+    \def\pageautorefname{page}%
   }{}%
 }%
 
