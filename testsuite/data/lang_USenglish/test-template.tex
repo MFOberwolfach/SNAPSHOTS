@@ -65,13 +65,19 @@
 
 % Please feel free to use your own macros but please do not change the layout of the snapshot.
 
-% By now the documentclass supports the languages 'USenglish', 'ngerman' and 'spanish'.
-% Please submit original snapshots in English or German. The support of Spanish is meant for translations.
-% If you change the language setting, please delete the .aux file in advance or run your LaTeX compiler *twice*.
+% By now the documentclass supports the languages 'USenglish', 'ngerman', 'spanish' and 'french'.
+% Please submit original snapshots in English or German. The support of Spanish and French is meant for translations.
+% If you change the language settings, please delete the .aux file in advance or run your LaTeX compiler *twice*.
 \usepackage[USenglish]{babel}
 %\usepackage[ngerman]{babel}
 %\usepackage[spanish]{babel}
 %\usepackage[french]{babel}
+
+% For references within the document we recommend cleveref. Please pass the language to cleveref as well.
+\usepackage{cleveref} % in case of USenglish
+%\usepackage[ngerman]{cleveref}
+%\usepackage[spanish]{cleveref}
+%\usepackage[french]{cleveref}
 
 % an improvement to \dots to be loaded after babel
 \usepackage{ellipsis}
@@ -266,7 +272,7 @@ We appreciate if you include images or other graphics that illustrate your snaps
         \centering
         \includegraphics[width= 0.33 \textwidth]{mfo.jpg}
         \caption{An image scaled to 33\% of the textwidth.}
-\label{fig:sample-image}
+\label{fig.sample-image}
 \end{figure}
 
 \subsection{A subsection}
@@ -287,7 +293,7 @@ We have composed guidelines to help you write a beautiful and accessible snapsho
         \centering
         \includegraphics[width= 0.33 \textwidth]{maya.pdf}
         \caption{Exemplary image: Maya numerals.}
-\label{fig:maya}
+\label{fig.maya}
 \end{figure}
 
 If you download an image from Wikipedia or similar sources, please always check the applicable license terms. Most licenses require an adequate attribution. For Wikipedia, you can find the correct reference by clicking on the image and then clicking on the button saying ``use this file''. Some licenses may have further restrictions, such as ``modifications are not allowed''. If modifications are allowed you may still have to mark those modifications. Please verify that you comply with all license requirements.
@@ -299,8 +305,8 @@ If you use your own images, please check if you still have the rights of use. Th
 
 %%% Image credits: If you download an image form Wikipedia or similar sources, please always check the applicable license terms. Most licenses require an adequate attribution. For Wikipedia, you can find the correct reference by clicking on the image and then clicking on the button saying 'More details' and then on the link 'use this file' or similar. Some licenses may have further restrictions, such as 'modifications are not allowed'. If modifications are allowed you may still have to mark those modifications. Please verify that you comply with all license requirements. If you use your own images, please check if you still have the rights of use. The images may be copyrighted by your institution or a publisher of your previous publications.
 \begin{imagecredits}
-  \item[\autoref{fig:sample-image}] Archives of the Mathematisches Forschungsinstitut Oberwolfach,\\\url{https://www.mfo.de}, 2004.
-  \item[\autoref{fig:maya}] ``Maya''. Author: Bryan Derkson. Licensed under Creative Commons Attribution-Share Alike 3.0 via Wikimedia Commons, \url{https://commons.wikimedia.org/wiki/File:Maya.svg}, visited on \printdate{2014-09-05}.
+  \item[\Cref{fig.sample-image}] Archives of the Mathematisches Forschungsinstitut Oberwolfach,\\\url{https://www.mfo.de}, 2004.
+  \item[\Cref{fig.maya}] ``Maya''. Author: Bryan Derkson. Licensed under Creative Commons Attribution-Share Alike 3.0 via Wikimedia Commons, \url{https://commons.wikimedia.org/wiki/File:Maya.svg}, visited on \printdate{2014-09-05}.
 \end{imagecredits}
 
 %%%%%%%%%%%%%%%% BIBLIOGRAPHY REVISITED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -319,7 +325,7 @@ If you use your own images, please check if you still have the rights of use. Th
 %\begin{thebibliography}{}
 %\bibitem[1]{sample14}A.~Candidate, {\slshape Thesis title}, PhD thesis, MFO, 2014.
 %\bibitem[2]{sample11}C.~Example, {\slshape A new perspective on mathematics}, New perspectives on arts and sciences, 2011.
-%\bibitem[3]{helfgott14}H.~Helfgott, {\slshape The ternary Goldbach problem}, Snapshots of modern mathematics from Oberwolfach (2014), no. 03, http://publications.mfo.de/handle/mfo/429.
+%\bibitem[3]{helfgott14}H.~Helfgott, {\slshape The ternary Goldbach problem}, Snapshots of modern mathematics from Oberwolfach (2014), no. 03, https://doi.org/10.14760/SNAP-2014-003-EN.
 %\bibitem[4]{knuth1984texbook}D.\,E.~Knuth, {\slshape The TeXbook}, 1st ed., Addison-Wesley, 1984.
 %\bibitem[5]{sample12}J.~Sample, {\slshape Things you don't know about mathematics}, A bookseries about mathematics, Some publisher, 2012.
 %\bibitem[6]{sample13}\underline{\hphantom{J.\ Sam}}\,, {\slshape Interesting facts in mathematics}, arxiv:8765.4321v1, 2013.
