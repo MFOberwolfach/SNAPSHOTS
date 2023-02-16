@@ -1,6 +1,22 @@
 RELEASE-NOTES.txt of https://github.com/MFOberwolfach/SNAPSHOTS
 ===============================================================
 
+release v3.0.0
+==============
+
+changes
+-------
+* Option \creditsversionone removed. All snapshots are printed
+    with the current credits.
+* French is supported to allow translations into French.
+* The cleveref package is prefered over autoref and therefore
+    loaded and used in template.tex.
+* An example on how to cite a snapshot was added to the references of
+    tempate.tex.
+* template.tex contains some hints for writing a good snapshot.
+* The default senior editor in template.tex is Anja Randecker.
+
+
 release v2.4.0
 ==============
 
