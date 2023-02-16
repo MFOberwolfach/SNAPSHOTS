@@ -8,6 +8,9 @@ changes
 -------
 * Option \creditsversionone removed. All snapshots are printed
     with the current credits.
+* Plural heuristics of the \junioreditor command removed. Please
+    indicate plural explicitely in case of more than one junior
+    editor as explained in template.tex.
 * French is supported to allow translations into French.
 * The cleveref package is prefered over autoref and therefore
     loaded and used in template.tex.
