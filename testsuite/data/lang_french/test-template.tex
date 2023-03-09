@@ -74,10 +74,10 @@
 \usepackage[french]{babel}
 
 % For references within the document we recommend cleveref. Please pass the language to cleveref as well.
-%\usepackage{cleveref} % in case of USenglish
-%\usepackage[ngerman]{cleveref}
-%\usepackage[spanish]{cleveref}
-\usepackage[french]{cleveref}
+%\usepackage[nameinlink]{cleveref} % in case of USenglish
+%\usepackage[nameinlink,ngerman]{cleveref}
+%\usepackage[nameinlink,spanish]{cleveref}
+\usepackage[nameinlink,french]{cleveref}
 
 % an improvement to \dots to be loaded after babel
 \usepackage{ellipsis}
@@ -194,7 +194,7 @@ This is your abstract. It should hint at the storyline of your snapshot. Contrar
 %\end{abstract}
 
 \section{Comment on this unit test: test-template.tex}
-test-template.tex differs from template.tex only by this section!
+Apart from the language selection, test-template.tex differs from template.tex only by this section!
 After the following compilations
 \begin{verbatim}
 pdflatex test-template.tex
@@ -225,7 +225,7 @@ Warning--empty language in wikiMath
 
 Using TeXnicCenter with MikTeX on Windows, the compilation summary will read:
 \begin{verbatim}
-LaTeX-Result: 0 Error(s), 8 Warning(s), 1 Bad Box(es), 6 Pages(s)
+LaTeX-Result: 0 Error(s), 8 Warning(s), 0 Bad Box(es), 5 Pages(s)
 BibTeX-Result: 0 Error(s), 8 Warning(s)
 \end{verbatim}
 
@@ -239,25 +239,9 @@ unless you want the languages explicitely printed in the references!
 
 In addition, the french version will yield two ``isodate'' warnings
 \begin{verbatim}
-Package isodate Warning: Language spanish unknown to isodate.
+Package isodate Warning: Language french unknown to isodate.
 \end{verbatim}
 but the output look fine nonetheless.
-
-There may be two extra ``class snapshotmfo'' warnings depending on the version of your
-hyperref package:
-\begin{verbatim}
-Class snapshotmfo Warning: Unable to patch certain hyperref
-commands (1). You can ignore this warning, if your hyperref
-package's date is 2020-10-19 or newer. Otherwise please report
-this to the maintainer of the snapshotmfo document class. on
-input line 331.
-
-Class snapshotmfo Warning: Unable to patch certain hyperref
-commands (2). You can ignore this warning, if your hyperref
-package's date is 2020-10-19 or newer. Otherwise please report
-this to the maintainer of the snapshotmfo document class. on
-input line 331.
-\end{verbatim}
 
 
 %%% Please insert the main body of your snapshot here.
@@ -265,7 +249,7 @@ input line 331.
 %%% If necessary, use the optional argument to supply an alternative text for the pdf bookmark, cf. the comment on \title above:
 %\section[Optional plain text substitute]{A heading containing math mode, for example}
 
-This is the main text of your snapshot.\footnote{This is a footnote.} Here you develop the story of your snapshot.
+This is the main text\footnote{This is a footnote.} of your snapshot. Here you develop the story of your snapshot.
 How do you come up with a good idea for a snapshot?
 
 Imagine your university organizes an ``open house'' and you want to give a talk to convince high school students to study with you. If you can touch on recent research in such a talk then it is also a great topic for a snapshot. Ideally, a snapshot has 5--8 pages, so you can necessarily explain only a small ``snapshot'' of your mathematical interests.

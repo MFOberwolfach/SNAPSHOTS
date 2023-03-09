@@ -11,7 +11,7 @@
 \usepackage{longtable}
 
 \usepackage[ngerman]{babel}
-\usepackage[ngerman]{cleveref}
+\usepackage[nameinlink,ngerman]{cleveref}
 
 \author{Test Author}
 \title{ngerman cleveref}
@@ -23,7 +23,7 @@ Check, if the following cleveref names are ngerman:
 \end{abstract}
 
 \noindent\begin{longtable}{@{}l@{\quad yields\quad}l@{}}
-	\verb+\Cref{real}+             &\Cref{real}.\\
+	\verb+\Cref{real,char.2}+      &\Cref{real,char.2}.\\
 	\verb+\cref{real}+             &\cref{real}.\\[1ex]
 	\verb+\Cref{char.2}+           &\Cref{char.2}.\\
 	\verb+\cref{char.2}+           &\cref{char.2}.\\[1ex]

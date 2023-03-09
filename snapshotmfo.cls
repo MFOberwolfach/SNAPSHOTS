@@ -65,7 +65,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % tools
-\RequirePackage{etoolbox,ifthen,environ}
+\RequirePackage{etoolbox,ifthen,environ,iflang}
 \@ifpackagelater{etoolbox}{2009/08/06}{}{\ClassError{snapshotmfo}{etoolbox v1.8 (2009/08/06) or later required}{Please update your TeX distribution to meet the requirements.}\stop}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -95,7 +95,7 @@
   \textsuperscript{\framebox{\raisebox{0pt}[1.05\height][0.025\height]{\thefootnotemark}}}%
 }
 \deffootnote[1.5em]{0em}{1.5em}{\rlap{\snapshot@footnotemark}\hspace{1.5em}}
-\deffootnotemark{\snapshot@footnotemark}
+\deffootnotemark{\hskip .1em\snapshot@footnotemark}
 \@ifclasslater{scrartcl}{2010/06/17}{%
 \setfootnoterule[0.526pt]{\textwidth}
 }{%
@@ -129,6 +129,38 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % language specific settings
+
+\AtBeginDocument{%
+  \IfLanguageName{USenglish}{}{%
+    \IfLanguageName{UKenglish}{}{%
+      \IfLanguageName{english}{}{%
+        \IfLanguageName{ngerman}{}{%
+          \IfLanguageName{german}{}{%
+            \IfLanguageName{spanish}{}{%
+              \IfLanguageName{french}{}{%
+                \ClassError{snapshotmfo}{Unsupported language \languagename}{Supported languages: USenglish, UKenglish, english, ngerman, german, spanish, french}%
+              }%
+            }%
+          }%
+        }%
+      }%
+    }%
+  }%
+  \def\snapshot@language@warning{\ClassWarningNoLine{snapshotmfo}{First compilation in this language. Rerun to get PDF meta data right}}%
+  \ifthenelse{%
+    \isundefined{\snapshot@language@meta}%
+  }{%
+    \snapshot@language@warning%
+  }{%
+    \IfLanguageName{%
+      \snapshot@language@meta%
+    }{%
+    }{%
+      \snapshot@language@warning%
+    }%
+  }%
+  \immediate\write\@auxout{\noexpand\gdef\noexpand\snapshot@language@meta{\languagename}}%
+}%
 
 % patch old KOMA script \newcaptionname and \renewcaptionname
 \let\@orig@newcaptionname\newcaptionname%
@@ -217,6 +249,10 @@
   \newcaptionname{german,ngerman}{\snapshot@l@epslogo}{\snapshot@includemps{\snapshot@logo@de}{1}{1}}%
   %
   % categorization: math
+  %
+  % Control sequences evaluating to the categorizations are written to the aux file and used as pdf meta data on the next run of pdflatex.
+  % As some tex installations on some operating systems write the aux file ISO-8859 encoded, but read it UTF-8 encoded, it is safer to avoid
+  % umlauts in the categorization.
   \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@math@algebra and number theory}{Algebra and Number Theory}
   \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@math@analysis}{Analysis}
   \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@math@discrete mathematics and foundations}{Discrete Mathematics and Foundations}
@@ -243,6 +279,10 @@
   \newcscaptionname{french}{snaphot@l@categorization@math@probability theory and statistics}{\texorpdfstring{Théorie des probabilités et statistique}{Theorie des probabilites et statistique}}
   %
   % categorization: connection to other fields
+  %
+  % Control sequences evaluating to the categorizations are written to the aux file and used as pdf meta data on the next run of pdflatex.
+  % As some tex installations on some operating systems write the aux file ISO-8859 encoded, but read it UTF-8 encoded, it is safer to avoid
+  % umlauts in the categorization.
   \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@chemistry and earth science}{Chemistry and Earth Science}
   \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@computer science}{Computer Science}
   \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@categorization@connect@engineering and technology}{Engineering and Technology}
@@ -260,6 +300,7 @@
   \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@humanities and social sciences}{Geistes- und Sozialwissenschaften}
   \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@life science}{Lebenswissenschaften}
   \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@physics}{Physik}
+  \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@reflections on mathematics}{Betrachtungen \texorpdfstring{\"uber}{ueber} Mathematik}
   \newcscaptionname{spanish}{snaphot@l@categorization@connect@chemistry and earth science}{\texorpdfstring{Química}{Quimica} y Ciencias de la Tierra}
   \newcscaptionname{spanish}{snaphot@l@categorization@connect@computer science}{\texorpdfstring{Informática}{Informatica}}
   \newcscaptionname{spanish}{snaphot@l@categorization@connect@engineering and technology}{\texorpdfstring{Ingeniería y Tecnología}{Ingenieria y Tecnologia}}
@@ -278,10 +319,6 @@
   \newcscaptionname{french}{snaphot@l@categorization@connect@life science}{Sciences de la vie}
   \newcscaptionname{french}{snaphot@l@categorization@connect@physics}{Physique}
   \newcscaptionname{french}{snaphot@l@categorization@connect@reflections on mathematics}{\texorpdfstring{Réflexions sur les mathématiques}{Reflexions sur les mathematiques}}
-  % Control sequences evaluating to the categorizations are written to the aux file and used as pdf meta data on the next run of pdflatex.
-  % As some tex installations on some operating systems write the aux file ISO-8859 encoded, but read it UTF-8 encoded, it is safer to avoid
-  % umlauts in the categorization.
-  \newcscaptionname{german,ngerman}{snaphot@l@categorization@connect@reflections on mathematics}{Betrachtungen \texorpdfstring{\"uber}{ueber} Mathematik}
   % section name for image credits
   \newcscaptionname{english,USenglish,UKenglish}{snaphot@l@image credits}{Image credits}
   \newcscaptionname{german,ngerman}{snaphot@l@image credits}{Bildquellen}
@@ -320,11 +357,11 @@
   \patchcmd\pdfstringdef%
     {\def \begin #1{\csname #1\endcsname }}%
     {\def \begin ##1{\csname ##1\endcsname }}%
-    {}{\ClassWarning{snapshotmfo}{Unable to patch certain hyperref commands (1). You can ignore this warning, if your hyperref package's date is 2020-10-19 or newer. Otherwise please report this to the maintainer of the snapshotmfo document class.}}%
+    {}{}%
   \patchcmd\pdfstringdef%
     {\def \end #1{\csname end#1\endcsname }}%
     {\def \end ##1{\csname end##1\endcsname }}%
-    {}{\ClassWarning{snapshotmfo}{Unable to patch certain hyperref commands (2). You can ignore this warning, if your hyperref package's date is 2020-10-19 or newer. Otherwise please report this to the maintainer of the snapshotmfo document class.}}%
+    {}{}%
 }
 \catcode`\#=6
 \patchpdfstringdef
@@ -466,6 +503,7 @@
     \ClassError{snapshotmfo}{Mathematical subject must not be blank}{}%
   }{%
     \gdef\snapshot@categorization@math{\space}%
+    \gdef\snapshot@categorization@mathraw{\space}%
     \begingroup%
       \listadd\snapshot@categorization@math@subjects{algebra and number theory}%
       \listadd\snapshot@categorization@math@subjects{analysis}%
@@ -477,6 +515,7 @@
         \xifinlist{##1}{\snapshot@categorization@math@subjects}%
         {%
           \gappto\snapshot@categorization@math{,\space\expandafter\csname snaphot@l@categorization@math@##1\endcsname}%
+          \gappto\snapshot@categorization@mathraw{,\space ##1}%
         }{%
           \ClassError{snapshotmfo}{Unknown category "##1" in \@backslashchar categorizationmath}{possibilities: \snapshot@categorization@math@subjects}%
         }%
@@ -485,14 +524,16 @@
       \docsvlist{#1}%
     \endgroup%
     \patchcmd{\snapshot@categorization@math}{\space,\space}{}{}{}% remove leading ,
+    \patchcmd{\snapshot@categorization@mathraw}{\space,\space}{}{}{}% remove leading ,
     \AtEndDocument{%
       \def\snapshot@categorization@math@warning{\ClassWarningNoLine{snapshotmfo}{Mathematical categorization changed. Rerun to get PDF meta data right}}%
-      \ifthenelse{\isundefined{\snapshot@categorization@math@meta}}{\snapshot@categorization@math@warning}{\ifthenelse{\NOT\equal{\snapshot@categorization@math}{\snapshot@categorization@math@meta}}{\snapshot@categorization@math@warning}{}}
+      \ifthenelse{\isundefined{\snapshot@categorization@mathraw@meta}}{\snapshot@categorization@math@warning}{\ifthenelse{\NOT\equal{\snapshot@categorization@mathraw}{\snapshot@categorization@mathraw@meta}}{\snapshot@categorization@math@warning}{}}
       \bgroup%
         \Hy@pdfstringtrue%
         \immediate\write\@auxout{\noexpand\gdef\noexpand\snapshot@categorization@math@meta{\snapshot@categorization@math}}%
+        \immediate\write\@auxout{\noexpand\gdef\noexpand\snapshot@categorization@mathraw@meta{\snapshot@categorization@mathraw}}%
       \egroup%
-    }
+    }%
   }%
 }%
 
@@ -538,7 +579,7 @@
         \immediate\write\@auxout{\noexpand\gdef\noexpand\snapshot@categorization@connect@meta{\snapshot@categorization@connect}}%
         \immediate\write\@auxout{\noexpand\gdef\noexpand\snapshot@categorization@connectraw@meta{\snapshot@categorization@connectraw}}%
       \egroup%
-    }
+    }%
   }%
 }%
 

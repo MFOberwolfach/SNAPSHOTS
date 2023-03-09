@@ -11,7 +11,7 @@
 \usepackage{longtable}
 
 \usepackage[french]{babel}
-\usepackage[french]{cleveref}
+\usepackage[nameinlink,french]{cleveref}
 
 \author{Test Author}
 \title{french cleveref}
@@ -23,10 +23,10 @@ Check, if the following cleveref names are french. Please note, that with french
 \end{abstract}
 
 \noindent\begin{longtable}{@{}l@{\quad yields\quad}l@{}}
-	\verb+\Cref{real}+             &\Cref{real}.\\
+	\verb+\Cref{real,chartwo}+     &\Cref{real,chartwo}.\\
 	\verb+\cref{real}+             &\cref{real}.\\[1ex]
-	\verb+\Cref{chartwo}+           &\Cref{chartwo}.\\
-	\verb+\cref{chartwo}+           &\cref{chartwo}.\\[1ex]
+	\verb+\Cref{chartwo}+          &\Cref{chartwo}.\\
+	\verb+\cref{chartwo}+          &\cref{chartwo}.\\[1ex]
 	\verb+\Cref{thm.continuity}+   &\Cref{thm.continuity}.\\
 	\verb+\cref{thm.continuity}+   &\cref{thm.continuity}.\\[1ex]
 	\verb+\Cref{tab.Jordan}+       &\Cref{tab.Jordan}.\\

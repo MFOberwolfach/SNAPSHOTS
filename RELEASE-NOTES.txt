@@ -16,8 +16,10 @@ changes
     loaded and used in template.tex.
 * An example on how to cite a snapshot was added to the references of
     tempate.tex.
-* template.tex contains some hints for writing a good snapshot.
-* The default senior editor in template.tex is Anja Randecker.
+* template.tex contains hints for writing a good snapshot.
+* Default senior editor in template.tex updated.
+* Spacing of the footnote marks improved.
+* Class warnings removed or fixed.
 
 
 release v2.4.0
