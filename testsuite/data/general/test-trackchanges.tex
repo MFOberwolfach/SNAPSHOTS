@@ -29,7 +29,6 @@
 \authorinfo{\authorname{Author One} is a professor of pure mathematics at the First University.}
 \authorinfo{\authorname{Author Two} is a lecturer in applied mathematics at the Second Institution.}
 
-\usepackage{filecontents}
 \begin{filecontents}{\jobname.bib}
 @book{knuth1984texbook,
   title = {The TeXbook},
@@ -97,14 +96,13 @@ See test-hyperref.tex for footnotes in special places like section headings.
 
 Latex should write the line
 \begin{verbatim}
-trackchanges.sty    2015/11/07 v0.7.2 TrackChanges file
+trackchanges.sty    2023/03/10 v0.7.0-mfo3 TrackChanges file
 \end{verbatim}
-with this date and version number to standard output. Otherwise latex has not loaded the version
-adapted to the snapshotmfo.cls by Johannes Niediek.
+with this date and version number to standard output. Otherwise \LaTeX has not loaded the version updated by the MFO snapshots team.
 
 %%% Please insert the main body of your snapshot here.
 \section{A heading}
-Your actual snapshot.\footnote{This is a footnote.} As usual, you can give references such as \cite{knuth1984texbook, wikiMath, sample13, sample12, sample11, sample14} via the \verb+\cite+ command.
+Your actual snapshot.\!\footnote{This is a footnote.} As usual, you can give references such as \cite{knuth1984texbook, wikiMath, sample13, sample12, sample11, sample14} via the \verb+\cite+ command.
 
 \change[Alice]{We appreciate if you include images or other graphics that illustrate your snapshot. However, please do keep in mind the copyright issues explained in our email in case you include images and graphics you have not produced yourself.}{Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.}
 
