@@ -32,7 +32,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}
 \listfiles
-\ProvidesClass{snapshotmfo}[2023/02/10 Document class for "Snapshots of modern mathematics from Oberwolfach"]
+\ProvidesClass{snapshotmfo}[2023/04/03 Document class for "Snapshots of modern mathematics from Oberwolfach"]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % snapshotmfo is based on the Koma-Script ‘article’ class
 \LoadClass[10pt,twoside]{scrartcl}
@@ -88,7 +88,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % footnotes
-%\def\thefootnote{\framebox{\arabic{footnote}}}
 \newcommand\snapshot@footnotemark{%
   \setlength{\fboxsep}{0.1em}%
   \setlength{\fboxrule}{0.04em}%
@@ -96,6 +95,7 @@
 }
 \deffootnote[1.5em]{0em}{1.5em}{\rlap{\snapshot@footnotemark}\hspace{1.5em}}
 \deffootnotemark{\hskip .1em\snapshot@footnotemark}
+%\deffootnotemark{\snapshot@footnotemark}
 \@ifclasslater{scrartcl}{2010/06/17}{%
 \setfootnoterule[0.526pt]{\textwidth}
 }{%
@@ -124,7 +124,7 @@
 \let\snapshot@bibliography\bibliography
 \def\bibliography{\gdef\snapshot@bib@printed{\relax}\bibliographystyle{babamspl}\snapshot@bibliography}
 
-\usepackage[german,ngerman,english,USenglish,UKenglish]{isodate}
+\usepackage[german,ngerman,english,USenglish,UKenglish,french]{isodate}
 \setbibliographyfont{urldate}{\printdate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -137,7 +137,7 @@
         \IfLanguageName{ngerman}{}{%
           \IfLanguageName{german}{}{%
             \IfLanguageName{spanish}{}{%
-              \IfLanguageName{french}{}{%
+              \IfLanguageName{french}{\frenchsetup{FrenchFootnotes=false,AutoSpaceFootnotes=false}}{%
                 \ClassError{snapshotmfo}{Unsupported language \languagename}{Supported languages: USenglish, UKenglish, english, ngerman, german, spanish, french}%
               }%
             }%
@@ -779,6 +779,7 @@
     \snapshot@define@spaces%
     \newpage
     \global\@topnum\z@
+%		\deffootnotemark{\hskip .1em\snapshot@footnotemark}
     \let\thanks\footnote%
     \@maketitle
     \thispagestyle{\titlepagestyle}
@@ -842,9 +843,7 @@
       \@author\par%
     }%
     \vskip 1em%
-%    {\Large \@date \par}%
     \vskip \z@ \@plus 1em
-%    {\Large \@publishers \par}
   \end{center}%
   \par
 }%

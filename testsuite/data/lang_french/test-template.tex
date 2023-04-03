@@ -74,10 +74,10 @@
 \usepackage[french]{babel}
 
 % For references within the document we recommend cleveref. Please pass the language to cleveref as well.
-%\usepackage[nameinlink]{cleveref} % in case of USenglish
-%\usepackage[nameinlink,ngerman]{cleveref}
-%\usepackage[nameinlink,spanish]{cleveref}
-\usepackage[nameinlink,french]{cleveref}
+%\usepackage[noabbrev,capitalise,nameinlink]{cleveref} % in case of USenglish
+%\usepackage[noabbrev,nameinlink,ngerman]{cleveref}
+%\usepackage[noabbrev,nameinlink,spanish]{cleveref}
+\usepackage[noabbrev,nameinlink,french]{cleveref}
 
 % an improvement to \dots to be loaded after babel
 \usepackage{ellipsis}
@@ -225,7 +225,7 @@ Warning--empty language in wikiMath
 
 Using TeXnicCenter with MikTeX on Windows, the compilation summary will read:
 \begin{verbatim}
-LaTeX-Result: 0 Error(s), 8 Warning(s), 0 Bad Box(es), 5 Pages(s)
+LaTeX-Result: 0 Error(s), 6 Warning(s), 0 Bad Box(es), 5 Pages(s)
 BibTeX-Result: 0 Error(s), 8 Warning(s)
 \end{verbatim}
 
@@ -236,12 +236,6 @@ The ``class snapshotmfo'' warnings will disappear as soon as you supply the expe
 
 Do not make the ``empty language'' warnings disappear by supplying languages for the items,
 unless you want the languages explicitely printed in the references!
-
-In addition, the french version will yield two ``isodate'' warnings
-\begin{verbatim}
-Package isodate Warning: Language french unknown to isodate.
-\end{verbatim}
-but the output look fine nonetheless.
 
 
 %%% Please insert the main body of your snapshot here.

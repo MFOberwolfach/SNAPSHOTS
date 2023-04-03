@@ -1,0 +1,94 @@
+\documentclass{snapshotmfo}
+\categorizationmath{algebra and number theory,analysis,discrete mathematics and foundations,geometry and topology,numerics and scientific computing,probability theory and statistics}
+\categorizationconnect{chemistry and earth science,computer science,engineering and technology,finance,fine arts,humanities and social sciences,life science,physics,reflections on mathematics}
+\license{CC-BY-SA-4.0}
+\snapshotid{173}{1950}
+\junioreditor{Some One}{junior-editors@mfo.de}
+\senioreditor[f]{Anja Randecker}{senior-editor@mfo.de}
+\director[m]{Gerhard Huisken}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{longtable}
+
+\usepackage[USenglish]{babel}
+\usepackage[noabbrev,capitalise,nameinlink]{cleveref}
+\usepackage{ellipsis}
+
+\author{%
+narrow\texorpdfstring{\!}{}\thanks{narrow spacing}
+natural\thanks{natural spacing}
+wide\texorpdfstring{\,}{}\thanks{wide spacing} 
+\and Author Two}
+\title{USenglish footnotes}
+\authorinfo{\authorname{Author One} is a professor of pure mathematics at the First University.}
+\authorinfo{\authorname{Author Two} is a lecturer in applied mathematics at the Second Institution.}
+
+\begin{document}
+\pdfbookmark{USenglish footnotes}{snapshottitle}
+
+\begin{abstract}
+Does the spacing of the footnote marks in the title and in the text look good?
+\end{abstract}
+
+\verb+\hskip .1em+ (in snapshotmfo.cls) is a good spacing for footnote marks, to be undone by
+\verb+\hskip -.1em+ (in template.tex) after punctuation marks.
+
+
+\section{Case 1: after a word}
+
+This\hskip -.1em\footnote{a} is narrow.
+
+\noindent This\footnote{b} is natural.
+
+\noindent This\hskip .1em\footnote{c} is wide.
+
+
+\section{Case 2: between word and punctuation}
+
+\noindent This\hskip -.1em\footnote{d}. is narrow.
+
+\noindent This\footnote{e}. is natural.
+
+\noindent This\hskip .1em\footnote{f}. is wide.
+
+
+\subsection{with different punctuation marks}
+
+\noindent This\footnote{g}, is natural.
+
+\noindent This\footnote{h}; is natural.
+
+\noindent This\footnote{i}: is natural.
+
+\noindent This\footnote{j}? is natural.
+
+\noindent This\footnote{k}! is natural.
+
+
+\section{Case 3: after punctuation}
+
+\noindent This.\hskip -.1em\footnote{l} is narrow.
+
+\noindent This.\footnote{m} is natural.
+
+\noindent This.\hskip .1em\footnote{n} is wide.
+
+
+\subsection{with different punctuation marks}
+
+\noindent This,\footnote{o} is natural.
+
+\noindent This;\footnote{p} is natural.
+
+\noindent This:\footnote{q} is natural.
+
+\noindent This?\footnote{r} is natural
+
+\noindent This!\footnote{s} is natural
+
+
+\section{punctuation by itself} 
+
+period. comma, semicolon; colon: question mark? exclamation point! and on we go
+
+\end{document}
