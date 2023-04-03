@@ -84,13 +84,15 @@
 
 %%% Please separate your names by \and if there are several authors.
 \author{Author One\thanks{Author One is supported by the Mathematical Dreams Come True Foundation.} \and Author Two}
+%%% The control sequences \thanks and \and are fine in the content of \author. The content of \thanks is not subject to
+% any restrictions. Apart from that, the comment below \title applies.
 
 %%% Please insert the title of your snapshot.
 \title{Your title}
-%%% The content of \title, \begin{abstract}...\end{abstract}, \section, and \subsection will be used for pdf bookmarks
+%%% The content of \author, \title, \begin{abstract}...\end{abstract}, \section, and \subsection will be used for pdf bookmarks
 % or pdf metadata or both. Math mode, TeX control sequences, and some special characters will result in hyperref warnings
 % like "Token not allowed in a PDF string" and - more seriously - corrupt text in the bookmarks and metadata, resp..
-% In case of \title, please use the following variant, if necessary:
+% In case of \title or \author, please use the following variant, if necessary:
 %\title{\texorpdfstring{Your title}{This is a plain text equivalent of your title used for the pdf bookmark and the pdf metadata.}}
 % The other control sequences offer a more elegant way to supply the alternative text, see below.
 
@@ -243,7 +245,7 @@ unless you want the languages explicitely printed in the references!
 %%% If necessary, use the optional argument to supply an alternative text for the pdf bookmark, cf. the comment on \title above:
 %\section[Optional plain text substitute]{A heading containing math mode, for example}
 
-This is the main text\footnote{This is a footnote.} of your snapshot. Here you develop the story of your snapshot.
+This is the main text of your snapshot.\!\footnote{This is a footnote.} Here you develop the story of your snapshot.
 How do you come up with a good idea for a snapshot?
 
 Imagine your university organizes an ``open house'' and you want to give a talk to convince high school students to study with you. If you can touch on recent research in such a talk then it is also a great topic for a snapshot. Ideally, a snapshot has 5--8 pages, so you can necessarily explain only a small ``snapshot'' of your mathematical interests.

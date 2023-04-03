@@ -19,6 +19,7 @@ changes
 * template.tex contains hints for writing a good snapshot.
 * Default senior editor in template.tex updated.
 * Spacing of the footnote marks improved.
+* trackchanges.sty updated, because soulutf8 merged into soul.
 * Class warnings removed or fixed.
 
 
