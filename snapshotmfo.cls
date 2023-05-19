@@ -32,7 +32,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}
 \listfiles
-\ProvidesClass{snapshotmfo}[2023/04/03 Document class for "Snapshots of modern mathematics from Oberwolfach"]
+\ProvidesClass{snapshotmfo}[2023/05/19 Document class for "Snapshots of modern mathematics from Oberwolfach"]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % snapshotmfo is based on the Koma-Script ‘article’ class
 \LoadClass[10pt,twoside]{scrartcl}
@@ -105,6 +105,7 @@
     \kern 2.474pt
   }
 }
+\newcommand\footnotewithoutspace[1]{\hskip -.1em\footnote{#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % fonts & symbols

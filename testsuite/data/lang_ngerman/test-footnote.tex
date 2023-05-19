@@ -15,9 +15,9 @@
 \usepackage{ellipsis}
 
 \author{%
-narrow\texorpdfstring{\!}{}\thanks{narrow spacing}
-natural\thanks{natural spacing}
-wide\texorpdfstring{\,}{}\thanks{wide spacing} 
+natural\thanks{natural spacing} and
+narrow,\texorpdfstring{\hskip -.1em}{}\thanks{narrow spacing}
+spacing of footnotemarks in the title
 \and Author Two}
 \title{ngerman footnotes}
 \authorinfo{\authorname{Author One} is a professor of pure mathematics at the First University.}
@@ -30,13 +30,16 @@ wide\texorpdfstring{\,}{}\thanks{wide spacing}
 Does the spacing of the footnote marks in the title and in the text look good?
 \end{abstract}
 
-\verb+\hskip .1em+ (in snapshotmfo.cls) is a good spacing for footnote marks, to be undone by
-\verb+\hskip -.1em+ (in template.tex) after punctuation marks.
+\verb+\hskip .1em+ as set in snapshotmfo.cls is a good spacing for footnote marks, to be undone
+using \verb+\footnotewithoutspace+ instead of \verb+\footnote+ after punctuation marks.
+
+In the title, the remedy is trickier:\\
+\verb+\texorpdfstring{\hskip -.1em}{}\thanks{\dots}+
 
 
 \section{Case 1: after a word}
 
-This\hskip -.1em\footnote{a} is narrow.
+This\footnotewithoutspace{a} is narrow.
 
 \noindent This\footnote{b} is natural.
 
@@ -45,7 +48,7 @@ This\hskip -.1em\footnote{a} is narrow.
 
 \section{Case 2: between word and punctuation}
 
-\noindent This\hskip -.1em\footnote{d}. is narrow.
+\noindent This\footnotewithoutspace{d}. is narrow.
 
 \noindent This\footnote{e}. is natural.
 
@@ -67,7 +70,7 @@ This\hskip -.1em\footnote{a} is narrow.
 
 \section{Case 3: after punctuation}
 
-\noindent This.\hskip -.1em\footnote{l} is narrow.
+\noindent This.\footnotewithoutspace{l} is narrow.
 
 \noindent This.\footnote{m} is natural.
 
@@ -82,13 +85,14 @@ This\hskip -.1em\footnote{a} is narrow.
 
 \noindent This:\footnote{q} is natural.
 
-\noindent This?\footnote{r} is natural
+\noindent This?\footnote{r} is natural.
 
-\noindent This!\footnote{s} is natural
+\noindent This!\footnote{s} is natural.
 
 
 \section{punctuation by itself} 
 
 period. comma, semicolon; colon: question mark? exclamation point! and on we go
+
 
 \end{document}
