@@ -32,7 +32,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}
 \listfiles
-\ProvidesClass{snapshotmfo}[2023/05/19 Document class for "Snapshots of modern mathematics from Oberwolfach"]
+\ProvidesClass{snapshotmfo}[2023/09/08 Document class for "Snapshots of modern mathematics from Oberwolfach"]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % snapshotmfo is based on the Koma-Script ‘article’ class
 \LoadClass[10pt,twoside]{scrartcl}
@@ -94,8 +94,7 @@
   \textsuperscript{\framebox{\raisebox{0pt}[1.05\height][0.025\height]{\thefootnotemark}}}%
 }
 \deffootnote[1.5em]{0em}{1.5em}{\rlap{\snapshot@footnotemark}\hspace{1.5em}}
-\deffootnotemark{\hskip .1em\snapshot@footnotemark}
-%\deffootnotemark{\snapshot@footnotemark}
+\deffootnotemark{\snapshot@footnotemark}
 \@ifclasslater{scrartcl}{2010/06/17}{%
 \setfootnoterule[0.526pt]{\textwidth}
 }{%
@@ -105,7 +104,7 @@
     \kern 2.474pt
   }
 }
-\newcommand\footnotewithoutspace[1]{\hskip -.1em\footnote{#1}}
+\newcommand\footnotewithspace[1]{\kern .1em\footnote{#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % fonts & symbols
@@ -780,8 +779,7 @@
     \snapshot@define@spaces%
     \newpage
     \global\@topnum\z@
-%		\deffootnotemark{\hskip .1em\snapshot@footnotemark}
-    \let\thanks\footnote%
+    \let\thanks\footnotewithspace%
     \@maketitle
     \thispagestyle{\titlepagestyle}
   \endgroup
@@ -824,7 +822,7 @@
 }%
 \renewcommand*{\@maketitle}{%
   \clearpage
-  \let\footnote\thanks
+  \let\footnotewithspace\thanks
   \setparsizes{\z@}{\z@}{\z@\@plus 1fil}\par@updaterelative
   \noindent
   \parbox[t]{0.5\linewidth}{\sffamily\relscale{0.9}\snapshot@l@header}%
