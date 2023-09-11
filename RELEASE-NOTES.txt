@@ -1,6 +1,15 @@
 RELEASE-NOTES.txt of https://github.com/MFOberwolfach/SNAPSHOTS
 ===============================================================
 
+release v3.0.1
+==============
+
+changes
+-------
+* Use \footnote after a punctuation mark and \footnoteswithspace after
+    a word. The control sequence \footnotewithoutspace has been removed.
+	
+
 release v3.0.0
 ==============
 
