@@ -6,7 +6,7 @@ release v3.0.1
 
 changes
 -------
-* Use \footnote after a punctuation mark and \footnoteswithspace after
+* Use \footnote after a punctuation mark and \footnotewithspace after
     a word. The control sequence \footnotewithoutspace has been removed.
 	
 
