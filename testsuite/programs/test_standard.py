@@ -12,7 +12,7 @@ import argparse, configparser, datetime, glob, os, os.path, re, subprocess, sys
 import copy_cls_files, tidy_up
 
 script = os.path.basename(__file__)
-alllangs = ['USenglish', 'ngerman', 'spanish']
+alllangs = ['USenglish', 'ngerman', 'spanish', 'french']
 
 def mylog(a):
   if isinstance(a, str):

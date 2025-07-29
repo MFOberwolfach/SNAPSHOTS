@@ -163,7 +163,7 @@ if __name__ == '__main__':
   parser.add_argument(
     '-c',
     '--config',
-    action = append,
+    action = 'append',
     default = [default_cfbase,],
     help = f"Configuration file basename. The default is '{default_cfbase}'."
   )

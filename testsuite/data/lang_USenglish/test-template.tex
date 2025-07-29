@@ -183,7 +183,7 @@
 \begin{document}
 %%% Starting with version 1.29 the LaTeX package "bookmark" doesn't create the title bookmark any more.
 % As a workaround, please edit the following line:
-\pdfbookmark{Your title (without math mode, control sequences and special characters)}{snapshottitle}
+\pdfbookmark[-1]{Your title (without math mode, control sequences and special characters)}{snapshottitle}
 % The second argument "snapshottitle" is just an identifier and can be left unchanged.
 
 %%% Please insert your abstract here.
@@ -198,18 +198,34 @@ This is your abstract. It should hint at the storyline of your snapshot. Contrar
 \section{Comment on this unit test: test-template.tex}
 test-template.tex differs from template.tex only by this section!
 After the following compilations
+\begin{small}
 \begin{verbatim}
 pdflatex test-template.tex
 bibtex test-template.aux
 pdflatex test-template.tex
 pdflatex test-template.tex
 \end{verbatim}
+\end{small}
 the following warnings will remain:
+\begin{small}
 \begin{verbatim}
 LaTeX Warning: Writing or overwriting file
 `./test-template.bib'.
 
 Class snapshotmfo Warning: No snapshot id given.
+Class scrartcl Warning: Trying emergency fix for bookmark level gap,
+(scrartcl)              because toclevel of section (1) is more than 1
+(scrartcl)              greater than toclevel of part (-1).
+(scrartcl)              Note: This fix can fail and you should load
+(scrartcl)              package bookmark to avoid issues with such gaps.
+Class scrartcl Warning: Trying emergency fix for bookmark level gap,
+[...]
+Class scrartcl Warning: Trying emergency fix for bookmark level gap,
+[...]
+Class scrartcl Warning: Trying emergency fix for bookmark level gap,
+[...]
+Class scrartcl Warning: Trying emergency fix for bookmark level gap,
+[...]
 Class snapshotmfo Warning: No mathematical subject given.
 Class snapshotmfo Warning: No connection to other fields given.
 Class snapshotmfo Warning: No license information given.
@@ -224,12 +240,15 @@ Warning--empty language in sample12
 Warning--empty language in sample13
 Warning--empty language in wikiMath
 \end{verbatim}
+\end{small}
 
 Using TeXnicCenter with MikTeX on Windows, the compilation summary will read:
+\begin{small}
 \begin{verbatim}
-LaTeX-Result: 0 Error(s), 6 Warning(s), 1 Bad Box(es), 5 Pages(s)
+LaTeX-Result: 0 Error(s), 11 Warning(s), 2 Bad Box(es), 6 Pages(s)
 BibTeX-Result: 0 Error(s), 8 Warning(s)
 \end{verbatim}
+\end{small}
 
 The ``overwriting file'' warning is inevitable as long as you provide the references the default
 way, i.\,e. as an embedded .bib file.

@@ -35,7 +35,7 @@
 \ProvidesClass{snapshotmfo}[2023/09/08 Document class for "Snapshots of modern mathematics from Oberwolfach"]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % snapshotmfo is based on the Koma-Script ‘article’ class
-\LoadClass[10pt,twoside]{scrartcl}
+\LoadClass[10pt,twoside,bookmarkpackage=false]{scrartcl}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % require pdflatex compiler if possible

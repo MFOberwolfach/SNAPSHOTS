@@ -1,6 +1,17 @@
 RELEASE-NOTES.txt of https://github.com/MFOberwolfach/SNAPSHOTS
 ===============================================================
 
+release v3.0.2
+==============
+
+fixes
+-----
+* Current tex installations compile a snapshot, e.g. template.tex, with
+    errors as soon as the aux file exists. This has been fixed by a
+    small change to snapshotmfo.cls.
+* Minor corrections in the testsuite.
+
+
 release v3.0.1
 ==============
 
