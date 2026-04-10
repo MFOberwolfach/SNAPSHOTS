@@ -27,10 +27,10 @@ def mylogtime(*a):
     b = 'current'
   mylog(f'{b} time: {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
 
-def myproc(b, dry = False):
+def myproc(b, dry = False, quiet = False):
   mylog(f'executing \'{" ".join(b)}\' ...')
   if not dry:
-    subprocess.Popen(b).communicate()
+    subprocess.Popen(b, stdout = subprocess.DEVNULL if quiet else None).communicate()
 
 def do(
   workdir,
@@ -40,7 +40,8 @@ def do(
   cls = False,
   chosensub = default_sub,
   template = default_template,
-  dry = False
+  dry = False,
+  quiet = False,
 ):
   mylogtime('start')
 
@@ -117,7 +118,7 @@ def do(
         mylog(f'writing output to {fntex}')
         out.write(copy)
       for cmd1 in ('pdflatex', 'bibtex', 'pdflatex', 'pdflatex'):
-        myproc([cmd1 , fnbase], dry = dry)
+        myproc([cmd1 , fnbase], dry = dry, quiet = quiet)
       myproc(['pdftk' , fnbase + '.pdf', 'burst', 'output', fnbase + '_%03d.pdf'], dry = dry)
       cmd.append(fnbase + '_002.pdf')
 
@@ -197,6 +198,12 @@ if __name__ == '__main__':
     action = 'store_true',
     help = 'pretend only to execute the tasks'
   )
+  parser.add_argument(
+    '-q',
+    '--quiet',
+    action = 'store_true',
+    help = 'ignore the output of pdflatex and bibtex commands'
+  )
   args = parser.parse_args()
   mylog(f'args are {args}')
   do(
@@ -207,7 +214,8 @@ if __name__ == '__main__':
     cls = args.cls,
     chosensub = args.sub,
     template = args.template,
-    dry = args.dry
+    dry = args.dry,
+    quiet = args.quiet,
   )
 
   #input('Press RETURN to proceed!')
