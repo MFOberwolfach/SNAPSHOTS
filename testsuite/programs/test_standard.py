@@ -8,7 +8,7 @@
 This is done for the subdirectories other than 'junioreditor'.
 '''
 
-import argparse, configparser, datetime, glob, os, os.path, re, subprocess, sys
+import argparse, concurrent.futures, configparser, datetime, glob, os, os.path, re, subprocess, sys
 import copy_cls_files, tidy_up
 
 script = os.path.basename(__file__)
@@ -29,10 +29,13 @@ def mylogtime(*a):
     b = 'current'
   mylog(f'{b} time: {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
 
-def myproc(b, dry = False, quiet = False):
+def myproc(b, dry = False, quiet = False, cwd = None):
   mylog(f'executing \'{" ".join(b)}\' ...')
   if not dry:
-    subprocess.Popen(b, stdout = subprocess.DEVNULL if quiet else None).communicate()
+    subprocess.Popen(b,
+                     cwd = cwd,
+                     stdout = subprocess.DEVNULL if quiet else None
+                     ).communicate()
 
 def do(
   workdir,
@@ -43,6 +46,7 @@ def do(
   cls = False,
   dry = False,
   quiet = False,
+  multithread = False,
 ):
   mylogtime('start')
 
@@ -85,12 +89,21 @@ def do(
     #
     cmd = ['pdftk', ]
 
-    ## compile latex files
-    for fn in sorted(glob.glob('test-*.tex')):
-      fnbase = re.sub('.tex$', '', fn)
+    def process_section(fnbase, dry, quiet, cwd):
       for cmd1 in ('pdflatex', 'bibtex', 'pdflatex', 'pdflatex'):
-        myproc([cmd1 , fnbase], dry = dry, quiet = quiet)
-      cmd.append(fnbase + '.pdf')
+        myproc([cmd1 , fnbase], dry = dry, quiet = quiet, cwd = cwd)
+
+
+    ## compile latex files
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+      for fn in sorted(glob.glob('test-*.tex')):
+        fnbase = re.sub('.tex$', '', fn)
+        cmd.append(fnbase + '.pdf')
+        cwd = os.getcwd()
+        if multithread:
+          executor.submit(process_section, fnbase, dry, quiet, cwd)
+        else:
+          process_section(fnbase, dry, quiet, cwd)
 
     ## produce final pdf
     mylog(f'merging pdf output into {fnresult} ...')
@@ -163,6 +176,12 @@ if __name__ == '__main__':
     action = 'store_true',
     help = 'ignore the output of pdflatex and bibtex commands'
   )
+  parser.add_argument(
+    '-m',
+    '--multithread',
+    action = 'store_true',
+    help = 'compile each test file in its own thread'
+  )
 
   args = parser.parse_args()
 
@@ -175,6 +194,7 @@ if __name__ == '__main__':
     cls = args.cls,
     dry = args.dry,
     quiet = args.quiet,
+    multithread = args.multithread,
   )
 
   #input('Press RETURN to proceed!')

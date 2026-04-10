@@ -78,7 +78,12 @@ parser.add_argument(
   action = 'store_true',
   help = 'ignore the output of pdflatex and bibtex commands'
 )
-
+parser.add_argument(
+  '-m',
+  '--multithread',
+  action = 'store_true',
+  help = 'compile each test file in its own thread'
+)
 args = parser.parse_args()
 
 ## determine subdirectories to process
@@ -108,6 +113,7 @@ if 'junioreditor' in chosensubs:
     cls = args.cls,
     dry = args.dry,
     quiet = args.quiet,
+    multithread = args.multithread,
   )
 
 ## standard tests
@@ -123,6 +129,7 @@ if remains:
     cls = args.cls,
     dry = args.dry,
     quiet = args.quiet,
+    multithread = args.multithread,
   )
 
 ## produce overall result file
