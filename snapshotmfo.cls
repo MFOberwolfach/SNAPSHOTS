@@ -113,9 +113,13 @@
 \RequirePackage{textcomp}
 \RequirePackage{lmodern}
 \RequirePackage[scaled=0.82304487406237511878]{helvet}
+\renewcommand{\sfdefault}{phv}
 \RequirePackage{relsize}
 \RequirePackage[tracking=true]{microtype}
+\DisableLigatures[f]{encoding=T1, family=phv}
 \DeclareMicrotypeSet*[tracking]{letterspacedHelvetica}{family=phv}
+\UseMicrotypeSet[tracking]{letterspacedHelvetica}
+\SetTracking{encoding=T1, family=phv}{100}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % references (via BibTeX, babelbib and isodate)
@@ -632,7 +636,7 @@
     \IfSubStr{#1}{p}{%
       \IfSubStr{#1}{f}{Rédactrices juniors}{% plural female
         \IfSubStr{#1}{m}{Rédacteurs juniors}{% plural male
-          Rédacteurs/rédactrices juniors% plural gender-neutral
+          Rédacteurs/Rédactrices juniors% plural gender-neutral
         }%
       }%
     }{% no p
