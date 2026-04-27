@@ -33,10 +33,10 @@ def mylogtime(*a):
     b = 'current'
   mylog(f'{b} time: {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
 
-def myproc(b, dry = False):
+def myproc(b, dry = False, quiet = False):
   mylog(f'executing \'{" ".join(b)}\' ...')
   if not dry:
-    subprocess.Popen(b).communicate()
+    subprocess.Popen(b, stdout = subprocess.DEVNULL if quiet else None).communicate()
 
 mylogtime('start')
 
@@ -72,6 +72,18 @@ parser.add_argument(
   action = 'store_true',
     help = 'pretend only to execute the tasks'
 )
+parser.add_argument(
+  '-q',
+  '--quiet',
+  action = 'store_true',
+  help = 'ignore the output of pdflatex and bibtex commands'
+)
+parser.add_argument(
+  '-m',
+  '--multithread',
+  action = 'store_true',
+  help = 'compile each test file in its own thread'
+)
 args = parser.parse_args()
 
 ## determine subdirectories to process
@@ -99,7 +111,9 @@ if 'junioreditor' in chosensubs:
     cfbase = langs,
     keep = args.keep,
     cls = args.cls,
-    dry = args.dry
+    dry = args.dry,
+    quiet = args.quiet,
+    multithread = args.multithread,
   )
 
 ## standard tests
@@ -113,7 +127,9 @@ if remains:
     lang = args.lang,
     keep = args.keep,
     cls = args.cls,
-    dry = args.dry
+    dry = args.dry,
+    quiet = args.quiet,
+    multithread = args.multithread,
   )
 
 ## produce overall result file
