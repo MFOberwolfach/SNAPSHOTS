@@ -58,10 +58,18 @@
 %%% Consistent quotation marks and citations:
 %\usepackage{csquotes}
 %%% Enhanced typesetting of units:
-%\usepackage{siunitx}
-%\sisetup{per-mode=fraction,fraction-function=\nicefrac}
+\usepackage{siunitx}
+\sisetup{per-mode=fraction,fraction-function=\nicefrac}
+\DeclareSIUnit{\kcal}{kcal}
 %%% Wrap text around tables and figures:
 %\usepackage{wrapfig}
+
+%%% Improved table layout
+\usepackage{booktabs}
+
+%%% Figures
+\usepackage{subcaption}
+\usepackage{tikz}
 
 % Please feel free to use your own macros but please do not change the layout of the snapshot.
 
@@ -106,20 +114,17 @@
 %%% 1. by using the embedded .bib file:
 %%%    * replace the references below by your own ones
 %%%    * and leave the \bibliography command at the end of this file unchanged.
-%%% This is the default way as it is a full-fledged BibTex solution
+%%% This is the default way as it is a full-fledged BibTeX solution
 %%% while you have to edit only one file.
 %%%
 %%% 2. by using a separate .bib file:
 %%%    * provide your own .bib file,
 %%%    * delete everything from \begin{filecontents} until \end{filecontents}
 %%%    * and make the \bibliography command at the end of this file point to your .bib file.
+%%% 
+%%% We strongly discourage non-BibTeX methods of reference management. 
 %%%
-%%% 3. by using no BibTeX at all:
-%%%    * delete everything from \begin{filecontents} until \end{filecontents}
-%%%    * replace the \bibliography command at the end of this file with the
-%%%      thebibliography environment containing a \bibitem command for each reference.
-%%% This way is deprecated as it is less flexible than the BibTeX solutions.
-%%%
+
 \begin{filecontents}[overwrite]{\jobname.bib}
 @book{knuth1984texbook,
   title = {The TeXbook},
@@ -183,7 +188,7 @@
 \begin{document}
 %%% Starting with version 1.29 the LaTeX package "bookmark" doesn't create the title bookmark any more.
 % As a workaround, please edit the following line:
-\pdfbookmark[-1]{Your title (without math mode, control sequences and special characters)}{snapshottitle}
+\pdfbookmark[0]{Your title (without math mode, control sequences and special characters)}{snapshottitle}
 % The second argument "snapshottitle" is just an identifier and can be left unchanged.
 
 %%% Please insert your abstract here.
@@ -216,6 +221,25 @@ We appreciate if you include images or other graphics that illustrate your snaps
 \label{fig.sample-image}
 \end{figure}
 
+%%% Likewise, please format your tables as follows, if at all possible.
+\begin{center}
+	\begin{table}[ht]
+		\centering
+		\begin{tabular}{@{}lrrr@{}}\toprule
+			\textbf{Food Item}  & \textbf{Energy} (\si{\kcal}) & \textbf{Protein} (\si{\gram}) & \textbf{Vitamin A} (\si{\micro\gram}) \\
+			\midrule
+			Carrots   & 41  & 1 & 835 \\
+			Chocolate & 535 & 8 & 59  \\
+			\bottomrule
+		\end{tabular}
+		\caption{Nutritional values of \SI{100}{\gram} of carrots and \SI{100}{\gram} of chocolate according to a website of the U.S. Department of Agriculture. }
+		\label{tab:nutrition}
+	\end{table}
+\end{center}
+
+The use of the package \texttt{hypcap} means that references like
+\Cref{fig.sample-image} or \Cref{fig.maya} link to the figure itself instead of the caption.
+
 \subsection{A subsection}
 %%% If necessary, use the optional argument to supply an alternative text for the pdf bookmark, cf. the comment on \title above:
 %\subsection[Optional plain text substitute]{A heading containing math mode, for example}
@@ -231,10 +255,26 @@ We have composed guidelines to help you write a beautiful and accessible snapsho
 
 %%% Please use this format to include images. Supported image formats: jpg, pdf, png. Please convert your images to those formats.
 \begin{figure}[ht]
-        \centering
-        \includegraphics[width= 0.33 \textwidth]{maya.pdf}
-        \caption{Exemplary image: Maya numerals.}
-\label{fig.maya}
+    \centering
+    \begin{subfigure}{0.33 \textwidth}
+        \includegraphics[width=\textwidth]{maya.pdf}
+        \caption{Example image: Maya numerals.}
+        \label{fig.maya}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}{0.33 \textwidth}
+        \begin{tikzpicture}
+            \node[circle,fill,inner sep=2pt] (o) at (0,0) {};
+            \node[circle,fill,inner sep=2pt] (a) at (90:2) {};
+            \node[circle,fill,inner sep=2pt] (b) at (210:2) {};
+            \node[circle,fill,inner sep=2pt] (c) at (330:2) {};
+            \draw
+                (o) -- (a) -- (b) -- (c) -- (a)
+                (b) -- (o) -- (c);
+        \end{tikzpicture}
+        \caption{Example drawing with TikZ.}
+    \end{subfigure}
+    \caption{Two small figures side by side.}
 \end{figure}
 
 If you download an image from Wikipedia or similar sources, please always check the applicable license terms. Most licenses require an adequate attribution. For Wikipedia, you can find the correct reference by clicking on the image and then clicking on the button saying ``use this file''. Some licenses may have further restrictions, such as ``modifications are not allowed''. If modifications are allowed you may still have to mark those modifications. Please verify that you comply with all license requirements.
