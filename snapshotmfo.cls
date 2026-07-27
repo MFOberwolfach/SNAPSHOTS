@@ -401,6 +401,43 @@
 \setkomafont{title}{\renewcommand{\baselinestretch}{0.8}\color[gray]{0.25}\sffamily\relscale{1.8}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% warn authors about long snapshots
+\RequirePackage{lastpage}
+\RequirePackage{refcount}
+
+\newcount\snapshot@page@limit
+\newcount\snapshot@pdf@page@limit
+\snapshot@page@limit=12
+\snapshot@pdf@page@limit=14
+
+% produce a console warning
+\AtEndDocument{%
+  \ifnum\getpagerefnumber{LastPage}>\snapshot@page@limit
+    \ClassWarning{snapshotmfo}{%
+      This snapshot is \getpagerefnumber{LastPage} pages long, which exceeds
+      the recommended limit of \the\snapshot@page@limit\space pages.
+      Please try to shorten your snapshot.%
+    }%
+  \fi
+}
+
+\AtEndDocument{%
+  \ifnum\getpagerefnumber{LastPage}>\snapshot@pdf@page@limit
+    \clearpage
+    \thispagestyle{empty}%
+    \noindent
+    \fbox{%
+      \begin{minipage}{0.95\textwidth}
+        \color{red}%
+        \bfseries
+        Warning: this document is \getpagerefnumber{LastPage} pages long,
+        which far exceeds the recommended limit of \the\snapshot@page@limit\space pages.
+      \end{minipage}%
+    }%
+  \fi
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % environment for image credits
 \newenvironment{imagecredits}{%
   % assure that image credits are printed before the bibliography
