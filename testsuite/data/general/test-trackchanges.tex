@@ -8,6 +8,16 @@
 \senioreditor[f]{Anja Randecker}{senior-editor@mfo.de}
 \director[m]{Gerhard Huisken}
 
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+
+%\usepackage[ngerman]{babel}
+\usepackage[USenglish]{babel}
+
+% Should have this before the trackchanges import so that trackchanges can
+% properly register the commands
+\usepackage[noabbrev,capitalise,nameinlink]{cleveref} % in case of USenglish
+
 %%% Commands for editing
 % Uncomment for collaborative editing:
 \usepackage{trackchanges}
@@ -16,11 +26,6 @@
 \addeditor{Carol}
 \addeditor{Dave}
 
-\usepackage[utf8]{inputenc}
-\usepackage{amsmath,amssymb}
-
-%\usepackage[ngerman]{babel}
-\usepackage[USenglish]{babel}
 
 \author{Author One\thanks{Author One is supported by the Mathematical Dreams Come True Foundation.} \and Author Two}
 
@@ -106,6 +111,14 @@ Your actual snapshot.\hskip -.1em\footnote{This is a footnote.} As usual, you ca
 
 \change[Alice]{We appreciate if you include images or other graphics that illustrate your snapshot. However, please do keep in mind the copyright issues explained in our email in case you include images and graphics you have not produced yourself.}{Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.}
 
+\add[Bob]{References inside changes should work.
+    The next subsection is Subsection \ref{s:a_sub}.
+    This should work with autoref (\autoref{s:a_sub}),
+    cref (\cref{s:a_sub}),
+    Cref (\Cref{s:a_sub}),
+    and citations (\cite{sample11}) as well.
+}
+
 %%% Please use this format to include images. Supported image formats: jpg, pdf, png. Please convert your images to those formats.
 \begin{figure}[ht]
         \centering
@@ -115,6 +128,7 @@ Your actual snapshot.\hskip -.1em\footnote{This is a footnote.} As usual, you ca
 \end{figure}
 
 \subsection{A subsection}
+\label{s:a_sub}
 More text and some formulas:
 \begin{align}\label{real}
 1+1&=2,\\\label{char.2}

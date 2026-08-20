@@ -816,6 +816,17 @@
   }%
 }
 
+\tcregister{\cite}{7}
+\tcregister{\ref}{7}
+\ifdefined\autoref
+    \tcregister{\autoref}{7}
+\fi
+\ifdefined\cref
+    \tcregister\cref7
+\fi
+\ifdefined\Cref
+    \tcregister\Cref7
+\fi
 
 %% 
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
