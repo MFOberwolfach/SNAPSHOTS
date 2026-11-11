@@ -1,6 +1,21 @@
 RELEASE-NOTES.txt of https://github.com/MFOberwolfach/SNAPSHOTS
 ===============================================================
 
+release v3.1.0
+==============
+
+changes
+-------
+* Over-length warnings added to the LaTeX warning messages and to the
+    pdf document for snapshots exceeding 12 and 14 pages, respectively.
+* template.tex enlarged and improved.
+* Registered commands \cite, \ref, \autoref, \cref, \Cref, and \eqref
+    in trackchanges.sty. 
+* Fix to make Helvetica font letterspaced again in section headings and
+    similar places.
+* Updates and improvements to the test suite.
+
+
 release v3.0.2
 ==============
 

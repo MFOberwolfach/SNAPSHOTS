@@ -1,5 +1,5 @@
 %% snapshotmfo.cls
-%% Copyright 2014 - 2023 Mathematisches Forschungsinstitut Oberwolfach, www.mfo.de
+%% Copyright 2014 - 2026 Mathematisches Forschungsinstitut Oberwolfach, www.mfo.de
 %%  developed within the project IMAGINARY, www.imaginary.org
 %%  supported by the Klaus Tschira Stiftung
 %
@@ -32,7 +32,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}
 \listfiles
-\ProvidesClass{snapshotmfo}[2023/09/08 Document class for "Snapshots of modern mathematics from Oberwolfach"]
+\ProvidesClass{snapshotmfo}[2026/11/11 Document class for "Snapshots of modern mathematics from Oberwolfach"]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % snapshotmfo is based on the Koma-Script ‘article’ class
 \LoadClass[10pt,twoside,bookmarkpackage=false]{scrartcl}
